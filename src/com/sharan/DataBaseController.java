@@ -12,8 +12,8 @@ public class DataBaseController {
     private String TABLE_CREATOR="CREATE TABLE IF NOT EXISTS ";
 
     private String userTableNAME ="userDatabase";
-    private String userTableCOLUMNS ="(UserName TEXT NOT NULL PRIMARY KEY,DOB TEXT,ResidentialAddress TEXT,Email TEXT,IdCard TEXT)";
-    private String userInsertParameters ="(UserName,DOB,ResidentialAddress,Email,IdCard)";
+    private String userTableCOLUMNS ="(UserName TEXT NOT NULL PRIMARY KEY,Password TEXT,DOB TEXT,ResidentialAddress TEXT,Email TEXT,IdCard TEXT)";
+    private String userInsertParameters ="(UserName,Password,DOB,ResidentialAddress,Email,IdCard)";
 
     private String hotelsTableNAME ="hotelsDatabase";
     private String hotelsTableCOLUMNS ="(UniqueId TEXT,State TEXT,City TEXT," +
@@ -37,8 +37,8 @@ public class DataBaseController {
         }
     }
 
-    public void addUser (String userName,String dateOfBirth,String address,String email,String idCard) throws SQLException{
-        statement.execute("INSERT INTO "+ userTableNAME + userInsertParameters +" VALUES('" +userName+"','"
+    public void addUser (String userName,String password,String dateOfBirth,String address,String email,String idCard) throws SQLException{
+        statement.execute("INSERT INTO "+ userTableNAME + userInsertParameters +" VALUES('" +userName+"','"+password+"','"
                                                         +dateOfBirth+"','"+address+"','"+email+"','"+idCard+"')");
     }
 
