@@ -53,11 +53,9 @@ public class HomePage extends Canvas {
         Heading = new JLabel();
         SignUp = new JButton();
         scrollBar = new JScrollBar();
-        States = new JComboBox<>();
         Hotels = new JComboBox();
         Search = new JButton();
         Picture = new JLabel();
-        Cities = new JComboBox<>();
         menuBar = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
@@ -182,26 +180,15 @@ public class HomePage extends Canvas {
             frame1ContentPane.add(scrollBar);
             scrollBar.setBounds(1045, 5, 22, 755);
 
-            //---- States ----
-            States.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
-            States.setModel(new DefaultComboBoxModel<>(new String[] {
-                "Telangana",
-                "Andhra Pradesh",
-                "Maharastra",
-                "Delhi"
-            }));
-            States.addActionListener(e -> StatesActionPerformed(e));
-            frame1ContentPane.add(States);
-            States.setBounds(0, 620, 230, 39);
-
             //---- Hotels ----
             Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
             frame1ContentPane.add(Hotels);
-            Hotels.setBounds(540, 620, 245, 39);
+            Hotels.setBounds(20, 620, 765, 39);
 
             //---- Search ----
             Search.setText("Search");
             Search.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 18));
+            Search.setIcon(null);
             frame1ContentPane.add(Search);
             Search.setBounds(840, 625, 125, 45);
 
@@ -210,30 +197,6 @@ public class HomePage extends Canvas {
             Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
             frame1ContentPane.add(Picture);
             Picture.setBounds(0, 150, 1045, 430);
-
-            //---- Cities ----
-            Cities.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
-            Cities.setModel(new DefaultComboBoxModel<>(new String[] {
-                "Hyderabad",
-                "Warangal",
-                "KarimNagar",
-                "Kammam",
-                "Vijayawada",
-                "Guntur",
-                "Tirupati",
-                "Vizag",
-                "Mumbai",
-                "Pune",
-                "Nagpur",
-                "Aurangabad",
-                "New Delhi",
-                "Panipat",
-                "Gurugram",
-                "Faridabad"
-            }));
-            Cities.addActionListener(e -> CitiesActionPerformed(e));
-            frame1ContentPane.add(Cities);
-            Cities.setBounds(260, 620, 225, 40);
 
             //======== menuBar ========
             {
@@ -658,7 +621,6 @@ public class HomePage extends Canvas {
             }
             frame1.pack();
             frame1.setLocationRelativeTo(frame1.getOwner());
-            frame1.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -670,11 +632,9 @@ public class HomePage extends Canvas {
     private JLabel Heading;
     private JButton SignUp;
     private JScrollBar scrollBar;
-    private JComboBox<String> States;
     private JComboBox Hotels;
     private JButton Search;
     private JLabel Picture;
-    private JComboBox<String> Cities;
     private JMenuBar menuBar;
     private JMenu Telangana;
     private JMenu Hyderabad;

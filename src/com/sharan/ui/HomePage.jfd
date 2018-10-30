@@ -55,35 +55,19 @@ new FormModel {
 				"width": 22
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "States"
-				"font": &Font0 new java.awt.Font( "Comic Sans MS", 2, 18 )
-				"model": new javax.swing.DefaultComboBoxModel {
-					selectedItem: "Telangana"
-					addElement( "Telangana" )
-					addElement( "Andhra Pradesh" )
-					addElement( "Maharastra" )
-					addElement( "Delhi" )
-				}
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "StatesActionPerformed", true ) )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 0
-				"y": 620
-				"width": 230
-				"height": 39
-			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "Hotels"
 				"font": new java.awt.Font( "Comic Sans MS", 2, 18 )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 245
+				"width": 765
 				"height": 39
-				"x": 540
+				"x": 20
 				"y": 620
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "Search"
 				"text": "Search"
 				"font": new java.awt.Font( "Comic Sans MS", 3, 18 )
+				"icon": sfield com.jformdesigner.model.FormObject NULL_VALUE
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 840
 				"y": 625
@@ -100,35 +84,6 @@ new FormModel {
 				"y": 150
 				"height": 430
 			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "Cities"
-				"font": #Font0
-				"model": new javax.swing.DefaultComboBoxModel {
-					selectedItem: "Hyderabad"
-					addElement( "Hyderabad" )
-					addElement( "Warangal" )
-					addElement( "KarimNagar" )
-					addElement( "Kammam" )
-					addElement( "Vijayawada" )
-					addElement( "Guntur" )
-					addElement( "Tirupati" )
-					addElement( "Vizag" )
-					addElement( "Mumbai" )
-					addElement( "Pune" )
-					addElement( "Nagpur" )
-					addElement( "Aurangabad" )
-					addElement( "New Delhi" )
-					addElement( "Panipat" )
-					addElement( "Gurugram" )
-					addElement( "Faridabad" )
-				}
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "CitiesActionPerformed", true ) )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 225
-				"height": 40
-				"x": 260
-				"y": 620
-			} )
 			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar"
 				"preferredSize": new java.awt.Dimension( 83, 50 )
@@ -141,7 +96,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Hyderabad"
 						"text": "Hyderabad"
-						"font": &Font1 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font0 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem49"
 							"text": "text"
@@ -162,7 +117,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Warangal"
 						"text": "Warangal"
-						"font": #Font1
+						"font": #Font0
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem54"
 							"text": "text"
@@ -183,7 +138,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Karimnagar"
 						"text": "Karimnagar"
-						"font": #Font1
+						"font": #Font0
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem58"
 							"text": "text"
@@ -204,7 +159,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Kammam"
 						"text": "Kammam"
-						"font": #Font1
+						"font": #Font0
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem62"
 							"text": "text"
@@ -231,7 +186,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Vijayawada"
 						"text": "Vijayawada"
-						"font": &Font2 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font1 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem1"
 							"text": "text"
@@ -252,7 +207,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Guntur"
 						"text": "Guntur"
-						"font": #Font2
+						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem6"
 							"text": "text"
@@ -273,7 +228,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Tirupati"
 						"text": "Tirupati"
-						"font": #Font2
+						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem5"
 							"text": "text"
@@ -294,7 +249,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Vizag"
 						"text": "Vizag"
-						"font": #Font2
+						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem13"
 							"text": "text"
@@ -321,7 +276,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Mumbai"
 						"text": "Mumbai"
-						"font": &Font3 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font2 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem17"
 							"text": "text"
@@ -342,7 +297,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Pune"
 						"text": "Pune"
-						"font": #Font3
+						"font": #Font2
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem21"
 							"text": "text"
@@ -363,7 +318,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Nagpur"
 						"text": "Nagpur"
-						"font": #Font3
+						"font": #Font2
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem25"
 							"text": "text"
@@ -384,7 +339,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Aurangabad"
 						"text": "Aurangabad"
-						"font": #Font3
+						"font": #Font2
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem29"
 							"text": "text"
@@ -411,7 +366,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "New_Delhi_City"
 						"text": "New Delhi"
-						"font": &Font4 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font3 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem33"
 							"text": "text"
@@ -432,7 +387,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Panipat"
 						"text": "Panipat"
-						"font": #Font4
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem37"
 							"text": "text"
@@ -453,7 +408,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Gurugram"
 						"text": "Gurugram"
-						"font": #Font4
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem41"
 							"text": "text"
@@ -474,7 +429,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Faridabad"
 						"text": "Faridabad"
-						"font": #Font4
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem45"
 							"text": "text"
