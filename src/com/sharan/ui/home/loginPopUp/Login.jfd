@@ -1,0 +1,55 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:219:p, comp button1:::p:197:p, space ::219:x}, seq l {space :p:48:p, par l {comp label1::::557:x, seq {par l:::p {comp label2::::261:x, comp label3::::261:x}, space :::x, par l {comp passwordField1::t:p:245:p, comp textField1::t:p:245:p}}}, space :p:30:p}}"
+			"$verticalGroup": "par l {seq {comp label1:::p::p, space :p:64:p, par t {comp label2:::p:45:p, comp textField1:::p:45:p}, space s:::p, par t {comp passwordField1:::p:40:p, comp label3:::p:40:p}, space :p:49:p, comp button1:::p:44:p, space :::p}}"
+		} ) {
+			name: "Login"
+			"minimumSize": new java.awt.Dimension( 10, 25 )
+			"defaultCloseOperation": 2
+			"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "LOGIN"
+				"foreground": sfield java.awt.Color red
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 18, false )
+				"horizontalAlignment": 0
+				"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
+				"border": new javax.swing.plaf.BorderUIResource$CompoundBorderUIResource( new javax.swing.plaf.metal.MetalBorders$TextFieldBorder, new javax.swing.plaf.basic.BasicBorders$MarginBorder )
+				"background": sfield java.awt.Color yellow
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "USERNAME"
+				"font": new java.awt.Font( "Comic Sans MS", 2, 24 )
+				"background": new java.awt.Color( 0, 155, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+				"font": new java.awt.Font( "Arial", 0, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "PASSWORD"
+				"font": new java.awt.Font( "Comic Sans MS", 2, 24 )
+				"background": new java.awt.Color( 0, 166, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField1"
+				"font": new java.awt.Font( "Arial", 0, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "LOGIN"
+				"font": new java.awt.Font( "Times New Roman", 1, 18 )
+				"background": new java.awt.Color( 0, 155, 0, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 80, 60 )
+			"size": new java.awt.Dimension( 510, 320 )
+		} )
+	}
+}

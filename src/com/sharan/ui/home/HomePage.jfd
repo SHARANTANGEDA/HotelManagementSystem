@@ -13,6 +13,7 @@ new FormModel {
 				"text": "Login"
 				"background": &Color0 new java.awt.Color( 0, 255, 29, 255 )
 				"componentPopupMenu": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LoginActionPerformed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"y": 15
 				"width": 120
@@ -38,6 +39,8 @@ new FormModel {
 				name: "SignUp"
 				"text": "SignUp"
 				"background": #Color0
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SignUpActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SignUpActionPerformed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 120
 				"height": 40
@@ -54,36 +57,6 @@ new FormModel {
 				"height": 755
 				"width": 22
 			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "Hotels"
-				"font": new java.awt.Font( "Comic Sans MS", 2, 18 )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 765
-				"height": 39
-				"x": 20
-				"y": 620
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "Search"
-				"text": "Search"
-				"font": new java.awt.Font( "Comic Sans MS", 3, 18 )
-				"icon": sfield com.jformdesigner.model.FormObject NULL_VALUE
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 840
-				"y": 625
-				"width": 125
-				"height": 45
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "Picture"
-				"text": "text"
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/HomePagePic.jpg" )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 1045
-				"x": 0
-				"y": 150
-				"height": 430
-			} )
 			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar"
 				"preferredSize": new java.awt.Dimension( 83, 50 )
@@ -91,12 +64,12 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "Telangana"
 					"text": "Telangana"
-					"preferredSize": new java.awt.Dimension( 135, 19 )
-					"font": new java.awt.Font( "Arial Black", 3, 18 )
+					"preferredSize": new java.awt.Dimension( 100, 19 )
+					"font": &Font0 new java.awt.Font( "Arial", 1, 18 )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Hyderabad"
 						"text": "Hyderabad"
-						"font": &Font0 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font1 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem49"
 							"text": "text"
@@ -117,7 +90,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Warangal"
 						"text": "Warangal"
-						"font": #Font0
+						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem54"
 							"text": "text"
@@ -138,7 +111,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Karimnagar"
 						"text": "Karimnagar"
-						"font": #Font0
+						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem58"
 							"text": "text"
@@ -159,7 +132,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Kammam"
 						"text": "Kammam"
-						"font": #Font0
+						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem62"
 							"text": "text"
@@ -181,12 +154,12 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "Andhra_Pradesh"
 					"text": "Andhra Pradesh"
-					"preferredSize": new java.awt.Dimension( 180, 50 )
-					"font": new java.awt.Font( "Arial Black", 3, 18 )
+					"preferredSize": new java.awt.Dimension( 150, 50 )
+					"font": #Font0
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Vijayawada"
 						"text": "Vijayawada"
-						"font": &Font1 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font2 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem1"
 							"text": "text"
@@ -207,7 +180,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Guntur"
 						"text": "Guntur"
-						"font": #Font1
+						"font": #Font2
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem6"
 							"text": "text"
@@ -228,7 +201,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Tirupati"
 						"text": "Tirupati"
-						"font": #Font1
+						"font": #Font2
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem5"
 							"text": "text"
@@ -249,7 +222,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Vizag"
 						"text": "Vizag"
-						"font": #Font1
+						"font": #Font2
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem13"
 							"text": "text"
@@ -271,12 +244,12 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "Maharastra"
 					"text": "Maharastra"
-					"preferredSize": new java.awt.Dimension( 135, 50 )
-					"font": new java.awt.Font( "Arial Black", 3, 18 )
+					"preferredSize": new java.awt.Dimension( 110, 50 )
+					"font": #Font0
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Mumbai"
 						"text": "Mumbai"
-						"font": &Font2 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font3 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem17"
 							"text": "text"
@@ -297,7 +270,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Pune"
 						"text": "Pune"
-						"font": #Font2
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem21"
 							"text": "text"
@@ -318,7 +291,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Nagpur"
 						"text": "Nagpur"
-						"font": #Font2
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem25"
 							"text": "text"
@@ -339,7 +312,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Aurangabad"
 						"text": "Aurangabad"
-						"font": #Font2
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem29"
 							"text": "text"
@@ -361,12 +334,12 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "New_Delhi"
 					"text": "New Delhi"
-					"preferredSize": new java.awt.Dimension( 135, 50 )
-					"font": new java.awt.Font( "Arial Black", 3, 18 )
+					"preferredSize": new java.awt.Dimension( 100, 50 )
+					"font": #Font0
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "New_Delhi_City"
 						"text": "New Delhi"
-						"font": &Font3 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font4 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem33"
 							"text": "text"
@@ -387,7 +360,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Panipat"
 						"text": "Panipat"
-						"font": #Font3
+						"font": #Font4
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem37"
 							"text": "text"
@@ -408,7 +381,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Gurugram"
 						"text": "Gurugram"
-						"font": #Font3
+						"font": #Font4
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem41"
 							"text": "text"
@@ -429,7 +402,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Faridabad"
 						"text": "Faridabad"
-						"font": #Font3
+						"font": #Font4
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem45"
 							"text": "text"
@@ -448,13 +421,48 @@ new FormModel {
 						} )
 					} )
 				} )
+				add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+					name: "hSpacer1"
+					"preferredSize": new java.awt.Dimension( 15, 10 )
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "Hotels"
+					"font": new java.awt.Font( "Comic Sans MS", 2, 18 )
+					"toolTipText": "Search for Hotels"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "Search"
+					"font": new java.awt.Font( "Comic Sans MS", 3, 18 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/findSmall.png" )
+					"text": "Search"
+				} )
+				add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+					name: "hSpacer2"
+					"preferredSize": new java.awt.Dimension( 5, 50 )
+					"maximumSize": new java.awt.Dimension( 100, 50 )
+				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 1073
+				"width": 1045
 				"x": 0
 				"y": 100
 			} )
+			add( new FormContainer( "javax.swing.JSplitPane", new FormLayoutManager( class javax.swing.JSplitPane ) ) {
+				name: "splitPane1"
+				"orientation": 0
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "Picture"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/HomePagePic.jpg" )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "left"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 0
+				"y": 145
+				"width": 1045
+				"height": 610
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 26, 0 )
+			"location": new java.awt.Point( 20, 0 )
 			"size": new java.awt.Dimension( 860, 635 )
 		} )
 	}

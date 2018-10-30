@@ -1,4 +1,8 @@
-package com.sharan.ui;
+package com.sharan.ui.home;
+
+import com.sharan.DataBaseController;
+import com.sharan.ui.home.loginPopUp.Login;
+import com.sharan.ui.home.signUpPopUp.SignUp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +17,13 @@ public class HomePage extends Canvas {
     String states[] = {"Telangana", "Andhra Pradesh", "Maharastra", "Delhi"};
     String selectedCities[]={"Hyderabad","Warangal","KarimNagar","Kammam","Vijayawada", "Guntur","Tirupati","Vizag",
                 "Mumbai", "Pune","Nagpur","Aurangabad","New Delhi", "Panipat","Gurugram","Faridabad"};
+    private DataBaseController dataBaseController;
 
+    public HomePage(DataBaseController dataBaseController) {
+        this.dataBaseController=dataBaseController;
 
-    public HomePage() {
         initComponents();
     }
-
-
 
 
     public String getStateSelected() {
@@ -34,13 +38,12 @@ public class HomePage extends Canvas {
         return frame;
     }
 
-    private void StatesActionPerformed(ActionEvent e) {
-        stateSelected=States.getItemAt(States.getSelectedIndex()).toString();
+    private void LoginActionPerformed(ActionEvent e) {
+        com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController);
     }
 
-
-    private void CitiesActionPerformed(ActionEvent e) {
-        citySelected=Cities.getItemAt(Cities.getSelectedIndex()).toString();
+    private void SignUpActionPerformed(ActionEvent e) {
+        com.sharan.ui.home.signUpPopUp.SignUp signUp=new SignUp(dataBaseController);
     }
 
 
@@ -53,9 +56,6 @@ public class HomePage extends Canvas {
         Heading = new JLabel();
         SignUp = new JButton();
         scrollBar = new JScrollBar();
-        Hotels = new JComboBox();
-        Search = new JButton();
-        Picture = new JLabel();
         menuBar = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
@@ -141,6 +141,12 @@ public class HomePage extends Canvas {
         menuItem46 = new JMenuItem();
         menuItem47 = new JMenuItem();
         menuItem48 = new JMenuItem();
+        hSpacer1 = new JPanel(null);
+        Hotels = new JComboBox();
+        Search = new JButton();
+        hSpacer2 = new JPanel(null);
+        splitPane1 = new JSplitPane();
+        Picture = new JLabel();
 
         //======== frame1 ========
         {
@@ -154,6 +160,7 @@ public class HomePage extends Canvas {
             Login.setText("Login");
             Login.setBackground(new Color(0, 255, 29));
             Login.setComponentPopupMenu(null);
+            Login.addActionListener(this::LoginActionPerformed);
             frame1ContentPane.add(Login);
             Login.setBounds(750, 15, 120, 40);
 
@@ -171,6 +178,7 @@ public class HomePage extends Canvas {
             //---- SignUp ----
             SignUp.setText("SignUp");
             SignUp.setBackground(new Color(0, 255, 29));
+            SignUp.addActionListener(this::SignUpActionPerformed);
             frame1ContentPane.add(SignUp);
             SignUp.setBounds(875, 15, 120, 40);
 
@@ -180,24 +188,6 @@ public class HomePage extends Canvas {
             frame1ContentPane.add(scrollBar);
             scrollBar.setBounds(1045, 5, 22, 755);
 
-            //---- Hotels ----
-            Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
-            frame1ContentPane.add(Hotels);
-            Hotels.setBounds(20, 620, 765, 39);
-
-            //---- Search ----
-            Search.setText("Search");
-            Search.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 18));
-            Search.setIcon(null);
-            frame1ContentPane.add(Search);
-            Search.setBounds(840, 625, 125, 45);
-
-            //---- Picture ----
-            Picture.setText("text");
-            Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
-            frame1ContentPane.add(Picture);
-            Picture.setBounds(0, 150, 1045, 430);
-
             //======== menuBar ========
             {
                 menuBar.setPreferredSize(new Dimension(83, 50));
@@ -206,8 +196,8 @@ public class HomePage extends Canvas {
                 //======== Telangana ========
                 {
                     Telangana.setText("Telangana");
-                    Telangana.setPreferredSize(new Dimension(135, 19));
-                    Telangana.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 18));
+                    Telangana.setPreferredSize(new Dimension(100, 19));
+                    Telangana.setFont(new Font("Arial", Font.BOLD, 18));
 
                     //======== Hyderabad ========
                     {
@@ -306,8 +296,8 @@ public class HomePage extends Canvas {
                 //======== Andhra_Pradesh ========
                 {
                     Andhra_Pradesh.setText("Andhra Pradesh");
-                    Andhra_Pradesh.setPreferredSize(new Dimension(180, 50));
-                    Andhra_Pradesh.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 18));
+                    Andhra_Pradesh.setPreferredSize(new Dimension(150, 50));
+                    Andhra_Pradesh.setFont(new Font("Arial", Font.BOLD, 18));
 
                     //======== Vijayawada ========
                     {
@@ -406,8 +396,8 @@ public class HomePage extends Canvas {
                 //======== Maharastra ========
                 {
                     Maharastra.setText("Maharastra");
-                    Maharastra.setPreferredSize(new Dimension(135, 50));
-                    Maharastra.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 18));
+                    Maharastra.setPreferredSize(new Dimension(110, 50));
+                    Maharastra.setFont(new Font("Arial", Font.BOLD, 18));
 
                     //======== Mumbai ========
                     {
@@ -506,8 +496,8 @@ public class HomePage extends Canvas {
                 //======== New_Delhi ========
                 {
                     New_Delhi.setText("New Delhi");
-                    New_Delhi.setPreferredSize(new Dimension(135, 50));
-                    New_Delhi.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 18));
+                    New_Delhi.setPreferredSize(new Dimension(100, 50));
+                    New_Delhi.setFont(new Font("Arial", Font.BOLD, 18));
 
                     //======== New_Delhi_City ========
                     {
@@ -602,9 +592,40 @@ public class HomePage extends Canvas {
                     New_Delhi.add(Faridabad);
                 }
                 menuBar.add(New_Delhi);
+
+                //---- hSpacer1 ----
+                hSpacer1.setPreferredSize(new Dimension(15, 10));
+                menuBar.add(hSpacer1);
+
+                //---- Hotels ----
+                Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
+                Hotels.setToolTipText("Search for Hotels");
+                menuBar.add(Hotels);
+
+                //---- Search ----
+                Search.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 18));
+                Search.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/findSmall.png")));
+                Search.setText("Search");
+                menuBar.add(Search);
+
+                //---- hSpacer2 ----
+                hSpacer2.setPreferredSize(new Dimension(5, 50));
+                hSpacer2.setMaximumSize(new Dimension(100, 50));
+                menuBar.add(hSpacer2);
             }
             frame1ContentPane.add(menuBar);
-            menuBar.setBounds(0, 100, 1073, menuBar.getPreferredSize().height);
+            menuBar.setBounds(0, 100, 1045, menuBar.getPreferredSize().height);
+
+            //======== splitPane1 ========
+            {
+                splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+
+                //---- Picture ----
+                Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
+                splitPane1.setTopComponent(Picture);
+            }
+            frame1ContentPane.add(splitPane1);
+            splitPane1.setBounds(0, 145, 1045, 610);
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -621,6 +642,7 @@ public class HomePage extends Canvas {
             }
             frame1.pack();
             frame1.setLocationRelativeTo(frame1.getOwner());
+            frame1.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -632,9 +654,6 @@ public class HomePage extends Canvas {
     private JLabel Heading;
     private JButton SignUp;
     private JScrollBar scrollBar;
-    private JComboBox Hotels;
-    private JButton Search;
-    private JLabel Picture;
     private JMenuBar menuBar;
     private JMenu Telangana;
     private JMenu Hyderabad;
@@ -720,5 +739,11 @@ public class HomePage extends Canvas {
     private JMenuItem menuItem46;
     private JMenuItem menuItem47;
     private JMenuItem menuItem48;
+    private JPanel hSpacer1;
+    private JComboBox Hotels;
+    private JButton Search;
+    private JPanel hSpacer2;
+    private JSplitPane splitPane1;
+    private JLabel Picture;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -1,7 +1,7 @@
 package com.sharan;
 
 
-import com.sharan.ui.HomePage;
+import com.sharan.ui.home.HomePage;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class Main {
         dataBaseController.initialiseDatabase();
 
 
-        HomePage homePage=new HomePage();
+        HomePage homePage=new HomePage(dataBaseController);
     }
 
 }
