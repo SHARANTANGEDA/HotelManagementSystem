@@ -48,5 +48,18 @@ public class DataBaseController {
     }
 
 
+    public void closeDatabaseConnection() {
+        try {
+            if (!conn.isClosed()) {
+                statement.close();
+                conn.close();
+            } else {
+                System.out.println("Error Closing DataBase");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }

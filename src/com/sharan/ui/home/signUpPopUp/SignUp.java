@@ -4,15 +4,13 @@
 
 package com.sharan.ui.home.signUpPopUp;
 
+import com.miginfocom.beans.*;
 import com.miginfocom.beans.DateComboBean;
 import com.sharan.DataBaseController;
-
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * @author Ajith
- */
+
 public class SignUp extends JPanel {
     DataBaseController dataBaseController;
     public SignUp(DataBaseController dataBaseController) {
@@ -21,18 +19,12 @@ public class SignUp extends JPanel {
 
     }
 
-    private void createUIComponents() {
-        // TODO: add custom component creation code here
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
         dialog1 = new JDialog();
         button1 = new JButton();
-        year = new JComboBox();
-        date = new JComboBox();
-        month = new JComboBox();
         PanField = new JTextField();
         slash = new JLabel();
         AadharField = new JTextField();
@@ -58,7 +50,7 @@ public class SignUp extends JPanel {
         userName = new JTextField();
         dayBean = new DateComboBean();
         monthBean = new DateComboBean();
-        yearBean = new DateComboBean();
+        dateSpinnerBean1 = new DateSpinnerBean();
 
         //======== dialog1 ========
         {
@@ -122,10 +114,10 @@ public class SignUp extends JPanel {
             monthBean.setDateFormatString("MM");
             monthBean.setCalendarField(java.util.Calendar.MONTH);
 
-            //---- yearBean ----
-            yearBean.setFont(new Font("Arial", Font.PLAIN, 16));
-            yearBean.setDateFormatString("yyyy");
-            yearBean.setCalendarField(java.util.Calendar.YEAR);
+            //---- dateSpinnerBean1 ----
+            dateSpinnerBean1.setCalendarField(java.util.Calendar.YEAR);
+            dateSpinnerBean1.setDateFormatString("yyyy");
+            dateSpinnerBean1.setFont(new Font("Arial", Font.PLAIN, 16));
 
             GroupLayout dialog1ContentPaneLayout = new GroupLayout(dialog1ContentPane);
             dialog1ContentPane.setLayout(dialog1ContentPaneLayout);
@@ -143,64 +135,60 @@ public class SignUp extends JPanel {
                     .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(dialog1ContentPaneLayout.createParallelGroup()
+                            .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
+                                .addComponent(label7)
+                                .addGap(0, 482, Short.MAX_VALUE))
                             .addGroup(GroupLayout.Alignment.TRAILING, dialog1ContentPaneLayout.createSequentialGroup()
                                 .addGroup(dialog1ContentPaneLayout.createParallelGroup()
                                     .addComponent(label2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label3, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label4, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
-                                        .addGroup(dialog1ContentPaneLayout.createParallelGroup()
-                                            .addComponent(userName, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(password, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(password, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
                                         .addGap(221, 221, 221))
-                                    .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
+                                    .addGroup(GroupLayout.Alignment.LEADING, dialog1ContentPaneLayout.createSequentialGroup()
                                         .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
-                                                .addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(month, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
                                             .addGroup(GroupLayout.Alignment.LEADING, dialog1ContentPaneLayout.createSequentialGroup()
                                                 .addComponent(dayBean, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
                                                 .addComponent(monthBean, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(yearBean, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addComponent(label6, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(year, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(79, 79, 79))))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(dateSpinnerBean1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(userName, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(223, 223, 223))))
                             .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
                                 .addGroup(dialog1ContentPaneLayout.createParallelGroup()
                                     .addComponent(label8, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label9)
-                                    .addComponent(label11)
-                                    .addComponent(label10)
                                     .addComponent(label12)
                                     .addComponent(label13)
-                                    .addComponent(label7))
-                                .addGap(30, 30, 30)
+                                    .addComponent(label10)
+                                    .addComponent(label11))
+                                .addGap(61, 61, 61)
                                 .addGroup(dialog1ContentPaneLayout.createParallelGroup()
-                                    .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
-                                        .addComponent(AadharField, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(slash, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(PanField, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
                                         .addGroup(dialog1ContentPaneLayout.createParallelGroup()
                                             .addComponent(emailField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(localityField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(houseNumberField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cityField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cityField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 222, Short.MAX_VALUE))
+                                    .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
+                                        .addGroup(dialog1ContentPaneLayout.createParallelGroup()
+                                            .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
+                                                .addComponent(AadharField, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(slash, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(PanField, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
                                             .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                        .addContainerGap(69, Short.MAX_VALUE))))))
             );
             dialog1ContentPaneLayout.setVerticalGroup(
                 dialog1ContentPaneLayout.createParallelGroup()
@@ -228,22 +216,18 @@ public class SignUp extends JPanel {
                                         .addComponent(label4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(GroupLayout.Alignment.TRAILING, dialog1ContentPaneLayout.createSequentialGroup()
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(monthBean, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(yearBean, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(dialog1ContentPaneLayout.createParallelGroup()
+                                            .addComponent(monthBean, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label5, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(GroupLayout.Alignment.TRAILING, dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(dateSpinnerBean1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                                                .addComponent(label6, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))))))
                             .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(dayBean, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                        .addGap(34, 34, 34)
-                        .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(month, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(date, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(year, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                        .addGap(45, 45, 45)
                         .addComponent(label7)
-                        .addGap(18, 18, 18)
+                        .addGap(52, 52, 52)
                         .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label8)
                             .addComponent(houseNumberField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -251,14 +235,14 @@ public class SignUp extends JPanel {
                         .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label9)
                             .addComponent(localityField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label10)
                             .addComponent(cityField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
+                        .addGap(26, 26, 26)
                         .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label11)
-                            .addComponent(stateField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(stateField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label11))
                         .addGap(18, 18, 18)
                         .addGroup(dialog1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label12)
@@ -271,11 +255,10 @@ public class SignUp extends JPanel {
                             .addComponent(emailField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addComponent(button1, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))
+                        .addGap(70, 70, 70))
             );
             dialog1.pack();
             dialog1.setLocationRelativeTo(dialog1.getOwner());
-            dialog1.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -284,9 +267,6 @@ public class SignUp extends JPanel {
     // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JDialog dialog1;
     private JButton button1;
-    private JComboBox year;
-    private JComboBox date;
-    private JComboBox month;
     private JTextField PanField;
     private JLabel slash;
     private JTextField AadharField;
@@ -312,7 +292,7 @@ public class SignUp extends JPanel {
     private JTextField userName;
     private DateComboBean dayBean;
     private DateComboBean monthBean;
-    private DateComboBean yearBean;
+    private DateSpinnerBean dateSpinnerBean1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }

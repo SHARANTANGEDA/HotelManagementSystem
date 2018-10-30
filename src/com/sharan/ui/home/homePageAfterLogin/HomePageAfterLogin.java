@@ -1,61 +1,52 @@
-package com.sharan.ui.home;
+/*
+ * Created by JFormDesigner on Tue Oct 30 12:03:37 IST 2018
+ */
+
+package com.sharan.ui.home.homePageAfterLogin;
 
 import com.sharan.DataBaseController;
-import com.sharan.ui.home.loginPopUp.Login;
-import com.sharan.ui.home.signUpPopUp.SignUp;
+import com.sharan.ui.home.homePage.HomePage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class HomePage extends Canvas {
-    private int FRAME_WIDTH = 1500;
-    private int FRAME_HEIGHT = 750;
-    private String stateSelected = "";
-    private String citySelected="";
-    private JFrame frame = new JFrame("Online Hotel Booking System");
-    String states[] = {"Telangana", "Andhra Pradesh", "Maharastra", "Delhi"};
-    String selectedCities[]={"Hyderabad","Warangal","KarimNagar","Kammam","Vijayawada", "Guntur","Tirupati","Vizag",
-                "Mumbai", "Pune","Nagpur","Aurangabad","New Delhi", "Panipat","Gurugram","Faridabad"};
+/**
+ * @author SAI SHARAN
+ */
+public class HomePageAfterLogin {
     private DataBaseController dataBaseController;
 
-    public HomePage(DataBaseController dataBaseController) {
+    public HomePageAfterLogin(DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
-
         initComponents();
     }
 
 
-    public String getStateSelected() {
-        return stateSelected;
-    }
-
-    public String getCitySelected() {
-        return citySelected;
-    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
 
     private void LoginActionPerformed(ActionEvent e) {
-        com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController);
+        // TODO add your code here
     }
 
     private void SignUpActionPerformed(ActionEvent e) {
-        com.sharan.ui.home.signUpPopUp.SignUp signUp=new SignUp(dataBaseController);
+        // TODO add your code here
     }
 
+    private void LogoutActionPerformed(ActionEvent e) {
+        homePageAfterLogin.dispose();
+        homePageAfterLogin.setVisible(false);
+        HomePage homePage=new HomePage(dataBaseController);
 
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
-        frame1 = new JFrame();
-        Login = new JButton();
+        homePageAfterLogin = new JFrame();
         Heading = new JLabel();
-        SignUp = new JButton();
         scrollBar = new JScrollBar();
+        splitPane1 = new JSplitPane();
+        Picture = new JLabel();
         menuBar = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
@@ -141,28 +132,16 @@ public class HomePage extends Canvas {
         menuItem46 = new JMenuItem();
         menuItem47 = new JMenuItem();
         menuItem48 = new JMenuItem();
-        hSpacer1 = new JPanel(null);
+        separator1 = new JSeparator();
         Hotels = new JComboBox();
         Search = new JButton();
-        hSpacer2 = new JPanel(null);
-        splitPane1 = new JSplitPane();
-        Picture = new JLabel();
+        menuBar1 = new JMenuBar();
+        menu1 = new JMenu();
+        Logout = new JButton();
 
-        //======== frame1 ========
+        //======== homePageAfterLogin ========
         {
-            frame1.setFont(new Font("Courier New", Font.BOLD, 36));
-            frame1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame1.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")).getImage());
-            Container frame1ContentPane = frame1.getContentPane();
-            frame1ContentPane.setLayout(null);
-
-            //---- Login ----
-            Login.setText("Login");
-            Login.setBackground(new Color(0, 255, 29));
-            Login.setComponentPopupMenu(null);
-            Login.addActionListener(this::LoginActionPerformed);
-            frame1ContentPane.add(Login);
-            Login.setBounds(750, 15, 120, 40);
+            Container homePageAfterLoginContentPane = homePageAfterLogin.getContentPane();
 
             //---- Heading ----
             Heading.setText("Online Hotel Bookng Portal");
@@ -172,26 +151,27 @@ public class HomePage extends Canvas {
             Heading.setHorizontalAlignment(SwingConstants.CENTER);
             Heading.setHorizontalTextPosition(SwingConstants.CENTER);
             Heading.setBorder(null);
-            frame1ContentPane.add(Heading);
-            Heading.setBounds(150, 10, 600, 60);
-
-            //---- SignUp ----
-            SignUp.setText("SignUp");
-            SignUp.setBackground(new Color(0, 255, 29));
-            SignUp.addActionListener(this::SignUpActionPerformed);
-            frame1ContentPane.add(SignUp);
-            SignUp.setBounds(875, 15, 120, 40);
+            Heading.setOpaque(true);
 
             //---- scrollBar ----
             scrollBar.setName("verticalScrollBar");
             scrollBar.setBorder(null);
-            frame1ContentPane.add(scrollBar);
-            scrollBar.setBounds(1045, 5, 22, 755);
+            scrollBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+
+            //======== splitPane1 ========
+            {
+                splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+
+                //---- Picture ----
+                Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
+                splitPane1.setTopComponent(Picture);
+            }
 
             //======== menuBar ========
             {
                 menuBar.setPreferredSize(new Dimension(83, 50));
                 menuBar.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 20));
+                menuBar.setBackground(new Color(51, 255, 0));
 
                 //======== Telangana ========
                 {
@@ -593,13 +573,14 @@ public class HomePage extends Canvas {
                 }
                 menuBar.add(New_Delhi);
 
-                //---- hSpacer1 ----
-                hSpacer1.setPreferredSize(new Dimension(15, 10));
-                menuBar.add(hSpacer1);
+                //---- separator1 ----
+                separator1.setMaximumSize(new Dimension(400, 50));
+                menuBar.add(separator1);
 
                 //---- Hotels ----
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
+                Hotels.setMaximumSize(new Dimension(500, 50));
                 menuBar.add(Hotels);
 
                 //---- Search ----
@@ -607,53 +588,76 @@ public class HomePage extends Canvas {
                 Search.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/findSmall.png")));
                 Search.setText("Search");
                 menuBar.add(Search);
-
-                //---- hSpacer2 ----
-                hSpacer2.setPreferredSize(new Dimension(5, 50));
-                hSpacer2.setMaximumSize(new Dimension(100, 50));
-                menuBar.add(hSpacer2);
             }
-            frame1ContentPane.add(menuBar);
-            menuBar.setBounds(0, 100, 1045, menuBar.getPreferredSize().height);
 
-            //======== splitPane1 ========
+            //======== menuBar1 ========
             {
-                splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 
-                //---- Picture ----
-                Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
-                splitPane1.setTopComponent(Picture);
-            }
-            frame1ContentPane.add(splitPane1);
-            splitPane1.setBounds(0, 145, 1045, 610);
+                //======== menu1 ========
+                {
+                    menu1.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
 
-            { // compute preferred size
-                Dimension preferredSize = new Dimension();
-                for(int i = 0; i < frame1ContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = frame1ContentPane.getComponent(i).getBounds();
-                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                    //---- Logout ----
+                    Logout.setText("Logout");
+                    Logout.setFont(new Font("Arial", Font.PLAIN, 16));
+                    Logout.addActionListener(e -> LogoutActionPerformed(e));
+                    menu1.add(Logout);
                 }
-                Insets insets = frame1ContentPane.getInsets();
-                preferredSize.width += insets.right;
-                preferredSize.height += insets.bottom;
-                frame1ContentPane.setMinimumSize(preferredSize);
-                frame1ContentPane.setPreferredSize(preferredSize);
+                menuBar1.add(menu1);
             }
-            frame1.pack();
-            frame1.setLocationRelativeTo(frame1.getOwner());
-            frame1.setVisible(true);
+
+            GroupLayout homePageAfterLoginContentPaneLayout = new GroupLayout(homePageAfterLoginContentPane);
+            homePageAfterLoginContentPane.setLayout(homePageAfterLoginContentPaneLayout);
+            homePageAfterLoginContentPaneLayout.setHorizontalGroup(
+                homePageAfterLoginContentPaneLayout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                .addGap(0, 3, Short.MAX_VALUE)
+                                .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                                    .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, 1087, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                        .addGap(189, 189, 189)
+                                        .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 1078, GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(GroupLayout.Alignment.TRAILING, homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                .addContainerGap(1033, Short.MAX_VALUE)
+                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))
+                        .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3))
+            );
+            homePageAfterLoginContentPaneLayout.setVerticalGroup(
+                homePageAfterLoginContentPaneLayout.createParallelGroup()
+                    .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, 610, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 741, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+            );
+            homePageAfterLogin.pack();
+            homePageAfterLogin.setLocationRelativeTo(homePageAfterLogin.getOwner());
+            homePageAfterLogin.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - SAI SHARAN
-    private JFrame frame1;
-    private JButton Login;
+    private JFrame homePageAfterLogin;
     private JLabel Heading;
-    private JButton SignUp;
     private JScrollBar scrollBar;
+    private JSplitPane splitPane1;
+    private JLabel Picture;
     private JMenuBar menuBar;
     private JMenu Telangana;
     private JMenu Hyderabad;
@@ -739,11 +743,11 @@ public class HomePage extends Canvas {
     private JMenuItem menuItem46;
     private JMenuItem menuItem47;
     private JMenuItem menuItem48;
-    private JPanel hSpacer1;
+    private JSeparator separator1;
     private JComboBox Hotels;
     private JButton Search;
-    private JPanel hSpacer2;
-    private JSplitPane splitPane1;
-    private JLabel Picture;
+    private JMenuBar menuBar1;
+    private JMenu menu1;
+    private JButton Logout;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

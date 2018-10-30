@@ -4,22 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq l {space :p:242:p, comp button1:::p:145:p}, seq l {space :p:47:p, comp Title:::p:535:p}}, space :::x}, seq l {space :p:18:p, par l {seq t {par l {comp label2::l:p:90:p, comp label3::l:p:75:p, comp label4:::p:121:p}, space :70::x, par t:::p {seq t {par l {comp userName:::p:230:p, comp password::l:p:230:p}, space :p:221:p}, seq t {par t {seq {comp date:::p::p, space :::p, comp label5:::p:14:p, space :::p, comp month:::p::p, space :::p}, seq l {comp dayBean:::p::p, space s:::p, comp monthBean:::p::p, space s:::p, comp yearBean:::p::p, space :::x}}, comp label6:::p:20:p, space :::p, comp year:::p:70:p, space :p:79:p}}}, seq l {par l {comp label8::l:p:85:p, comp label9::l:p::p, comp label11::l:p::p, comp label10::l:p::p, comp label12::l:p::p, comp label13::l:p::p, comp label7::l:p::p}, space :p:30:p, par l {seq l {comp AadharField:::p:175:p, space u:::p, comp slash:::p:15:p, space :::p, comp PanField:::p:175:p, space :::x}, seq {par l {comp emailField:::p:230:p, comp localityField:::p:230:p, comp houseNumberField:::p:230:p, comp cityField::l:p:230:p, comp stateField:::p:230:p}, space :0:0:x}}}}}}"
-			"$verticalGroup": "par l {seq l {par l {seq {comp Title:::p:50:p, par l {seq {space :p:26:p, comp label2:::p::p}, seq t {space :::p, comp userName:::p::p}}, par l {seq {space :p:26:p, comp label3:::p::p}, seq l {space s:::p, comp password:::p::p}}, par l {seq {space :p:46:p, comp label4:::::x}, seq t {space :::x, par t {comp monthBean:::p::p, comp yearBean:::p::p}}}}, seq {space :0:0:x, comp dayBean:::p::p}}, space :p:34:p, par b {comp month::b:p:25:p, comp date::b:p:25:p, comp label5::b:p:20:p, comp label6::b:p:25:p, comp year::b:p:25:p}, space :p:20:p, comp label7:::p::p, space s:::p, par b {comp label8::b:p::p, comp houseNumberField::b:p::p}, space s:::p, par b {comp label9::b:p::p, comp localityField::b:p::p}, space :p:27:p, par b {comp label10::b:p::p, comp cityField::b:p::p}, space :p:15:p, par b {comp label11::b:p::p, comp stateField::b:p::p}, space s:::p, par b {comp label12::b:p::p, comp AadharField::b:p:20:p, comp slash::b:p:20:p, comp PanField::b:p:20:p}, space u:::p, par l {comp label13:::p::p, comp emailField:::p:20:p}, space :p:29:p, comp button1:::p:45:p, space :p:91:p}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:242:p, comp button1:::p:145:p}, seq l {space :p:47:p, comp Title:::p:535:p}}, space :::x}, seq l {space :p:18:p, par l {seq {comp label7:::p::p, space :0:482:x}, seq t {par l {comp label2::l:p:90:p, comp label3::l:p:75:p, comp label4:::p:121:p}, space :70::x, par t {seq t {comp password:::p:230:p, space :p:221:p}, seq l {par t {seq l {comp dayBean:::p::p, space :p:2:p, comp label5:::p:14:p, space :p:2:p, comp monthBean:::p::p, space :::p, comp label6:::p:20:p, space :::p, comp dateSpinnerBean1:::p::p}, comp userName::l:p:230:p}, space :p:223:p}}}, seq l {par l {comp label8::l:p:85:p, comp label9::l:p::p, comp label12::l:p::p, comp label13::l:p::p, comp label10::l:p::p, comp label11::l:p::p}, space :p:61:p, par l {seq {par l {comp emailField:::p:230:p, comp localityField:::p:230:p, comp houseNumberField:::p:230:p, comp cityField::l:p:230:p}, space :0:222:x}, seq {par l {seq l {comp AadharField:::p:175:p, space u:::p, comp slash:::p:15:p, space :::p, comp PanField:::p:175:p}, comp stateField:::p:230:p}, space ::69:x}}}}}}"
+			"$verticalGroup": "par l {seq l {par l {seq {comp Title:::p:50:p, par l {seq {space :p:26:p, comp label2:::p::p}, seq t {space :::p, comp userName:::p::p}}, par l {seq {space :p:26:p, comp label3:::p::p}, seq l {space s:::p, comp password:::p::p}}, par l {seq {space :p:46:p, comp label4:::::x}, seq t {space :::x, par l {comp monthBean::t:p::p, comp label5::t:p:20:p, par l:t::p {comp dateSpinnerBean1::t::25:x, comp label6::t::25:x}}}}}, seq {space :0:0:x, comp dayBean:::p::p}}, space :p:45:p, comp label7:::p::p, space :p:52:p, par b {comp label8::b:p::p, comp houseNumberField::b:p::p}, space s:::p, par b {comp label9::b:p::p, comp localityField::b:p::p}, space s:::p, par b {comp label10::b:p::p, comp cityField::b:p::p}, space :p:26:p, par b {comp stateField::b:p::p, comp label11::b:p::p}, space s:::p, par b {comp label12::b:p::p, comp AadharField::b:p:20:p, comp slash::b:p:20:p, comp PanField::b:p:20:p}, space u:::p, par l {comp label13:::p::p, comp emailField:::p:20:p}, space :p:29:p, comp button1:::p:45:p, space :p:70:p}}"
 		} ) {
 			name: "dialog1"
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "SIGN UP"
-			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "year"
-			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "date"
-			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "month"
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "PanField"
@@ -119,11 +110,11 @@ new FormModel {
 				"dateFormatString": "MM"
 				"calendarField": 2
 			} )
-			add( new FormComponent( "com.miginfocom.beans.DateComboBean" ) {
-				name: "yearBean"
-				"font": #Font0
-				"dateFormatString": "yyyy"
+			add( new FormComponent( "com.miginfocom.beans.DateSpinnerBean" ) {
+				name: "dateSpinnerBean1"
 				"calendarField": 1
+				"dateFormatString": "yyyy"
+				"font": new java.awt.Font( "Arial", 0, 16 )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 66, 20 )
