@@ -80,25 +80,25 @@ public class HomePage extends Canvas {
         menuBar = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
-        menuItem49 = new JMenuItem();
-        menuItem50 = new JMenuItem();
-        menuItem51 = new JMenuItem();
-        menuItem52 = new JMenuItem();
+        itckohenur = new JMenuItem();
+        ThePark = new JMenuItem();
+        TajVivanta = new JMenuItem();
+        manasarovar = new JMenuItem();
         Warangal = new JMenu();
-        menuItem54 = new JMenuItem();
-        menuItem55 = new JMenuItem();
-        menuItem56 = new JMenuItem();
-        menuItem57 = new JMenuItem();
+        HotelAshoka = new JMenuItem();
+        CrystalPalace = new JMenuItem();
+        Landmark = new JMenuItem();
+        Suprabha = new JMenuItem();
         Karimnagar = new JMenu();
-        menuItem58 = new JMenuItem();
-        menuItem59 = new JMenuItem();
-        menuItem60 = new JMenuItem();
-        menuItem61 = new JMenuItem();
+        HotelAditya = new JMenuItem();
+        HotelAkshaya = new JMenuItem();
+        TheBudgetHotel = new JMenuItem();
+        HotelSwetha = new JMenuItem();
         Kammam = new JMenu();
-        menuItem62 = new JMenuItem();
-        menuItem63 = new JMenuItem();
-        menuItem64 = new JMenuItem();
-        menuItem65 = new JMenuItem();
+        Gayathri = new JMenuItem();
+        Kaveri = new JMenuItem();
+        Manasarovar = new JMenuItem();
+        Onagiri = new JMenuItem();
         Andhra_Pradesh = new JMenu();
         Vijayawada = new JMenu();
         menuItem1 = new JMenuItem();
@@ -122,25 +122,25 @@ public class HomePage extends Canvas {
         menuItem16 = new JMenuItem();
         Maharastra = new JMenu();
         Mumbai = new JMenu();
-        menuItem17 = new JMenuItem();
-        menuItem18 = new JMenuItem();
-        menuItem19 = new JMenuItem();
-        menuItem20 = new JMenuItem();
+        GingerMumbaiAndheri = new JMenuItem();
+        IbisMumbaiAirport = new JMenuItem();
+        TridentNarimanPoint = new JMenuItem();
+        RoyalOrchidCentralGrazia = new JMenuItem();
         Pune = new JMenu();
-        menuItem21 = new JMenuItem();
-        menuItem22 = new JMenuItem();
-        menuItem23 = new JMenuItem();
-        menuItem24 = new JMenuItem();
+        MintKoregaonPark = new JMenuItem();
+        TajGateway = new JMenuItem();
+        HotelMintHighstreet = new JMenuItem();
+        FourPoints = new JMenuItem();
         Nagpur = new JMenu();
-        menuItem25 = new JMenuItem();
-        menuItem26 = new JMenuItem();
-        menuItem27 = new JMenuItem();
-        menuItem28 = new JMenuItem();
+        LeMeridienNagpur = new JMenuItem();
+        HotelGangakashi = new JMenuItem();
+        HotelSiddharthaInn = new JMenuItem();
+        RadissonBlu = new JMenuItem();
         Aurangabad = new JMenu();
-        menuItem29 = new JMenuItem();
-        menuItem30 = new JMenuItem();
-        menuItem31 = new JMenuItem();
-        menuItem32 = new JMenuItem();
+        Ambassador_Ajanta = new JMenuItem();
+        VivantaAurangabad = new JMenuItem();
+        THEONEHOTEL = new JMenuItem();
+        HotelAtithi = new JMenuItem();
         New_Delhi = new JMenu();
         New_Delhi_City = new JMenu();
         menuItem33 = new JMenuItem();
@@ -226,21 +226,21 @@ public class HomePage extends Canvas {
                         Hyderabad.setText("Hyderabad");
                         Hyderabad.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem49 ----
-                        menuItem49.setText("text");
-                        Hyderabad.add(menuItem49);
+                        //---- itckohenur ----
+                        itckohenur.setText("ITC Kohenur");
+                        Hyderabad.add(itckohenur);
 
-                        //---- menuItem50 ----
-                        menuItem50.setText("text");
-                        Hyderabad.add(menuItem50);
+                        //---- ThePark ----
+                        ThePark.setText("The Park");
+                        Hyderabad.add(ThePark);
 
-                        //---- menuItem51 ----
-                        menuItem51.setText("text");
-                        Hyderabad.add(menuItem51);
+                        //---- TajVivanta ----
+                        TajVivanta.setText("Taj Vivanta");
+                        Hyderabad.add(TajVivanta);
 
-                        //---- menuItem52 ----
-                        menuItem52.setText("text");
-                        Hyderabad.add(menuItem52);
+                        //---- manasarovar ----
+                        manasarovar.setText("Manasarovar");
+                        Hyderabad.add(manasarovar);
                     }
                     Telangana.add(Hyderabad);
 
@@ -249,21 +249,21 @@ public class HomePage extends Canvas {
                         Warangal.setText("Warangal");
                         Warangal.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem54 ----
-                        menuItem54.setText("text");
-                        Warangal.add(menuItem54);
+                        //---- HotelAshoka ----
+                        HotelAshoka.setText("Hotel Ashoka");
+                        Warangal.add(HotelAshoka);
 
-                        //---- menuItem55 ----
-                        menuItem55.setText("text");
-                        Warangal.add(menuItem55);
+                        //---- CrystalPalace ----
+                        CrystalPalace.setText("Crystal Palace");
+                        Warangal.add(CrystalPalace);
 
-                        //---- menuItem56 ----
-                        menuItem56.setText("text");
-                        Warangal.add(menuItem56);
+                        //---- Landmark ----
+                        Landmark.setText("Landmark");
+                        Warangal.add(Landmark);
 
-                        //---- menuItem57 ----
-                        menuItem57.setText("text");
-                        Warangal.add(menuItem57);
+                        //---- Suprabha ----
+                        Suprabha.setText("Hotel Suprabha");
+                        Warangal.add(Suprabha);
                     }
                     Telangana.add(Warangal);
 
@@ -272,21 +272,21 @@ public class HomePage extends Canvas {
                         Karimnagar.setText("Karimnagar");
                         Karimnagar.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem58 ----
-                        menuItem58.setText("text");
-                        Karimnagar.add(menuItem58);
+                        //---- HotelAditya ----
+                        HotelAditya.setText("Hotel Aditya");
+                        Karimnagar.add(HotelAditya);
 
-                        //---- menuItem59 ----
-                        menuItem59.setText("text");
-                        Karimnagar.add(menuItem59);
+                        //---- HotelAkshaya ----
+                        HotelAkshaya.setText("Hotel Akshaya");
+                        Karimnagar.add(HotelAkshaya);
 
-                        //---- menuItem60 ----
-                        menuItem60.setText("text");
-                        Karimnagar.add(menuItem60);
+                        //---- TheBudgetHotel ----
+                        TheBudgetHotel.setText("The Budget Hotel");
+                        Karimnagar.add(TheBudgetHotel);
 
-                        //---- menuItem61 ----
-                        menuItem61.setText("text");
-                        Karimnagar.add(menuItem61);
+                        //---- HotelSwetha ----
+                        HotelSwetha.setText("Hotel Swetha");
+                        Karimnagar.add(HotelSwetha);
                     }
                     Telangana.add(Karimnagar);
 
@@ -295,21 +295,21 @@ public class HomePage extends Canvas {
                         Kammam.setText("Kammam");
                         Kammam.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem62 ----
-                        menuItem62.setText("text");
-                        Kammam.add(menuItem62);
+                        //---- Gayathri ----
+                        Gayathri.setText("Gayathri");
+                        Kammam.add(Gayathri);
 
-                        //---- menuItem63 ----
-                        menuItem63.setText("text");
-                        Kammam.add(menuItem63);
+                        //---- Kaveri ----
+                        Kaveri.setText("Kaveri");
+                        Kammam.add(Kaveri);
 
-                        //---- menuItem64 ----
-                        menuItem64.setText("text");
-                        Kammam.add(menuItem64);
+                        //---- Manasarovar ----
+                        Manasarovar.setText("Manasarovar");
+                        Kammam.add(Manasarovar);
 
-                        //---- menuItem65 ----
-                        menuItem65.setText("text");
-                        Kammam.add(menuItem65);
+                        //---- Onagiri ----
+                        Onagiri.setText("Onagiri");
+                        Kammam.add(Onagiri);
                     }
                     Telangana.add(Kammam);
                 }
@@ -426,21 +426,21 @@ public class HomePage extends Canvas {
                         Mumbai.setText("Mumbai");
                         Mumbai.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem17 ----
-                        menuItem17.setText("text");
-                        Mumbai.add(menuItem17);
+                        //---- GingerMumbaiAndheri ----
+                        GingerMumbaiAndheri.setText("Ginger Mumbai Andheri");
+                        Mumbai.add(GingerMumbaiAndheri);
 
-                        //---- menuItem18 ----
-                        menuItem18.setText("text");
-                        Mumbai.add(menuItem18);
+                        //---- IbisMumbaiAirport ----
+                        IbisMumbaiAirport.setText("Ibis Mumbai Airport");
+                        Mumbai.add(IbisMumbaiAirport);
 
-                        //---- menuItem19 ----
-                        menuItem19.setText("text");
-                        Mumbai.add(menuItem19);
+                        //---- TridentNarimanPoint ----
+                        TridentNarimanPoint.setText("Trident Nariman Point");
+                        Mumbai.add(TridentNarimanPoint);
 
-                        //---- menuItem20 ----
-                        menuItem20.setText("text");
-                        Mumbai.add(menuItem20);
+                        //---- RoyalOrchidCentralGrazia ----
+                        RoyalOrchidCentralGrazia.setText("Royal Orchid Central Grazia");
+                        Mumbai.add(RoyalOrchidCentralGrazia);
                     }
                     Maharastra.add(Mumbai);
 
@@ -449,21 +449,21 @@ public class HomePage extends Canvas {
                         Pune.setText("Pune");
                         Pune.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem21 ----
-                        menuItem21.setText("text");
-                        Pune.add(menuItem21);
+                        //---- MintKoregaonPark ----
+                        MintKoregaonPark.setText("Mint Koregaon Park");
+                        Pune.add(MintKoregaonPark);
 
-                        //---- menuItem22 ----
-                        menuItem22.setText("text");
-                        Pune.add(menuItem22);
+                        //---- TajGateway ----
+                        TajGateway.setText("Taj Gateway");
+                        Pune.add(TajGateway);
 
-                        //---- menuItem23 ----
-                        menuItem23.setText("text");
-                        Pune.add(menuItem23);
+                        //---- HotelMintHighstreet ----
+                        HotelMintHighstreet.setText("Hotel Mint Highstreet");
+                        Pune.add(HotelMintHighstreet);
 
-                        //---- menuItem24 ----
-                        menuItem24.setText("text");
-                        Pune.add(menuItem24);
+                        //---- FourPoints ----
+                        FourPoints.setText("Four Points");
+                        Pune.add(FourPoints);
                     }
                     Maharastra.add(Pune);
 
@@ -472,21 +472,21 @@ public class HomePage extends Canvas {
                         Nagpur.setText("Nagpur");
                         Nagpur.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem25 ----
-                        menuItem25.setText("text");
-                        Nagpur.add(menuItem25);
+                        //---- LeMeridienNagpur ----
+                        LeMeridienNagpur.setText("Le Meridien Nagpur");
+                        Nagpur.add(LeMeridienNagpur);
 
-                        //---- menuItem26 ----
-                        menuItem26.setText("text");
-                        Nagpur.add(menuItem26);
+                        //---- HotelGangakashi ----
+                        HotelGangakashi.setText("Hotel Gangakashi");
+                        Nagpur.add(HotelGangakashi);
 
-                        //---- menuItem27 ----
-                        menuItem27.setText("text");
-                        Nagpur.add(menuItem27);
+                        //---- HotelSiddharthaInn ----
+                        HotelSiddharthaInn.setText("Hotel Siddhartha Inn");
+                        Nagpur.add(HotelSiddharthaInn);
 
-                        //---- menuItem28 ----
-                        menuItem28.setText("text");
-                        Nagpur.add(menuItem28);
+                        //---- RadissonBlu ----
+                        RadissonBlu.setText("Radisson Blu");
+                        Nagpur.add(RadissonBlu);
                     }
                     Maharastra.add(Nagpur);
 
@@ -495,21 +495,21 @@ public class HomePage extends Canvas {
                         Aurangabad.setText("Aurangabad");
                         Aurangabad.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem29 ----
-                        menuItem29.setText("text");
-                        Aurangabad.add(menuItem29);
+                        //---- Ambassador_Ajanta ----
+                        Ambassador_Ajanta.setText("Ambassador Ajanta");
+                        Aurangabad.add(Ambassador_Ajanta);
 
-                        //---- menuItem30 ----
-                        menuItem30.setText("text");
-                        Aurangabad.add(menuItem30);
+                        //---- VivantaAurangabad ----
+                        VivantaAurangabad.setText("Vivanta Aurangabad");
+                        Aurangabad.add(VivantaAurangabad);
 
-                        //---- menuItem31 ----
-                        menuItem31.setText("text");
-                        Aurangabad.add(menuItem31);
+                        //---- THEONEHOTEL ----
+                        THEONEHOTEL.setText("The One Hotel");
+                        Aurangabad.add(THEONEHOTEL);
 
-                        //---- menuItem32 ----
-                        menuItem32.setText("text");
-                        Aurangabad.add(menuItem32);
+                        //---- HotelAtithi ----
+                        HotelAtithi.setText("Hotel Atithi");
+                        Aurangabad.add(HotelAtithi);
                     }
                     Maharastra.add(Aurangabad);
                 }
@@ -678,25 +678,25 @@ public class HomePage extends Canvas {
     private JMenuBar menuBar;
     private JMenu Telangana;
     private JMenu Hyderabad;
-    private JMenuItem menuItem49;
-    private JMenuItem menuItem50;
-    private JMenuItem menuItem51;
-    private JMenuItem menuItem52;
+    private JMenuItem itckohenur;
+    private JMenuItem ThePark;
+    private JMenuItem TajVivanta;
+    private JMenuItem manasarovar;
     private JMenu Warangal;
-    private JMenuItem menuItem54;
-    private JMenuItem menuItem55;
-    private JMenuItem menuItem56;
-    private JMenuItem menuItem57;
+    private JMenuItem HotelAshoka;
+    private JMenuItem CrystalPalace;
+    private JMenuItem Landmark;
+    private JMenuItem Suprabha;
     private JMenu Karimnagar;
-    private JMenuItem menuItem58;
-    private JMenuItem menuItem59;
-    private JMenuItem menuItem60;
-    private JMenuItem menuItem61;
+    private JMenuItem HotelAditya;
+    private JMenuItem HotelAkshaya;
+    private JMenuItem TheBudgetHotel;
+    private JMenuItem HotelSwetha;
     private JMenu Kammam;
-    private JMenuItem menuItem62;
-    private JMenuItem menuItem63;
-    private JMenuItem menuItem64;
-    private JMenuItem menuItem65;
+    private JMenuItem Gayathri;
+    private JMenuItem Kaveri;
+    private JMenuItem Manasarovar;
+    private JMenuItem Onagiri;
     private JMenu Andhra_Pradesh;
     private JMenu Vijayawada;
     private JMenuItem menuItem1;
@@ -720,25 +720,25 @@ public class HomePage extends Canvas {
     private JMenuItem menuItem16;
     private JMenu Maharastra;
     private JMenu Mumbai;
-    private JMenuItem menuItem17;
-    private JMenuItem menuItem18;
-    private JMenuItem menuItem19;
-    private JMenuItem menuItem20;
+    private JMenuItem GingerMumbaiAndheri;
+    private JMenuItem IbisMumbaiAirport;
+    private JMenuItem TridentNarimanPoint;
+    private JMenuItem RoyalOrchidCentralGrazia;
     private JMenu Pune;
-    private JMenuItem menuItem21;
-    private JMenuItem menuItem22;
-    private JMenuItem menuItem23;
-    private JMenuItem menuItem24;
+    private JMenuItem MintKoregaonPark;
+    private JMenuItem TajGateway;
+    private JMenuItem HotelMintHighstreet;
+    private JMenuItem FourPoints;
     private JMenu Nagpur;
-    private JMenuItem menuItem25;
-    private JMenuItem menuItem26;
-    private JMenuItem menuItem27;
-    private JMenuItem menuItem28;
+    private JMenuItem LeMeridienNagpur;
+    private JMenuItem HotelGangakashi;
+    private JMenuItem HotelSiddharthaInn;
+    private JMenuItem RadissonBlu;
     private JMenu Aurangabad;
-    private JMenuItem menuItem29;
-    private JMenuItem menuItem30;
-    private JMenuItem menuItem31;
-    private JMenuItem menuItem32;
+    private JMenuItem Ambassador_Ajanta;
+    private JMenuItem VivantaAurangabad;
+    private JMenuItem THEONEHOTEL;
+    private JMenuItem HotelAtithi;
     private JMenu New_Delhi;
     private JMenu New_Delhi_City;
     private JMenuItem menuItem33;

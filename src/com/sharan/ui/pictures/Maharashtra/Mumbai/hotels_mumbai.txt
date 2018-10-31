@@ -1,0 +1,40 @@
+Mumbai (code Mu)
+
+1. Ginger Mumbai Andheri (code Ginger)
+
+address:
+Rajashree Sahu Marg, Andheri East, Mumbai, Maharashtra 400069
+
+room type-
+standard : 2474
+deluxe   : 5219
+suite    : 6176
+
+2. Ibis Mumbai Airport  (code Ibis)
+
+address:
+F77, Western Express Hwy, Navpada, Vile Parle East, Vile Parle, Mumbai, Maharashtra 400099 
+
+room type-
+standard :6199
+deluxe   :6699
+
+
+3. Trident Nariman Point (Code Trident)
+
+address:
+CR 2 Nariman Point, Netaji Subhash Chandra Bose Road, Mumbai, Maharashtra 400021
+
+room type-
+standard :11875
+suite    :21625
+
+
+4.Royal Orchid Central Grazia
+address:
+Plot No. 67, Palm Beach Road, Sector 19, Vashi, Near Truck Terminal, Navi Mumbai, Maharashtra 400705
+
+room type-
+standard :4979
+deluxe   :5134
+suite    :6125

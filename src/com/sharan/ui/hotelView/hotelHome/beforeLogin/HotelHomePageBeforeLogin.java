@@ -7,7 +7,6 @@ package com.sharan.ui.hotelView.hotelHome.beforeLogin;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.loginPopUp.Login;
 import com.sharan.ui.home.signUpPopUp.SignUp;
-import com.sharan.ui.hotelView.hotelHome.afterLogin.HotelHomePage;
 import com.sharan.ui.hotelView.hotelHome.beforeLogin.loginToContinueDialog.LoginToContinue;
 
 import javax.swing.*;
@@ -53,7 +52,7 @@ public class HotelHomePageBeforeLogin {
         if(loginSuccess==1) {
             loginSuccess=0;
             HotelHomeFrame.dispose();
-            HotelHomePage hotelHomePage=new HotelHomePage(uniqueId,dataBaseController);
+//            HotelHomePageAfterLogin hotelHomePageAfterLogin =new HotelHomePageAfterLogin(uniqueId,dataBaseController);
             login.getLogin().dispose();
         }
 
@@ -67,7 +66,7 @@ public class HotelHomePageBeforeLogin {
         if(signUpSuccess==1) {
             signUpSuccess=0;
             HotelHomeFrame.dispose();
-            HotelHomePage hotelHomePage=new HotelHomePage(uniqueId,dataBaseController);
+//            HotelHomePageAfterLogin hotelHomePageAfterLogin =new HotelHomePageAfterLogin(uniqueId,dataBaseController);
             signUp.getSignUp().dispose();
         }
         dataBaseController.closeDatabaseConnection();

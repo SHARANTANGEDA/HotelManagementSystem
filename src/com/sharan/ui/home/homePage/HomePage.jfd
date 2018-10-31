@@ -71,20 +71,20 @@ new FormModel {
 						"text": "Hyderabad"
 						"font": &Font1 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem49"
-							"text": "text"
+							name: "itckohenur"
+							"text": "ITC Kohenur"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem50"
-							"text": "text"
+							name: "ThePark"
+							"text": "The Park"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem51"
-							"text": "text"
+							name: "TajVivanta"
+							"text": "Taj Vivanta"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem52"
-							"text": "text"
+							name: "manasarovar"
+							"text": "Manasarovar"
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -92,20 +92,20 @@ new FormModel {
 						"text": "Warangal"
 						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem54"
-							"text": "text"
+							name: "HotelAshoka"
+							"text": "Hotel Ashoka"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem55"
-							"text": "text"
+							name: "CrystalPalace"
+							"text": "Crystal Palace"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem56"
-							"text": "text"
+							name: "Landmark"
+							"text": "Landmark"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem57"
-							"text": "text"
+							name: "Suprabha"
+							"text": "Hotel Suprabha"
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -113,20 +113,20 @@ new FormModel {
 						"text": "Karimnagar"
 						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem58"
-							"text": "text"
+							name: "HotelAditya"
+							"text": "Hotel Aditya"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem59"
-							"text": "text"
+							name: "HotelAkshaya"
+							"text": "Hotel Akshaya"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem60"
-							"text": "text"
+							name: "TheBudgetHotel"
+							"text": "The Budget Hotel"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem61"
-							"text": "text"
+							name: "HotelSwetha"
+							"text": "Hotel Swetha"
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -134,20 +134,20 @@ new FormModel {
 						"text": "Kammam"
 						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem62"
-							"text": "text"
+							name: "Gayathri"
+							"text": "Gayathri"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem63"
-							"text": "text"
+							name: "Kaveri"
+							"text": "Kaveri"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem64"
-							"text": "text"
+							name: "Manasarovar"
+							"text": "Manasarovar"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem65"
-							"text": "text"
+							name: "Onagiri"
+							"text": "Onagiri"
 						} )
 					} )
 				} )
@@ -251,20 +251,20 @@ new FormModel {
 						"text": "Mumbai"
 						"font": &Font3 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem17"
-							"text": "text"
+							name: "GingerMumbaiAndheri"
+							"text": "Ginger Mumbai Andheri"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem18"
-							"text": "text"
+							name: "IbisMumbaiAirport"
+							"text": "Ibis Mumbai Airport"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem19"
-							"text": "text"
+							name: "TridentNarimanPoint"
+							"text": "Trident Nariman Point"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem20"
-							"text": "text"
+							name: "RoyalOrchidCentralGrazia"
+							"text": "Royal Orchid Central Grazia"
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -272,20 +272,20 @@ new FormModel {
 						"text": "Pune"
 						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem21"
-							"text": "text"
+							name: "MintKoregaonPark"
+							"text": "Mint Koregaon Park"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem22"
-							"text": "text"
+							name: "TajGateway"
+							"text": "Taj Gateway"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem23"
-							"text": "text"
+							name: "HotelMintHighstreet"
+							"text": "Hotel Mint Highstreet"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem24"
-							"text": "text"
+							name: "FourPoints"
+							"text": "Four Points"
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -293,20 +293,20 @@ new FormModel {
 						"text": "Nagpur"
 						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem25"
-							"text": "text"
+							name: "LeMeridienNagpur"
+							"text": "Le Meridien Nagpur"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem26"
-							"text": "text"
+							name: "HotelGangakashi"
+							"text": "Hotel Gangakashi"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem27"
-							"text": "text"
+							name: "HotelSiddharthaInn"
+							"text": "Hotel Siddhartha Inn"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem28"
-							"text": "text"
+							name: "RadissonBlu"
+							"text": "Radisson Blu"
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -314,20 +314,20 @@ new FormModel {
 						"text": "Aurangabad"
 						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem29"
-							"text": "text"
+							name: "Ambassador_Ajanta"
+							"text": "Ambassador Ajanta"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem30"
-							"text": "text"
+							name: "VivantaAurangabad"
+							"text": "Vivanta Aurangabad"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem31"
-							"text": "text"
+							name: "THEONEHOTEL"
+							"text": "The One Hotel"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem32"
-							"text": "text"
+							name: "HotelAtithi"
+							"text": "Hotel Atithi"
 						} )
 					} )
 				} )

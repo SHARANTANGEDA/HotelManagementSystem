@@ -6,6 +6,7 @@ package com.sharan.ui.home.homePageAfterLogin;
 
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.hotelView.hotelHome.HotelHomePageAfterLogin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +44,259 @@ public class HomePageAfterLogin {
         // TODO add your code here
     }
 
+
+    private void itckohenurActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TheParkActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TajVivantaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void manasarovarActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelAshokaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void CrystalPalaceActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void LandmarkActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void SuprabhaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelAdityaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelAkshayaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TheBudgetHotelActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelSwethaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void GayathriActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void KaveriActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void ManasarovarActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void OnagiriActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void GingerMumbaiAndheriActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Mu_Ginger","Ginger Mumbai Andheri","room type-\n" +
+                "standard : 2474\n" +
+                "deluxe   : 5219\n" +
+                "suite    : 6176",
+                "address:\n" +
+                        "Rajashree Sahu Marg, Andheri East, Mumbai, Maharashtra 400069",
+                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Ginger/Ma_Mu_GingerA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void IbisMumbaiAirportActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Mu_Ibis","Ibis Mumbai","room type-\n" +
+                "standard :6199\n" +
+                "deluxe   :6699",
+                "address:\n" +
+                        "F77, Western Express Hwy, Navpada, Vile Parle East, Vile Parle, Mumbai, Maharashtra 400099 ",
+                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Ibis/Ma_Mu_IbisA.jpg"
+                ,dataBaseController
+        );
+    }
+
+    private void TridentNarimanPointActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Mu_Trident","Trident Hotel","room type-\n" +
+                "standard :11875\n" +
+                "suite    :21625","address:\n" +
+                "CR 2 Nariman Point, Netaji Subhash Chandra Bose Road, Mumbai, Maharashtra 400021\n",
+                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Trident/Ma_Mu_TridentA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void RoyalOrchidCentralGraziaActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin = new HotelHomePageAfterLogin(
+                "Ma_Mu_Royal","Royal Orchid Central","room type-\n" +
+                "standard :4979\n" +
+                "deluxe   :5134\n" +
+                "suite    :6125","address:\n" +
+                "Plot No. 67, Palm Beach Road, Sector 19, Vashi, Near Truck Terminal, Navi Mumbai, Maharashtra 400705",
+                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Royal Orchard/Ma_Mu_RoyalA.jpg",dataBaseController
+        );
+    }
+
+    private void MintKoregaonParkActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Pu_Mint","Mint Koregaon Park","room type- (all include a/c, have complimentary breakfast, and have free hi-speed wifi)\n" +
+                "standard : rs 1981      (Code: A)\n" +
+                "deluxe   : rs 2228      (Code: B)\n" +
+                "suite    : rs 2807\t(Code: C)\n","address:\n" +
+                "Plot Nos 11 Lane Nos 1 | Near Osho International Resort & Commune, Koregaon Park, Pune 411001, India",
+                "/com/sharan/ui/pictures/Maharashtra/Pune/Mint Koregaon Park/Ma_Pu_MintA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void TajGatewayActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Pu_Taj","Taj Gateway","room type-\n" +
+                "standard : rs 5825\n" +
+                "suite    : rs 7025","address:\n" +
+                "Xion Complex, Wakad Road, Hinjewadi, Pune, Maharashtra 411057",
+                "/com/sharan/ui/pictures/Maharashtra/Pune/Taj Gateway/Ma_Pu_TajA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void HotelMintHighstreetActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Pu_High","Hotel Mint Highstreet","room type-\n" +
+                "standard : rs 1199\n" +
+                "deluxe   : rs 1620\n","address:\n" +
+                "Plot No. 37 and 40, Survey Number.33, Hissa No. 1 / 4, Taluka Haveli, Balewadi, Pune 411045",
+                "/com/sharan/ui/pictures/Maharashtra/Pune/Hotel Mint Highstreet/Ma_Pu_HighA.jpg",dataBaseController
+        );
+    }
+
+    private void FourPointsActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Pu_Four","Four Points","room type-\n" +
+                "standard: rs 5875\n" +
+                "deluxe  : rs 6500\n" +
+                "suite   : rs 7500","address:\n" +
+                "5th Mile Stone, Nagar Rd, Pune, Maharashtra 411014",
+                "/com/sharan/ui/pictures/Maharashtra/Pune/Four Points/Ma_Pu_FourA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void LeMeridienNagpurActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Na_Mer","Le Meridien","room type-\n" +
+                "standard : 6999\n" +
+                "deluxe   : 7999\n" +
+                "suite    : 8999","address:\n" +
+                "Wardha Road, Flyover, Mihan, Opp, Nagpur, Maharashtra 441108",
+                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Meridien/Ma_Na_MerA.jpg",dataBaseController);
+
+    }
+
+    private void HotelGangakashiActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Na_Gang","Hotel Gangakashi","room type-\n" +
+                "standard :2409\n" +
+                "deluxe   :3408\n" +
+                "suite    :3763","address:\n" +
+                "Hotel Gangakashi, Right Beside Cinemax (Enternity Mall), variety square, Sitabuldi Nagpur - 440012",
+                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Gangakashi/Ma_Na_GangA.jpg",dataBaseController
+        );
+    }
+
+    private void HotelSiddharthaInnActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Na_Sid","Hotel Siddhartha Inn","room type-\n" +
+                "standard : 984\n" +
+                "deluxe   : 1000"
+                ,"address:\n" +
+                "90, Central Avenue,Near Agrasen Square,Gandhibagh, Nagpur",
+                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Siddhartha/Ma_Na_SidA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void RadissonBluActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Na_Blu","Radisson Blu","room type-\n" +
+                "standard :4876\n" +
+                "deluxe   :6825\n" +
+                "suite    :12995\n",
+                "address:\n" +
+                        "Enrico Heights, 7, Wardha Rd, Nagpur, Maharashtra 440015",
+                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Radisson/Ma_Na_BluA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void Ambassador_AjantaActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin homePageAfterLogin=new HotelHomePageAfterLogin("Ma_Au_Ajanta",
+                "Ambassador Ajanta",
+                "room type-\n" +
+                        "standard :3370\n" +
+                        "deluxe   :3883\n" +
+                        "suite    :6910",
+                "address:\n" +
+                        "Jalna Road, CIDCO,Aurangabad-431 003",
+                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Ajanta/Ma_Au_AjantaA.jpg",dataBaseController);
+    }
+
+    private void VivantaAurangabadActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Au_Vivan","Vivanta Aurangabad","room type-\n" +
+                "standard :7095\n" +
+                "deluxe   :8350\n" +
+                "suite    :10500","address:\n" +
+                "8 N 12, Dr. Rafiq Zakaria Marg, Rauza Bagh",
+                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Vivanta/Ma_Au_VivanA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void THEONEHOTELActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Au_One","The One Hotel","room type-\n" +
+                "standard :7095\n" +
+                "deluxe   :8350\n" +
+                "suite    :10500",
+                "address:\n" +
+                        "8 N 12, Dr. Rafiq Zakaria Marg, Rauza Bagh",
+                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/One/Ma_Au_OneA.jpg",
+                dataBaseController
+        );
+    }
+
+    private void HotelAtithiActionPerformed(ActionEvent e) {
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+                "Ma_Au_Athithi","Hotel Atithi","room type-\n" +
+                "standard :2262\n" +
+                "deluxe   :3744\n" +
+                "suite    :4900","address:\n" +
+                "P-3, Jalna Road, Seven Hills, Town Center, Aurangabad, Maharashtra 431001",
+                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Athithi/Ma_Au_AthithiA.jpg",dataBaseController
+
+        );
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
@@ -54,25 +308,25 @@ public class HomePageAfterLogin {
         menuBar = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
-        Hotel_Hyderabad_1 = new JMenuItem();
-        Hotel_Hyderabad_2 = new JMenuItem();
-        Hotel_Hyderabad_3 = new JMenuItem();
-        Hotel_Hyderabad_4 = new JMenuItem();
+        itckohenur = new JMenuItem();
+        ThePark = new JMenuItem();
+        TajVivanta = new JMenuItem();
+        manasarovar = new JMenuItem();
         Warangal = new JMenu();
-        menuItem54 = new JMenuItem();
-        menuItem55 = new JMenuItem();
-        menuItem56 = new JMenuItem();
-        menuItem57 = new JMenuItem();
+        HotelAshoka = new JMenuItem();
+        CrystalPalace = new JMenuItem();
+        Landmark = new JMenuItem();
+        Suprabha = new JMenuItem();
         Karimnagar = new JMenu();
-        menuItem58 = new JMenuItem();
-        menuItem59 = new JMenuItem();
-        menuItem60 = new JMenuItem();
-        menuItem61 = new JMenuItem();
+        HotelAditya = new JMenuItem();
+        HotelAkshaya = new JMenuItem();
+        TheBudgetHotel = new JMenuItem();
+        HotelSwetha = new JMenuItem();
         Kammam = new JMenu();
-        menuItem62 = new JMenuItem();
-        menuItem63 = new JMenuItem();
-        menuItem64 = new JMenuItem();
-        menuItem65 = new JMenuItem();
+        Gayathri = new JMenuItem();
+        Kaveri = new JMenuItem();
+        Manasarovar = new JMenuItem();
+        Onagiri = new JMenuItem();
         Andhra_Pradesh = new JMenu();
         Vijayawada = new JMenu();
         menuItem1 = new JMenuItem();
@@ -96,25 +350,25 @@ public class HomePageAfterLogin {
         menuItem16 = new JMenuItem();
         Maharastra = new JMenu();
         Mumbai = new JMenu();
-        menuItem17 = new JMenuItem();
-        menuItem18 = new JMenuItem();
-        menuItem19 = new JMenuItem();
-        menuItem20 = new JMenuItem();
+        GingerMumbaiAndheri = new JMenuItem();
+        IbisMumbaiAirport = new JMenuItem();
+        TridentNarimanPoint = new JMenuItem();
+        RoyalOrchidCentralGrazia = new JMenuItem();
         Pune = new JMenu();
-        menuItem21 = new JMenuItem();
-        menuItem22 = new JMenuItem();
-        menuItem23 = new JMenuItem();
-        menuItem24 = new JMenuItem();
+        MintKoregaonPark = new JMenuItem();
+        TajGateway = new JMenuItem();
+        HotelMintHighstreet = new JMenuItem();
+        FourPoints = new JMenuItem();
         Nagpur = new JMenu();
-        menuItem25 = new JMenuItem();
-        menuItem26 = new JMenuItem();
-        menuItem27 = new JMenuItem();
-        menuItem28 = new JMenuItem();
+        LeMeridienNagpur = new JMenuItem();
+        HotelGangakashi = new JMenuItem();
+        HotelSiddharthaInn = new JMenuItem();
+        RadissonBlu = new JMenuItem();
         Aurangabad = new JMenu();
-        menuItem29 = new JMenuItem();
-        menuItem30 = new JMenuItem();
-        menuItem31 = new JMenuItem();
-        menuItem32 = new JMenuItem();
+        Ambassador_Ajanta = new JMenuItem();
+        VivantaAurangabad = new JMenuItem();
+        THEONEHOTEL = new JMenuItem();
+        HotelAtithi = new JMenuItem();
         New_Delhi = new JMenu();
         New_Delhi_City = new JMenu();
         menuItem33 = new JMenuItem();
@@ -190,22 +444,25 @@ public class HomePageAfterLogin {
                         Hyderabad.setText("Hyderabad");
                         Hyderabad.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- Hotel_Hyderabad_1 ----
-                        Hotel_Hyderabad_1.setText("text");
-                        Hotel_Hyderabad_1.addActionListener(e -> Hotel_Hyderabad_1ActionPerformed(e));
-                        Hyderabad.add(Hotel_Hyderabad_1);
+                        //---- itckohenur ----
+                        itckohenur.setText("ITC Kohenur");
+                        itckohenur.addActionListener(e -> itckohenurActionPerformed(e));
+                        Hyderabad.add(itckohenur);
 
-                        //---- Hotel_Hyderabad_2 ----
-                        Hotel_Hyderabad_2.setText("text");
-                        Hyderabad.add(Hotel_Hyderabad_2);
+                        //---- ThePark ----
+                        ThePark.setText("The Park");
+                        ThePark.addActionListener(e -> TheParkActionPerformed(e));
+                        Hyderabad.add(ThePark);
 
-                        //---- Hotel_Hyderabad_3 ----
-                        Hotel_Hyderabad_3.setText("text");
-                        Hyderabad.add(Hotel_Hyderabad_3);
+                        //---- TajVivanta ----
+                        TajVivanta.setText("Taj Vivanta");
+                        TajVivanta.addActionListener(e -> TajVivantaActionPerformed(e));
+                        Hyderabad.add(TajVivanta);
 
-                        //---- Hotel_Hyderabad_4 ----
-                        Hotel_Hyderabad_4.setText("text");
-                        Hyderabad.add(Hotel_Hyderabad_4);
+                        //---- manasarovar ----
+                        manasarovar.setText("Manasarovar");
+                        manasarovar.addActionListener(e -> manasarovarActionPerformed(e));
+                        Hyderabad.add(manasarovar);
                     }
                     Telangana.add(Hyderabad);
 
@@ -214,21 +471,25 @@ public class HomePageAfterLogin {
                         Warangal.setText("Warangal");
                         Warangal.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem54 ----
-                        menuItem54.setText("text");
-                        Warangal.add(menuItem54);
+                        //---- HotelAshoka ----
+                        HotelAshoka.setText("Hotel Ashoka");
+                        HotelAshoka.addActionListener(e -> HotelAshokaActionPerformed(e));
+                        Warangal.add(HotelAshoka);
 
-                        //---- menuItem55 ----
-                        menuItem55.setText("text");
-                        Warangal.add(menuItem55);
+                        //---- CrystalPalace ----
+                        CrystalPalace.setText("Crystal Palace");
+                        CrystalPalace.addActionListener(e -> CrystalPalaceActionPerformed(e));
+                        Warangal.add(CrystalPalace);
 
-                        //---- menuItem56 ----
-                        menuItem56.setText("text");
-                        Warangal.add(menuItem56);
+                        //---- Landmark ----
+                        Landmark.setText("Landmark");
+                        Landmark.addActionListener(e -> LandmarkActionPerformed(e));
+                        Warangal.add(Landmark);
 
-                        //---- menuItem57 ----
-                        menuItem57.setText("text");
-                        Warangal.add(menuItem57);
+                        //---- Suprabha ----
+                        Suprabha.setText("Hotel Suprabha");
+                        Suprabha.addActionListener(e -> SuprabhaActionPerformed(e));
+                        Warangal.add(Suprabha);
                     }
                     Telangana.add(Warangal);
 
@@ -237,21 +498,25 @@ public class HomePageAfterLogin {
                         Karimnagar.setText("Karimnagar");
                         Karimnagar.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem58 ----
-                        menuItem58.setText("text");
-                        Karimnagar.add(menuItem58);
+                        //---- HotelAditya ----
+                        HotelAditya.setText("Hotel Aditya");
+                        HotelAditya.addActionListener(e -> HotelAdityaActionPerformed(e));
+                        Karimnagar.add(HotelAditya);
 
-                        //---- menuItem59 ----
-                        menuItem59.setText("text");
-                        Karimnagar.add(menuItem59);
+                        //---- HotelAkshaya ----
+                        HotelAkshaya.setText("Hotel Akshaya");
+                        HotelAkshaya.addActionListener(e -> HotelAkshayaActionPerformed(e));
+                        Karimnagar.add(HotelAkshaya);
 
-                        //---- menuItem60 ----
-                        menuItem60.setText("text");
-                        Karimnagar.add(menuItem60);
+                        //---- TheBudgetHotel ----
+                        TheBudgetHotel.setText("The Budget Hotel");
+                        TheBudgetHotel.addActionListener(e -> TheBudgetHotelActionPerformed(e));
+                        Karimnagar.add(TheBudgetHotel);
 
-                        //---- menuItem61 ----
-                        menuItem61.setText("text");
-                        Karimnagar.add(menuItem61);
+                        //---- HotelSwetha ----
+                        HotelSwetha.setText("Hotel Swetha");
+                        HotelSwetha.addActionListener(e -> HotelSwethaActionPerformed(e));
+                        Karimnagar.add(HotelSwetha);
                     }
                     Telangana.add(Karimnagar);
 
@@ -260,21 +525,25 @@ public class HomePageAfterLogin {
                         Kammam.setText("Kammam");
                         Kammam.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem62 ----
-                        menuItem62.setText("text");
-                        Kammam.add(menuItem62);
+                        //---- Gayathri ----
+                        Gayathri.setText("Gayathri");
+                        Gayathri.addActionListener(e -> GayathriActionPerformed(e));
+                        Kammam.add(Gayathri);
 
-                        //---- menuItem63 ----
-                        menuItem63.setText("text");
-                        Kammam.add(menuItem63);
+                        //---- Kaveri ----
+                        Kaveri.setText("Kaveri");
+                        Kaveri.addActionListener(e -> KaveriActionPerformed(e));
+                        Kammam.add(Kaveri);
 
-                        //---- menuItem64 ----
-                        menuItem64.setText("text");
-                        Kammam.add(menuItem64);
+                        //---- Manasarovar ----
+                        Manasarovar.setText("Manasarovar");
+                        Manasarovar.addActionListener(e -> ManasarovarActionPerformed(e));
+                        Kammam.add(Manasarovar);
 
-                        //---- menuItem65 ----
-                        menuItem65.setText("text");
-                        Kammam.add(menuItem65);
+                        //---- Onagiri ----
+                        Onagiri.setText("Onagiri");
+                        Onagiri.addActionListener(e -> OnagiriActionPerformed(e));
+                        Kammam.add(Onagiri);
                     }
                     Telangana.add(Kammam);
                 }
@@ -391,21 +660,25 @@ public class HomePageAfterLogin {
                         Mumbai.setText("Mumbai");
                         Mumbai.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem17 ----
-                        menuItem17.setText("text");
-                        Mumbai.add(menuItem17);
+                        //---- GingerMumbaiAndheri ----
+                        GingerMumbaiAndheri.setText("Ginger Mumbai Andheri");
+                        GingerMumbaiAndheri.addActionListener(e -> GingerMumbaiAndheriActionPerformed(e));
+                        Mumbai.add(GingerMumbaiAndheri);
 
-                        //---- menuItem18 ----
-                        menuItem18.setText("text");
-                        Mumbai.add(menuItem18);
+                        //---- IbisMumbaiAirport ----
+                        IbisMumbaiAirport.setText("Ibis Mumbai Airport");
+                        IbisMumbaiAirport.addActionListener(e -> IbisMumbaiAirportActionPerformed(e));
+                        Mumbai.add(IbisMumbaiAirport);
 
-                        //---- menuItem19 ----
-                        menuItem19.setText("text");
-                        Mumbai.add(menuItem19);
+                        //---- TridentNarimanPoint ----
+                        TridentNarimanPoint.setText("Trident Nariman Point");
+                        TridentNarimanPoint.addActionListener(e -> TridentNarimanPointActionPerformed(e));
+                        Mumbai.add(TridentNarimanPoint);
 
-                        //---- menuItem20 ----
-                        menuItem20.setText("text");
-                        Mumbai.add(menuItem20);
+                        //---- RoyalOrchidCentralGrazia ----
+                        RoyalOrchidCentralGrazia.setText("Royal Orchid Central Grazia");
+                        RoyalOrchidCentralGrazia.addActionListener(e -> RoyalOrchidCentralGraziaActionPerformed(e));
+                        Mumbai.add(RoyalOrchidCentralGrazia);
                     }
                     Maharastra.add(Mumbai);
 
@@ -414,21 +687,25 @@ public class HomePageAfterLogin {
                         Pune.setText("Pune");
                         Pune.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem21 ----
-                        menuItem21.setText("text");
-                        Pune.add(menuItem21);
+                        //---- MintKoregaonPark ----
+                        MintKoregaonPark.setText("Mint Koregaon Park");
+                        MintKoregaonPark.addActionListener(e -> MintKoregaonParkActionPerformed(e));
+                        Pune.add(MintKoregaonPark);
 
-                        //---- menuItem22 ----
-                        menuItem22.setText("text");
-                        Pune.add(menuItem22);
+                        //---- TajGateway ----
+                        TajGateway.setText("Taj Gateway");
+                        TajGateway.addActionListener(e -> TajGatewayActionPerformed(e));
+                        Pune.add(TajGateway);
 
-                        //---- menuItem23 ----
-                        menuItem23.setText("text");
-                        Pune.add(menuItem23);
+                        //---- HotelMintHighstreet ----
+                        HotelMintHighstreet.setText("Hotel Mint Highstreet");
+                        HotelMintHighstreet.addActionListener(e -> HotelMintHighstreetActionPerformed(e));
+                        Pune.add(HotelMintHighstreet);
 
-                        //---- menuItem24 ----
-                        menuItem24.setText("text");
-                        Pune.add(menuItem24);
+                        //---- FourPoints ----
+                        FourPoints.setText("Four Points");
+                        FourPoints.addActionListener(e -> FourPointsActionPerformed(e));
+                        Pune.add(FourPoints);
                     }
                     Maharastra.add(Pune);
 
@@ -437,21 +714,25 @@ public class HomePageAfterLogin {
                         Nagpur.setText("Nagpur");
                         Nagpur.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem25 ----
-                        menuItem25.setText("text");
-                        Nagpur.add(menuItem25);
+                        //---- LeMeridienNagpur ----
+                        LeMeridienNagpur.setText("Le Meridien Nagpur");
+                        LeMeridienNagpur.addActionListener(e -> LeMeridienNagpurActionPerformed(e));
+                        Nagpur.add(LeMeridienNagpur);
 
-                        //---- menuItem26 ----
-                        menuItem26.setText("text");
-                        Nagpur.add(menuItem26);
+                        //---- HotelGangakashi ----
+                        HotelGangakashi.setText("Hotel Gangakashi");
+                        HotelGangakashi.addActionListener(e -> HotelGangakashiActionPerformed(e));
+                        Nagpur.add(HotelGangakashi);
 
-                        //---- menuItem27 ----
-                        menuItem27.setText("text");
-                        Nagpur.add(menuItem27);
+                        //---- HotelSiddharthaInn ----
+                        HotelSiddharthaInn.setText("Hotel Siddhartha Inn");
+                        HotelSiddharthaInn.addActionListener(e -> HotelSiddharthaInnActionPerformed(e));
+                        Nagpur.add(HotelSiddharthaInn);
 
-                        //---- menuItem28 ----
-                        menuItem28.setText("text");
-                        Nagpur.add(menuItem28);
+                        //---- RadissonBlu ----
+                        RadissonBlu.setText("Radisson Blu");
+                        RadissonBlu.addActionListener(e -> RadissonBluActionPerformed(e));
+                        Nagpur.add(RadissonBlu);
                     }
                     Maharastra.add(Nagpur);
 
@@ -460,21 +741,25 @@ public class HomePageAfterLogin {
                         Aurangabad.setText("Aurangabad");
                         Aurangabad.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem29 ----
-                        menuItem29.setText("text");
-                        Aurangabad.add(menuItem29);
+                        //---- Ambassador_Ajanta ----
+                        Ambassador_Ajanta.setText("Ambassador Ajanta");
+                        Ambassador_Ajanta.addActionListener(e -> Ambassador_AjantaActionPerformed(e));
+                        Aurangabad.add(Ambassador_Ajanta);
 
-                        //---- menuItem30 ----
-                        menuItem30.setText("text");
-                        Aurangabad.add(menuItem30);
+                        //---- VivantaAurangabad ----
+                        VivantaAurangabad.setText("Vivanta Aurangabad");
+                        VivantaAurangabad.addActionListener(e -> VivantaAurangabadActionPerformed(e));
+                        Aurangabad.add(VivantaAurangabad);
 
-                        //---- menuItem31 ----
-                        menuItem31.setText("text");
-                        Aurangabad.add(menuItem31);
+                        //---- THEONEHOTEL ----
+                        THEONEHOTEL.setText("The One Hotel");
+                        THEONEHOTEL.addActionListener(e -> THEONEHOTELActionPerformed(e));
+                        Aurangabad.add(THEONEHOTEL);
 
-                        //---- menuItem32 ----
-                        menuItem32.setText("text");
-                        Aurangabad.add(menuItem32);
+                        //---- HotelAtithi ----
+                        HotelAtithi.setText("Hotel Atithi");
+                        HotelAtithi.addActionListener(e -> HotelAtithiActionPerformed(e));
+                        Aurangabad.add(HotelAtithi);
                     }
                     Maharastra.add(Aurangabad);
                 }
@@ -669,25 +954,25 @@ public class HomePageAfterLogin {
     private JMenuBar menuBar;
     private JMenu Telangana;
     private JMenu Hyderabad;
-    private JMenuItem Hotel_Hyderabad_1;
-    private JMenuItem Hotel_Hyderabad_2;
-    private JMenuItem Hotel_Hyderabad_3;
-    private JMenuItem Hotel_Hyderabad_4;
+    private JMenuItem itckohenur;
+    private JMenuItem ThePark;
+    private JMenuItem TajVivanta;
+    private JMenuItem manasarovar;
     private JMenu Warangal;
-    private JMenuItem menuItem54;
-    private JMenuItem menuItem55;
-    private JMenuItem menuItem56;
-    private JMenuItem menuItem57;
+    private JMenuItem HotelAshoka;
+    private JMenuItem CrystalPalace;
+    private JMenuItem Landmark;
+    private JMenuItem Suprabha;
     private JMenu Karimnagar;
-    private JMenuItem menuItem58;
-    private JMenuItem menuItem59;
-    private JMenuItem menuItem60;
-    private JMenuItem menuItem61;
+    private JMenuItem HotelAditya;
+    private JMenuItem HotelAkshaya;
+    private JMenuItem TheBudgetHotel;
+    private JMenuItem HotelSwetha;
     private JMenu Kammam;
-    private JMenuItem menuItem62;
-    private JMenuItem menuItem63;
-    private JMenuItem menuItem64;
-    private JMenuItem menuItem65;
+    private JMenuItem Gayathri;
+    private JMenuItem Kaveri;
+    private JMenuItem Manasarovar;
+    private JMenuItem Onagiri;
     private JMenu Andhra_Pradesh;
     private JMenu Vijayawada;
     private JMenuItem menuItem1;
@@ -711,25 +996,25 @@ public class HomePageAfterLogin {
     private JMenuItem menuItem16;
     private JMenu Maharastra;
     private JMenu Mumbai;
-    private JMenuItem menuItem17;
-    private JMenuItem menuItem18;
-    private JMenuItem menuItem19;
-    private JMenuItem menuItem20;
+    private JMenuItem GingerMumbaiAndheri;
+    private JMenuItem IbisMumbaiAirport;
+    private JMenuItem TridentNarimanPoint;
+    private JMenuItem RoyalOrchidCentralGrazia;
     private JMenu Pune;
-    private JMenuItem menuItem21;
-    private JMenuItem menuItem22;
-    private JMenuItem menuItem23;
-    private JMenuItem menuItem24;
+    private JMenuItem MintKoregaonPark;
+    private JMenuItem TajGateway;
+    private JMenuItem HotelMintHighstreet;
+    private JMenuItem FourPoints;
     private JMenu Nagpur;
-    private JMenuItem menuItem25;
-    private JMenuItem menuItem26;
-    private JMenuItem menuItem27;
-    private JMenuItem menuItem28;
+    private JMenuItem LeMeridienNagpur;
+    private JMenuItem HotelGangakashi;
+    private JMenuItem HotelSiddharthaInn;
+    private JMenuItem RadissonBlu;
     private JMenu Aurangabad;
-    private JMenuItem menuItem29;
-    private JMenuItem menuItem30;
-    private JMenuItem menuItem31;
-    private JMenuItem menuItem32;
+    private JMenuItem Ambassador_Ajanta;
+    private JMenuItem VivantaAurangabad;
+    private JMenuItem THEONEHOTEL;
+    private JMenuItem HotelAtithi;
     private JMenu New_Delhi;
     private JMenu New_Delhi_City;
     private JMenuItem menuItem33;

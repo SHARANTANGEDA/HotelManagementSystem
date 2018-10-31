@@ -1,0 +1,38 @@
+Maharashtra, Pune, (codes: Ma, Pu)
+1. Mint Koregaon Park (code: Mint)
+
+address:
+Plot Nos 11 Lane Nos 1 | Near Osho International Resort & Commune, Koregaon Park, Pune 411001, India
+
+room type- (all include a/c, have complimentary breakfast, and have free hi-speed wifi)
+standard : rs 1981      (Code: A)
+deluxe   : rs 2228      (Code: B)
+suite    : rs 2807	(Code: C)
+
+2. Taj Gateway (code: Taj)
+
+address:
+Xion Complex, Wakad Road, Hinjewadi, Pune, Maharashtra 411057
+
+room type-
+standard : rs 5825
+suite    : rs 7025
+
+3. Hotel Mint Highstreet (code: High)
+
+address:
+Plot No. 37 and 40, Survey Number.33, Hissa No. 1 / 4, Taluka Haveli, Balewadi, Pune 411045
+
+room type-
+standard : rs 1199
+deluxe   : rs 1620
+
+4. Four Points (code Four)
+
+address:
+5th Mile Stone, Nagar Rd, Pune, Maharashtra 411014
+
+room type-
+standard: rs 5875
+deluxe  : rs 6500
+suite   : rs 7500

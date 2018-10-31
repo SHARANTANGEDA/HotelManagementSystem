@@ -52,21 +52,24 @@ new FormModel {
 						"text": "Hyderabad"
 						"font": &Font1 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "Hotel_Hyderabad_1"
-							"text": "text"
-							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Hotel_Hyderabad_1ActionPerformed", true ) )
+							name: "itckohenur"
+							"text": "ITC Kohenur"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "itckohenurActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "Hotel_Hyderabad_2"
-							"text": "text"
+							name: "ThePark"
+							"text": "The Park"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "TheParkActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "Hotel_Hyderabad_3"
-							"text": "text"
+							name: "TajVivanta"
+							"text": "Taj Vivanta"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "TajVivantaActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "Hotel_Hyderabad_4"
-							"text": "text"
+							name: "manasarovar"
+							"text": "Manasarovar"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "manasarovarActionPerformed", true ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -74,20 +77,24 @@ new FormModel {
 						"text": "Warangal"
 						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem54"
-							"text": "text"
+							name: "HotelAshoka"
+							"text": "Hotel Ashoka"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelAshokaActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem55"
-							"text": "text"
+							name: "CrystalPalace"
+							"text": "Crystal Palace"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "CrystalPalaceActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem56"
-							"text": "text"
+							name: "Landmark"
+							"text": "Landmark"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LandmarkActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem57"
-							"text": "text"
+							name: "Suprabha"
+							"text": "Hotel Suprabha"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SuprabhaActionPerformed", true ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -95,20 +102,24 @@ new FormModel {
 						"text": "Karimnagar"
 						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem58"
-							"text": "text"
+							name: "HotelAditya"
+							"text": "Hotel Aditya"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelAdityaActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem59"
-							"text": "text"
+							name: "HotelAkshaya"
+							"text": "Hotel Akshaya"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelAkshayaActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem60"
-							"text": "text"
+							name: "TheBudgetHotel"
+							"text": "The Budget Hotel"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "TheBudgetHotelActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem61"
-							"text": "text"
+							name: "HotelSwetha"
+							"text": "Hotel Swetha"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelSwethaActionPerformed", true ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -116,20 +127,24 @@ new FormModel {
 						"text": "Kammam"
 						"font": #Font1
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem62"
-							"text": "text"
+							name: "Gayathri"
+							"text": "Gayathri"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GayathriActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem63"
-							"text": "text"
+							name: "Kaveri"
+							"text": "Kaveri"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "KaveriActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem64"
-							"text": "text"
+							name: "Manasarovar"
+							"text": "Manasarovar"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "ManasarovarActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem65"
-							"text": "text"
+							name: "Onagiri"
+							"text": "Onagiri"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "OnagiriActionPerformed", true ) )
 						} )
 					} )
 				} )
@@ -137,11 +152,11 @@ new FormModel {
 					name: "Andhra_Pradesh"
 					"text": "Andhra Pradesh"
 					"preferredSize": new java.awt.Dimension( 150, 50 )
-					"font": #Font0
+					"font": &Font2 new java.awt.Font( "Arial", 1, 18 )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Vijayawada"
 						"text": "Vijayawada"
-						"font": &Font2 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font3 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem1"
 							"text": "text"
@@ -162,7 +177,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Guntur"
 						"text": "Guntur"
-						"font": #Font2
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem6"
 							"text": "text"
@@ -183,7 +198,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Tirupati"
 						"text": "Tirupati"
-						"font": #Font2
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem5"
 							"text": "text"
@@ -204,7 +219,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Vizag"
 						"text": "Vizag"
-						"font": #Font2
+						"font": #Font3
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem13"
 							"text": "text"
@@ -231,85 +246,101 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Mumbai"
 						"text": "Mumbai"
-						"font": &Font3 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font4 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem17"
-							"text": "text"
+							name: "GingerMumbaiAndheri"
+							"text": "Ginger Mumbai Andheri"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GingerMumbaiAndheriActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem18"
-							"text": "text"
+							name: "IbisMumbaiAirport"
+							"text": "Ibis Mumbai Airport"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "IbisMumbaiAirportActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem19"
-							"text": "text"
+							name: "TridentNarimanPoint"
+							"text": "Trident Nariman Point"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "TridentNarimanPointActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem20"
-							"text": "text"
+							name: "RoyalOrchidCentralGrazia"
+							"text": "Royal Orchid Central Grazia"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RoyalOrchidCentralGraziaActionPerformed", true ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Pune"
 						"text": "Pune"
-						"font": #Font3
+						"font": #Font4
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem21"
-							"text": "text"
+							name: "MintKoregaonPark"
+							"text": "Mint Koregaon Park"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "MintKoregaonParkActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem22"
-							"text": "text"
+							name: "TajGateway"
+							"text": "Taj Gateway"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "TajGatewayActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem23"
-							"text": "text"
+							name: "HotelMintHighstreet"
+							"text": "Hotel Mint Highstreet"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelMintHighstreetActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem24"
-							"text": "text"
+							name: "FourPoints"
+							"text": "Four Points"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "FourPointsActionPerformed", true ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Nagpur"
 						"text": "Nagpur"
-						"font": #Font3
+						"font": #Font4
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem25"
-							"text": "text"
+							name: "LeMeridienNagpur"
+							"text": "Le Meridien Nagpur"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LeMeridienNagpurActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem26"
-							"text": "text"
+							name: "HotelGangakashi"
+							"text": "Hotel Gangakashi"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelGangakashiActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem27"
-							"text": "text"
+							name: "HotelSiddharthaInn"
+							"text": "Hotel Siddhartha Inn"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelSiddharthaInnActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem28"
-							"text": "text"
+							name: "RadissonBlu"
+							"text": "Radisson Blu"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RadissonBluActionPerformed", true ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Aurangabad"
 						"text": "Aurangabad"
-						"font": #Font3
+						"font": #Font4
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem29"
-							"text": "text"
+							name: "Ambassador_Ajanta"
+							"text": "Ambassador Ajanta"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Ambassador_AjantaActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem30"
-							"text": "text"
+							name: "VivantaAurangabad"
+							"text": "Vivanta Aurangabad"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "VivantaAurangabadActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem31"
-							"text": "text"
+							name: "THEONEHOTEL"
+							"text": "The One Hotel"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "THEONEHOTELActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem32"
-							"text": "text"
+							name: "HotelAtithi"
+							"text": "Hotel Atithi"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelAtithiActionPerformed", true ) )
 						} )
 					} )
 				} )
@@ -317,11 +348,11 @@ new FormModel {
 					name: "New_Delhi"
 					"text": "New Delhi"
 					"preferredSize": new java.awt.Dimension( 100, 50 )
-					"font": #Font0
+					"font": #Font2
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "New_Delhi_City"
 						"text": "New Delhi"
-						"font": &Font4 new java.awt.Font( "Arial", 2, 16 )
+						"font": &Font5 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem33"
 							"text": "text"
@@ -342,7 +373,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Panipat"
 						"text": "Panipat"
-						"font": #Font4
+						"font": #Font5
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem37"
 							"text": "text"
@@ -363,7 +394,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Gurugram"
 						"text": "Gurugram"
-						"font": #Font4
+						"font": #Font5
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem41"
 							"text": "text"
@@ -384,7 +415,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "Faridabad"
 						"text": "Faridabad"
-						"font": #Font4
+						"font": #Font5
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem45"
 							"text": "text"

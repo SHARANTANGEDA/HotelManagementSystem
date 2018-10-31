@@ -2,9 +2,8 @@
  * Created by JFormDesigner on Tue Oct 30 16:38:35 IST 2018
  */
 
-package com.sharan.ui.hotelView.hotelHome.afterLogin;
+package com.sharan.ui.hotelView.hotelHome;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.hotelView.hotelHome.beforeLogin.HotelHomePageBeforeLogin;
 import com.sharan.ui.hotelView.hotelHome.rating.Rating;
@@ -17,16 +16,28 @@ import java.awt.event.ActionEvent;
 /**
  * @author SAI SHARAN
  */
-public class HotelHomePage {
+public class HotelHomePageAfterLogin {
     private String uniqueId;
     private DataBaseController dataBaseController;
     private double rate;
     private String starRatingPath;
 
 
-    public HotelHomePage(String uniqueId,DataBaseController dataBaseController) {
+    private String hotelName;
+    private String description;
+    private String address;
+    private String hotelMainImagePath;
+
+
+
+    public HotelHomePageAfterLogin(String uniqueId,String hotelName,String description,String address,String hotelMainImagePath,
+                                   DataBaseController dataBaseController) {
         this.uniqueId=uniqueId;
         this.dataBaseController=dataBaseController;
+        this.hotelName=hotelName;
+        this.description=description;
+        this.address=address;
+        this.hotelMainImagePath=hotelMainImagePath;
         initComponents();
     }
 
@@ -46,7 +57,9 @@ public class HotelHomePage {
             dataBaseController.closeDatabaseConnection();
             dataBaseController.initialiseDatabase();
             rate=dataBaseController.calculateRating(uniqueId);
-            starRatingPath="/com/sharan/ui/pictures/stars/"+rate+".jpg";
+
+            String rateString=String.valueOf(rate);
+            starRatingPath="/com/sharan/ui/pictures/stars/"+rateString+".jpg";
             System.out.println(rate);
         System.out.println(starRatingPath);
             dataBaseController.closeDatabaseConnection();
@@ -102,7 +115,7 @@ public class HotelHomePage {
             }
 
             //---- Heading ----
-            Heading.setText("Online Hotel Bookng Portal");
+            Heading.setText(hotelName);
             Heading.setForeground(new Color(254, 0, 27));
             Heading.setFont(new Font("Courier New", Font.BOLD, 33));
             Heading.setBackground(new Color(245, 255, 0));
@@ -118,7 +131,8 @@ public class HotelHomePage {
             scrollBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
             //---- menuItem1 ----
-            menuItem1.setText("---IMAGE HERE---");
+//            menuItem1.setText("---IMAGE HERE---");
+            menuItem1.setIcon(new ImageIcon(getClass().getResource(hotelMainImagePath)));
             menuItem1.setBorder(LineBorder.createBlackLineBorder());
             menuItem1.setHorizontalAlignment(SwingConstants.CENTER);
             menuItem1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -128,7 +142,8 @@ public class HotelHomePage {
             {
 
                 //---- DescriptionField ----
-                DescriptionField.setText("-----DESCRIPTION HERE_____");
+
+                DescriptionField.setText(description);
                 scrollPane1.setViewportView(DescriptionField);
             }
 
@@ -153,8 +168,11 @@ public class HotelHomePage {
 
             //======== scrollPane2 ========
             {
+                textArea1.setText(address);
                 scrollPane2.setViewportView(textArea1);
             }
+
+
 
             GroupLayout HotelHomeFrameContentPaneLayout = new GroupLayout(HotelHomeFrameContentPane);
             HotelHomeFrameContentPane.setLayout(HotelHomeFrameContentPaneLayout);
