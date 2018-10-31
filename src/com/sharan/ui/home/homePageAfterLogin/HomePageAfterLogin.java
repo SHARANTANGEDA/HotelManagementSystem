@@ -145,6 +145,8 @@ public class HomePageAfterLogin {
 
         //======== homePageAfterLogin ========
         {
+            homePageAfterLogin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            homePageAfterLogin.setVisible(true);
             Container homePageAfterLoginContentPane = homePageAfterLogin.getContentPane();
 
             //---- Heading ----

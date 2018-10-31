@@ -8,6 +8,8 @@ new FormModel {
 			"$verticalGroup": "par l {seq {space :::p, par l {seq l {comp Heading:::p:60:p, space :0:0:x, comp menuBar1:::p:50:p, space :p:30:p, comp menuBar:::p::p, space :::p, comp splitPane1:::p::p, space :p:160:p}, seq l {comp scrollBar:::p:741:p, space :0:0:x}}}}"
 		} ) {
 			name: "homePageAfterLogin"
+			"defaultCloseOperation": 3
+			"visible": true
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "Heading"
 				"text": "Online Hotel Bookng Portal"

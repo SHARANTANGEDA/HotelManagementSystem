@@ -1,12 +1,16 @@
 package com.sharan.ui.home.homePage;
 
 import com.sharan.DataBaseController;
+import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginPopUp.Login;
 import com.sharan.ui.home.signUpPopUp.SignUp;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
+import static com.sharan.Main.loginSuccess;
+import static com.sharan.Main.signUpSuccess;
 
 public class HomePage extends Canvas {
     private String stateSelected = "";
@@ -36,12 +40,31 @@ public class HomePage extends Canvas {
         return frame;
     }
 
+    public JButton getLogin() {
+        return Login;
+    }
+
     private void LoginActionPerformed(ActionEvent e) {
-        com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController);
+        com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController,Login);
+
+        if(login.returnLoginStatus()==1) {
+            loginSuccess=0;
+            frame1.dispose();
+            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
+            login.getLogin().dispose();
+
+        }
+
     }
 
     private void SignUpActionPerformed(ActionEvent e) {
-        com.sharan.ui.home.signUpPopUp.SignUp signUp=new SignUp(dataBaseController);
+        com.sharan.ui.home.signUpPopUp.SignUp signUp=new SignUp(dataBaseController,SignUp);
+        if(signUpSuccess==1) {
+            signUpSuccess=0;
+            frame1.dispose();
+            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
+            signUp.getSignUp().dispose();
+        }
     }
 
 
@@ -151,6 +174,7 @@ public class HomePage extends Canvas {
             frame1.setFont(new Font("Courier New", Font.BOLD, 36));
             frame1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame1.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")).getImage());
+            frame1.setVisible(true);
             Container frame1ContentPane = frame1.getContentPane();
             frame1ContentPane.setLayout(null);
 
@@ -176,10 +200,7 @@ public class HomePage extends Canvas {
             //---- SignUp ----
             SignUp.setText("SignUp");
             SignUp.setBackground(new Color(0, 255, 29));
-            SignUp.addActionListener(e -> {
-			SignUpActionPerformed(e);
-			SignUpActionPerformed(e);
-		});
+            SignUp.addActionListener(e -> SignUpActionPerformed(e));
             frame1ContentPane.add(SignUp);
             SignUp.setBounds(875, 15, 120, 40);
 
@@ -643,7 +664,6 @@ public class HomePage extends Canvas {
             }
             frame1.pack();
             frame1.setLocationRelativeTo(frame1.getOwner());
-            frame1.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

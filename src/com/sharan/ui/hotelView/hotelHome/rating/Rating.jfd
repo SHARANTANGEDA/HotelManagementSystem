@@ -8,6 +8,8 @@ new FormModel {
 			"$verticalGroup": "par l {seq l {comp Heading:::p:29:p, space :p:34:p, par b {comp star3::b:p::p, comp star2::b:p:33:p, comp star1::b:p:33:p}, space u:::p, par b {comp star4::b:p::p, comp star5::b:p::p}, space u:::p, comp confirm::::43:x, space :::p}}"
 		} ) {
 			name: "rater"
+			"defaultCloseOperation": 2
+			"visible": true
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "star1"
 				"text": "Worst Experience"

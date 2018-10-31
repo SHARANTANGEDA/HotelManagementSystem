@@ -143,6 +143,8 @@ public class Rating extends JFrame {
 
         //======== rater ========
         {
+            rater.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            rater.setVisible(true);
             Container raterContentPane = rater.getContentPane();
 
             //---- star1 ----
@@ -235,7 +237,6 @@ public class Rating extends JFrame {
             );
             rater.pack();
             rater.setLocationRelativeTo(rater.getOwner());
-            rater.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

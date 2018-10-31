@@ -2,9 +2,11 @@
  * Created by JFormDesigner on Tue Oct 30 16:38:35 IST 2018
  */
 
-package com.sharan.ui.hotelView.hotelHome;
+package com.sharan.ui.hotelView.hotelHome.afterLogin;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
+import com.sharan.ui.hotelView.hotelHome.beforeLogin.HotelHomePageBeforeLogin;
 import com.sharan.ui.hotelView.hotelHome.rating.Rating;
 
 import javax.swing.*;
@@ -32,7 +34,9 @@ public class HotelHomePage {
 
 
     private void LogoutActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        dataBaseController.initialiseDatabase();
+        HotelHomePageBeforeLogin beforeLogin=new HotelHomePageBeforeLogin(uniqueId,dataBaseController);
+        dataBaseController.closeDatabaseConnection();
     }
 
     private void Star_RatingActionPerformed(ActionEvent e)  {
@@ -47,6 +51,10 @@ public class HotelHomePage {
         System.out.println(starRatingPath);
             dataBaseController.closeDatabaseConnection();
 
+    }
+
+    private void checkAvailabilityActionPerformed(ActionEvent e) {
+        // TODO add your code here
     }
 
 
@@ -66,10 +74,14 @@ public class HotelHomePage {
         DescriptionField = new JTextArea();
         Star_Rating = new JButton();
         label1 = new JLabel();
+        checkAvailability = new JButton();
+        scrollPane2 = new JScrollPane();
+        textArea1 = new JTextArea();
 
         //======== HotelHomeFrame ========
         {
-            HotelHomeFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            HotelHomeFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            HotelHomeFrame.setVisible(true);
             Container HotelHomeFrameContentPane = HotelHomeFrame.getContentPane();
 
             //======== menuBar1 ========
@@ -121,7 +133,7 @@ public class HotelHomePage {
             }
 
             //---- Star_Rating ----
-            Star_Rating.setText("Rate The Hotel");
+            Star_Rating.setText("Rate your Experience");
             Star_Rating.setHorizontalAlignment(SwingConstants.CENTER);
             Star_Rating.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
             Star_Rating.setInheritsPopupMenu(true);
@@ -132,12 +144,24 @@ public class HotelHomePage {
             label1.setHorizontalAlignment(SwingConstants.CENTER);
             label1.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/stars/5.0.jpg")));
 
+            //---- checkAvailability ----
+            checkAvailability.setText("Check Availability");
+            checkAvailability.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
+            checkAvailability.setForeground(new Color(238, 238, 238));
+            checkAvailability.setBackground(new Color(177, 0, 0));
+            checkAvailability.addActionListener(e -> checkAvailabilityActionPerformed(e));
+
+            //======== scrollPane2 ========
+            {
+                scrollPane2.setViewportView(textArea1);
+            }
+
             GroupLayout HotelHomeFrameContentPaneLayout = new GroupLayout(HotelHomeFrameContentPane);
             HotelHomeFrameContentPane.setLayout(HotelHomeFrameContentPaneLayout);
             HotelHomeFrameContentPaneLayout.setHorizontalGroup(
                 HotelHomeFrameContentPaneLayout.createParallelGroup()
                     .addGroup(HotelHomeFrameContentPaneLayout.createSequentialGroup()
-                        .addGroup(HotelHomeFrameContentPaneLayout.createParallelGroup()
+                        .addGroup(HotelHomeFrameContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(HotelHomeFrameContentPaneLayout.createSequentialGroup()
                                 .addGap(975, 975, 975)
                                 .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
@@ -149,10 +173,17 @@ public class HotelHomePage {
                                 .addComponent(menuItem1, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
                                 .addGroup(HotelHomeFrameContentPaneLayout.createParallelGroup()
-                                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 486, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Star_Rating, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                                    .addGroup(HotelHomeFrameContentPaneLayout.createSequentialGroup()
+                                        .addGroup(HotelHomeFrameContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Star_Rating, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(checkAvailability, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(scrollPane1)
+                                    .addGroup(HotelHomeFrameContentPaneLayout.createSequentialGroup()
+                                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 413, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(18, 30, Short.MAX_VALUE)
                         .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
             );
             HotelHomeFrameContentPaneLayout.setVerticalGroup(
@@ -168,17 +199,21 @@ public class HotelHomePage {
                                 .addGap(50, 50, 50)
                                 .addGroup(HotelHomeFrameContentPaneLayout.createParallelGroup()
                                     .addGroup(HotelHomeFrameContentPaneLayout.createSequentialGroup()
-                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Star_Rating, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label1))
-                                    .addComponent(menuItem1, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(HotelHomeFrameContentPaneLayout.createParallelGroup()
+                                            .addGroup(HotelHomeFrameContentPaneLayout.createSequentialGroup()
+                                                .addComponent(Star_Rating, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(label1))
+                                            .addComponent(checkAvailability, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(menuItem1, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE))
+                                .addGap(19, 19, 19)
+                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             HotelHomeFrame.pack();
             HotelHomeFrame.setLocationRelativeTo(HotelHomeFrame.getOwner());
-            HotelHomeFrame.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -196,5 +231,8 @@ public class HotelHomePage {
     private JTextArea DescriptionField;
     private JButton Star_Rating;
     private JLabel label1;
+    private JButton checkAvailability;
+    private JScrollPane scrollPane2;
+    private JTextArea textArea1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
