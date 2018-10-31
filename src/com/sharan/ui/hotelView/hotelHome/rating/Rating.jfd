@@ -1,0 +1,65 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:156:p, comp Heading:::p:249:p, space :0:0:x}, seq l {space ::160:x, comp star4:::p::p, space :p:44:p, comp star5:::p::p, space :p:161:p}, seq t {space :p:32:p, comp star1:::p::p, space ::61:x, comp star2:::p:68:p, space s:::p, comp star3:::p::p}}, space :p:39:p}, seq l {space :p:238:p, comp confirm:::p::p, space ::253:x}}"
+			"$verticalGroup": "par l {seq l {comp Heading:::p:29:p, space :p:34:p, par b {comp star3::b:p::p, comp star2::b:p:33:p, comp star1::b:p:33:p}, space u:::p, par b {comp star4::b:p::p, comp star5::b:p::p}, space u:::p, comp confirm::::43:x, space :::p}}"
+		} ) {
+			name: "rater"
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "star1"
+				"text": "Worst Experience"
+				"font": &Font0 new java.awt.Font( "Arial", 1, 16 )
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "star1ItemStateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "star2"
+				"text": "Bad"
+				"font": #Font0
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "star2ItemStateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "star3"
+				"text": "Good but can be improved"
+				"font": #Font0
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "star3ItemStateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "star4"
+				"text": "Very Good"
+				"font": #Font0
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "star4ItemStateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Heading"
+				"text": "Rate Below"
+				"foreground": new java.awt.Color( 254, 0, 27, 255 )
+				"font": new java.awt.Font( "Courier New", 1, 33 )
+				"background": new java.awt.Color( 245, 255, 0, 255 )
+				"horizontalAlignment": 0
+				"horizontalTextPosition": 0
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"opaque": true
+				"autoscrolls": true
+				"requestFocusEnabled": false
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "star5"
+				"text": "Excellent"
+				"font": #Font0
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "star5ItemStateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "confirm"
+				"text": "Confirm"
+				"font": new java.awt.Font( "Dialog", 1, 18 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 120, 30 )
+			"size": new java.awt.Dimension( 486, 186 )
+		} )
+	}
+}

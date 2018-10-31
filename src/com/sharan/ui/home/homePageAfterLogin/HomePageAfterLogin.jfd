@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {par l {seq {space :0:3:x, par l {comp splitPane1::l:p:1087:p, seq l {space :p:189:p, comp Heading:::p:593:p}, comp menuBar::l:p:1078:p}}, seq t {space ::1033:x, comp menuBar1:::p:47:p, space :p:10:p}}, comp scrollBar:::p:22:p, space :p:3:p}}"
-			"$verticalGroup": "par l {seq {space :::p, par l {seq l {comp Heading:::p:60:p, space :::p, comp menuBar1:::p:50:p, space :::p, comp menuBar:::p::p, space :::x, comp splitPane1:::p:610:p}, seq l {comp scrollBar:::p:741:p, space :0:0:x}}}}"
+			"$horizontalGroup": "par l {seq t {par l {seq {space :0:0:x, par l {seq l {space :p:189:p, comp Heading:::p:593:p}, comp menuBar::l:p:1078:p, comp splitPane1:::p:1087:p}, space :::p}, seq t {space :::x, comp menuBar1:::p:47:p, space :p:30:p}}, comp scrollBar:::p:22:p, space :p:3:p}}"
+			"$verticalGroup": "par l {seq {space :::p, par l {seq l {comp Heading:::p:60:p, space :0:0:x, comp menuBar1:::p:50:p, space :p:30:p, comp menuBar:::p::p, space :::p, comp splitPane1:::p::p, space :p:160:p}, seq l {comp scrollBar:::p:741:p, space :0:0:x}}}}"
 		} ) {
 			name: "homePageAfterLogin"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -50,19 +50,20 @@ new FormModel {
 						"text": "Hyderabad"
 						"font": &Font1 new java.awt.Font( "Arial", 2, 16 )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem49"
+							name: "Hotel_Hyderabad_1"
+							"text": "text"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Hotel_Hyderabad_1ActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "Hotel_Hyderabad_2"
 							"text": "text"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem50"
+							name: "Hotel_Hyderabad_3"
 							"text": "text"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem51"
-							"text": "text"
-						} )
-						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem52"
+							name: "Hotel_Hyderabad_4"
 							"text": "text"
 						} )
 					} )
@@ -420,19 +421,19 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menu1"
+					name: "profile"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
-					add( new FormComponent( "javax.swing.JButton" ) {
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "Logout"
 						"text": "Logout"
-						"font": new java.awt.Font( "Arial", 0, 16 )
+						"font": new java.awt.Font( "Arial", 0, 18 )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LogoutActionPerformed", true ) )
 					} )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 100, 6 )
-			"size": new java.awt.Dimension( 894, 626 )
+			"location": new java.awt.Point( 60, 0 )
+			"size": new java.awt.Dimension( 894, 665 )
 		} )
 	}
 }

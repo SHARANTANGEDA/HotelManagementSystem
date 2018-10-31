@@ -39,6 +39,10 @@ public class HomePageAfterLogin {
 
     }
 
+    private void Hotel_Hyderabad_1ActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
@@ -50,10 +54,10 @@ public class HomePageAfterLogin {
         menuBar = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
-        menuItem49 = new JMenuItem();
-        menuItem50 = new JMenuItem();
-        menuItem51 = new JMenuItem();
-        menuItem52 = new JMenuItem();
+        Hotel_Hyderabad_1 = new JMenuItem();
+        Hotel_Hyderabad_2 = new JMenuItem();
+        Hotel_Hyderabad_3 = new JMenuItem();
+        Hotel_Hyderabad_4 = new JMenuItem();
         Warangal = new JMenu();
         menuItem54 = new JMenuItem();
         menuItem55 = new JMenuItem();
@@ -136,8 +140,8 @@ public class HomePageAfterLogin {
         Hotels = new JComboBox();
         Search = new JButton();
         menuBar1 = new JMenuBar();
-        menu1 = new JMenu();
-        Logout = new JButton();
+        profile = new JMenu();
+        Logout = new JMenuItem();
 
         //======== homePageAfterLogin ========
         {
@@ -184,21 +188,22 @@ public class HomePageAfterLogin {
                         Hyderabad.setText("Hyderabad");
                         Hyderabad.setFont(new Font("Arial", Font.ITALIC, 16));
 
-                        //---- menuItem49 ----
-                        menuItem49.setText("text");
-                        Hyderabad.add(menuItem49);
+                        //---- Hotel_Hyderabad_1 ----
+                        Hotel_Hyderabad_1.setText("text");
+                        Hotel_Hyderabad_1.addActionListener(e -> Hotel_Hyderabad_1ActionPerformed(e));
+                        Hyderabad.add(Hotel_Hyderabad_1);
 
-                        //---- menuItem50 ----
-                        menuItem50.setText("text");
-                        Hyderabad.add(menuItem50);
+                        //---- Hotel_Hyderabad_2 ----
+                        Hotel_Hyderabad_2.setText("text");
+                        Hyderabad.add(Hotel_Hyderabad_2);
 
-                        //---- menuItem51 ----
-                        menuItem51.setText("text");
-                        Hyderabad.add(menuItem51);
+                        //---- Hotel_Hyderabad_3 ----
+                        Hotel_Hyderabad_3.setText("text");
+                        Hyderabad.add(Hotel_Hyderabad_3);
 
-                        //---- menuItem52 ----
-                        menuItem52.setText("text");
-                        Hyderabad.add(menuItem52);
+                        //---- Hotel_Hyderabad_4 ----
+                        Hotel_Hyderabad_4.setText("text");
+                        Hyderabad.add(Hotel_Hyderabad_4);
                     }
                     Telangana.add(Hyderabad);
 
@@ -593,17 +598,17 @@ public class HomePageAfterLogin {
             //======== menuBar1 ========
             {
 
-                //======== menu1 ========
+                //======== profile ========
                 {
-                    menu1.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
+                    profile.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
 
                     //---- Logout ----
                     Logout.setText("Logout");
-                    Logout.setFont(new Font("Arial", Font.PLAIN, 16));
+                    Logout.setFont(new Font("Arial", Font.PLAIN, 18));
                     Logout.addActionListener(e -> LogoutActionPerformed(e));
-                    menu1.add(Logout);
+                    profile.add(Logout);
                 }
-                menuBar1.add(menu1);
+                menuBar1.add(profile);
             }
 
             GroupLayout homePageAfterLoginContentPaneLayout = new GroupLayout(homePageAfterLoginContentPane);
@@ -613,17 +618,18 @@ public class HomePageAfterLogin {
                     .addGroup(GroupLayout.Alignment.TRAILING, homePageAfterLoginContentPaneLayout.createSequentialGroup()
                         .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
                             .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addGap(0, 3, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
-                                    .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, 1087, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
                                         .addGap(189, 189, 189)
                                         .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 1078, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 1078, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, 1087, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(GroupLayout.Alignment.TRAILING, homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addContainerGap(1033, Short.MAX_VALUE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)))
+                                .addGap(30, 30, 30)))
                         .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3))
             );
@@ -634,19 +640,19 @@ public class HomePageAfterLogin {
                         .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
                             .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
                                 .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(30, 30, 30)
                                 .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, 610, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(160, 160, 160))
                             .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
                                 .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 741, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
             );
             homePageAfterLogin.pack();
             homePageAfterLogin.setLocationRelativeTo(homePageAfterLogin.getOwner());
-            homePageAfterLogin.setVisible(true);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -661,10 +667,10 @@ public class HomePageAfterLogin {
     private JMenuBar menuBar;
     private JMenu Telangana;
     private JMenu Hyderabad;
-    private JMenuItem menuItem49;
-    private JMenuItem menuItem50;
-    private JMenuItem menuItem51;
-    private JMenuItem menuItem52;
+    private JMenuItem Hotel_Hyderabad_1;
+    private JMenuItem Hotel_Hyderabad_2;
+    private JMenuItem Hotel_Hyderabad_3;
+    private JMenuItem Hotel_Hyderabad_4;
     private JMenu Warangal;
     private JMenuItem menuItem54;
     private JMenuItem menuItem55;
@@ -747,7 +753,7 @@ public class HomePageAfterLogin {
     private JComboBox Hotels;
     private JButton Search;
     private JMenuBar menuBar1;
-    private JMenu menu1;
-    private JButton Logout;
+    private JMenu profile;
+    private JMenuItem Logout;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
