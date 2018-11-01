@@ -11,6 +11,7 @@ import com.sharan.ui.hotelView.hotelHome.HotelHomePageAfterLogin;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * @author SAI SHARAN
@@ -110,192 +111,199 @@ public class HomePageAfterLogin {
     }
 
     private void GingerMumbaiAndheriActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Mu_Ginger","Ginger Mumbai Andheri","room type-\n" +
-                "standard : 2474\n" +
-                "deluxe   : 5219\n" +
-                "suite    : 6176",
-                "address:\n" +
-                        "Rajashree Sahu Marg, Andheri East, Mumbai, Maharashtra 400069",
-                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Ginger/Ma_Mu_GingerA.jpg",
-                dataBaseController
-        );
+
+        ArrayList<String> list=dataBaseController.parseHotel("");
+
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(list,dataBaseController);
+
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Mu_Ginger","Ginger Mumbai Andheri","room type-\n" +
+//                "standard : 2474\n" +
+//                "deluxe   : 5219\n" +
+//                "suite    : 6176",
+//                "address:\n" +
+//                        "Rajashree Sahu Marg, Andheri East, Mumbai, Maharashtra 400069",
+//                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Ginger/Ma_Mu_GingerA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void IbisMumbaiAirportActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Mu_Ibis","Ibis Mumbai","room type-\n" +
-                "standard :6199\n" +
-                "deluxe   :6699",
-                "address:\n" +
-                        "F77, Western Express Hwy, Navpada, Vile Parle East, Vile Parle, Mumbai, Maharashtra 400099 ",
-                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Ibis/Ma_Mu_IbisA.jpg"
-                ,dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Mu_Ibis","Ibis Mumbai","room type-\n" +
+//                "standard :6199\n" +
+//                "deluxe   :6699",
+//                "address:\n" +
+//                        "F77, Western Express Hwy, Navpada, Vile Parle East, Vile Parle, Mumbai, Maharashtra 400099 ",
+//                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Ibis/Ma_Mu_IbisA.jpg"
+//                ,dataBaseController
+//        );
     }
 
     private void TridentNarimanPointActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Mu_Trident","Trident Hotel","room type-\n" +
-                "standard :11875\n" +
-                "suite    :21625","address:\n" +
-                "CR 2 Nariman Point, Netaji Subhash Chandra Bose Road, Mumbai, Maharashtra 400021\n",
-                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Trident/Ma_Mu_TridentA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Mu_Trident","Trident Hotel","room type-\n" +
+//                "standard :11875\n" +
+//                "suite    :21625","address:\n" +
+//                "CR 2 Nariman Point, Netaji Subhash Chandra Bose Road, Mumbai, Maharashtra 400021\n",
+//                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Trident/Ma_Mu_TridentA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void RoyalOrchidCentralGraziaActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin = new HotelHomePageAfterLogin(
-                "Ma_Mu_Royal","Royal Orchid Central","room type-\n" +
-                "standard :4979\n" +
-                "deluxe   :5134\n" +
-                "suite    :6125","address:\n" +
-                "Plot No. 67, Palm Beach Road, Sector 19, Vashi, Near Truck Terminal, Navi Mumbai, Maharashtra 400705",
-                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Royal Orchard/Ma_Mu_RoyalA.jpg",dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin = new HotelHomePageAfterLogin(
+//                "Ma_Mu_Royal","Royal Orchid Central","room type-\n" +
+//                "standard :4979\n" +
+//                "deluxe   :5134\n" +
+//                "suite    :6125","address:\n" +
+//                "Plot No. 67, Palm Beach Road, Sector 19, Vashi, Near Truck Terminal, Navi Mumbai, Maharashtra 400705",
+//                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Royal Orchard/Ma_Mu_RoyalA.jpg",dataBaseController
+//        );
     }
 
     private void MintKoregaonParkActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Pu_Mint","Mint Koregaon Park","room type- (all include a/c, have complimentary breakfast, and have free hi-speed wifi)\n" +
-                "standard : rs 1981      (Code: A)\n" +
-                "deluxe   : rs 2228      (Code: B)\n" +
-                "suite    : rs 2807\t(Code: C)\n","address:\n" +
-                "Plot Nos 11 Lane Nos 1 | Near Osho International Resort & Commune, Koregaon Park, Pune 411001, India",
-                "/com/sharan/ui/pictures/Maharashtra/Pune/Mint Koregaon Park/Ma_Pu_MintA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Pu_Mint","Mint Koregaon Park","room type- (all include a/c, have complimentary breakfast, and have free hi-speed wifi)\n" +
+//                "standard : rs 1981      (Code: A)\n" +
+//                "deluxe   : rs 2228      (Code: B)\n" +
+//                "suite    : rs 2807\t(Code: C)\n","address:\n" +
+//                "Plot Nos 11 Lane Nos 1 | Near Osho International Resort & Commune, Koregaon Park, Pune 411001, India",
+//                "/com/sharan/ui/pictures/Maharashtra/Pune/Mint Koregaon Park/Ma_Pu_MintA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void TajGatewayActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Pu_Taj","Taj Gateway","room type-\n" +
-                "standard : rs 5825\n" +
-                "suite    : rs 7025","address:\n" +
-                "Xion Complex, Wakad Road, Hinjewadi, Pune, Maharashtra 411057",
-                "/com/sharan/ui/pictures/Maharashtra/Pune/Taj Gateway/Ma_Pu_TajA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Pu_Taj","Taj Gateway","room type-\n" +
+//                "standard : rs 5825\n" +
+//                "suite    : rs 7025","address:\n" +
+//                "Xion Complex, Wakad Road, Hinjewadi, Pune, Maharashtra 411057",
+//                "/com/sharan/ui/pictures/Maharashtra/Pune/Taj Gateway/Ma_Pu_TajA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void HotelMintHighstreetActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Pu_High","Hotel Mint Highstreet","room type-\n" +
-                "standard : rs 1199\n" +
-                "deluxe   : rs 1620\n","address:\n" +
-                "Plot No. 37 and 40, Survey Number.33, Hissa No. 1 / 4, Taluka Haveli, Balewadi, Pune 411045",
-                "/com/sharan/ui/pictures/Maharashtra/Pune/Hotel Mint Highstreet/Ma_Pu_HighA.jpg",dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Pu_High","Hotel Mint Highstreet","room type-\n" +
+//                "standard : rs 1199\n" +
+//                "deluxe   : rs 1620\n","address:\n" +
+//                "Plot No. 37 and 40, Survey Number.33, Hissa No. 1 / 4, Taluka Haveli, Balewadi, Pune 411045",
+//                "/com/sharan/ui/pictures/Maharashtra/Pune/Hotel Mint Highstreet/Ma_Pu_HighA.jpg",dataBaseController
+//        );
     }
 
     private void FourPointsActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Pu_Four","Four Points","room type-\n" +
-                "standard: rs 5875\n" +
-                "deluxe  : rs 6500\n" +
-                "suite   : rs 7500","address:\n" +
-                "5th Mile Stone, Nagar Rd, Pune, Maharashtra 411014",
-                "/com/sharan/ui/pictures/Maharashtra/Pune/Four Points/Ma_Pu_FourA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Pu_Four","Four Points","room type-\n" +
+//                "standard: rs 5875\n" +
+//                "deluxe  : rs 6500\n" +
+//                "suite   : rs 7500","address:\n" +
+//                "5th Mile Stone, Nagar Rd, Pune, Maharashtra 411014",
+//                "/com/sharan/ui/pictures/Maharashtra/Pune/Four Points/Ma_Pu_FourA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void LeMeridienNagpurActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Na_Mer","Le Meridien","room type-\n" +
-                "standard : 6999\n" +
-                "deluxe   : 7999\n" +
-                "suite    : 8999","address:\n" +
-                "Wardha Road, Flyover, Mihan, Opp, Nagpur, Maharashtra 441108",
-                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Meridien/Ma_Na_MerA.jpg",dataBaseController);
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Na_Mer","Le Meridien","room type-\n" +
+//                "standard : 6999\n" +
+//                "deluxe   : 7999\n" +
+//                "suite    : 8999","address:\n" +
+//                "Wardha Road, Flyover, Mihan, Opp, Nagpur, Maharashtra 441108",
+//                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Meridien/Ma_Na_MerA.jpg",dataBaseController);
 
     }
 
     private void HotelGangakashiActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Na_Gang","Hotel Gangakashi","room type-\n" +
-                "standard :2409\n" +
-                "deluxe   :3408\n" +
-                "suite    :3763","address:\n" +
-                "Hotel Gangakashi, Right Beside Cinemax (Enternity Mall), variety square, Sitabuldi Nagpur - 440012",
-                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Gangakashi/Ma_Na_GangA.jpg",dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Na_Gang","Hotel Gangakashi","room type-\n" +
+//                "standard :2409\n" +
+//                "deluxe   :3408\n" +
+//                "suite    :3763","address:\n" +
+//                "Hotel Gangakashi, Right Beside Cinemax (Enternity Mall), variety square, Sitabuldi Nagpur - 440012",
+//                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Gangakashi/Ma_Na_GangA.jpg",dataBaseController
+//        );
     }
 
     private void HotelSiddharthaInnActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Na_Sid","Hotel Siddhartha Inn","room type-\n" +
-                "standard : 984\n" +
-                "deluxe   : 1000"
-                ,"address:\n" +
-                "90, Central Avenue,Near Agrasen Square,Gandhibagh, Nagpur",
-                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Siddhartha/Ma_Na_SidA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Na_Sid","Hotel Siddhartha Inn","room type-\n" +
+//                "standard : 984\n" +
+//                "deluxe   : 1000"
+//                ,"address:\n" +
+//                "90, Central Avenue,Near Agrasen Square,Gandhibagh, Nagpur",
+//                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Siddhartha/Ma_Na_SidA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void RadissonBluActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Na_Blu","Radisson Blu","room type-\n" +
-                "standard :4876\n" +
-                "deluxe   :6825\n" +
-                "suite    :12995\n",
-                "address:\n" +
-                        "Enrico Heights, 7, Wardha Rd, Nagpur, Maharashtra 440015",
-                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Radisson/Ma_Na_BluA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Na_Blu","Radisson Blu","room type-\n" +
+//                "standard :4876\n" +
+//                "deluxe   :6825\n" +
+//                "suite    :12995\n",
+//                "address:\n" +
+//                        "Enrico Heights, 7, Wardha Rd, Nagpur, Maharashtra 440015",
+//                "/com/sharan/ui/pictures/Maharashtra/Nagpur/Radisson/Ma_Na_BluA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void Ambassador_AjantaActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin homePageAfterLogin=new HotelHomePageAfterLogin("Ma_Au_Ajanta",
-                "Ambassador Ajanta",
-                "room type-\n" +
-                        "standard :3370\n" +
-                        "deluxe   :3883\n" +
-                        "suite    :6910",
-                "address:\n" +
-                        "Jalna Road, CIDCO,Aurangabad-431 003",
-                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Ajanta/Ma_Au_AjantaA.jpg",dataBaseController);
+//        HotelHomePageAfterLogin homePageAfterLogin=new HotelHomePageAfterLogin("Ma_Au_Ajanta",
+//                "Ambassador Ajanta",
+//                "room type-\n" +
+//                        "standard :3370\n" +
+//                        "deluxe   :3883\n" +
+//                        "suite    :6910",
+//                "address:\n" +
+//                        "Jalna Road, CIDCO,Aurangabad-431 003",
+//                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Ajanta/Ma_Au_AjantaA.jpg",dataBaseController);
     }
 
     private void VivantaAurangabadActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Au_Vivan","Vivanta Aurangabad","room type-\n" +
-                "standard :7095\n" +
-                "deluxe   :8350\n" +
-                "suite    :10500","address:\n" +
-                "8 N 12, Dr. Rafiq Zakaria Marg, Rauza Bagh",
-                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Vivanta/Ma_Au_VivanA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Au_Vivan","Vivanta Aurangabad","room type-\n" +
+//                "standard :7095\n" +
+//                "deluxe   :8350\n" +
+//                "suite    :10500","address:\n" +
+//                "8 N 12, Dr. Rafiq Zakaria Marg, Rauza Bagh",
+//                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Vivanta/Ma_Au_VivanA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void THEONEHOTELActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Au_One","The One Hotel","room type-\n" +
-                "standard :7095\n" +
-                "deluxe   :8350\n" +
-                "suite    :10500",
-                "address:\n" +
-                        "8 N 12, Dr. Rafiq Zakaria Marg, Rauza Bagh",
-                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/One/Ma_Au_OneA.jpg",
-                dataBaseController
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Au_One","The One Hotel","room type-\n" +
+//                "standard :7095\n" +
+//                "deluxe   :8350\n" +
+//                "suite    :10500",
+//                "address:\n" +
+//                        "8 N 12, Dr. Rafiq Zakaria Marg, Rauza Bagh",
+//                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/One/Ma_Au_OneA.jpg",
+//                dataBaseController
+//        );
     }
 
     private void HotelAtithiActionPerformed(ActionEvent e) {
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-                "Ma_Au_Athithi","Hotel Atithi","room type-\n" +
-                "standard :2262\n" +
-                "deluxe   :3744\n" +
-                "suite    :4900","address:\n" +
-                "P-3, Jalna Road, Seven Hills, Town Center, Aurangabad, Maharashtra 431001",
-                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Athithi/Ma_Au_AthithiA.jpg",dataBaseController
-
-        );
+//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//                "Ma_Au_Athithi","Hotel Atithi","room type-\n" +
+//                "standard :2262\n" +
+//                "deluxe   :3744\n" +
+//                "suite    :4900","address:\n" +
+//                "P-3, Jalna Road, Seven Hills, Town Center, Aurangabad, Maharashtra 431001",
+//                "/com/sharan/ui/pictures/Maharashtra/Aurangabad/Athithi/Ma_Au_AthithiA.jpg",dataBaseController
+//
+//        );
     }
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents

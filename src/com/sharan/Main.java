@@ -1,8 +1,6 @@
 package com.sharan;
 
 
-import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
-
 public class Main {
 
     public static int loginSuccess;
@@ -14,7 +12,7 @@ public class Main {
 
 
 //        HomePage homePage=new HomePage(dataBaseController);
-        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
+//        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
 //        HotelHomePageAfterLogin page=new HotelHomePageAfterLogin("h1",dataBaseController);
 //        HotelHomePageBeforeLogin hotelHomePageBeforeLogin=new HotelHomePageBeforeLogin("h1",dataBaseController);
         dataBaseController.closeDatabaseConnection();

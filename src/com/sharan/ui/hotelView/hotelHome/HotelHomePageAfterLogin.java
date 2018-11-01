@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * @author SAI SHARAN
@@ -27,17 +28,20 @@ public class HotelHomePageAfterLogin {
     private String description;
     private String address;
     private String hotelMainImagePath;
+    private ArrayList<String> list;
 
 
+//    String uniqueId,String hotelName,String description,String address,String hotelMainImagePath,
+    public HotelHomePageAfterLogin(ArrayList<String> list, DataBaseController dataBaseController) {
 
-    public HotelHomePageAfterLogin(String uniqueId,String hotelName,String description,String address,String hotelMainImagePath,
-                                   DataBaseController dataBaseController) {
-        this.uniqueId=uniqueId;
+        this.list=list;
+
+        this.uniqueId=list.get(0);
         this.dataBaseController=dataBaseController;
-        this.hotelName=hotelName;
-        this.description=description;
-        this.address=address;
-        this.hotelMainImagePath=hotelMainImagePath;
+        this.hotelName=list.get(1);
+        this.description=list.get(2);
+        this.address=list.get(3);
+        this.hotelMainImagePath=list.get(4);
         initComponents();
     }
 

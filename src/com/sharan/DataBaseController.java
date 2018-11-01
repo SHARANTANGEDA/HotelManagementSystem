@@ -2,6 +2,7 @@ package com.sharan;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataBaseController {
 
@@ -13,9 +14,11 @@ public class DataBaseController {
     private String userInsertParameters ="(UserName,Password,DOB,ResidentialAddress,Email,IdCard,Phone)";
 
     private String hotelsTableNAME ="hotelsDatabase";
-    private String hotelsTableCOLUMNS ="(UniqueId TEXT,HotelName TEXT,State TEXT,City TEXT," +
-            "Non_AC_Room TEXT DEFAULT NA,AC_Room TEXT DEFAULT NA,Suite TEXT DEFAULT NA,StarRating TEXT DEFAULT 1,NumberOfVotes INTEGER DEFAULT 0)";
-    private String hotelsInsertParameters="(UniqueId,HotelName,State,City,Non_AC_Room,AC_Room,Suite)";
+    private String hotelsTableCOLUMNS ="(UniqueId TEXT,HotelName TEXT,HotelDescription TEXT,State TEXT,City TEXT,Address TEXT," +
+            "Standard TEXT DEFAULT NA,StandardCapacity INTEGER DEFAULT 10,Deluxe TEXT DEFAULT NA,DeluxeCapacity INTEGER DEFAULT 10," +
+            "Suite TEXT DEFAULT NA,SuiteCapacity INTEGER DEFAULT 4,HomeImagePath TEXT,StarRating TEXT DEFAULT 1,NumberOfVotes INTEGER DEFAULT 0)";
+    private String hotelsInsertParameters="(UniqueId,HotelName,HotelDescription,State,City,Address,Standard,StandardCapacity," +
+            "Deluxe,DelxeCapacity,Suite,SuiteCapacity)";
 
     private String idTableName = "idDatabase";
     private String idTableColoumns = "(UserName TEXT NOT NULL PRIMARY KEY,Aadhar TEXT,PanCard TEXT)";
@@ -44,9 +47,12 @@ public class DataBaseController {
                 +dateOfBirth+"','"+address+"','"+email+"','"+idCard+"','"+phone+"')");
     }
 
-    public void addHotel (String uniqueId,String hotelName,String state,String city,String non_ac,String ac,String suite) throws SQLException {
-        statement.execute("INSERT INTO "+hotelsTableNAME+hotelsInsertParameters+"VALUES('"+uniqueId+"','"+hotelName+"','"+state+"','"+city+"','"
-                                            +non_ac+"','"+ac+"','"+suite+"'"+")");
+    public void addHotel (String uniqueId,String hotelName,String description,String state,String city,String address,String standard,String stcapacity
+                                        ,String deluxe,String delcapacity, String suite,String suitecapacity,String imagePath) throws SQLException {
+
+        statement.execute("INSERT INTO "+hotelsTableNAME+hotelsInsertParameters+"VALUES('"+uniqueId+"','"+hotelName+"','"+description+"','"+state+"','"+city+"','"
+                                            +address+"','"+standard+"','"+stcapacity+"','"+deluxe+"','"+delcapacity+"','"+suite+"','"+suitecapacity+
+                                            "','"+imagePath+"')");
     }
 
     public void addRating(String id,int rate) throws SQLException{
@@ -71,6 +77,31 @@ public class DataBaseController {
     }
 
 
+    public ArrayList<String> parseHotel(String id) {
+        ArrayList<String> list=new ArrayList<>();
+
+        try {
+            if(!conn.isClosed()) {
+                ResultSet rs=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+id+"'");
+                String hotelName=rs.getString("HotelName");
+                String hotelDescription=rs.getString("HotelDescription");
+                String hotelAddress=rs.getString("Address");
+                String imagePath=rs.getString("HomeImagePath");
+
+
+                list.add(id);
+                list.add(hotelName);
+                list.add(hotelDescription);
+                list.add(hotelAddress);
+                list.add(imagePath);
+            }
+        }catch (SQLException e){
+            System.out.println("Parsing Error"+e.getMessage());
+        }
+
+        return list;
+
+    }
 
     public double calculateRating(String id) {
         double finalrate=0;
@@ -124,6 +155,9 @@ public class DataBaseController {
         return finalrate;
     }
 
+
+
+
     public String Verify(String username) {
 
         try {
@@ -145,6 +179,7 @@ public class DataBaseController {
             return "Exception";
         }
     }
+
     public String checkUser(String username){
         int x =0;
         try {
