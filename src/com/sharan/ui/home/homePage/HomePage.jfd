@@ -461,6 +461,12 @@ new FormModel {
 				"width": 1045
 				"height": 610
 			} )
+			add( new FormComponent( "org.jdesktop.swingx.JXDatePicker" ) {
+				name: "xDatePicker1"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 30
+				"y": 30
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 20, 0 )
 			"size": new java.awt.Dimension( 860, 635 )

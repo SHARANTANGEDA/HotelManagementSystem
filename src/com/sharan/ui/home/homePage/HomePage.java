@@ -8,6 +8,7 @@ import com.sharan.ui.home.signUpPopUp.SignUp;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import org.jdesktop.swingx.*;
 
 import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.signUpSuccess;
@@ -168,6 +169,7 @@ public class HomePage extends Canvas {
         hSpacer2 = new JPanel(null);
         splitPane1 = new JSplitPane();
         Picture = new JLabel();
+        xDatePicker1 = new JXDatePicker();
 
         //======== frame1 ========
         {
@@ -648,6 +650,8 @@ public class HomePage extends Canvas {
             }
             frame1ContentPane.add(splitPane1);
             splitPane1.setBounds(0, 145, 1045, 610);
+            frame1ContentPane.add(xDatePicker1);
+            xDatePicker1.setBounds(new Rectangle(new Point(30, 30), xDatePicker1.getPreferredSize()));
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -766,5 +770,6 @@ public class HomePage extends Canvas {
     private JPanel hSpacer2;
     private JSplitPane splitPane1;
     private JLabel Picture;
+    private JXDatePicker xDatePicker1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

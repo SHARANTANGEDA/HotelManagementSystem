@@ -10,7 +10,7 @@ public class Main {
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
 
-
+        AES128Encyrption encyrption=new AES128Encyrption();
 //        HomePage homePage=new HomePage(dataBaseController);
 //        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
 //        HotelHomePageAfterLogin page=new HotelHomePageAfterLogin("h1",dataBaseController);

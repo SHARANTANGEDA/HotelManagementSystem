@@ -7,6 +7,7 @@ package com.sharan.ui.home.homePageAfterLogin;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.hotelView.hotelHome.HotelHomePageAfterLogin;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -878,6 +879,9 @@ public class HomePageAfterLogin {
                 menuBar.add(separator1);
 
                 //---- Hotels ----
+
+//                AutoCompleteDecorator decorator;
+                AutoCompleteDecorator.decorate(Hotels);
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
                 Hotels.setMaximumSize(new Dimension(500, 50));

@@ -12,5 +12,6 @@
     <orderEntry type="library" name="jlfgr-1_0" level="project" />
     <orderEntry type="library" name="migcalendarbean" level="project" />
     <orderEntry type="library" name="migcalendar" level="project" />
+    <orderEntry type="library" name="swingx-1.6.1" level="project" />
   </component>
 </module>
