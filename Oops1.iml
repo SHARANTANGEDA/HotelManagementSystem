@@ -14,5 +14,7 @@
     <orderEntry type="library" name="migcalendar" level="project" />
     <orderEntry type="library" name="swingx-1.6.1" level="project" />
     <orderEntry type="library" name="iText7-Core-7.1" level="project" />
+    <orderEntry type="library" name="swingx-1.6.11" level="project" />
+    <orderEntry type="library" name="sqlite-jdbc-3.23.11" level="project" />
   </component>
 </module>

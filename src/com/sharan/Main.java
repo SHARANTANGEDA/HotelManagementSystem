@@ -2,6 +2,7 @@ package com.sharan;
 
 
 import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 
 public class Main {
 
@@ -11,8 +12,8 @@ public class Main {
 
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
-
-        HomePage homePage=new HomePage(dataBaseController);
+        HomePageAfterLogin homePageAfterLogin= new HomePageAfterLogin(dataBaseController);
+   //     HomePage homePage=new HomePage(dataBaseController);
         dataBaseController.closeDatabaseConnection();
 
 
