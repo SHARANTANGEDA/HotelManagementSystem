@@ -4,9 +4,6 @@
 
 package com.sharan.ui.home.loginPopUp;
 
-import javax.swing.plaf.*;
-import javax.swing.plaf.basic.*;
-import javax.swing.plaf.metal.*;
 import com.sharan.DataBaseController;
 import com.sharan.PasswordHashing;
 
@@ -79,7 +76,6 @@ public class Login extends JPanel {
             label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 18f));
             label1.setHorizontalAlignment(SwingConstants.CENTER);
             label1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-            label1.setBorder(new BorderUIResource.CompoundBorderUIResource());
             label1.setBackground(Color.yellow);
 
             //---- label2 ----

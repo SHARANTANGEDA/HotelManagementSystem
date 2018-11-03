@@ -1,3 +1,7 @@
+/*
+ * Created by JFormDesigner on Sat Nov 03 17:38:41 IST 2018
+ */
+
 package com.sharan.ui.home.homePage;
 
 import com.sharan.DataBaseController;
@@ -13,7 +17,11 @@ import java.awt.event.ActionEvent;
 import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.signUpSuccess;
 
-public class HomePage extends Canvas {
+/**
+ * @author vamsi adapa
+ */
+public class HomePage {
+
     private DataBaseController dataBaseController;
 
     public HomePage(DataBaseController dataBaseController) {
@@ -21,24 +29,22 @@ public class HomePage extends Canvas {
         this.dataBaseController=dataBaseController;
         initComponents();
         AutoCompleteDecorator.decorate(Hotels);
-        frame1.setVisible(true);
+        homeFrame.setVisible(true);
 
     }
-
-
 
 
 
     public JButton getLogin() {
-        return Login;
+        return LoginField;
     }
 
-    private void LoginActionPerformed(ActionEvent e) {
-        com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController,Login);
+    private void loginActionPerformed(ActionEvent e) {
+        com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController,LoginField);
 
         if(login.returnLoginStatus()==1) {
             loginSuccess=0;
-            frame1.dispose();
+            homeFrame.dispose();
             HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
             login.getLogin().dispose();
 
@@ -46,14 +52,19 @@ public class HomePage extends Canvas {
 
     }
 
-    private void SignUpActionPerformed(ActionEvent e) {
-        com.sharan.ui.home.signUpPopUp.SignUp signUp=new SignUp(dataBaseController,SignUp);
+    private void signUpActionPerformed(ActionEvent e) {
+        com.sharan.ui.home.signUpPopUp.SignUp signUp=new SignUp(dataBaseController,LoginField);
         if(signUpSuccess==1) {
             signUpSuccess=0;
-            frame1.dispose();
+            homeFrame.dispose();
             HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
             signUp.getSignUp().dispose();
         }
+    }
+
+
+    private void SearchActionPerformed(ActionEvent e) {
+        // TODO add your code here
     }
 
     private void itckohenurActionPerformed(ActionEvent e) {
@@ -189,32 +200,9 @@ public class HomePage extends Canvas {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
-        frame1 = new JFrame();
-        Login = new JButton();
-        Heading = new JLabel();
-        SignUp = new JButton();
-        menuBar = new JMenuBar();
-        New_Delhi = new JMenu();
-        New_Delhi_City = new JMenu();
-        menuItem33 = new JMenuItem();
-        menuItem34 = new JMenuItem();
-        menuItem35 = new JMenuItem();
-        menuItem36 = new JMenuItem();
-        Panipat = new JMenu();
-        menuItem37 = new JMenuItem();
-        menuItem38 = new JMenuItem();
-        menuItem39 = new JMenuItem();
-        menuItem40 = new JMenuItem();
-        Gurugram = new JMenu();
-        menuItem41 = new JMenuItem();
-        menuItem42 = new JMenuItem();
-        menuItem43 = new JMenuItem();
-        menuItem44 = new JMenuItem();
-        Faridabad = new JMenu();
-        menuItem45 = new JMenuItem();
-        menuItem46 = new JMenuItem();
-        menuItem47 = new JMenuItem();
-        menuItem48 = new JMenuItem();
+        homeFrame = new JFrame();
+        applicationName = new JLabel();
+        menuBar1 = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
         itckohenur = new JMenuItem();
@@ -278,149 +266,55 @@ public class HomePage extends Canvas {
         VivantaAurangabad = new JMenuItem();
         THEONEHOTEL = new JMenuItem();
         HotelAtithi = new JMenuItem();
+        New_Delhi = new JMenu();
+        New_Delhi_City = new JMenu();
+        menuItem33 = new JMenuItem();
+        menuItem34 = new JMenuItem();
+        menuItem35 = new JMenuItem();
+        menuItem36 = new JMenuItem();
+        Panipat = new JMenu();
+        menuItem37 = new JMenuItem();
+        menuItem38 = new JMenuItem();
+        menuItem39 = new JMenuItem();
+        menuItem40 = new JMenuItem();
+        Gurugram = new JMenu();
+        menuItem41 = new JMenuItem();
+        menuItem42 = new JMenuItem();
+        menuItem43 = new JMenuItem();
+        menuItem44 = new JMenuItem();
+        Faridabad = new JMenu();
+        menuItem45 = new JMenuItem();
+        menuItem46 = new JMenuItem();
+        menuItem47 = new JMenuItem();
+        menuItem48 = new JMenuItem();
         separator1 = new JSeparator();
-        Hotels = new JComboBox<>();
+        Hotels = new JComboBox();
         Search = new JButton();
-        Picture = new JLabel();
+        homePagePhoto = new JLabel();
+        LoginField = new JButton();
+        SignUpField = new JButton();
 
-        //======== frame1 ========
+        //======== homeFrame ========
         {
-            frame1.setFont(new Font("Courier New", Font.BOLD, 36));
-            frame1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame1.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")).getImage());
-            Container frame1ContentPane = frame1.getContentPane();
+            Container homeFrameContentPane = homeFrame.getContentPane();
 
-            //---- Login ----
-            Login.setText("Login");
-            Login.setBackground(new Color(0, 255, 29));
-            Login.setComponentPopupMenu(null);
-            Login.addActionListener(e -> LoginActionPerformed(e));
+            //---- applicationName ----
+            applicationName.setText("Online Hotel Booking System");
+            applicationName.setHorizontalAlignment(SwingConstants.CENTER);
+            applicationName.setFont(new Font("Dialog", Font.BOLD, 28));
+            applicationName.setBackground(new Color(255, 204, 0));
+            applicationName.setOpaque(true);
 
-            //---- Heading ----
-            Heading.setText("Online Hotel Bookng Portal");
-            Heading.setForeground(new Color(254, 0, 27));
-            Heading.setFont(new Font("Courier New", Font.BOLD, 33));
-            Heading.setBackground(new Color(245, 255, 0));
-            Heading.setHorizontalAlignment(SwingConstants.CENTER);
-            Heading.setHorizontalTextPosition(SwingConstants.CENTER);
-            Heading.setBorder(null);
-            Heading.setOpaque(true);
-
-            //---- SignUp ----
-            SignUp.setText("SignUp");
-            SignUp.setBackground(new Color(0, 255, 29));
-            SignUp.addActionListener(e -> SignUpActionPerformed(e));
-
-            //======== menuBar ========
+            //======== menuBar1 ========
             {
-                menuBar.setPreferredSize(new Dimension(83, 50));
-                menuBar.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 20));
-
-                //======== New_Delhi ========
-                {
-                    New_Delhi.setText("New Delhi");
-                    New_Delhi.setPreferredSize(new Dimension(100, 50));
-                    New_Delhi.setFont(new Font("Arial", Font.BOLD, 18));
-
-                    //======== New_Delhi_City ========
-                    {
-                        New_Delhi_City.setText("New Delhi");
-                        New_Delhi_City.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem33 ----
-                        menuItem33.setText("text");
-                        New_Delhi_City.add(menuItem33);
-
-                        //---- menuItem34 ----
-                        menuItem34.setText("text");
-                        New_Delhi_City.add(menuItem34);
-
-                        //---- menuItem35 ----
-                        menuItem35.setText("text");
-                        New_Delhi_City.add(menuItem35);
-
-                        //---- menuItem36 ----
-                        menuItem36.setText("text");
-                        New_Delhi_City.add(menuItem36);
-                    }
-                    New_Delhi.add(New_Delhi_City);
-
-                    //======== Panipat ========
-                    {
-                        Panipat.setText("Panipat");
-                        Panipat.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem37 ----
-                        menuItem37.setText("text");
-                        Panipat.add(menuItem37);
-
-                        //---- menuItem38 ----
-                        menuItem38.setText("text");
-                        Panipat.add(menuItem38);
-
-                        //---- menuItem39 ----
-                        menuItem39.setText("text");
-                        Panipat.add(menuItem39);
-
-                        //---- menuItem40 ----
-                        menuItem40.setText("text");
-                        Panipat.add(menuItem40);
-                    }
-                    New_Delhi.add(Panipat);
-
-                    //======== Gurugram ========
-                    {
-                        Gurugram.setText("Gurugram");
-                        Gurugram.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem41 ----
-                        menuItem41.setText("text");
-                        Gurugram.add(menuItem41);
-
-                        //---- menuItem42 ----
-                        menuItem42.setText("text");
-                        Gurugram.add(menuItem42);
-
-                        //---- menuItem43 ----
-                        menuItem43.setText("text");
-                        Gurugram.add(menuItem43);
-
-                        //---- menuItem44 ----
-                        menuItem44.setText("text");
-                        Gurugram.add(menuItem44);
-                    }
-                    New_Delhi.add(Gurugram);
-
-                    //======== Faridabad ========
-                    {
-                        Faridabad.setText("Faridabad");
-                        Faridabad.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem45 ----
-                        menuItem45.setText("text");
-                        Faridabad.add(menuItem45);
-
-                        //---- menuItem46 ----
-                        menuItem46.setText("text");
-                        Faridabad.add(menuItem46);
-
-                        //---- menuItem47 ----
-                        menuItem47.setText("text");
-                        Faridabad.add(menuItem47);
-
-                        //---- menuItem48 ----
-                        menuItem48.setText("text");
-                        Faridabad.add(menuItem48);
-                    }
-                    New_Delhi.add(Faridabad);
-                }
-                menuBar.add(New_Delhi);
+                menuBar1.setBackground(Color.darkGray);
 
                 //======== Telangana ========
                 {
                     Telangana.setText("Telangana");
                     Telangana.setPreferredSize(new Dimension(100, 19));
                     Telangana.setFont(new Font("Arial", Font.BOLD, 18));
+                    Telangana.setForeground(new Color(238, 238, 238));
 
                     //======== Hyderabad ========
                     {
@@ -530,13 +424,14 @@ public class HomePage extends Canvas {
                     }
                     Telangana.add(Kammam);
                 }
-                menuBar.add(Telangana);
+                menuBar1.add(Telangana);
 
                 //======== Andhra_Pradesh ========
                 {
                     Andhra_Pradesh.setText("Andhra Pradesh");
                     Andhra_Pradesh.setPreferredSize(new Dimension(150, 50));
                     Andhra_Pradesh.setFont(new Font("Arial", Font.BOLD, 18));
+                    Andhra_Pradesh.setForeground(Color.white);
 
                     //======== Vijayawada ========
                     {
@@ -630,13 +525,14 @@ public class HomePage extends Canvas {
                     }
                     Andhra_Pradesh.add(Vizag);
                 }
-                menuBar.add(Andhra_Pradesh);
+                menuBar1.add(Andhra_Pradesh);
 
                 //======== Maharastra ========
                 {
                     Maharastra.setText("Maharastra");
                     Maharastra.setPreferredSize(new Dimension(110, 50));
                     Maharastra.setFont(new Font("Arial", Font.BOLD, 18));
+                    Maharastra.setForeground(new Color(238, 238, 238));
 
                     //======== Mumbai ========
                     {
@@ -746,103 +642,185 @@ public class HomePage extends Canvas {
                     }
                     Maharastra.add(Aurangabad);
                 }
-                menuBar.add(Maharastra);
+                menuBar1.add(Maharastra);
+
+                //======== New_Delhi ========
+                {
+                    New_Delhi.setText("New Delhi");
+                    New_Delhi.setPreferredSize(new Dimension(100, 50));
+                    New_Delhi.setFont(new Font("Arial", Font.BOLD, 18));
+                    New_Delhi.setForeground(new Color(238, 238, 238));
+
+                    //======== New_Delhi_City ========
+                    {
+                        New_Delhi_City.setText("New Delhi");
+                        New_Delhi_City.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem33 ----
+                        menuItem33.setText("text");
+                        New_Delhi_City.add(menuItem33);
+
+                        //---- menuItem34 ----
+                        menuItem34.setText("text");
+                        New_Delhi_City.add(menuItem34);
+
+                        //---- menuItem35 ----
+                        menuItem35.setText("text");
+                        New_Delhi_City.add(menuItem35);
+
+                        //---- menuItem36 ----
+                        menuItem36.setText("text");
+                        New_Delhi_City.add(menuItem36);
+                    }
+                    New_Delhi.add(New_Delhi_City);
+
+                    //======== Panipat ========
+                    {
+                        Panipat.setText("Panipat");
+                        Panipat.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem37 ----
+                        menuItem37.setText("text");
+                        Panipat.add(menuItem37);
+
+                        //---- menuItem38 ----
+                        menuItem38.setText("text");
+                        Panipat.add(menuItem38);
+
+                        //---- menuItem39 ----
+                        menuItem39.setText("text");
+                        Panipat.add(menuItem39);
+
+                        //---- menuItem40 ----
+                        menuItem40.setText("text");
+                        Panipat.add(menuItem40);
+                    }
+                    New_Delhi.add(Panipat);
+
+                    //======== Gurugram ========
+                    {
+                        Gurugram.setText("Gurugram");
+                        Gurugram.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem41 ----
+                        menuItem41.setText("text");
+                        Gurugram.add(menuItem41);
+
+                        //---- menuItem42 ----
+                        menuItem42.setText("text");
+                        Gurugram.add(menuItem42);
+
+                        //---- menuItem43 ----
+                        menuItem43.setText("text");
+                        Gurugram.add(menuItem43);
+
+                        //---- menuItem44 ----
+                        menuItem44.setText("text");
+                        Gurugram.add(menuItem44);
+                    }
+                    New_Delhi.add(Gurugram);
+
+                    //======== Faridabad ========
+                    {
+                        Faridabad.setText("Faridabad");
+                        Faridabad.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem45 ----
+                        menuItem45.setText("text");
+                        Faridabad.add(menuItem45);
+
+                        //---- menuItem46 ----
+                        menuItem46.setText("text");
+                        Faridabad.add(menuItem46);
+
+                        //---- menuItem47 ----
+                        menuItem47.setText("text");
+                        Faridabad.add(menuItem47);
+
+                        //---- menuItem48 ----
+                        menuItem48.setText("text");
+                        Faridabad.add(menuItem48);
+                    }
+                    New_Delhi.add(Faridabad);
+                }
+                menuBar1.add(New_Delhi);
 
                 //---- separator1 ----
-                separator1.setMaximumSize(new Dimension(8000, 32767));
-                separator1.setBorder(null);
-                menuBar.add(separator1);
+                separator1.setMaximumSize(new Dimension(400, 50));
+                separator1.setBackground(Color.darkGray);
+                menuBar1.add(separator1);
 
                 //---- Hotels ----
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
-                Hotels.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "hello",
-                    "kamehameha",
-                    "finalflash",
-                    "greenlantern"
-                }));
-                menuBar.add(Hotels);
+                Hotels.setMaximumSize(new Dimension(500, 50));
+                menuBar1.add(Hotels);
 
                 //---- Search ----
                 Search.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 18));
                 Search.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/findSmall.png")));
                 Search.setText("Search");
-                menuBar.add(Search);
+                Search.setBackground(Color.darkGray);
+                Search.setForeground(new Color(238, 238, 238));
+                Search.addActionListener(e -> SearchActionPerformed(e));
+                menuBar1.add(Search);
             }
 
-            //---- Picture ----
-            Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
+            //---- homePagePhoto ----
+            homePagePhoto.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
 
-            GroupLayout frame1ContentPaneLayout = new GroupLayout(frame1ContentPane);
-            frame1ContentPane.setLayout(frame1ContentPaneLayout);
-            frame1ContentPaneLayout.setHorizontalGroup(
-                frame1ContentPaneLayout.createParallelGroup()
-                    .addGroup(frame1ContentPaneLayout.createSequentialGroup()
-                        .addGroup(frame1ContentPaneLayout.createParallelGroup()
-                            .addGroup(frame1ContentPaneLayout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(Login, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(SignUp, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(frame1ContentPaneLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(Picture, GroupLayout.PREFERRED_SIZE, 1043, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(24, Short.MAX_VALUE))
-                    .addComponent(menuBar, GroupLayout.DEFAULT_SIZE, 1073, Short.MAX_VALUE)
+            //---- LoginField ----
+            LoginField.setText("Login");
+            LoginField.setFont(new Font("Dialog", Font.BOLD, 22));
+            LoginField.addActionListener(e -> loginActionPerformed(e));
+
+            //---- SignUpField ----
+            SignUpField.setText("Sign Up");
+            SignUpField.setFont(new Font("Dialog", Font.BOLD, 22));
+            SignUpField.addActionListener(e -> signUpActionPerformed(e));
+
+            GroupLayout homeFrameContentPaneLayout = new GroupLayout(homeFrameContentPane);
+            homeFrameContentPane.setLayout(homeFrameContentPaneLayout);
+            homeFrameContentPaneLayout.setHorizontalGroup(
+                homeFrameContentPaneLayout.createParallelGroup()
+                    .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(homeFrameContentPaneLayout.createParallelGroup()
+                            .addComponent(applicationName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
+                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                                .addComponent(LoginField)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SignUpField, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addComponent(homePagePhoto, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1448, Short.MAX_VALUE)
             );
-            frame1ContentPaneLayout.setVerticalGroup(
-                frame1ContentPaneLayout.createParallelGroup()
-                    .addGroup(frame1ContentPaneLayout.createSequentialGroup()
-                        .addGroup(frame1ContentPaneLayout.createParallelGroup()
-                            .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                            .addGroup(frame1ContentPaneLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(frame1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(SignUp, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Login, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
-                        .addGap(30, 30, 30)
-                        .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(Picture)
-                        .addContainerGap(177, Short.MAX_VALUE))
+            homeFrameContentPaneLayout.setVerticalGroup(
+                homeFrameContentPaneLayout.createParallelGroup()
+                    .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(applicationName, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(homeFrameContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(menuBar1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LoginField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SignUpField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21)
+                        .addComponent(homePagePhoto, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(372, Short.MAX_VALUE))
             );
-            frame1.pack();
-            frame1.setLocationRelativeTo(frame1.getOwner());
+            homeFrame.pack();
+            homeFrame.setLocationRelativeTo(homeFrame.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - SAI SHARAN
-    private JFrame frame1;
-    private JButton Login;
-    private JLabel Heading;
-    private JButton SignUp;
-    private JMenuBar menuBar;
-    private JMenu New_Delhi;
-    private JMenu New_Delhi_City;
-    private JMenuItem menuItem33;
-    private JMenuItem menuItem34;
-    private JMenuItem menuItem35;
-    private JMenuItem menuItem36;
-    private JMenu Panipat;
-    private JMenuItem menuItem37;
-    private JMenuItem menuItem38;
-    private JMenuItem menuItem39;
-    private JMenuItem menuItem40;
-    private JMenu Gurugram;
-    private JMenuItem menuItem41;
-    private JMenuItem menuItem42;
-    private JMenuItem menuItem43;
-    private JMenuItem menuItem44;
-    private JMenu Faridabad;
-    private JMenuItem menuItem45;
-    private JMenuItem menuItem46;
-    private JMenuItem menuItem47;
-    private JMenuItem menuItem48;
+    private JFrame homeFrame;
+    private JLabel applicationName;
+    private JMenuBar menuBar1;
     private JMenu Telangana;
     private JMenu Hyderabad;
     private JMenuItem itckohenur;
@@ -906,9 +884,32 @@ public class HomePage extends Canvas {
     private JMenuItem VivantaAurangabad;
     private JMenuItem THEONEHOTEL;
     private JMenuItem HotelAtithi;
+    private JMenu New_Delhi;
+    private JMenu New_Delhi_City;
+    private JMenuItem menuItem33;
+    private JMenuItem menuItem34;
+    private JMenuItem menuItem35;
+    private JMenuItem menuItem36;
+    private JMenu Panipat;
+    private JMenuItem menuItem37;
+    private JMenuItem menuItem38;
+    private JMenuItem menuItem39;
+    private JMenuItem menuItem40;
+    private JMenu Gurugram;
+    private JMenuItem menuItem41;
+    private JMenuItem menuItem42;
+    private JMenuItem menuItem43;
+    private JMenuItem menuItem44;
+    private JMenu Faridabad;
+    private JMenuItem menuItem45;
+    private JMenuItem menuItem46;
+    private JMenuItem menuItem47;
+    private JMenuItem menuItem48;
     private JSeparator separator1;
-    private JComboBox<String> Hotels;
+    private JComboBox Hotels;
     private JButton Search;
-    private JLabel Picture;
+    private JLabel homePagePhoto;
+    private JButton LoginField;
+    private JButton SignUpField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
