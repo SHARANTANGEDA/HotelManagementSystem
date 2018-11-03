@@ -164,6 +164,11 @@ public class HomePageAfterLogin {
     }
 
     private void MintKoregaonParkActionPerformed(ActionEvent e) {
+
+        dataBaseController.initialiseDatabase();
+        ArrayList<String> list=dataBaseController.parseHotel("Ma_Pu_Mint");
+        dataBaseController.closeDatabaseConnection();
+        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(list,dataBaseController);
 //        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
 //                "Ma_Pu_Mint","Mint Koregaon Park","room type- (all include a/c, have complimentary breakfast, and have free hi-speed wifi)\n" +
 //                "standard : rs 1981      (Code: A)\n" +
