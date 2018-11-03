@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 
+import static com.sharan.Main.starUpdate;
+
 /**
  * @author SAI SHARAN
  */
@@ -20,16 +22,27 @@ public class Rating extends JFrame {
     private int rate;
     private String uniqueId;
 
+    private JButton tobeClicked;
+
+    public JDialog getRater() {
+        return rater;
+    }
+
     public int getRate() {
         return rate;
     }
 
 
-
-    public Rating(String id, DataBaseController dataBaseController) {
+    public Rating(String id, DataBaseController dataBaseController, JButton tobeClicked) {
         this.dataBaseController=dataBaseController;
         this.uniqueId=id;
-        initComponents();
+        this.tobeClicked=tobeClicked;
+        if(starUpdate==1) {
+            initComponents();
+        }else {
+            JOptionPane.showMessageDialog(null,"Thank You, Y");
+        }
+
     }
 
     private void star1ItemStateChanged(ItemEvent e) {

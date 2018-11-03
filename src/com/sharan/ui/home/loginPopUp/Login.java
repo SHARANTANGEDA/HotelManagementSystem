@@ -56,7 +56,7 @@ public class Login extends JPanel {
     }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - vamsi adapa
+        // Generated using JFormDesigner Evaluation license - SAI SHARAN
         Login = new JDialog();
         label1 = new JLabel();
         label2 = new JLabel();
@@ -102,16 +102,13 @@ public class Login extends JPanel {
             button1.setText("LOGIN");
             button1.setFont(new Font("Times New Roman", Font.BOLD, 18));
             button1.setBackground(new Color(0, 155, 0));
-            button1.addActionListener(e -> {
-			button1ActionPerformed(e);
-			button1ActionPerformed(e);
-		});
+            button1.addActionListener(e -> button1ActionPerformed(e));
 
             GroupLayout LoginContentPaneLayout = new GroupLayout(LoginContentPane);
             LoginContentPane.setLayout(LoginContentPaneLayout);
             LoginContentPaneLayout.setHorizontalGroup(
                 LoginContentPaneLayout.createParallelGroup()
-                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
                     .addGroup(LoginContentPaneLayout.createSequentialGroup()
                         .addGroup(LoginContentPaneLayout.createParallelGroup()
                             .addGroup(LoginContentPaneLayout.createSequentialGroup()
@@ -126,7 +123,7 @@ public class Login extends JPanel {
                             .addGroup(LoginContentPaneLayout.createSequentialGroup()
                                 .addGap(199, 199, 199)
                                 .addComponent(button1, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(72, Short.MAX_VALUE))
+                        .addContainerGap(224, Short.MAX_VALUE))
             );
             LoginContentPaneLayout.setVerticalGroup(
                 LoginContentPaneLayout.createParallelGroup()
@@ -142,7 +139,7 @@ public class Login extends JPanel {
                             .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)
                         .addComponent(button1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(73, Short.MAX_VALUE))
+                        .addContainerGap(176, Short.MAX_VALUE))
             );
             Login.pack();
             Login.setLocationRelativeTo(Login.getOwner());
@@ -151,7 +148,7 @@ public class Login extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - vamsi adapa
+    // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JDialog Login;
     private JLabel label1;
     private JLabel label2;

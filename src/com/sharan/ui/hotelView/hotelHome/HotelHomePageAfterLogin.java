@@ -14,6 +14,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+import static com.sharan.Main.starUpdate;
+
 /**
  * @author SAI SHARAN
  */
@@ -29,6 +31,8 @@ public class HotelHomePageAfterLogin {
     private String address;
     private String hotelMainImagePath;
     private ArrayList<String> list;
+    private JButton ratingConfirm;
+
 
 
 //    String uniqueId,String hotelName,String description,String address,String hotelMainImagePath,
@@ -42,6 +46,14 @@ public class HotelHomePageAfterLogin {
         this.description=list.get(2);
         this.address=list.get(3);
         this.hotelMainImagePath=list.get(4);
+
+        dataBaseController.initialiseDatabase();
+        rate=dataBaseController.calculateRating(uniqueId);
+        String rateString=String.valueOf(rate);
+        starRatingPath="/com/sharan/ui/pictures/stars/"+rateString+".jpg";
+        dataBaseController.closeDatabaseConnection();
+
+
         initComponents();
     }
 
@@ -50,25 +62,25 @@ public class HotelHomePageAfterLogin {
 
     private void LogoutActionPerformed(ActionEvent e) {
         dataBaseController.initialiseDatabase();
-        HotelHomePageBeforeLogin beforeLogin=new HotelHomePageBeforeLogin(uniqueId,dataBaseController);
+        HotelHomePageBeforeLogin beforeLogin=new HotelHomePageBeforeLogin(list,dataBaseController);
         dataBaseController.closeDatabaseConnection();
     }
 
     private void Star_RatingActionPerformed(ActionEvent e)  {
-
+            starUpdate=1;
             dataBaseController.initialiseDatabase();
-            Rating rating=new Rating(uniqueId,dataBaseController);
-            dataBaseController.closeDatabaseConnection();
-            dataBaseController.initialiseDatabase();
+            Rating rating=new Rating(uniqueId,dataBaseController,Star_Rating);
             rate=dataBaseController.calculateRating(uniqueId);
 
             String rateString=String.valueOf(rate);
             starRatingPath="/com/sharan/ui/pictures/stars/"+rateString+".jpg";
-            System.out.println(rate);
+        label1.setIcon(new ImageIcon(getClass().getResource(starRatingPath)));
+        System.out.println(rate);
         System.out.println(starRatingPath);
             dataBaseController.closeDatabaseConnection();
 
     }
+
 
     private void checkAvailabilityActionPerformed(ActionEvent e) {
         // TODO add your code here
@@ -161,7 +173,7 @@ public class HotelHomePageAfterLogin {
             //---- label1 ----
             label1.setText("text");
             label1.setHorizontalAlignment(SwingConstants.CENTER);
-            label1.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/stars/5.0.jpg")));
+            label1.setIcon(new ImageIcon(getClass().getResource(starRatingPath)));
 
             //---- checkAvailability ----
             checkAvailability.setText("Check Availability");

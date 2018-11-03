@@ -13,6 +13,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.signUpSuccess;
@@ -27,9 +28,24 @@ public class HotelHomePageBeforeLogin {
     private String starRatingPath;
 
 
-    public HotelHomePageBeforeLogin(String uniqueId, DataBaseController dataBaseController) {
-        this.uniqueId=uniqueId;
+    private String hotelName;
+    private String description;
+    private String address;
+    private String hotelMainImagePath;
+    private ArrayList<String> list;
+
+
+    //    String uniqueId,String hotelName,String description,String address,String hotelMainImagePath,
+    public HotelHomePageBeforeLogin(ArrayList<String> list, DataBaseController dataBaseController) {
+
+        this.list=list;
+
+        this.uniqueId=list.get(0);
         this.dataBaseController=dataBaseController;
+        this.hotelName=list.get(1);
+        this.description=list.get(2);
+        this.address=list.get(3);
+        this.hotelMainImagePath=list.get(4);
         initComponents();
     }
 
@@ -116,7 +132,8 @@ public class HotelHomePageBeforeLogin {
             scrollBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
             //---- menuItem1 ----
-            menuItem1.setText("---IMAGE HERE---");
+//            menuItem1.setText("---IMAGE HERE---");
+            menuItem1.setIcon(new ImageIcon(getClass().getResource(hotelMainImagePath)));
             menuItem1.setBorder(LineBorder.createBlackLineBorder());
             menuItem1.setHorizontalAlignment(SwingConstants.CENTER);
             menuItem1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -126,7 +143,7 @@ public class HotelHomePageBeforeLogin {
             {
 
                 //---- DescriptionField ----
-                DescriptionField.setText("-----DESCRIPTION HERE_____");
+                DescriptionField.setText(description);
                 scrollPane1.setViewportView(DescriptionField);
             }
 
