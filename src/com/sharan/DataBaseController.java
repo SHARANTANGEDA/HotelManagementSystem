@@ -25,6 +25,9 @@ public class DataBaseController {
 //    private String idInsertParametres = "(UserName,Aadhar,PanCard)";
 
 
+    private String allotmentTableName="allotmentTable";
+    private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT,HotelUniqueId TEXT,AvailabilityStatus TEXT)";
+
     private Connection conn=null;
     private Statement statement=null;
 
@@ -36,6 +39,8 @@ public class DataBaseController {
             statement.execute(TABLE_CREATOR+ userTableNAME + userTableCOLUMNS);
             statement.execute(TABLE_CREATOR+ hotelsTableNAME + hotelsTableCOLUMNS);
             statement.execute(TABLE_CREATOR+idTableName+idTableColoumns);
+            statement.execute(TABLE_CREATOR+allotmentTableName+allotmentTableColumns);
+
 
         }catch (SQLException e) {
             System.out.println(e.getMessage());

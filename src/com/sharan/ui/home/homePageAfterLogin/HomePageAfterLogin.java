@@ -4,14 +4,18 @@
 
 package com.sharan.ui.home.homePageAfterLogin;
 
+import javax.swing.plaf.*;
+import com.miginfocom.beans.DateSpinnerBean;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.hotelView.hotelHome.HotelHomePageAfterLogin;
+import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
 /**
@@ -30,14 +34,6 @@ public class HomePageAfterLogin {
 
 
 
-    private void LoginActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
-
-    private void SignUpActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
-
     private void LogoutActionPerformed(ActionEvent e) {
         homePageAfterLogin.dispose();
         homePageAfterLogin.setVisible(false);
@@ -45,9 +41,18 @@ public class HomePageAfterLogin {
 
     }
 
-    private void Hotel_Hyderabad_1ActionPerformed(ActionEvent e) {
+
+    //***************UNIVERSAL SEARCH FIELD*****************
+
+
+    private void SearchActionPerformed(ActionEvent e) {
         // TODO add your code here
     }
+    private void HotelsActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    //***************UNIVERSAL SEARCH FIELD*****************
 
 
     private void itckohenurActionPerformed(ActionEvent e) {
@@ -116,20 +121,8 @@ public class HomePageAfterLogin {
 
     private void GingerMumbaiAndheriActionPerformed(ActionEvent e) {
 
-        ArrayList<String> list=dataBaseController.parseHotel("");
 
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(list,dataBaseController);
 
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-//                "Ma_Mu_Ginger","Ginger Mumbai Andheri","room type-\n" +
-//                "standard : 2474\n" +
-//                "deluxe   : 5219\n" +
-//                "suite    : 6176",
-//                "address:\n" +
-//                        "Rajashree Sahu Marg, Andheri East, Mumbai, Maharashtra 400069",
-//                "/com/sharan/ui/pictures/Maharashtra/Mumbai/Ginger/Ma_Mu_GingerA.jpg",
-//                dataBaseController
-//        );
     }
 
     private void IbisMumbaiAirportActionPerformed(ActionEvent e) {
@@ -306,15 +299,48 @@ public class HomePageAfterLogin {
 
 
 
+    //*********************SEARCH FIELDS**********************************************
+
+
+    private void StateFieldActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void CityFieldActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void checkInFieldActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void checkOutFieldActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void SearchBottomActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+
+    private void noOfRoomsPropertyChange(PropertyChangeEvent e) {
+        // TODO add your code here
+    }
+
+
+
+
+
+    //*********************SEARCH FIELDS**********************************************
+
+
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
         homePageAfterLogin = new JFrame();
-        Heading = new JLabel();
-        scrollBar = new JScrollBar();
-        splitPane1 = new JSplitPane();
-        Picture = new JLabel();
-        menuBar = new JMenuBar();
+        applicationName = new JLabel();
+        menuBar1 = new JMenuBar();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
         itckohenur = new JMenuItem();
@@ -402,9 +428,22 @@ public class HomePageAfterLogin {
         separator1 = new JSeparator();
         Hotels = new JComboBox();
         Search = new JButton();
-        menuBar1 = new JMenuBar();
+        separator2 = new JSeparator();
         profile = new JMenu();
         Logout = new JMenuItem();
+        homePagePhoto = new JLabel();
+        StateField = new JComboBox();
+        CityField = new JComboBox();
+        checkInField = new JXDatePicker();
+        checkOutField = new JXDatePicker();
+        label1 = new JLabel();
+        label2 = new JLabel();
+        label3 = new JLabel();
+        label4 = new JLabel();
+        label5 = new JLabel();
+        SearchBottom = new JButton();
+        label6 = new JLabel();
+        noOfRooms = new DateSpinnerBean();
 
         //======== homePageAfterLogin ========
         {
@@ -412,40 +451,23 @@ public class HomePageAfterLogin {
             homePageAfterLogin.setVisible(true);
             Container homePageAfterLoginContentPane = homePageAfterLogin.getContentPane();
 
-            //---- Heading ----
-            Heading.setText("Online Hotel Bookng Portal");
-            Heading.setForeground(new Color(254, 0, 27));
-            Heading.setFont(new Font("Courier New", Font.BOLD, 33));
-            Heading.setBackground(new Color(245, 255, 0));
-            Heading.setHorizontalAlignment(SwingConstants.CENTER);
-            Heading.setHorizontalTextPosition(SwingConstants.CENTER);
-            Heading.setBorder(null);
-            Heading.setOpaque(true);
+            //---- applicationName ----
+            applicationName.setText("Online Hotel Booking System");
+            applicationName.setHorizontalAlignment(SwingConstants.CENTER);
+            applicationName.setFont(new Font("Dialog", Font.BOLD, 28));
+            applicationName.setBackground(new Color(255, 204, 0));
+            applicationName.setOpaque(true);
 
-            //---- scrollBar ----
-            scrollBar.setName("verticalScrollBar");
-            scrollBar.setBorder(null);
-            scrollBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-
-            //======== splitPane1 ========
+            //======== menuBar1 ========
             {
-                splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-
-                //---- Picture ----
-                Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
-                splitPane1.setTopComponent(Picture);
-            }
-
-            //======== menuBar ========
-            {
-                menuBar.setPreferredSize(new Dimension(83, 50));
-                menuBar.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 20));
+                menuBar1.setBackground(Color.darkGray);
 
                 //======== Telangana ========
                 {
                     Telangana.setText("Telangana");
                     Telangana.setPreferredSize(new Dimension(100, 19));
                     Telangana.setFont(new Font("Arial", Font.BOLD, 18));
+                    Telangana.setForeground(new Color(238, 238, 238));
 
                     //======== Hyderabad ========
                     {
@@ -555,13 +577,14 @@ public class HomePageAfterLogin {
                     }
                     Telangana.add(Kammam);
                 }
-                menuBar.add(Telangana);
+                menuBar1.add(Telangana);
 
                 //======== Andhra_Pradesh ========
                 {
                     Andhra_Pradesh.setText("Andhra Pradesh");
                     Andhra_Pradesh.setPreferredSize(new Dimension(150, 50));
                     Andhra_Pradesh.setFont(new Font("Arial", Font.BOLD, 18));
+                    Andhra_Pradesh.setForeground(Color.white);
 
                     //======== Vijayawada ========
                     {
@@ -655,13 +678,14 @@ public class HomePageAfterLogin {
                     }
                     Andhra_Pradesh.add(Vizag);
                 }
-                menuBar.add(Andhra_Pradesh);
+                menuBar1.add(Andhra_Pradesh);
 
                 //======== Maharastra ========
                 {
                     Maharastra.setText("Maharastra");
                     Maharastra.setPreferredSize(new Dimension(110, 50));
                     Maharastra.setFont(new Font("Arial", Font.BOLD, 18));
+                    Maharastra.setForeground(new Color(238, 238, 238));
 
                     //======== Mumbai ========
                     {
@@ -771,13 +795,14 @@ public class HomePageAfterLogin {
                     }
                     Maharastra.add(Aurangabad);
                 }
-                menuBar.add(Maharastra);
+                menuBar1.add(Maharastra);
 
                 //======== New_Delhi ========
                 {
                     New_Delhi.setText("New Delhi");
                     New_Delhi.setPreferredSize(new Dimension(100, 50));
                     New_Delhi.setFont(new Font("Arial", Font.BOLD, 18));
+                    New_Delhi.setForeground(new Color(238, 238, 238));
 
                     //======== New_Delhi_City ========
                     {
@@ -871,27 +896,33 @@ public class HomePageAfterLogin {
                     }
                     New_Delhi.add(Faridabad);
                 }
-                menuBar.add(New_Delhi);
+                menuBar1.add(New_Delhi);
 
                 //---- separator1 ----
                 separator1.setMaximumSize(new Dimension(400, 50));
-                menuBar.add(separator1);
+                separator1.setBackground(Color.darkGray);
+                menuBar1.add(separator1);
 
                 //---- Hotels ----
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
                 Hotels.setMaximumSize(new Dimension(500, 50));
-                menuBar.add(Hotels);
+                Hotels.addActionListener(e -> HotelsActionPerformed(e));
+                menuBar1.add(Hotels);
 
                 //---- Search ----
                 Search.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 18));
                 Search.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/findSmall.png")));
                 Search.setText("Search");
-                menuBar.add(Search);
-            }
+                Search.setBackground(Color.darkGray);
+                Search.setForeground(new Color(238, 238, 238));
+                Search.addActionListener(e -> SearchActionPerformed(e));
+                menuBar1.add(Search);
 
-            //======== menuBar1 ========
-            {
+                //---- separator2 ----
+                separator2.setMaximumSize(new Dimension(400, 50));
+                separator2.setBackground(Color.darkGray);
+                menuBar1.add(separator2);
 
                 //======== profile ========
                 {
@@ -906,45 +937,140 @@ public class HomePageAfterLogin {
                 menuBar1.add(profile);
             }
 
+            //---- homePagePhoto ----
+            homePagePhoto.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
+
+            //---- StateField ----
+            StateField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+            StateField.addActionListener(e -> StateFieldActionPerformed(e));
+
+            //---- CityField ----
+            CityField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+            CityField.addActionListener(e -> CityFieldActionPerformed(e));
+
+            //---- checkInField ----
+            checkInField.setFont(checkInField.getFont().deriveFont(checkInField.getFont().getSize() + 6f));
+            checkInField.setToolTipText("CheckIN");
+            checkInField.addActionListener(e -> checkInFieldActionPerformed(e));
+
+            //---- checkOutField ----
+            checkOutField.setFont(checkOutField.getFont().deriveFont(checkOutField.getFont().getSize() + 6f));
+            checkOutField.setToolTipText("CheckOut");
+            checkOutField.addActionListener(e -> checkOutFieldActionPerformed(e));
+
+            //---- label1 ----
+            label1.setText("Select the Check-In and Check-Out Dates to view selected Hotels:");
+            label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 5f));
+
+            //---- label2 ----
+            label2.setText("From:");
+            label2.setFont(label2.getFont().deriveFont(label2.getFont().getSize() + 5f));
+
+            //---- label3 ----
+            label3.setText("To:");
+            label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 5f));
+
+            //---- label4 ----
+            label4.setText("State:");
+            label4.setFont(label4.getFont().deriveFont(label4.getFont().getSize() + 10f));
+
+            //---- label5 ----
+            label5.setText("City:");
+            label5.setFont(label5.getFont().deriveFont(label5.getFont().getSize() + 10f));
+
+            //---- SearchBottom ----
+            SearchBottom.setText("Search Availability");
+            SearchBottom.setBackground(new Color(204, 0, 0));
+            SearchBottom.setFont(SearchBottom.getFont().deriveFont(SearchBottom.getFont().getSize() + 6f));
+            SearchBottom.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/findSmall.png")));
+            SearchBottom.addActionListener(e -> SearchBottomActionPerformed(e));
+
+            //---- label6 ----
+            label6.setText("No of Rooms:");
+            label6.setFont(label6.getFont().deriveFont(label6.getFont().getSize() + 5f));
+
+            //---- noOfRooms ----
+            noOfRooms.setCalendarField(java.util.Calendar.MONTH);
+            noOfRooms.setDateFormatString("MM");
+            noOfRooms.setFont(new Font("Dialog", Font.PLAIN, 18));
+            noOfRooms.addPropertyChangeListener(e -> noOfRoomsPropertyChange(e));
+
             GroupLayout homePageAfterLoginContentPaneLayout = new GroupLayout(homePageAfterLoginContentPane);
             homePageAfterLoginContentPane.setLayout(homePageAfterLoginContentPaneLayout);
             homePageAfterLoginContentPaneLayout.setHorizontalGroup(
                 homePageAfterLoginContentPaneLayout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                    .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
                         .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
                             .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(37, 37, 37)
                                 .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 674, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                        .addGap(189, 189, 189)
-                                        .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 1078, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, 1087, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(GroupLayout.Alignment.TRAILING, homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)))
-                        .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3))
+                                        .addComponent(label4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(StateField, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(label5)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(CityField, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                .addGap(244, 244, 244)
+                                .addComponent(label2)
+                                .addGap(26, 26, 26)
+                                .addComponent(checkInField, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(checkOutField, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                        .addComponent(SearchBottom, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+                        .addGap(208, 208, 208))
+                    .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(applicationName, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
+                                    .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
+                                    .addComponent(homePagePhoto, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)))
+                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
+                                .addGap(168, 168, 168)
+                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             homePageAfterLoginContentPaneLayout.setVerticalGroup(
                 homePageAfterLoginContentPaneLayout.createParallelGroup()
                     .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(applicationName, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(splitPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(160, 160, 160))
-                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 741, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(homePagePhoto, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(label4)
+                                    .addComponent(label5)
+                                    .addComponent(StateField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CityField, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addComponent(label1))
+                            .addComponent(SearchBottom, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(checkOutField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkInField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label2)))
+                        .addGap(37, 37, 37)
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(38, Short.MAX_VALUE))
             );
             homePageAfterLogin.pack();
             homePageAfterLogin.setLocationRelativeTo(homePageAfterLogin.getOwner());
@@ -955,11 +1081,8 @@ public class HomePageAfterLogin {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JFrame homePageAfterLogin;
-    private JLabel Heading;
-    private JScrollBar scrollBar;
-    private JSplitPane splitPane1;
-    private JLabel Picture;
-    private JMenuBar menuBar;
+    private JLabel applicationName;
+    private JMenuBar menuBar1;
     private JMenu Telangana;
     private JMenu Hyderabad;
     private JMenuItem itckohenur;
@@ -1047,8 +1170,21 @@ public class HomePageAfterLogin {
     private JSeparator separator1;
     private JComboBox Hotels;
     private JButton Search;
-    private JMenuBar menuBar1;
+    private JSeparator separator2;
     private JMenu profile;
     private JMenuItem Logout;
+    private JLabel homePagePhoto;
+    private JComboBox StateField;
+    private JComboBox CityField;
+    private JXDatePicker checkInField;
+    private JXDatePicker checkOutField;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
+    private JLabel label5;
+    private JButton SearchBottom;
+    private JLabel label6;
+    private DateSpinnerBean noOfRooms;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
