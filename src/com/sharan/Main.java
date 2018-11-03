@@ -1,6 +1,8 @@
 package com.sharan;
 
 
+import com.sharan.ui.home.homePage.HomePage;
+
 public class Main {
 
     public static int loginSuccess;
@@ -10,11 +12,7 @@ public class Main {
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
 
-        AES128Encyrption encyrption=new AES128Encyrption();
-//        HomePage homePage=new HomePage(dataBaseController);
-//        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
-//        HotelHomePageAfterLogin page=new HotelHomePageAfterLogin("h1",dataBaseController);
-//        HotelHomePageBeforeLogin hotelHomePageBeforeLogin=new HotelHomePageBeforeLogin("h1",dataBaseController);
+        HomePage homePage=new HomePage(dataBaseController);
         dataBaseController.closeDatabaseConnection();
 
 

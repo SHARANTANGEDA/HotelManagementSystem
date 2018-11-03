@@ -4,42 +4,30 @@ import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginPopUp.Login;
 import com.sharan.ui.home.signUpPopUp.SignUp;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import org.jdesktop.swingx.*;
 
 import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.signUpSuccess;
 
 public class HomePage extends Canvas {
-    private String stateSelected = "";
-    private String citySelected="";
-    private JFrame frame = new JFrame("Online Hotel Booking System");
-    String states[] = {"Telangana", "Andhra Pradesh", "Maharastra", "Delhi"};
-    String selectedCities[]={"Hyderabad","Warangal","KarimNagar","Kammam","Vijayawada", "Guntur","Tirupati","Vizag",
-                "Mumbai", "Pune","Nagpur","Aurangabad","New Delhi", "Panipat","Gurugram","Faridabad"};
     private DataBaseController dataBaseController;
 
     public HomePage(DataBaseController dataBaseController) {
+
         this.dataBaseController=dataBaseController;
-
         initComponents();
+        AutoCompleteDecorator.decorate(Hotels);
+        frame1.setVisible(true);
+
     }
 
 
-    public String getStateSelected() {
-        return stateSelected;
-    }
 
-    public String getCitySelected() {
-        return citySelected;
-    }
 
-    public JFrame getFrame() {
-        return frame;
-    }
 
     public JButton getLogin() {
         return Login;
@@ -68,6 +56,134 @@ public class HomePage extends Canvas {
         }
     }
 
+    private void itckohenurActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TheParkActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TajVivantaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void manasarovarActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelAshokaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void CrystalPalaceActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void LandmarkActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void SuprabhaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelAdityaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelAkshayaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TheBudgetHotelActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelSwethaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void GayathriActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void KaveriActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void ManasarovarActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void OnagiriActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void GingerMumbaiAndheriActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void IbisMumbaiAirportActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TridentNarimanPointActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void RoyalOrchidCentralGraziaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void MintKoregaonParkActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void TajGatewayActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelMintHighstreetActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void FourPointsActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void LeMeridienNagpurActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelGangakashiActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelSiddharthaInnActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void RadissonBluActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void Ambassador_AjantaActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void VivantaAurangabadActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void THEONEHOTELActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void HotelAtithiActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
 
 
     private void initComponents() {
@@ -77,8 +193,28 @@ public class HomePage extends Canvas {
         Login = new JButton();
         Heading = new JLabel();
         SignUp = new JButton();
-        scrollBar = new JScrollBar();
         menuBar = new JMenuBar();
+        New_Delhi = new JMenu();
+        New_Delhi_City = new JMenu();
+        menuItem33 = new JMenuItem();
+        menuItem34 = new JMenuItem();
+        menuItem35 = new JMenuItem();
+        menuItem36 = new JMenuItem();
+        Panipat = new JMenu();
+        menuItem37 = new JMenuItem();
+        menuItem38 = new JMenuItem();
+        menuItem39 = new JMenuItem();
+        menuItem40 = new JMenuItem();
+        Gurugram = new JMenu();
+        menuItem41 = new JMenuItem();
+        menuItem42 = new JMenuItem();
+        menuItem43 = new JMenuItem();
+        menuItem44 = new JMenuItem();
+        Faridabad = new JMenu();
+        menuItem45 = new JMenuItem();
+        menuItem46 = new JMenuItem();
+        menuItem47 = new JMenuItem();
+        menuItem48 = new JMenuItem();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
         itckohenur = new JMenuItem();
@@ -142,51 +278,23 @@ public class HomePage extends Canvas {
         VivantaAurangabad = new JMenuItem();
         THEONEHOTEL = new JMenuItem();
         HotelAtithi = new JMenuItem();
-        New_Delhi = new JMenu();
-        New_Delhi_City = new JMenu();
-        menuItem33 = new JMenuItem();
-        menuItem34 = new JMenuItem();
-        menuItem35 = new JMenuItem();
-        menuItem36 = new JMenuItem();
-        Panipat = new JMenu();
-        menuItem37 = new JMenuItem();
-        menuItem38 = new JMenuItem();
-        menuItem39 = new JMenuItem();
-        menuItem40 = new JMenuItem();
-        Gurugram = new JMenu();
-        menuItem41 = new JMenuItem();
-        menuItem42 = new JMenuItem();
-        menuItem43 = new JMenuItem();
-        menuItem44 = new JMenuItem();
-        Faridabad = new JMenu();
-        menuItem45 = new JMenuItem();
-        menuItem46 = new JMenuItem();
-        menuItem47 = new JMenuItem();
-        menuItem48 = new JMenuItem();
         separator1 = new JSeparator();
-        Hotels = new JComboBox();
+        Hotels = new JComboBox<>();
         Search = new JButton();
-        hSpacer2 = new JPanel(null);
-        splitPane1 = new JSplitPane();
         Picture = new JLabel();
-        xDatePicker1 = new JXDatePicker();
 
         //======== frame1 ========
         {
             frame1.setFont(new Font("Courier New", Font.BOLD, 36));
             frame1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame1.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")).getImage());
-            frame1.setVisible(true);
             Container frame1ContentPane = frame1.getContentPane();
-            frame1ContentPane.setLayout(null);
 
             //---- Login ----
             Login.setText("Login");
             Login.setBackground(new Color(0, 255, 29));
             Login.setComponentPopupMenu(null);
             Login.addActionListener(e -> LoginActionPerformed(e));
-            frame1ContentPane.add(Login);
-            Login.setBounds(750, 15, 120, 40);
 
             //---- Heading ----
             Heading.setText("Online Hotel Bookng Portal");
@@ -196,26 +304,117 @@ public class HomePage extends Canvas {
             Heading.setHorizontalAlignment(SwingConstants.CENTER);
             Heading.setHorizontalTextPosition(SwingConstants.CENTER);
             Heading.setBorder(null);
-            frame1ContentPane.add(Heading);
-            Heading.setBounds(150, 10, 600, 60);
+            Heading.setOpaque(true);
 
             //---- SignUp ----
             SignUp.setText("SignUp");
             SignUp.setBackground(new Color(0, 255, 29));
             SignUp.addActionListener(e -> SignUpActionPerformed(e));
-            frame1ContentPane.add(SignUp);
-            SignUp.setBounds(875, 15, 120, 40);
-
-            //---- scrollBar ----
-            scrollBar.setName("verticalScrollBar");
-            scrollBar.setBorder(null);
-            frame1ContentPane.add(scrollBar);
-            scrollBar.setBounds(1045, 5, 22, 755);
 
             //======== menuBar ========
             {
                 menuBar.setPreferredSize(new Dimension(83, 50));
                 menuBar.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 20));
+
+                //======== New_Delhi ========
+                {
+                    New_Delhi.setText("New Delhi");
+                    New_Delhi.setPreferredSize(new Dimension(100, 50));
+                    New_Delhi.setFont(new Font("Arial", Font.BOLD, 18));
+
+                    //======== New_Delhi_City ========
+                    {
+                        New_Delhi_City.setText("New Delhi");
+                        New_Delhi_City.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem33 ----
+                        menuItem33.setText("text");
+                        New_Delhi_City.add(menuItem33);
+
+                        //---- menuItem34 ----
+                        menuItem34.setText("text");
+                        New_Delhi_City.add(menuItem34);
+
+                        //---- menuItem35 ----
+                        menuItem35.setText("text");
+                        New_Delhi_City.add(menuItem35);
+
+                        //---- menuItem36 ----
+                        menuItem36.setText("text");
+                        New_Delhi_City.add(menuItem36);
+                    }
+                    New_Delhi.add(New_Delhi_City);
+
+                    //======== Panipat ========
+                    {
+                        Panipat.setText("Panipat");
+                        Panipat.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem37 ----
+                        menuItem37.setText("text");
+                        Panipat.add(menuItem37);
+
+                        //---- menuItem38 ----
+                        menuItem38.setText("text");
+                        Panipat.add(menuItem38);
+
+                        //---- menuItem39 ----
+                        menuItem39.setText("text");
+                        Panipat.add(menuItem39);
+
+                        //---- menuItem40 ----
+                        menuItem40.setText("text");
+                        Panipat.add(menuItem40);
+                    }
+                    New_Delhi.add(Panipat);
+
+                    //======== Gurugram ========
+                    {
+                        Gurugram.setText("Gurugram");
+                        Gurugram.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem41 ----
+                        menuItem41.setText("text");
+                        Gurugram.add(menuItem41);
+
+                        //---- menuItem42 ----
+                        menuItem42.setText("text");
+                        Gurugram.add(menuItem42);
+
+                        //---- menuItem43 ----
+                        menuItem43.setText("text");
+                        Gurugram.add(menuItem43);
+
+                        //---- menuItem44 ----
+                        menuItem44.setText("text");
+                        Gurugram.add(menuItem44);
+                    }
+                    New_Delhi.add(Gurugram);
+
+                    //======== Faridabad ========
+                    {
+                        Faridabad.setText("Faridabad");
+                        Faridabad.setFont(new Font("Arial", Font.ITALIC, 16));
+
+                        //---- menuItem45 ----
+                        menuItem45.setText("text");
+                        Faridabad.add(menuItem45);
+
+                        //---- menuItem46 ----
+                        menuItem46.setText("text");
+                        Faridabad.add(menuItem46);
+
+                        //---- menuItem47 ----
+                        menuItem47.setText("text");
+                        Faridabad.add(menuItem47);
+
+                        //---- menuItem48 ----
+                        menuItem48.setText("text");
+                        Faridabad.add(menuItem48);
+                    }
+                    New_Delhi.add(Faridabad);
+                }
+                menuBar.add(New_Delhi);
 
                 //======== Telangana ========
                 {
@@ -230,18 +429,22 @@ public class HomePage extends Canvas {
 
                         //---- itckohenur ----
                         itckohenur.setText("ITC Kohenur");
+                        itckohenur.addActionListener(e -> itckohenurActionPerformed(e));
                         Hyderabad.add(itckohenur);
 
                         //---- ThePark ----
                         ThePark.setText("The Park");
+                        ThePark.addActionListener(e -> TheParkActionPerformed(e));
                         Hyderabad.add(ThePark);
 
                         //---- TajVivanta ----
                         TajVivanta.setText("Taj Vivanta");
+                        TajVivanta.addActionListener(e -> TajVivantaActionPerformed(e));
                         Hyderabad.add(TajVivanta);
 
                         //---- manasarovar ----
                         manasarovar.setText("Manasarovar");
+                        manasarovar.addActionListener(e -> manasarovarActionPerformed(e));
                         Hyderabad.add(manasarovar);
                     }
                     Telangana.add(Hyderabad);
@@ -253,18 +456,22 @@ public class HomePage extends Canvas {
 
                         //---- HotelAshoka ----
                         HotelAshoka.setText("Hotel Ashoka");
+                        HotelAshoka.addActionListener(e -> HotelAshokaActionPerformed(e));
                         Warangal.add(HotelAshoka);
 
                         //---- CrystalPalace ----
                         CrystalPalace.setText("Crystal Palace");
+                        CrystalPalace.addActionListener(e -> CrystalPalaceActionPerformed(e));
                         Warangal.add(CrystalPalace);
 
                         //---- Landmark ----
                         Landmark.setText("Landmark");
+                        Landmark.addActionListener(e -> LandmarkActionPerformed(e));
                         Warangal.add(Landmark);
 
                         //---- Suprabha ----
                         Suprabha.setText("Hotel Suprabha");
+                        Suprabha.addActionListener(e -> SuprabhaActionPerformed(e));
                         Warangal.add(Suprabha);
                     }
                     Telangana.add(Warangal);
@@ -276,18 +483,22 @@ public class HomePage extends Canvas {
 
                         //---- HotelAditya ----
                         HotelAditya.setText("Hotel Aditya");
+                        HotelAditya.addActionListener(e -> HotelAdityaActionPerformed(e));
                         Karimnagar.add(HotelAditya);
 
                         //---- HotelAkshaya ----
                         HotelAkshaya.setText("Hotel Akshaya");
+                        HotelAkshaya.addActionListener(e -> HotelAkshayaActionPerformed(e));
                         Karimnagar.add(HotelAkshaya);
 
                         //---- TheBudgetHotel ----
                         TheBudgetHotel.setText("The Budget Hotel");
+                        TheBudgetHotel.addActionListener(e -> TheBudgetHotelActionPerformed(e));
                         Karimnagar.add(TheBudgetHotel);
 
                         //---- HotelSwetha ----
                         HotelSwetha.setText("Hotel Swetha");
+                        HotelSwetha.addActionListener(e -> HotelSwethaActionPerformed(e));
                         Karimnagar.add(HotelSwetha);
                     }
                     Telangana.add(Karimnagar);
@@ -299,18 +510,22 @@ public class HomePage extends Canvas {
 
                         //---- Gayathri ----
                         Gayathri.setText("Gayathri");
+                        Gayathri.addActionListener(e -> GayathriActionPerformed(e));
                         Kammam.add(Gayathri);
 
                         //---- Kaveri ----
                         Kaveri.setText("Kaveri");
+                        Kaveri.addActionListener(e -> KaveriActionPerformed(e));
                         Kammam.add(Kaveri);
 
                         //---- Manasarovar ----
                         Manasarovar.setText("Manasarovar");
+                        Manasarovar.addActionListener(e -> ManasarovarActionPerformed(e));
                         Kammam.add(Manasarovar);
 
                         //---- Onagiri ----
                         Onagiri.setText("Onagiri");
+                        Onagiri.addActionListener(e -> OnagiriActionPerformed(e));
                         Kammam.add(Onagiri);
                     }
                     Telangana.add(Kammam);
@@ -430,18 +645,22 @@ public class HomePage extends Canvas {
 
                         //---- GingerMumbaiAndheri ----
                         GingerMumbaiAndheri.setText("Ginger Mumbai Andheri");
+                        GingerMumbaiAndheri.addActionListener(e -> GingerMumbaiAndheriActionPerformed(e));
                         Mumbai.add(GingerMumbaiAndheri);
 
                         //---- IbisMumbaiAirport ----
                         IbisMumbaiAirport.setText("Ibis Mumbai Airport");
+                        IbisMumbaiAirport.addActionListener(e -> IbisMumbaiAirportActionPerformed(e));
                         Mumbai.add(IbisMumbaiAirport);
 
                         //---- TridentNarimanPoint ----
                         TridentNarimanPoint.setText("Trident Nariman Point");
+                        TridentNarimanPoint.addActionListener(e -> TridentNarimanPointActionPerformed(e));
                         Mumbai.add(TridentNarimanPoint);
 
                         //---- RoyalOrchidCentralGrazia ----
                         RoyalOrchidCentralGrazia.setText("Royal Orchid Central Grazia");
+                        RoyalOrchidCentralGrazia.addActionListener(e -> RoyalOrchidCentralGraziaActionPerformed(e));
                         Mumbai.add(RoyalOrchidCentralGrazia);
                     }
                     Maharastra.add(Mumbai);
@@ -453,18 +672,22 @@ public class HomePage extends Canvas {
 
                         //---- MintKoregaonPark ----
                         MintKoregaonPark.setText("Mint Koregaon Park");
+                        MintKoregaonPark.addActionListener(e -> MintKoregaonParkActionPerformed(e));
                         Pune.add(MintKoregaonPark);
 
                         //---- TajGateway ----
                         TajGateway.setText("Taj Gateway");
+                        TajGateway.addActionListener(e -> TajGatewayActionPerformed(e));
                         Pune.add(TajGateway);
 
                         //---- HotelMintHighstreet ----
                         HotelMintHighstreet.setText("Hotel Mint Highstreet");
+                        HotelMintHighstreet.addActionListener(e -> HotelMintHighstreetActionPerformed(e));
                         Pune.add(HotelMintHighstreet);
 
                         //---- FourPoints ----
                         FourPoints.setText("Four Points");
+                        FourPoints.addActionListener(e -> FourPointsActionPerformed(e));
                         Pune.add(FourPoints);
                     }
                     Maharastra.add(Pune);
@@ -476,18 +699,22 @@ public class HomePage extends Canvas {
 
                         //---- LeMeridienNagpur ----
                         LeMeridienNagpur.setText("Le Meridien Nagpur");
+                        LeMeridienNagpur.addActionListener(e -> LeMeridienNagpurActionPerformed(e));
                         Nagpur.add(LeMeridienNagpur);
 
                         //---- HotelGangakashi ----
                         HotelGangakashi.setText("Hotel Gangakashi");
+                        HotelGangakashi.addActionListener(e -> HotelGangakashiActionPerformed(e));
                         Nagpur.add(HotelGangakashi);
 
                         //---- HotelSiddharthaInn ----
                         HotelSiddharthaInn.setText("Hotel Siddhartha Inn");
+                        HotelSiddharthaInn.addActionListener(e -> HotelSiddharthaInnActionPerformed(e));
                         Nagpur.add(HotelSiddharthaInn);
 
                         //---- RadissonBlu ----
                         RadissonBlu.setText("Radisson Blu");
+                        RadissonBlu.addActionListener(e -> RadissonBluActionPerformed(e));
                         Nagpur.add(RadissonBlu);
                     }
                     Maharastra.add(Nagpur);
@@ -499,131 +726,42 @@ public class HomePage extends Canvas {
 
                         //---- Ambassador_Ajanta ----
                         Ambassador_Ajanta.setText("Ambassador Ajanta");
+                        Ambassador_Ajanta.addActionListener(e -> Ambassador_AjantaActionPerformed(e));
                         Aurangabad.add(Ambassador_Ajanta);
 
                         //---- VivantaAurangabad ----
                         VivantaAurangabad.setText("Vivanta Aurangabad");
+                        VivantaAurangabad.addActionListener(e -> VivantaAurangabadActionPerformed(e));
                         Aurangabad.add(VivantaAurangabad);
 
                         //---- THEONEHOTEL ----
                         THEONEHOTEL.setText("The One Hotel");
+                        THEONEHOTEL.addActionListener(e -> THEONEHOTELActionPerformed(e));
                         Aurangabad.add(THEONEHOTEL);
 
                         //---- HotelAtithi ----
                         HotelAtithi.setText("Hotel Atithi");
+                        HotelAtithi.addActionListener(e -> HotelAtithiActionPerformed(e));
                         Aurangabad.add(HotelAtithi);
                     }
                     Maharastra.add(Aurangabad);
                 }
                 menuBar.add(Maharastra);
 
-                //======== New_Delhi ========
-                {
-                    New_Delhi.setText("New Delhi");
-                    New_Delhi.setPreferredSize(new Dimension(100, 50));
-                    New_Delhi.setFont(new Font("Arial", Font.BOLD, 18));
-
-                    //======== New_Delhi_City ========
-                    {
-                        New_Delhi_City.setText("New Delhi");
-                        New_Delhi_City.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem33 ----
-                        menuItem33.setText("text");
-                        New_Delhi_City.add(menuItem33);
-
-                        //---- menuItem34 ----
-                        menuItem34.setText("text");
-                        New_Delhi_City.add(menuItem34);
-
-                        //---- menuItem35 ----
-                        menuItem35.setText("text");
-                        New_Delhi_City.add(menuItem35);
-
-                        //---- menuItem36 ----
-                        menuItem36.setText("text");
-                        New_Delhi_City.add(menuItem36);
-                    }
-                    New_Delhi.add(New_Delhi_City);
-
-                    //======== Panipat ========
-                    {
-                        Panipat.setText("Panipat");
-                        Panipat.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem37 ----
-                        menuItem37.setText("text");
-                        Panipat.add(menuItem37);
-
-                        //---- menuItem38 ----
-                        menuItem38.setText("text");
-                        Panipat.add(menuItem38);
-
-                        //---- menuItem39 ----
-                        menuItem39.setText("text");
-                        Panipat.add(menuItem39);
-
-                        //---- menuItem40 ----
-                        menuItem40.setText("text");
-                        Panipat.add(menuItem40);
-                    }
-                    New_Delhi.add(Panipat);
-
-                    //======== Gurugram ========
-                    {
-                        Gurugram.setText("Gurugram");
-                        Gurugram.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem41 ----
-                        menuItem41.setText("text");
-                        Gurugram.add(menuItem41);
-
-                        //---- menuItem42 ----
-                        menuItem42.setText("text");
-                        Gurugram.add(menuItem42);
-
-                        //---- menuItem43 ----
-                        menuItem43.setText("text");
-                        Gurugram.add(menuItem43);
-
-                        //---- menuItem44 ----
-                        menuItem44.setText("text");
-                        Gurugram.add(menuItem44);
-                    }
-                    New_Delhi.add(Gurugram);
-
-                    //======== Faridabad ========
-                    {
-                        Faridabad.setText("Faridabad");
-                        Faridabad.setFont(new Font("Arial", Font.ITALIC, 16));
-
-                        //---- menuItem45 ----
-                        menuItem45.setText("text");
-                        Faridabad.add(menuItem45);
-
-                        //---- menuItem46 ----
-                        menuItem46.setText("text");
-                        Faridabad.add(menuItem46);
-
-                        //---- menuItem47 ----
-                        menuItem47.setText("text");
-                        Faridabad.add(menuItem47);
-
-                        //---- menuItem48 ----
-                        menuItem48.setText("text");
-                        Faridabad.add(menuItem48);
-                    }
-                    New_Delhi.add(Faridabad);
-                }
-                menuBar.add(New_Delhi);
-
                 //---- separator1 ----
                 separator1.setMaximumSize(new Dimension(8000, 32767));
+                separator1.setBorder(null);
                 menuBar.add(separator1);
 
                 //---- Hotels ----
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
+                Hotels.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "hello",
+                    "kamehameha",
+                    "finalflash",
+                    "greenlantern"
+                }));
                 menuBar.add(Hotels);
 
                 //---- Search ----
@@ -631,41 +769,46 @@ public class HomePage extends Canvas {
                 Search.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/findSmall.png")));
                 Search.setText("Search");
                 menuBar.add(Search);
-
-                //---- hSpacer2 ----
-                hSpacer2.setPreferredSize(new Dimension(5, 50));
-                hSpacer2.setMaximumSize(new Dimension(100, 50));
-                menuBar.add(hSpacer2);
             }
-            frame1ContentPane.add(menuBar);
-            menuBar.setBounds(0, 100, 1045, menuBar.getPreferredSize().height);
 
-            //======== splitPane1 ========
-            {
-                splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+            //---- Picture ----
+            Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
 
-                //---- Picture ----
-                Picture.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/HomePagePic.jpg")));
-                splitPane1.setTopComponent(Picture);
-            }
-            frame1ContentPane.add(splitPane1);
-            splitPane1.setBounds(0, 145, 1045, 610);
-            frame1ContentPane.add(xDatePicker1);
-            xDatePicker1.setBounds(new Rectangle(new Point(30, 30), xDatePicker1.getPreferredSize()));
-
-            { // compute preferred size
-                Dimension preferredSize = new Dimension();
-                for(int i = 0; i < frame1ContentPane.getComponentCount(); i++) {
-                    Rectangle bounds = frame1ContentPane.getComponent(i).getBounds();
-                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-                }
-                Insets insets = frame1ContentPane.getInsets();
-                preferredSize.width += insets.right;
-                preferredSize.height += insets.bottom;
-                frame1ContentPane.setMinimumSize(preferredSize);
-                frame1ContentPane.setPreferredSize(preferredSize);
-            }
+            GroupLayout frame1ContentPaneLayout = new GroupLayout(frame1ContentPane);
+            frame1ContentPane.setLayout(frame1ContentPaneLayout);
+            frame1ContentPaneLayout.setHorizontalGroup(
+                frame1ContentPaneLayout.createParallelGroup()
+                    .addGroup(frame1ContentPaneLayout.createSequentialGroup()
+                        .addGroup(frame1ContentPaneLayout.createParallelGroup()
+                            .addGroup(frame1ContentPaneLayout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(Login, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SignUp, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(frame1ContentPaneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(Picture, GroupLayout.PREFERRED_SIZE, 1043, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(menuBar, GroupLayout.DEFAULT_SIZE, 1073, Short.MAX_VALUE)
+            );
+            frame1ContentPaneLayout.setVerticalGroup(
+                frame1ContentPaneLayout.createParallelGroup()
+                    .addGroup(frame1ContentPaneLayout.createSequentialGroup()
+                        .addGroup(frame1ContentPaneLayout.createParallelGroup()
+                            .addComponent(Heading, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(frame1ContentPaneLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addGroup(frame1ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(SignUp, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Login, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
+                        .addGap(30, 30, 30)
+                        .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(Picture)
+                        .addContainerGap(177, Short.MAX_VALUE))
+            );
             frame1.pack();
             frame1.setLocationRelativeTo(frame1.getOwner());
         }
@@ -678,8 +821,28 @@ public class HomePage extends Canvas {
     private JButton Login;
     private JLabel Heading;
     private JButton SignUp;
-    private JScrollBar scrollBar;
     private JMenuBar menuBar;
+    private JMenu New_Delhi;
+    private JMenu New_Delhi_City;
+    private JMenuItem menuItem33;
+    private JMenuItem menuItem34;
+    private JMenuItem menuItem35;
+    private JMenuItem menuItem36;
+    private JMenu Panipat;
+    private JMenuItem menuItem37;
+    private JMenuItem menuItem38;
+    private JMenuItem menuItem39;
+    private JMenuItem menuItem40;
+    private JMenu Gurugram;
+    private JMenuItem menuItem41;
+    private JMenuItem menuItem42;
+    private JMenuItem menuItem43;
+    private JMenuItem menuItem44;
+    private JMenu Faridabad;
+    private JMenuItem menuItem45;
+    private JMenuItem menuItem46;
+    private JMenuItem menuItem47;
+    private JMenuItem menuItem48;
     private JMenu Telangana;
     private JMenu Hyderabad;
     private JMenuItem itckohenur;
@@ -743,33 +906,9 @@ public class HomePage extends Canvas {
     private JMenuItem VivantaAurangabad;
     private JMenuItem THEONEHOTEL;
     private JMenuItem HotelAtithi;
-    private JMenu New_Delhi;
-    private JMenu New_Delhi_City;
-    private JMenuItem menuItem33;
-    private JMenuItem menuItem34;
-    private JMenuItem menuItem35;
-    private JMenuItem menuItem36;
-    private JMenu Panipat;
-    private JMenuItem menuItem37;
-    private JMenuItem menuItem38;
-    private JMenuItem menuItem39;
-    private JMenuItem menuItem40;
-    private JMenu Gurugram;
-    private JMenuItem menuItem41;
-    private JMenuItem menuItem42;
-    private JMenuItem menuItem43;
-    private JMenuItem menuItem44;
-    private JMenu Faridabad;
-    private JMenuItem menuItem45;
-    private JMenuItem menuItem46;
-    private JMenuItem menuItem47;
-    private JMenuItem menuItem48;
     private JSeparator separator1;
-    private JComboBox Hotels;
+    private JComboBox<String> Hotels;
     private JButton Search;
-    private JPanel hSpacer2;
-    private JSplitPane splitPane1;
     private JLabel Picture;
-    private JXDatePicker xDatePicker1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

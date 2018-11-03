@@ -41,7 +41,6 @@ new FormModel {
 				name: "menuBar"
 				"preferredSize": new java.awt.Dimension( 83, 50 )
 				"font": new java.awt.Font( "Arial Black", 3, 20 )
-				"background": new java.awt.Color( 51, 255, 0, 255 )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "Telangana"
 					"text": "Telangana"
@@ -470,4 +469,3 @@ new FormModel {
 		} )
 	}
 }
-

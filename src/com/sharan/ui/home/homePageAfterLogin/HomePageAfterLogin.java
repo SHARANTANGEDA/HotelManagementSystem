@@ -23,6 +23,9 @@ public class HomePageAfterLogin {
     public HomePageAfterLogin(DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
         initComponents();
+
+        AutoCompleteDecorator.decorate(Hotels);
+        homePageAfterLogin.setVisible(true);
     }
 
 
@@ -169,15 +172,7 @@ public class HomePageAfterLogin {
         ArrayList<String> list=dataBaseController.parseHotel("Ma_Pu_Mint");
         dataBaseController.closeDatabaseConnection();
         HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(list,dataBaseController);
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
-//                "Ma_Pu_Mint","Mint Koregaon Park","room type- (all include a/c, have complimentary breakfast, and have free hi-speed wifi)\n" +
-//                "standard : rs 1981      (Code: A)\n" +
-//                "deluxe   : rs 2228      (Code: B)\n" +
-//                "suite    : rs 2807\t(Code: C)\n","address:\n" +
-//                "Plot Nos 11 Lane Nos 1 | Near Osho International Resort & Commune, Koregaon Park, Pune 411001, India",
-//                "/com/sharan/ui/pictures/Maharashtra/Pune/Mint Koregaon Park/Ma_Pu_MintA.jpg",
-//                dataBaseController
-//        );
+
     }
 
     private void TajGatewayActionPerformed(ActionEvent e) {
@@ -445,7 +440,6 @@ public class HomePageAfterLogin {
             {
                 menuBar.setPreferredSize(new Dimension(83, 50));
                 menuBar.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 20));
-                menuBar.setBackground(new Color(51, 255, 0));
 
                 //======== Telangana ========
                 {
@@ -884,9 +878,6 @@ public class HomePageAfterLogin {
                 menuBar.add(separator1);
 
                 //---- Hotels ----
-
-//                AutoCompleteDecorator decorator;
-                AutoCompleteDecorator.decorate(Hotels);
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
                 Hotels.setMaximumSize(new Dimension(500, 50));
