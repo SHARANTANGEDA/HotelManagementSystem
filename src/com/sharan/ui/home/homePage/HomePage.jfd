@@ -8,6 +8,7 @@ new FormModel {
 			"$verticalGroup": "par l {seq l {space :::p, comp applicationName:::p:69:p, space :::p, par t:::p {comp menuBar1::l:::x, comp LoginField::t:::x, comp SignUpField::t:::x}, space :p:21:p, comp homePagePhoto:::p:369:p, space ::372:x}}"
 		} ) {
 			name: "homeFrame"
+			"defaultCloseOperation": 3
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "applicationName"
 				"text": "Online Hotel Booking System"

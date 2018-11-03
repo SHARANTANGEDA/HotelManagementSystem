@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import static com.sharan.Main.signUpSuccess;
 
@@ -36,6 +37,8 @@ public class SignUp {
     public SignUp(DataBaseController dataBaseController, JButton toBeClicked) {
 
         initComponents();
+
+        SignUp.setVisible(true);
         this.toBeClicked=toBeClicked;
         this.dataBaseController = dataBaseController;
     }
@@ -50,6 +53,9 @@ public class SignUp {
         name = userNameField.getText();
         PasswordHashing passwordHashing = new PasswordHashing();
         hashedPassword = passwordHashing.hashPassword(passwordField.getText());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        xDatePicker1.setFormats(dateFormat);
         String unparsedDate=xDatePicker1.getDate().toString();
 
         StringBuilder sb=new StringBuilder();

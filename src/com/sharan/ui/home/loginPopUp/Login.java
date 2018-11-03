@@ -42,9 +42,8 @@ public class Login extends JPanel {
 
     private void button1ActionPerformed(ActionEvent e) {
         String username = textField1.getText();
-        String pass = passwordField1.getText();
         PasswordHashing passwordHashing = new PasswordHashing();
-        String password =passwordHashing.hashPassword(pass);
+        String password =passwordHashing.hashPassword(passwordField1.getText());
         // System.out.println(password);
         verify(username,password);
     }

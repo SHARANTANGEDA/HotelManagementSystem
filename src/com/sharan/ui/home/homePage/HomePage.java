@@ -296,6 +296,7 @@ public class HomePage {
 
         //======== homeFrame ========
         {
+            homeFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             Container homeFrameContentPane = homeFrame.getContentPane();
 
             //---- applicationName ----
