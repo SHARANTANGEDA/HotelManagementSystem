@@ -4,10 +4,9 @@
 
 package com.sharan.ui.home.homePageAfterLogin;
 
-import javax.swing.plaf.*;
-import com.miginfocom.beans.DateSpinnerBean;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
 import com.sharan.ui.hotelView.hotelHome.HotelHomePageAfterLogin;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -15,21 +14,106 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
+import java.awt.event.ItemEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
  * @author SAI SHARAN
  */
 public class HomePageAfterLogin {
+
+    private String stateSelected;
+    private String citySelected;
+    private String checkInDate;
+    private String checkOutDate;
+    private String roomsSelected;
+
+    private String userName;
+    private ArrayList<String> list;
+
     private DataBaseController dataBaseController;
 
-    public HomePageAfterLogin(DataBaseController dataBaseController) {
+    public HomePageAfterLogin(String userName,DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
+
+
+        addtoStateComboBox(StateField);
+        addtoCityComboBox(CityField);
+        checkInDate=getDate(checkInField);
+        checkOutDate=getDate(checkOutField);
+        try {
+            noOfRooms.commitEdit();
+        } catch ( java.text.ParseException e ) {
+            System.out.println(e.getMessage());
+        }
+        int value = (Integer) noOfRooms.getValue();
+        this.userName=userName;
+        roomsSelected=String.valueOf(value);
+
         initComponents();
 
+        AutoCompleteDecorator.decorate(StateField);
+        AutoCompleteDecorator.decorate(CityField);
         AutoCompleteDecorator.decorate(Hotels);
         homePageAfterLogin.setVisible(true);
+
+    }
+
+    private void addtoStateComboBox(JComboBox<String> stateField) {
+        stateField.addItem("Telangana");
+        stateField.addItem("AndhraPradesh");
+        stateField.addItem("Maharastra");
+        stateField.addItem("NewDelhi");
+    }
+
+    private void addtoCityComboBox(JComboBox<String> cityField) {
+        if(stateSelected.equalsIgnoreCase("Telangana")) {
+            cityField.addItem("Hyderabad");
+            cityField.addItem("Warangal");
+            cityField.addItem("KarimNagar");
+            cityField.addItem("Kammam");
+        }
+        else if(stateSelected.equalsIgnoreCase("AndhraPradesh")) {
+            cityField.addItem("Tirupati");
+            cityField.addItem("Vijayawada");
+            cityField.addItem("Vishakapatnam");
+            cityField.addItem("Guntur");
+        }
+        else if (stateSelected.equalsIgnoreCase("Maharastra")) {
+            cityField.addItem("Aurangabad");
+            cityField.addItem("Mumbai");
+            cityField.addItem("Nagpur");
+            cityField.addItem("Pune");
+        }
+        else if(stateSelected.equalsIgnoreCase("NewDelhi")) {
+            cityField.addItem("Panipat");
+            cityField.addItem("NewDelhi");
+            cityField.addItem("Gurgaon");
+            cityField.addItem("Faridabad");
+        }
+        else if (stateSelected.equalsIgnoreCase("")) {
+            cityField.addItem("Select State First");
+        }
+    }
+
+    private String getDate(JXDatePicker checkField) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        checkField.setFormats(dateFormat);
+        String unparsedDate=checkField.getDate().toString();
+
+        StringBuilder sb=new StringBuilder();
+        String date=unparsedDate.substring(4,7);
+        String month=unparsedDate.substring(8,10);
+        String year=unparsedDate.substring(24,28);
+
+        sb.append(date);
+        sb.append("/");
+        sb.append(month);
+        sb.append("/");
+        sb.append(year);
+
+        return sb.toString();
     }
 
 
@@ -302,30 +386,32 @@ public class HomePageAfterLogin {
     //*********************SEARCH FIELDS**********************************************
 
 
-    private void StateFieldActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
 
-    private void CityFieldActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
-
-    private void checkInFieldActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
-
-    private void checkOutFieldActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
 
     private void SearchBottomActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        list.add(userName);
+        list.add(stateSelected);
+        list.add(citySelected);
+        list.add(checkInDate);
+        list.add(checkOutDate);
+        list.add(roomsSelected);
+
+        dataBaseController.initialiseDatabase();
+        dataBaseController.addAllotmentDetailsToDatabase(list);
+        dataBaseController.closeDatabaseConnection();
+
+        homePageAfterLogin.dispose();
+        DisplaySelectedHotels displaySelectedHotels=new DisplaySelectedHotels(list);
     }
 
-
-    private void noOfRoomsPropertyChange(PropertyChangeEvent e) {
-        // TODO add your code here
+    private void StateFieldItemStateChanged(ItemEvent e) {
+        stateSelected=e.getItem().toString();
     }
+
+    private void CityFieldItemStateChanged(ItemEvent e) {
+        citySelected=e.getItem().toString();
+    }
+
 
 
 
@@ -443,7 +529,7 @@ public class HomePageAfterLogin {
         label5 = new JLabel();
         SearchBottom = new JButton();
         label6 = new JLabel();
-        noOfRooms = new DateSpinnerBean();
+        noOfRooms = new JSpinner();
 
         //======== homePageAfterLogin ========
         {
@@ -942,21 +1028,19 @@ public class HomePageAfterLogin {
 
             //---- StateField ----
             StateField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-            StateField.addActionListener(e -> StateFieldActionPerformed(e));
+            StateField.addItemListener(e -> StateFieldItemStateChanged(e));
 
             //---- CityField ----
             CityField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-            CityField.addActionListener(e -> CityFieldActionPerformed(e));
+            CityField.addItemListener(e -> CityFieldItemStateChanged(e));
 
             //---- checkInField ----
             checkInField.setFont(checkInField.getFont().deriveFont(checkInField.getFont().getSize() + 6f));
             checkInField.setToolTipText("CheckIN");
-            checkInField.addActionListener(e -> checkInFieldActionPerformed(e));
 
             //---- checkOutField ----
             checkOutField.setFont(checkOutField.getFont().deriveFont(checkOutField.getFont().getSize() + 6f));
             checkOutField.setToolTipText("CheckOut");
-            checkOutField.addActionListener(e -> checkOutFieldActionPerformed(e));
 
             //---- label1 ----
             label1.setText("Select the Check-In and Check-Out Dates to view selected Hotels:");
@@ -990,10 +1074,7 @@ public class HomePageAfterLogin {
             label6.setFont(label6.getFont().deriveFont(label6.getFont().getSize() + 5f));
 
             //---- noOfRooms ----
-            noOfRooms.setCalendarField(java.util.Calendar.MONTH);
-            noOfRooms.setDateFormatString("MM");
-            noOfRooms.setFont(new Font("Dialog", Font.PLAIN, 18));
-            noOfRooms.addPropertyChangeListener(e -> noOfRoomsPropertyChange(e));
+            noOfRooms.setFont(noOfRooms.getFont().deriveFont(noOfRooms.getFont().getSize() + 4f));
 
             GroupLayout homePageAfterLoginContentPaneLayout = new GroupLayout(homePageAfterLoginContentPane);
             homePageAfterLoginContentPane.setLayout(homePageAfterLoginContentPaneLayout);
@@ -1036,8 +1117,8 @@ public class HomePageAfterLogin {
                             .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
                                 .addGap(168, 168, 168)
                                 .addComponent(label6, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
+                                .addGap(38, 38, 38)
+                                .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             homePageAfterLoginContentPaneLayout.setVerticalGroup(
@@ -1066,11 +1147,11 @@ public class HomePageAfterLogin {
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(checkInField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label2)))
-                        .addGap(37, 37, 37)
-                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label6, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(38, Short.MAX_VALUE))
+                            .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(36, Short.MAX_VALUE))
             );
             homePageAfterLogin.pack();
             homePageAfterLogin.setLocationRelativeTo(homePageAfterLogin.getOwner());
@@ -1185,6 +1266,6 @@ public class HomePageAfterLogin {
     private JLabel label5;
     private JButton SearchBottom;
     private JLabel label6;
-    private DateSpinnerBean noOfRooms;
+    private JSpinner noOfRooms;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

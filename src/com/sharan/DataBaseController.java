@@ -11,13 +11,13 @@ public class DataBaseController {
 
     private String userTableNAME ="userDatabase";
     private String userTableCOLUMNS ="(UserName TEXT NOT NULL PRIMARY KEY,Password TEXT,DOB TEXT,ResidentialAddress TEXT,Email TEXT,IdCard TEXT,Phone TEXT)";
-    private String userInsertParameters ="(UserName,Password,DOB,ResidentialAddress,Email,IdCard,Phone)";
+    private String userInsertParameters =" (UserName,Password,DOB,ResidentialAddress,Email,IdCard,Phone)";
 
     private String hotelsTableNAME ="hotelsDatabase";
     private String hotelsTableCOLUMNS ="(UniqueId TEXT,HotelName TEXT,HotelDescription TEXT,State TEXT,City TEXT,Address TEXT," +
             "Standard TEXT DEFAULT NA,StandardCapacity INTEGER DEFAULT 10,Deluxe TEXT DEFAULT NA,DeluxeCapacity INTEGER DEFAULT 10," +
             "Suite TEXT DEFAULT NA,SuiteCapacity INTEGER DEFAULT 4,HomeImagePath TEXT,StarRating TEXT DEFAULT 1,NumberOfVotes INTEGER DEFAULT 0)";
-    private String hotelsInsertParameters="(UniqueId,HotelName,HotelDescription,State,City,Address,Standard,StandardCapacity," +
+    private String hotelsInsertParameters=" (UniqueId,HotelName,HotelDescription,State,City,Address,Standard,StandardCapacity," +
             "Deluxe,DelxeCapacity,Suite,SuiteCapacity)";
 
     private String idTableName = "idDatabase";
@@ -26,7 +26,9 @@ public class DataBaseController {
 
 
     private String allotmentTableName="allotmentTable";
-    private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT,HotelUniqueId TEXT,AvailabilityStatus TEXT)";
+    private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT,NoOfRoomsRequested TEXT DEFAULT NA, " +
+            "HotelUniqueId TEXT,AvailabilityStatus TEXT)";
+    private String allotmentTableInsertParameters=" (UserName,State,City,CheckIN,CheckOUT,NoOfRoomsRequested)";
 
     private Connection conn=null;
     private Statement statement=null;
@@ -160,8 +162,15 @@ public class DataBaseController {
         return finalrate;
     }
 
+    public void addAllotmentDetailsToDatabase(ArrayList<String> list) {
+        try {
+            statement.execute("INSERT INTO "+allotmentTableName+allotmentTableInsertParameters+"VALUES ('"+list.get(0)+"','"+list.get(1)+"','"+list.get(2)+"','"+
+                    list.get(3)+"','"+list.get(4)+"')");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
+    }
 
     public String Verify(String username) {
 
