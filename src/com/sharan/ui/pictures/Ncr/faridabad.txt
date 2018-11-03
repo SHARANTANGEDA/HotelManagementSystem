@@ -1,0 +1,29 @@
+faridabad   code Far
+
+
+1. Radisson Blu     code  Blu
+Plot No : 4, Sector - 20B, Opp Bata Metro Station, Mathura Road, Krishna Nagar, Faridabad, 
+
+standard: 4500
+deluxe  : 6162
+suite   : 7249
+
+2. Vivanta Surajkund   code Sura
+Address: Shooting Range Rd, Block C, Surajkund, Faridabad, Haryana 121009
+
+standard: 6800
+deluxe  : 7800
+suite   : 8800
+
+3. Hotel Delite 
+17-18 NEELAM BATA ROAD N I T FARIDABAD 
+
+standard:1629
+deluxe  :1777
+suite   :2400
+
+4.Goldfinch Hotel  code  Gold
+Sec 39, SurajKund, Faridabad 121010  
+
+standard: 2500
+deluxe  : 4799
