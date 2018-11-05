@@ -5,7 +5,7 @@
 package com.sharan.ui.home.signUpPopUp;
 
 import com.sharan.DataBaseController;
-import com.sharan.PasswordHashing;
+import com.sharan.encryptionAlgorithms.PasswordHashing;
 import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;

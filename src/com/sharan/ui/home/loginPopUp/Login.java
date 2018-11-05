@@ -5,7 +5,8 @@
 package com.sharan.ui.home.loginPopUp;
 
 import com.sharan.DataBaseController;
-import com.sharan.PasswordHashing;
+import com.sharan.encryptionAlgorithms.PasswordHashing;
+import com.sharan.fileHandler.TextFileController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,9 +43,10 @@ public class Login extends JPanel {
 
     private void button1ActionPerformed(ActionEvent e) {
         String username = userNameField.getText();
-//        if(!username.equalsIgnoreCase("")) {
-//            this.userName=username;
-//        }
+        if(!username.isEmpty()) {
+            TextFileController fileController=new TextFileController();
+            fileController.writeToFile(username);
+        }
         PasswordHashing passwordHashing = new PasswordHashing();
         String password =passwordHashing.hashPassword(passwordField1.getText());
         // System.out.println(password);
@@ -157,8 +159,6 @@ public class Login extends JPanel {
         dataBaseController.initialiseDatabase();
         String p= dataBaseController.Verify(username);
         dataBaseController.closeDatabaseConnection();
-        System.out.println(username);
-        System.out.println(p+password);
         if(p.equals(password))
         {
             Login.dispose();

@@ -1,6 +1,8 @@
 package com.sharan;
 
 
+import com.sharan.ui.hotelView.displaySelectedHotels.ElementsInHotelView;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -162,13 +164,40 @@ public class DataBaseController {
         return finalrate;
     }
 
-    public void addAllotmentDetailsToDatabase(ArrayList<String> list) {
+    public void addAllotmentDetailsToDatabase(String userName,String state,String city,String checkIN,String checkOUT,String noOfRooms) {
         try {
-            statement.execute("INSERT INTO "+allotmentTableName+allotmentTableInsertParameters+"VALUES ('"+list.get(0)+"','"+list.get(1)+"','"+list.get(2)+"','"+
-                    list.get(3)+"','"+list.get(4)+"')");
+            statement.execute("INSERT INTO "+allotmentTableName+allotmentTableInsertParameters+"VALUES ('"+userName+"','"+state+"','"+city+"','"+
+                    checkIN+"','"+checkOUT+"','"+noOfRooms+"')");
         }catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+
+
+
+    public ArrayList<ElementsInHotelView> getHotelsBasedOnAllotmentDetails(ArrayList<String> list) {
+        ArrayList<ElementsInHotelView> displayList=new ArrayList<>();
+        String state=list.get(1);
+        String city=list.get(2);
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE ( State = '"+state+"' "+"AND City = '"+city+"' )");
+            while (resultSet.next()) {
+
+
+                ElementsInHotelView elements=new ElementsInHotelView(resultSet.getString("UniqueId"),resultSet.getString("HotelName"),
+                        resultSet.getString("HotelDescription"),resultSet.getString("Standard"),resultSet.getInt("StandardCapacity"),
+                        resultSet.getString("Deluxe"),resultSet.getInt("DeluxeCapacity"),resultSet.getString("Suite"),resultSet.getInt("SuiteCapacity"),
+                        resultSet.getString("HomeImagePath"),resultSet.getString("StarRating"),resultSet.getInt("NumberOfVotes"));
+
+                displayList.add(elements);
+            }
+
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return displayList;
 
     }
 
@@ -177,7 +206,6 @@ public class DataBaseController {
         try {
             if (!conn.isClosed()) {
                 ResultSet resultSet = statement.executeQuery("SELECT Password FROM " + userTableNAME + " WHERE UserName = '" +username+ "'" );
-                System.out.println(username);
                 if(resultSet.next()) {
                     return resultSet.getString("Password");
                 }else {
@@ -199,7 +227,6 @@ public class DataBaseController {
         try {
             if (!conn.isClosed()) {
                 ResultSet resultSet = statement.executeQuery("SELECT UserName FROM userDataBase" );
-                System.out.println(username);
                 while (resultSet.next())
                 {
                     String u = resultSet.getString("UserName");

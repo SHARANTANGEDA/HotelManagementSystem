@@ -1,4 +1,4 @@
-package com.sharan;
+package com.sharan.encryptionAlgorithms;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

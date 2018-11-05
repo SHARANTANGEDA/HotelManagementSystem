@@ -400,7 +400,6 @@ public class HomePageAfterLogin {
         int value = (Integer) noOfRooms.getValue();
         roomsSelected=String.valueOf(value);
 
-        System.out.println(userName);
         list.add(0,userName);
         list.add(1,stateSelected);
         list.add(2,citySelected);
@@ -409,11 +408,12 @@ public class HomePageAfterLogin {
         list.add(5,roomsSelected);
 
         dataBaseController.initialiseDatabase();
-        dataBaseController.addAllotmentDetailsToDatabase(list);
+        dataBaseController.addAllotmentDetailsToDatabase(userName,stateSelected,citySelected,checkInDate,checkOutDate,roomsSelected);
         dataBaseController.closeDatabaseConnection();
 
         homePageAfterLogin.dispose();
-        DisplaySelectedHotels displaySelectedHotels=new DisplaySelectedHotels(list);
+        DisplaySelectedHotels displaySelectedHotels=new DisplaySelectedHotels(list,dataBaseController);
+
     }
 
     private void StateFieldItemStateChanged(ItemEvent e) {

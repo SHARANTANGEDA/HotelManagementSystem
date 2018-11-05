@@ -12,7 +12,6 @@ public class Main {
 
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
-//        HomePageAfterLogin homePageAfterLogin= new HomePageAfterLogin(dataBaseController);
         HomePage homePage=new HomePage(dataBaseController);
         dataBaseController.closeDatabaseConnection();
 

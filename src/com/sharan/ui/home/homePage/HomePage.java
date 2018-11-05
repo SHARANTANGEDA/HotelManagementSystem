@@ -5,6 +5,7 @@
 package com.sharan.ui.home.homePage;
 
 import com.sharan.DataBaseController;
+import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginPopUp.Login;
 import com.sharan.ui.home.signUpPopUp.SignUp;
@@ -17,13 +18,11 @@ import java.awt.event.ActionEvent;
 import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.signUpSuccess;
 
-/**
- * @author vamsi adapa
- */
+
 public class HomePage {
 
     private DataBaseController dataBaseController;
-    private String userName="notLoaded";
+    private String userName;
 
     public HomePage(DataBaseController dataBaseController) {
 
@@ -31,6 +30,8 @@ public class HomePage {
         initComponents();
         AutoCompleteDecorator.decorate(Hotels);
         homeFrame.setVisible(true);
+        TextFileController textFileController=new TextFileController();
+        userName=textFileController.readFile();
 
     }
 
@@ -43,9 +44,7 @@ public class HomePage {
     private void loginActionPerformed(ActionEvent e) {
         com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController,LoginField);
 
-//        if(!login.getUserName().equalsIgnoreCase("")) {
-//            this.userName=login.getUserName();
-//        }
+
         if(login.returnLoginStatus()==1) {
             loginSuccess=0;
             homeFrame.dispose();
