@@ -17,10 +17,10 @@ public class DataBaseController {
 
     private String hotelsTableNAME ="hotelsDatabase";
     private String hotelsTableCOLUMNS ="(UniqueId TEXT,HotelName TEXT,HotelDescription TEXT,State TEXT,City TEXT,Address TEXT," +
-            "Standard TEXT DEFAULT NA,StandardCapacity INTEGER DEFAULT 10,Deluxe TEXT DEFAULT NA,DeluxeCapacity INTEGER DEFAULT 10," +
-            "Suite TEXT DEFAULT NA,SuiteCapacity INTEGER DEFAULT 4,HomeImagePath TEXT,StarRating TEXT DEFAULT 1,NumberOfVotes INTEGER DEFAULT 0)";
-    private String hotelsInsertParameters=" (UniqueId,HotelName,HotelDescription,State,City,Address,Standard,StandardCapacity," +
-            "Deluxe,DelxeCapacity,Suite,SuiteCapacity)";
+            "Standard TEXT DEFAULT NA,StandardPrice TEXT DEFAULT NA,StandardCapacity INTEGER DEFAULT 10,Deluxe TEXT DEFAULT NA,DeluxePrice TEXT DEFAULT NA,DeluxeCapacity INTEGER DEFAULT 10," +
+            "Suite TEXT DEFAULT NA,SuitePrice TEXT DEFAULT NA,SuiteCapacity INTEGER DEFAULT 4,HomeImagePath TEXT,StarRating TEXT DEFAULT 1,NumberOfVotes INTEGER DEFAULT 0)";
+    private String hotelsInsertParameters=" (UniqueId,HotelName,HotelDescription,State,City,Address,Standard,StandardPrice,StandardCapacity," +
+            "Deluxe,DeluxePrice,DeluxeCapacity,Suite,SuitePrice,SuiteCapacity)";
 
     private String idTableName = "idDatabase";
     private String idTableColoumns = "(UserName TEXT NOT NULL PRIMARY KEY,Aadhar TEXT,PanCard TEXT)";
@@ -56,12 +56,12 @@ public class DataBaseController {
                 +dateOfBirth+"','"+address+"','"+email+"','"+idCard+"','"+phone+"')");
     }
 
-    public void addHotel (String uniqueId,String hotelName,String description,String state,String city,String address,String standard,String stcapacity
-                                        ,String deluxe,String delcapacity, String suite,String suitecapacity,String imagePath) throws SQLException {
+    public void addHotel (String uniqueId,String hotelName,String description,String state,String city,String address,String standard,String stdPrice,String stcapacity
+                                        ,String deluxe,String deluxePrice,String delcapacity, String suite,String suitePrice,String suitecapacity,String imagePath) throws SQLException {
 
-        statement.execute("INSERT INTO "+hotelsTableNAME+hotelsInsertParameters+"VALUES('"+uniqueId+"','"+hotelName+"','"+description+"','"+state+"','"+city+"','"
-                                            +address+"','"+standard+"','"+stcapacity+"','"+deluxe+"','"+delcapacity+"','"+suite+"','"+suitecapacity+
-                                            "','"+imagePath+"')");
+        statement.execute("INSERT INTO "+hotelsTableNAME+hotelsInsertParameters+"VALUES('"+uniqueId+"','"+hotelName+"','"+description+"','"+state
+                +"','"+city+"','" +address+"','"+standard+"','"+stdPrice+"','"+stcapacity+"','"+deluxe+"','"+deluxePrice+"','"+delcapacity+"','"
+                +suite+"','"+suitePrice+"','" +suitecapacity+ "','"+imagePath+"')");
     }
 
     public void addRating(String id,int rate) throws SQLException{
@@ -186,8 +186,8 @@ public class DataBaseController {
 
 
                 ElementsInHotelView elements=new ElementsInHotelView(resultSet.getString("UniqueId"),resultSet.getString("HotelName"),
-                        resultSet.getString("HotelDescription"),resultSet.getString("Standard"),resultSet.getInt("StandardCapacity"),
-                        resultSet.getString("Deluxe"),resultSet.getInt("DeluxeCapacity"),resultSet.getString("Suite"),resultSet.getInt("SuiteCapacity"),
+                        resultSet.getString("HotelDescription"),resultSet.getString("StandardPrice"),resultSet.getInt("StandardCapacity"),
+                        resultSet.getString("DeluxePrice"),resultSet.getInt("DeluxeCapacity"),resultSet.getString("SuitePrice"),resultSet.getInt("SuiteCapacity"),
                         resultSet.getString("HomeImagePath"),resultSet.getString("StarRating"),resultSet.getInt("NumberOfVotes"));
 
                 displayList.add(elements);
