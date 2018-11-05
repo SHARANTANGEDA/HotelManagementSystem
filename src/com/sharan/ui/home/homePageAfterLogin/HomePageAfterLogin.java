@@ -6,6 +6,7 @@ package com.sharan.ui.home.homePageAfterLogin;
 
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
 import com.sharan.ui.hotelView.hotelHome.HotelHomePageAfterLogin;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -45,6 +46,8 @@ public class HomePageAfterLogin {
 
 
         this.userName=userName;
+
+
 
 
 
@@ -400,22 +403,22 @@ public class HomePageAfterLogin {
         int value = (Integer) noOfRooms.getValue();
         roomsSelected=String.valueOf(value);
 
-//        System.out.println(userName);
-//        list.add(0,userName);
-//
-//        list.add(1,stateSelected);
-//        list.add(2,citySelected);
-//        list.add(3,checkInDate);
-//        list.add(4,checkOutDate);
-//        list.add(5,roomsSelected);
+        System.out.println(userName);
+        ArrayList<String> list=new ArrayList<>();
+        list.add(userName);
+        list.add(stateSelected);
+        list.add(citySelected);
+        list.add(checkInDate);
+        list.add(checkOutDate);
+        list.add(roomsSelected);
 
 
         dataBaseController.initialiseDatabase();
         dataBaseController.addAllotmentDetailsToDatabase(userName,stateSelected,citySelected,checkInDate,checkOutDate,roomsSelected);
         dataBaseController.closeDatabaseConnection();
 
-//        homePageAfterLogin.dispose();
-//        DisplaySelectedHotels displaySelectedHotels=new DisplaySelectedHotels(list,dataBaseController);
+        homePageAfterLogin.dispose();
+        DisplaySelectedHotels displaySelectedHotels=new DisplaySelectedHotels(list,dataBaseController);
 
     }
 
