@@ -26,6 +26,11 @@ public class SignUp {
     private String aadhar;
     private String pan;
     private String phn;
+
+    public String getName() {
+        return name;
+    }
+
     private String address;
     private String email;
     private int flag;

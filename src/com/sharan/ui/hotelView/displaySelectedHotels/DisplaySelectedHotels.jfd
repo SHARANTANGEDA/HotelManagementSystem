@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {comp label1::l::1436:x, comp menuBar1::l::1436:x}, space :::p}, seq l {space :p:177:p, comp scrollPane2:::p::p, space :p:30:p, comp scrollPane1:::p:1043:p, space ::180:x}}"
-			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::p, comp menuBar1:::p::p, par l {seq {space ::421:x, comp scrollPane2:::p::p, space :p:172:p}, seq l {space :::p, comp scrollPane1::::593:x, space :::p}}}}"
+			"$horizontalGroup": "par l {seq {par l {comp label1::l::1430:x, comp menuBar1::l::1430:x}, space :::p}, seq l {space :p:177:p, comp scrollPane2:::p::p, space ::138:x, comp scrollPane1:::p:1043:p, space :p:72:p}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::p, comp menuBar1:::p::p, par l {seq t {space :::p, comp scrollPane1::::587:x, space :::p}, seq l {space :89:421:x, comp scrollPane2:::p::p, space :p:172:p}}}}"
 		} ) {
 			name: "displayTable"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -517,6 +517,7 @@ new FormModel {
 					"autoCreateRowSorter": true
 					"fillsViewportHeight": true
 					"gridColor": new java.awt.Color( 0, 0, 0, 255 )
+					"inheritsPopupMenu": true
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {

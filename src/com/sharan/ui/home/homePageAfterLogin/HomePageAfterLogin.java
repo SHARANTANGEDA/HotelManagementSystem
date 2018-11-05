@@ -38,20 +38,15 @@ public class HomePageAfterLogin {
         this.dataBaseController=dataBaseController;
 
 
-        addtoStateComboBox(StateField);
-        addtoCityComboBox(CityField);
-        checkInDate=getDate(checkInField);
-        checkOutDate=getDate(checkOutField);
-        try {
-            noOfRooms.commitEdit();
-        } catch ( java.text.ParseException e ) {
-            System.out.println(e.getMessage());
-        }
-        int value = (Integer) noOfRooms.getValue();
-        this.userName=userName;
-        roomsSelected=String.valueOf(value);
 
         initComponents();
+
+        addtoStateComboBox(StateField);
+
+
+
+        this.userName=userName;
+
 
         AutoCompleteDecorator.decorate(StateField);
         AutoCompleteDecorator.decorate(CityField);
@@ -69,30 +64,35 @@ public class HomePageAfterLogin {
 
     private void addtoCityComboBox(JComboBox<String> cityField) {
         if(stateSelected.equalsIgnoreCase("Telangana")) {
+            cityField.removeAllItems();
             cityField.addItem("Hyderabad");
             cityField.addItem("Warangal");
             cityField.addItem("KarimNagar");
             cityField.addItem("Kammam");
         }
         else if(stateSelected.equalsIgnoreCase("AndhraPradesh")) {
+            cityField.removeAllItems();
             cityField.addItem("Tirupati");
             cityField.addItem("Vijayawada");
             cityField.addItem("Vishakapatnam");
             cityField.addItem("Guntur");
         }
         else if (stateSelected.equalsIgnoreCase("Maharastra")) {
+            cityField.removeAllItems();
             cityField.addItem("Aurangabad");
             cityField.addItem("Mumbai");
             cityField.addItem("Nagpur");
             cityField.addItem("Pune");
         }
         else if(stateSelected.equalsIgnoreCase("NewDelhi")) {
+            cityField.removeAllItems();
             cityField.addItem("Panipat");
             cityField.addItem("NewDelhi");
             cityField.addItem("Gurgaon");
             cityField.addItem("Faridabad");
         }
         else if (stateSelected.equalsIgnoreCase("")) {
+            cityField.removeAllItems();
             cityField.addItem("Select State First");
         }
     }
@@ -389,12 +389,24 @@ public class HomePageAfterLogin {
 
 
     private void SearchBottomActionPerformed(ActionEvent e) {
-        list.add(userName);
-        list.add(stateSelected);
-        list.add(citySelected);
-        list.add(checkInDate);
-        list.add(checkOutDate);
-        list.add(roomsSelected);
+
+        checkInDate=getDate(checkInField);
+        checkOutDate=getDate(checkOutField);
+        try {
+            noOfRooms.commitEdit();
+        } catch ( java.text.ParseException exception ) {
+            System.out.println(exception.getMessage());
+        }
+        int value = (Integer) noOfRooms.getValue();
+        roomsSelected=String.valueOf(value);
+
+        System.out.println(userName);
+        list.add(0,userName);
+        list.add(1,stateSelected);
+        list.add(2,citySelected);
+        list.add(3,checkInDate);
+        list.add(4,checkOutDate);
+        list.add(5,roomsSelected);
 
         dataBaseController.initialiseDatabase();
         dataBaseController.addAllotmentDetailsToDatabase(list);
@@ -406,6 +418,8 @@ public class HomePageAfterLogin {
 
     private void StateFieldItemStateChanged(ItemEvent e) {
         stateSelected=e.getItem().toString();
+        addtoCityComboBox(CityField);
+
     }
 
     private void CityFieldItemStateChanged(ItemEvent e) {

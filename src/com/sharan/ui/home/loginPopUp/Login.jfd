@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp label1::l::760:x, seq {par l {seq {space :p:48:p, par l:::p {comp label2::::225:x, comp label3::::225:x}, space s:::p, par l {comp textField1:::p:245:p, comp passwordField1:::p:245:p}}, seq l {space :p:199:p, comp button1:::p:197:p}}, space ::224:x}}"
-			"$verticalGroup": "par l {seq {comp label1:::p::p, space :p:64:p, par b {comp label2::b:p:45:p, comp textField1::b:p:45:p}, space s:::p, par b {comp label3::b:p:40:p, comp passwordField1::b:p:40:p}, space :p:48:p, comp button1:::p:44:p, space ::176:x}}"
+			"$horizontalGroup": "par l {comp label1::l::592:x, seq {space :p:48:p, par l:::p {comp label2::::225:x, comp label3::::225:x}, space s:::p, par l {comp userNameField:::p:245:p, comp passwordField1:::p:245:p}, space ::56:x}, seq t {space ::153:x, comp button1:::p:197:p, space :p:242:p}}"
+			"$verticalGroup": "par l {seq {comp label1:::p::p, space :p:64:p, par b {comp label2::b:p:45:p, comp userNameField::b:p:45:p}, space s:::p, par b {comp label3::b:p:40:p, comp passwordField1::b:p:40:p}, space :p:89:p, comp button1:::p:44:p, space ::135:x}}"
 		} ) {
 			name: "Login"
 			"minimumSize": new java.awt.Dimension( 10, 25 )
@@ -21,6 +21,7 @@ new FormModel {
 				"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
 				"border": new javax.swing.plaf.BorderUIResource$CompoundBorderUIResource( new javax.swing.plaf.metal.MetalBorders$TextFieldBorder, new javax.swing.plaf.basic.BasicBorders$MarginBorder )
 				"background": sfield java.awt.Color yellow
+				"opaque": true
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
@@ -29,7 +30,7 @@ new FormModel {
 				"background": new java.awt.Color( 0, 155, 0, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textField1"
+				name: "userNameField"
 				"font": new java.awt.Font( "Arial", 0, 18 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -50,8 +51,8 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 40, 55 )
-			"size": new java.awt.Dimension( 610, 415 )
+			"location": new java.awt.Point( 0, 55 )
+			"size": new java.awt.Dimension( 475, 415 )
 		} )
 	}
 }

@@ -161,8 +161,10 @@ public class DisplaySelectedHotels {
 
 
 
-
-
+//
+//private void addRowsToTable(JTable table) {
+//        table.
+//}
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -776,6 +778,7 @@ public class DisplaySelectedHotels {
                 displayHotelTable.setAutoCreateRowSorter(true);
                 displayHotelTable.setFillsViewportHeight(true);
                 displayHotelTable.setGridColor(Color.black);
+                displayHotelTable.setInheritsPopupMenu(true);
                 scrollPane1.setViewportView(displayHotelTable);
             }
 
@@ -785,15 +788,15 @@ public class DisplaySelectedHotels {
                 displayTableContentPaneLayout.createParallelGroup()
                     .addGroup(displayTableContentPaneLayout.createSequentialGroup()
                         .addGroup(displayTableContentPaneLayout.createParallelGroup()
-                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
-                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE))
+                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, 1430, Short.MAX_VALUE)
+                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1430, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(displayTableContentPaneLayout.createSequentialGroup()
                         .addGap(177, 177, 177)
                         .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1043, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(180, Short.MAX_VALUE))
+                        .addGap(72, 72, 72))
             );
             displayTableContentPaneLayout.setVerticalGroup(
                 displayTableContentPaneLayout.createParallelGroup()
@@ -802,14 +805,14 @@ public class DisplaySelectedHotels {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGroup(displayTableContentPaneLayout.createParallelGroup()
-                            .addGroup(displayTableContentPaneLayout.createSequentialGroup()
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
-                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(172, 172, 172))
-                            .addGroup(displayTableContentPaneLayout.createSequentialGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, displayTableContentPaneLayout.createSequentialGroup()
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
-                                .addContainerGap())))
+                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                                .addContainerGap())
+                            .addGroup(displayTableContentPaneLayout.createSequentialGroup()
+                                .addGap(89, 421, Short.MAX_VALUE)
+                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(172, 172, 172))))
             );
             displayTable.pack();
             displayTable.setLocationRelativeTo(displayTable.getOwner());

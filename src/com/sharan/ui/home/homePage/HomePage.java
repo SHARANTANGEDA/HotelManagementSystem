@@ -23,6 +23,7 @@ import static com.sharan.Main.signUpSuccess;
 public class HomePage {
 
     private DataBaseController dataBaseController;
+    private String userName="notLoaded";
 
     public HomePage(DataBaseController dataBaseController) {
 
@@ -42,10 +43,13 @@ public class HomePage {
     private void loginActionPerformed(ActionEvent e) {
         com.sharan.ui.home.loginPopUp.Login login=new Login(dataBaseController,LoginField);
 
+//        if(!login.getUserName().equalsIgnoreCase("")) {
+//            this.userName=login.getUserName();
+//        }
         if(login.returnLoginStatus()==1) {
             loginSuccess=0;
             homeFrame.dispose();
-            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
+            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
             login.getLogin().dispose();
 
         }
@@ -57,7 +61,7 @@ public class HomePage {
         if(signUpSuccess==1) {
             signUpSuccess=0;
             homeFrame.dispose();
-            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(dataBaseController);
+            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(signUp.getName(),dataBaseController);
             signUp.getSignUp().dispose();
         }
     }

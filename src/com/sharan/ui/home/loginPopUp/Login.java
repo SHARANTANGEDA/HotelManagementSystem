@@ -12,27 +12,27 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import static com.sharan.Main.loginSuccess;
-import static com.sharan.Main.signUpSuccess;
 
 public class Login extends JPanel {
 
     private DataBaseController dataBaseController;
     private JButton tobeClicked;
+    private String userName="notLoaded";
 
     public int returnLoginStatus() {
         return loginSuccess;
     }
 
-    public int returnSignUpSuccess() {
-        return signUpSuccess;
-    }
+
     public JDialog getLogin() {
         return Login;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
-
-    public Login(DataBaseController dataBaseController,JButton tobeClicked) {
+    public Login(DataBaseController dataBaseController, JButton tobeClicked) {
         this.dataBaseController = dataBaseController;
         this.tobeClicked=tobeClicked;
         initComponents();
@@ -41,14 +41,14 @@ public class Login extends JPanel {
     }
 
     private void button1ActionPerformed(ActionEvent e) {
-        String username = textField1.getText();
+        String username = userNameField.getText();
+//        if(!username.equalsIgnoreCase("")) {
+//            this.userName=username;
+//        }
         PasswordHashing passwordHashing = new PasswordHashing();
         String password =passwordHashing.hashPassword(passwordField1.getText());
         // System.out.println(password);
         verify(username,password);
-    }
-    private void button2ActionPerformed(ActionEvent e) {
-        // TODO add your code here
     }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -56,7 +56,7 @@ public class Login extends JPanel {
         Login = new JDialog();
         label1 = new JLabel();
         label2 = new JLabel();
-        textField1 = new JTextField();
+        userNameField = new JTextField();
         label3 = new JLabel();
         passwordField1 = new JPasswordField();
         button1 = new JButton();
@@ -76,14 +76,15 @@ public class Login extends JPanel {
             label1.setHorizontalAlignment(SwingConstants.CENTER);
             label1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
             label1.setBackground(Color.yellow);
+            label1.setOpaque(true);
 
             //---- label2 ----
             label2.setText("USERNAME");
             label2.setFont(new Font("Comic Sans MS", Font.ITALIC, 24));
             label2.setBackground(new Color(0, 155, 0));
 
-            //---- textField1 ----
-            textField1.setFont(new Font("Arial", Font.PLAIN, 18));
+            //---- userNameField ----
+            userNameField.setFont(new Font("Arial", Font.PLAIN, 18));
 
             //---- label3 ----
             label3.setText("PASSWORD");
@@ -103,22 +104,21 @@ public class Login extends JPanel {
             LoginContentPane.setLayout(LoginContentPaneLayout);
             LoginContentPaneLayout.setHorizontalGroup(
                 LoginContentPaneLayout.createParallelGroup()
-                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                     .addGroup(LoginContentPaneLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(LoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label2, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(label3, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(LoginContentPaneLayout.createParallelGroup()
-                            .addGroup(LoginContentPaneLayout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(LoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(label2, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                    .addComponent(label3, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(LoginContentPaneLayout.createParallelGroup()
-                                    .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(LoginContentPaneLayout.createSequentialGroup()
-                                .addGap(199, 199, 199)
-                                .addComponent(button1, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(224, Short.MAX_VALUE))
+                            .addComponent(userNameField, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(56, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, LoginContentPaneLayout.createSequentialGroup()
+                        .addContainerGap(153, Short.MAX_VALUE)
+                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
+                        .addGap(242, 242, 242))
             );
             LoginContentPaneLayout.setVerticalGroup(
                 LoginContentPaneLayout.createParallelGroup()
@@ -127,14 +127,14 @@ public class Login extends JPanel {
                         .addGap(64, 64, 64)
                         .addGroup(LoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label2, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(userNameField, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(LoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label3, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
+                        .addGap(89, 89, 89)
                         .addComponent(button1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(176, Short.MAX_VALUE))
+                        .addContainerGap(135, Short.MAX_VALUE))
             );
             Login.pack();
             Login.setLocationRelativeTo(Login.getOwner());
@@ -147,7 +147,7 @@ public class Login extends JPanel {
     private JDialog Login;
     private JLabel label1;
     private JLabel label2;
-    private JTextField textField1;
+    private JTextField userNameField;
     private JLabel label3;
     private JPasswordField passwordField1;
     private JButton button1;
