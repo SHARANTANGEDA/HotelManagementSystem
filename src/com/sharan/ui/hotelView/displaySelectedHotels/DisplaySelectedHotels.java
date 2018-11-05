@@ -5,7 +5,8 @@
 package com.sharan.ui.hotelView.displaySelectedHotels;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class DisplaySelectedHotels {
 
     public DisplaySelectedHotels(ArrayList<String> list) {
         initComponents();
+
     }
 
     private void itckohenurActionPerformed(ActionEvent e) {
@@ -263,8 +265,15 @@ public class DisplaySelectedHotels {
         profile = new JMenu();
         Logout = new JMenuItem();
         scrollPane1 = new JScrollPane();
-        displayHotelTable = new JTable();
-        scrollPane2 = new JScrollPane();
+        homePanel = new JPanel();
+        panel6 = new JPanel();
+        label2 = new JLabel();
+        label3 = new JLabel();
+        label4 = new JLabel();
+        label5 = new JLabel();
+        label6 = new JLabel();
+        label7 = new JLabel();
+        label8 = new JLabel();
 
         //======== displayTable ========
         {
@@ -759,27 +768,119 @@ public class DisplaySelectedHotels {
             //======== scrollPane1 ========
             {
 
-                //---- displayHotelTable ----
-                displayHotelTable.setFont(new Font("Georgia", Font.BOLD, 16));
-                displayHotelTable.setCellSelectionEnabled(true);
-                displayHotelTable.setModel(new DefaultTableModel(
-                    new Object[][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                    },
-                    new String[] {
-                        "HotelName", "NumberOfRoomsSelected", "StandardPriceForTotalDays", "DeluxePriceForTotalDays", "SuitePriceForTotalDays"
+                //======== homePanel ========
+                {
+
+                    // JFormDesigner evaluation mark
+                    homePanel.setBorder(new javax.swing.border.CompoundBorder(
+                        new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                            "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                            java.awt.Color.red), homePanel.getBorder())); homePanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+
+
+                    //======== panel6 ========
+                    {
+                        panel6.setBorder(new MatteBorder(1, 1, 1, 1, Color.black));
+
+                        //---- label2 ----
+                        label2.setText("__IMAGE HERE___");
+                        label2.setHorizontalAlignment(SwingConstants.CENTER);
+                        label2.setBorder(LineBorder.createBlackLineBorder());
+
+                        //---- label3 ----
+                        label3.setText("text");
+                        label3.setBorder(LineBorder.createBlackLineBorder());
+
+                        //---- label4 ----
+                        label4.setText("text");
+                        label4.setBorder(LineBorder.createBlackLineBorder());
+
+                        //---- label5 ----
+                        label5.setText("text");
+                        label5.setBorder(LineBorder.createBlackLineBorder());
+
+                        //---- label6 ----
+                        label6.setText("text");
+                        label6.setBorder(LineBorder.createBlackLineBorder());
+
+                        //---- label7 ----
+                        label7.setText("text");
+                        label7.setBorder(LineBorder.createBlackLineBorder());
+
+                        //---- label8 ----
+                        label8.setText("text");
+                        label8.setBorder(LineBorder.createBlackLineBorder());
+
+                        GroupLayout panel6Layout = new GroupLayout(panel6);
+                        panel6.setLayout(panel6Layout);
+                        panel6Layout.setHorizontalGroup(
+                            panel6Layout.createParallelGroup()
+                                .addGroup(panel6Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(349, 349, 349)
+                                    .addGroup(panel6Layout.createParallelGroup()
+                                        .addGroup(panel6Layout.createSequentialGroup()
+                                            .addComponent(label3, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panel6Layout.createSequentialGroup()
+                                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panel6Layout.createSequentialGroup()
+                                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
+                                    .addContainerGap(467, Short.MAX_VALUE))
+                        );
+                        panel6Layout.setVerticalGroup(
+                            panel6Layout.createParallelGroup()
+                                .addGroup(panel6Layout.createSequentialGroup()
+                                    .addContainerGap(19, Short.MAX_VALUE)
+                                    .addGroup(panel6Layout.createParallelGroup()
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
+                                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
+                                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(panel6Layout.createParallelGroup()
+                                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(panel6Layout.createSequentialGroup()
+                                                    .addGap(1, 1, 1)
+                                                    .addComponent(label6, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(panel6Layout.createParallelGroup()
+                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(panel6Layout.createSequentialGroup()
+                                                    .addGap(1, 1, 1)
+                                                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(54, 54, 54))))
+                        );
                     }
-                ));
-                displayHotelTable.setRowHeight(140);
-                displayHotelTable.setRowMargin(5);
-                displayHotelTable.setAutoCreateRowSorter(true);
-                displayHotelTable.setFillsViewportHeight(true);
-                displayHotelTable.setGridColor(Color.black);
-                displayHotelTable.setInheritsPopupMenu(true);
-                scrollPane1.setViewportView(displayHotelTable);
+
+                    GroupLayout homePanelLayout = new GroupLayout(homePanel);
+                    homePanel.setLayout(homePanelLayout);
+                    homePanelLayout.setHorizontalGroup(
+                        homePanelLayout.createParallelGroup()
+                            .addGroup(homePanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panel6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(26, Short.MAX_VALUE))
+                    );
+                    homePanelLayout.setVerticalGroup(
+                        homePanelLayout.createParallelGroup()
+                            .addGroup(homePanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panel6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(280, Short.MAX_VALUE))
+                    );
+                }
+                scrollPane1.setViewportView(homePanel);
             }
 
             GroupLayout displayTableContentPaneLayout = new GroupLayout(displayTableContentPane);
@@ -788,15 +889,10 @@ public class DisplaySelectedHotels {
                 displayTableContentPaneLayout.createParallelGroup()
                     .addGroup(displayTableContentPaneLayout.createSequentialGroup()
                         .addGroup(displayTableContentPaneLayout.createParallelGroup()
-                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, 1430, Short.MAX_VALUE)
-                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1430, Short.MAX_VALUE))
+                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE))
                         .addContainerGap())
-                    .addGroup(displayTableContentPaneLayout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1043, GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72))
             );
             displayTableContentPaneLayout.setVerticalGroup(
                 displayTableContentPaneLayout.createParallelGroup()
@@ -804,15 +900,9 @@ public class DisplaySelectedHotels {
                         .addComponent(label1)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(displayTableContentPaneLayout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, displayTableContentPaneLayout.createSequentialGroup()
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
-                                .addContainerGap())
-                            .addGroup(displayTableContentPaneLayout.createSequentialGroup()
-                                .addGap(89, 421, Short.MAX_VALUE)
-                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(172, 172, 172))))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+                        .addContainerGap())
             );
             displayTable.pack();
             displayTable.setLocationRelativeTo(displayTable.getOwner());
@@ -916,7 +1006,14 @@ public class DisplaySelectedHotels {
     private JMenu profile;
     private JMenuItem Logout;
     private JScrollPane scrollPane1;
-    private JTable displayHotelTable;
-    private JScrollPane scrollPane2;
+    private JPanel homePanel;
+    private JPanel panel6;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
+    private JLabel label5;
+    private JLabel label6;
+    private JLabel label7;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

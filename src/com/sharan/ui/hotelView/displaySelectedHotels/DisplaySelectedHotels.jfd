@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {comp label1::l::1430:x, comp menuBar1::l::1430:x}, space :::p}, seq l {space :p:177:p, comp scrollPane2:::p::p, space ::138:x, comp scrollPane1:::p:1043:p, space :p:72:p}}"
-			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::p, comp menuBar1:::p::p, par l {seq t {space :::p, comp scrollPane1::::587:x, space :::p}, seq l {space :89:421:x, comp scrollPane2:::p::p, space :p:172:p}}}}"
+			"$horizontalGroup": "par l {seq {par l {comp label1::l:::x, comp menuBar1::l:::x, comp scrollPane1::l::1436:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::p, comp menuBar1:::p::p, space :::p, comp scrollPane1::::593:x, space :::p}}"
 		} ) {
 			name: "displayTable"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -454,74 +454,55 @@ new FormModel {
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
-				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "displayHotelTable"
-					"font": new java.awt.Font( "Georgia", 1, 16 )
-					"cellSelectionEnabled": true
-					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
-						add( new java.util.Vector {
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp panel6:::p::p, space ::26:x}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp panel6:::p::p, space ::280:x}}"
+				} ) {
+					name: "homePanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {space :::p, comp label2:::p:350:p, space :p:349:p, par l {seq l {comp label3:::p:175:p, space s:::p, comp label4:::p:37:p}, seq l {comp label5:::p:175:p, space :18:18:p, comp label6:::p:37:p}, seq l {comp label7:::p:175:p, space :18:18:p, comp label8:::p:37:p}}, space ::467:x}}"
+						"$verticalGroup": "par l {seq {space ::19:x, par l {seq t {comp label2:::p:268:p, space :p:18:p}, seq t {par b {comp label3::b:p:40:p, comp label4::b:p:38:p}, space s:::p, par l {comp label5:::p:40:p, seq l {space :1:1:p, comp label6:::p:38:p}}, space s:::p, par l {comp label7:::p:40:p, seq l {space :1:1:p, comp label8:::p:38:p}}, space :p:54:p}}}}"
+					} ) {
+						name: "panel6"
+						"border": new javax.swing.border.MatteBorder( 1, 1, 1, 1, sfield java.awt.Color black )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label2"
+							"text": "__IMAGE HERE___"
+							"horizontalAlignment": 0
+							"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
 						} )
-						add( new java.util.Vector {
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label3"
+							"text": "text"
+							"border": #LineBorder0
 						} )
-						add( new java.util.Vector {
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label4"
+							"text": "text"
+							"border": #LineBorder0
 						} )
-						add( new java.util.Vector {
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label5"
+							"text": "text"
+							"border": #LineBorder0
 						} )
-					}, new java.util.Vector {
-						add( "HotelName" )
-						add( "NumberOfRoomsSelected" )
-						add( "StandardPriceForTotalDays" )
-						add( "DeluxePriceForTotalDays" )
-						add( "SuitePriceForTotalDays" )
-					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label6"
+							"text": "text"
+							"border": #LineBorder0
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label7"
+							"text": "text"
+							"border": #LineBorder0
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label8"
+							"text": "text"
+							"border": #LineBorder0
+						} )
 					} )
-					"rowHeight": 140
-					"rowMargin": 5
-					"autoCreateRowSorter": true
-					"fillsViewportHeight": true
-					"gridColor": new java.awt.Color( 0, 0, 0, 255 )
-					"inheritsPopupMenu": true
 				} )
-			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane2"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
