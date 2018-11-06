@@ -481,6 +481,8 @@ new FormModel {
 				name: "checkInField"
 				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 0, 6, false )
 				"toolTipText": "CheckIN"
+				"inheritsPopupMenu": true
+				"opaque": true
 			} )
 			add( new FormComponent( "org.jdesktop.swingx.JXDatePicker" ) {
 				name: "checkOutField"

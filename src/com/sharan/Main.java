@@ -13,6 +13,24 @@ public class Main {
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
         HomePage homePage=new HomePage(dataBaseController);
+//        MyAccount myAccount=new MyAccount();
+//        ArrayList<String> list=new ArrayList<>();
+//        list.add("final");
+//        list.add("helo");
+//        list.add("idjlvw");
+//        list.add("status");
+//        list.add("checkIndate");
+//        list.add("checkoufa");
+//        list.add("4");
+//        list.add("2");
+//        list.add("7");
+//        list.add("Address");
+//        list.add("3500");
+//
+//        String path="/home/sharan/Desktop";
+//        PDFGenerator pdfGenerator=new PDFGenerator(list,path);
+//        PDFSaveFileChooser pdfSaveFileChooser=new PDFSaveFileChooser();
+
         dataBaseController.closeDatabaseConnection();
 
 

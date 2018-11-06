@@ -63,7 +63,7 @@ public class DisplaySelectedHotels {
 
 
         initComponents();
-
+        addToUniversalHotelSearch();
         dataBaseController.initialiseDatabase();
         ArrayList<ElementsInHotelView> displayList=dataBaseController.getHotelsBasedOnAllotmentDetails(list);
         dataBaseController.closeDatabaseConnection();
@@ -236,6 +236,15 @@ public class DisplaySelectedHotels {
         AutoCompleteDecorator.decorate(Hotels);
 
 
+    }
+
+    private void addToUniversalHotelSearch() {
+        dataBaseController.initialiseDatabase();
+        ArrayList<String> list=dataBaseController.getUniversalSearchData();
+        dataBaseController.closeDatabaseConnection();
+        for(String str:list) {
+            Hotels.addItem(str);
+        }
     }
 
     private void itckohenurActionPerformed(ActionEvent e) {
@@ -477,7 +486,7 @@ public class DisplaySelectedHotels {
         THEONEHOTEL = new JMenuItem();
         HotelAtithi = new JMenuItem();
         separator2 = new JSeparator();
-        Hotels = new JComboBox();
+        Hotels = new JComboBox<String>();
         Search = new JButton();
         separator1 = new JSeparator();
         profile = new JMenu();
@@ -1724,7 +1733,7 @@ public class DisplaySelectedHotels {
     private JMenuItem THEONEHOTEL;
     private JMenuItem HotelAtithi;
     private JSeparator separator2;
-    private JComboBox Hotels;
+    private JComboBox<String> Hotels;
     private JButton Search;
     private JSeparator separator1;
     private JMenu profile;

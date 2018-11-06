@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:156:p, comp label1:::p:293:p}, seq l {space :p:223:p, comp redirectLogin:::p:152:p}, seq l {space :p:224:p, comp redirectSignUp:::p:152:p}, seq l {space :p:42:p, comp textField1:::p:521:p}}, space ::66:x}}"
-			"$verticalGroup": "par l {seq l {comp label1:::p:57:p, space :p:51:p, comp redirectLogin:::p:57:p, space u:::p, comp textField1:::p:29:p, space ::8:x, comp redirectSignUp:::p:57:p}}"
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:156:p, comp label1:::p:293:p}, seq l {space :p:223:p, comp redirectLogin:::p:152:p}, seq l {space :p:224:p, comp redirectSignUp:::p:152:p}, seq l {space :p:58:p, comp label2:::p:521:p}}, space ::50:x}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p:57:p, space :p:51:p, comp redirectLogin:::p:57:p, space :::p, comp label2::::32:x, space :p:11:p, comp redirectSignUp:::p:57:p}}"
 		} ) {
 			name: "loginToContinue"
 			"defaultCloseOperation": 2
@@ -24,17 +24,15 @@ new FormModel {
 				"font": &Font0 new java.awt.Font( "Comic Sans MS", 0, 24 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "redirectLoginActionPerformed", true ) )
 			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textField1"
-				"text": "Don't have an account yet?,No problem click the button below to signUp"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
-				"background": new com.jformdesigner.model.SwingColor( "window" )
-			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "redirectSignUp"
 				"text": "SignUp"
 				"font": #Font0
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "redirectSignUpActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Don't have an account Yet?,No problem click the button below to signUp"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 46, 30 )

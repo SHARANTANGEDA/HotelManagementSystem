@@ -4,7 +4,6 @@
 
 package com.sharan.ui.hotelView.hotelHomeAfterLogin;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.hotelView.hotelHome.beforeLogin.HotelHomePageBeforeLogin;
 import com.sharan.ui.hotelView.hotelHome.rating.Rating;
@@ -56,6 +55,7 @@ public class HotelHomeAfterLogin {
         dataBaseController.closeDatabaseConnection();
 
         initComponents();
+        addToUniversalHotelSearch();
         hotelPhoto.setIcon(new ImageIcon(getClass().getResource(hotelMainImagePath)));
         ratingLabel.setIcon(new ImageIcon(getClass().getResource(starRatingPath)));
         contactDetails.setText(address);
@@ -65,6 +65,15 @@ public class HotelHomeAfterLogin {
 
         individualHotelHome.setVisible(true);
 
+    }
+
+    private void addToUniversalHotelSearch() {
+        dataBaseController.initialiseDatabase();
+        ArrayList<String> list=dataBaseController.getUniversalSearchData();
+        dataBaseController.closeDatabaseConnection();
+        for(String str:list) {
+            Hotels.addItem(str);
+        }
     }
 
     private void itckohenurActionPerformed(ActionEvent e) {

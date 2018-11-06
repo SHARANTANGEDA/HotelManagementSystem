@@ -4,6 +4,7 @@
 
 package com.sharan.ui.hotelView.hotelHome.beforeLogin.loginToContinueDialog;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.loginPopUp.Login;
 import com.sharan.ui.home.signUpPopUp.SignUp;
@@ -62,8 +63,8 @@ public class LoginToContinue {
         loginToContinue = new JDialog();
         label1 = new JLabel();
         redirectLogin = new JButton();
-        textField1 = new JTextField();
         redirectSignUp = new JButton();
+        label2 = new JLabel();
 
         //======== loginToContinue ========
         {
@@ -83,15 +84,13 @@ public class LoginToContinue {
             redirectLogin.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
             redirectLogin.addActionListener(e -> redirectLoginActionPerformed(e));
 
-            //---- textField1 ----
-            textField1.setText("Don't have an account yet?,No problem click the button below to signUp");
-            textField1.setFont(textField1.getFont().deriveFont(textField1.getFont().getSize() + 2f));
-            textField1.setBackground(UIManager.getColor("window"));
-
             //---- redirectSignUp ----
             redirectSignUp.setText("SignUp");
             redirectSignUp.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
             redirectSignUp.addActionListener(e -> redirectSignUpActionPerformed(e));
+
+            //---- label2 ----
+            label2.setText("Don't have an account Yet?,No problem click the button below to signUp");
 
             GroupLayout loginToContinueContentPaneLayout = new GroupLayout(loginToContinueContentPane);
             loginToContinueContentPane.setLayout(loginToContinueContentPaneLayout);
@@ -109,9 +108,9 @@ public class LoginToContinue {
                                 .addGap(224, 224, 224)
                                 .addComponent(redirectSignUp, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
                             .addGroup(loginToContinueContentPaneLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 521, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(66, Short.MAX_VALUE))
+                                .addGap(58, 58, 58)
+                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 521, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(50, Short.MAX_VALUE))
             );
             loginToContinueContentPaneLayout.setVerticalGroup(
                 loginToContinueContentPaneLayout.createParallelGroup()
@@ -119,9 +118,9 @@ public class LoginToContinue {
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(redirectLogin, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label2, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addGap(11, 11, 11)
                         .addComponent(redirectSignUp, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
             );
             loginToContinue.pack();
@@ -135,7 +134,7 @@ public class LoginToContinue {
     private JDialog loginToContinue;
     private JLabel label1;
     private JButton redirectLogin;
-    private JTextField textField1;
     private JButton redirectSignUp;
+    private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

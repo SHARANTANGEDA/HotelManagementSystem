@@ -14,6 +14,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.signUpSuccess;
@@ -28,13 +29,21 @@ public class HomePage {
 
         this.dataBaseController=dataBaseController;
         initComponents();
+        addToUniversalHotelSearch();
         AutoCompleteDecorator.decorate(Hotels);
         homeFrame.setVisible(true);
         TextFileController textFileController=new TextFileController();
         userName=textFileController.readFile();
 
     }
-
+    private void addToUniversalHotelSearch() {
+        dataBaseController.initialiseDatabase();
+        ArrayList<String> list=dataBaseController.getUniversalSearchData();
+        dataBaseController.closeDatabaseConnection();
+        for(String str:list) {
+            Hotels.addItem(str);
+        }
+    }
 
 
     public JButton getLogin() {
@@ -296,6 +305,8 @@ public class HomePage {
         homePagePhoto = new JLabel();
         LoginField = new JButton();
         SignUpField = new JButton();
+        scrollPane1 = new JScrollPane();
+        textPane1 = new JTextPane();
 
         //======== homeFrame ========
         {
@@ -757,7 +768,7 @@ public class HomePage {
                 //---- Hotels ----
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
-                Hotels.setMaximumSize(new Dimension(500, 50));
+                Hotels.setMaximumSize(new Dimension(600, 50));
                 menuBar1.add(Hotels);
 
                 //---- Search ----
@@ -783,6 +794,15 @@ public class HomePage {
             SignUpField.setFont(new Font("Dialog", Font.BOLD, 22));
             SignUpField.addActionListener(e -> signUpActionPerformed(e));
 
+            //======== scrollPane1 ========
+            {
+
+                //---- textPane1 ----
+                textPane1.setBackground(new Color(238, 238, 238));
+                textPane1.setText("BASIC INTRO HERE");
+                scrollPane1.setViewportView(textPane1);
+            }
+
             GroupLayout homeFrameContentPaneLayout = new GroupLayout(homeFrameContentPane);
             homeFrameContentPane.setLayout(homeFrameContentPaneLayout);
             homeFrameContentPaneLayout.setHorizontalGroup(
@@ -792,13 +812,18 @@ public class HomePage {
                         .addGroup(homeFrameContentPaneLayout.createParallelGroup()
                             .addComponent(applicationName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
-                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                                .addGap(6, 6, 6)
+                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 1151, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                                 .addComponent(LoginField)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SignUpField, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addComponent(homePagePhoto, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1448, Short.MAX_VALUE)
+                    .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1292, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(130, Short.MAX_VALUE))
             );
             homeFrameContentPaneLayout.setVerticalGroup(
                 homeFrameContentPaneLayout.createParallelGroup()
@@ -806,13 +831,19 @@ public class HomePage {
                         .addContainerGap()
                         .addComponent(applicationName, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(homeFrameContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(menuBar1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LoginField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SignUpField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(homeFrameContentPaneLayout.createParallelGroup()
+                            .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                .addGap(6, 6, 6))
+                            .addGroup(homeFrameContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(LoginField, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                                .addComponent(SignUpField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(21, 21, 21)
                         .addComponent(homePagePhoto, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(372, Short.MAX_VALUE))
+                        .addGap(47, 47, 47)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(35, Short.MAX_VALUE))
             );
             homeFrame.pack();
             homeFrame.setLocationRelativeTo(homeFrame.getOwner());
@@ -915,5 +946,7 @@ public class HomePage {
     private JLabel homePagePhoto;
     private JButton LoginField;
     private JButton SignUpField;
+    private JScrollPane scrollPane1;
+    private JTextPane textPane1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

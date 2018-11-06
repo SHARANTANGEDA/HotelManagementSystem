@@ -42,6 +42,7 @@ public class HomePageAfterLogin {
         initComponents();
 
         addtoStateComboBox(StateField);
+        addToUniversalHotelSearch();
 
 
 
@@ -49,13 +50,24 @@ public class HomePageAfterLogin {
 
 
 
-
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        checkInField.setFormats(dateFormat);
+        checkOutField.setFormats(dateFormat);
 
         AutoCompleteDecorator.decorate(StateField);
         AutoCompleteDecorator.decorate(CityField);
         AutoCompleteDecorator.decorate(Hotels);
         homePageAfterLogin.setVisible(true);
 
+    }
+
+    private void addToUniversalHotelSearch() {
+        dataBaseController.initialiseDatabase();
+        ArrayList<String> list=dataBaseController.getUniversalSearchData();
+        dataBaseController.closeDatabaseConnection();
+        for(String str:list) {
+            Hotels.addItem(str);
+        }
     }
 
     private void addtoStateComboBox(JComboBox<String> stateField) {
@@ -101,15 +113,14 @@ public class HomePageAfterLogin {
     }
 
     private String getDate(JXDatePicker checkField) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        checkField.setFormats(dateFormat);
+
         String unparsedDate=checkField.getDate().toString();
 
-        StringBuilder sb=new StringBuilder();
         String date=unparsedDate.substring(4,7);
         String month=unparsedDate.substring(8,10);
         String year=unparsedDate.substring(24,28);
 
+        StringBuilder sb=new StringBuilder();
         sb.append(date);
         sb.append("/");
         sb.append(month);
@@ -137,12 +148,7 @@ public class HomePageAfterLogin {
     }
 
     private void HotelsItemStateChanged(ItemEvent e) {
-        dataBaseController.initialiseDatabase();
-        ArrayList<String> list=dataBaseController.getUniversalSearchData();
-        dataBaseController.closeDatabaseConnection();
-        for(String str:list) {
-            Hotels.addItem(str);
-        }
+
     }
 
 
@@ -1081,6 +1087,8 @@ public class HomePageAfterLogin {
             //---- checkInField ----
             checkInField.setFont(checkInField.getFont().deriveFont(checkInField.getFont().getSize() + 6f));
             checkInField.setToolTipText("CheckIN");
+            checkInField.setInheritsPopupMenu(true);
+            checkInField.setOpaque(true);
 
             //---- checkOutField ----
             checkOutField.setFont(checkOutField.getFont().deriveFont(checkOutField.getFont().getSize() + 6f));

@@ -40,7 +40,7 @@ public class PDFGenerator {
         this.totalCost=bookingDetails.get(10);
 
 
-        this.path=path+bookingId+".pdf";
+        this.path=path+"/"+bookingId+".pdf";
         File file=new File(path);
         file.getParentFile().mkdirs();
         generatePDF();

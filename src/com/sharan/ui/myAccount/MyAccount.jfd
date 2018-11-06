@@ -4,10 +4,10 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp label1::::1146:x, space :::p}, seq l {space :p:12:p, comp label2:::p:164:p, space ::982:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p::p, space :::p, comp label2:::p:35:p, space ::412:x}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp label1::::1436:x, comp scrollPane1::l::1436:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::x, comp scrollPane1:::p:527:p, space :::p}}"
 		} ) {
-			name: "this"
+			name: "myAccountField"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "My Account"
@@ -16,16 +16,209 @@ new FormModel {
 				"horizontalAlignment": 0
 				"font": new java.awt.Font( "Dialog", 1, 38 )
 			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "My Bookings"
-				"background": sfield java.awt.Color darkGray
-				"opaque": true
-				"foreground": new javax.swing.plaf.ColorUIResource( 238, 238, 238 )
-				"horizontalAlignment": 0
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+					name: "tabbedPane1"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp scrollPane2:::p:1410:p}, seq l {space :p:691:p, comp GeneratePDF1:::p:160:p, space :p:153:p, comp scrollPane3:::p:410:p}}, space ::178:x}}"
+						"$verticalGroup": "par l {seq t {comp scrollPane2:::p:400:p, space u:::p, par l {comp scrollPane3:::p:73:p, comp GeneratePDF1::l:p:59:p}, space ::70:x}}"
+					} ) {
+						name: "panel1"
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane2"
+							add( new FormComponent( "javax.swing.JTable" ) {
+								name: "activeBookings"
+								"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+								}, new java.util.Vector {
+									add( "Hotel Name" )
+									add( "Booking Id" )
+									add( "Booking Status" )
+									add( "CheckIn Date" )
+									add( "CheckOut Date" )
+									add( "Number of Standard Rooms" )
+									add( "Number of DeluxeRooms" )
+									add( "Number Of SuiteRooms" )
+									add( "Total Price Paid" )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								} )
+								"rowHeight": 63
+								"cellSelectionEnabled": true
+								"selectionMode": 1
+								addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "activeBookingsPropertyChange", true ) )
+							} )
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "GeneratePDF1"
+							"text": "Generate PDF"
+							"background": new java.awt.Color( 153, 0, 0, 255 )
+							"foreground": &ColorUIResource0 new javax.swing.plaf.ColorUIResource( 238, 238, 238 )
+							"font": new java.awt.Font( "Comic Sans MS", 1, 16 )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GeneratePDF1ActionPerformed", true ) )
+						} )
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane3"
+							add( new FormComponent( "javax.swing.JTextPane" ) {
+								name: "textPane1"
+								"background": #ColorUIResource0
+								"font": new java.awt.Font( "Courier New", 3, 16 )
+								"text": "**To Generate PDF of a booking please select booking-Id of that booking and  then click Generate PDF button below."
+								"foreground": new java.awt.Color( 0, 0, 255, 255 )
+							} )
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "My Bookings"
+					} )
+					add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+						name: "tabbedPane2"
+					}, new FormLayoutConstraints( null ) {
+						"title": "Previous Bookings"
+					} )
+				} )
 			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar"
+				"preferredSize": new java.awt.Dimension( 83, 50 )
+				"font": new java.awt.Font( "Arial Black", 3, 20 )
+				"background": sfield java.awt.Color darkGray
+				"foreground": new javax.swing.plaf.ColorUIResource( 238, 238, 238 )
+				add( new FormComponent( "javax.swing.JMenuItem" ) {
+					name: "previousPage"
+					"text": "Previous Page"
+					"background": sfield java.awt.Color darkGray
+					"maximumSize": &Dimension0 new java.awt.Dimension( 115, 32767 )
+					"foreground": #ColorUIResource0
+				} )
+				add( new FormComponent( "javax.swing.JMenuItem" ) {
+					name: "homePage"
+					"text": "Previous Page"
+					"background": sfield java.awt.Color darkGray
+					"maximumSize": #Dimension0
+					"foreground": #ColorUIResource0
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator1"
+					"maximumSize": new java.awt.Dimension( 1115, 250 )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "LogoutField"
+						"text": "Log Out"
+						"font": new java.awt.Font( "Times New Roman", 0, 20 )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LogoutFieldActionPerformed", true ) )
+					} )
+				} )
+			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 15 )
+			"location": new java.awt.Point( 6, 15 )
 			"size": new java.awt.Dimension( 1160, 540 )
 		} )
 	}
