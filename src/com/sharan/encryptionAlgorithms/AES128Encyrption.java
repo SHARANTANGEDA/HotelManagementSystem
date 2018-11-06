@@ -7,14 +7,8 @@ import java.util.Base64;
 
 public class AES128Encyrption {
 
-    private static byte[] encodedKey={};
-//    public AES128Encyrption() {
-//        try{
-//
-//        }catch(NoSuchAlgorithmException exception) {
-//            System.out.println(exception.getMessage());
-//        }
-//    }
+    private static byte[] encodedKey={0x2d, 0x2a, 0x2d, 0x42, 0x55, 0x49, 0x4c, 0x44, 0x41, 0x43, 0x4f, 0x44, 0x45, 0x2d, 0x2a, 0x2d};
+//45,42,45,66,85,73,76,68,65,67,79,68,69,45,42,45
 
     public static String encrypt(String text) {
         try {
