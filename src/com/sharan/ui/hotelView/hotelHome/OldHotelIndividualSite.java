@@ -19,7 +19,7 @@ import static com.sharan.Main.starUpdate;
 /**
  * @author SAI SHARAN
  */
-public class HotelHomePageAfterLogin {
+public class OldHotelIndividualSite {
     private String uniqueId;
     private DataBaseController dataBaseController;
     private double rate;
@@ -36,7 +36,7 @@ public class HotelHomePageAfterLogin {
 
 
 //    String uniqueId,String hotelName,String description,String address,String hotelMainImagePath,
-    public HotelHomePageAfterLogin(ArrayList<String> list, DataBaseController dataBaseController) {
+    public OldHotelIndividualSite(ArrayList<String> list, DataBaseController dataBaseController) {
 
         this.list=list;
 

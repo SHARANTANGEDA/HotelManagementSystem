@@ -68,7 +68,7 @@ public class HotelHomePageBeforeLogin {
         if(loginSuccess==1) {
             loginSuccess=0;
             HotelHomeFrame.dispose();
-//            HotelHomePageAfterLogin hotelHomePageAfterLogin =new HotelHomePageAfterLogin(uniqueId,dataBaseController);
+//            OldHotelIndividualSite hotelHomePageAfterLogin =new OldHotelIndividualSite(uniqueId,dataBaseController);
             login.getLogin().dispose();
         }
 
@@ -82,7 +82,7 @@ public class HotelHomePageBeforeLogin {
         if(signUpSuccess==1) {
             signUpSuccess=0;
             HotelHomeFrame.dispose();
-//            HotelHomePageAfterLogin hotelHomePageAfterLogin =new HotelHomePageAfterLogin(uniqueId,dataBaseController);
+//            OldHotelIndividualSite hotelHomePageAfterLogin =new OldHotelIndividualSite(uniqueId,dataBaseController);
             signUp.getSignUp().dispose();
         }
         dataBaseController.closeDatabaseConnection();

@@ -22,6 +22,7 @@ public class PDFGenerator {
     private String suiteRoom;
     private String bookingId;
     private String address;
+    private String totalCost;
     private String contactUs="Incase of any query ContactUs at DawnBreakers@support.com\n"+"Or call us at +91-9876543210.";
     private String ThankYouNote="Thank You For choosing us, We are always at your service \n"+"**********VISIT US AGAIN************";
 
@@ -36,6 +37,7 @@ public class PDFGenerator {
         this.deluxeRoom=bookingDetails.get(7);
         this.suiteRoom=bookingDetails.get(8);
         this.address=bookingDetails.get(9);
+        this.totalCost=bookingDetails.get(10);
 
 
         this.path=path+bookingId+".pdf";
@@ -46,11 +48,6 @@ public class PDFGenerator {
 
     public void generatePDF() {
         try {
-//            PdfWriter pdfWriter=new PdfWriter(path);
-//
-//            PdfDocument pdfDocument=new PdfDocument(pdfWriter);
-
-//            pdfDocument.setDefaultPageSize(PageSize.A4);
 
             Document document=new Document(PageSize.A4);
 
@@ -94,6 +91,7 @@ public class PDFGenerator {
             Chunk stanRooms=new Chunk  ("Number of standard Rooms Booked: "+standardRoom+"\n",normal);
             Chunk delRooms=new Chunk   ("Number of Deluxe Rooms Booked:   "+deluxeRoom+"\n",normal);
             Chunk suiteRooms=new Chunk ("Number of  suite Rooms Booked:   "+suiteRoom+"\n",normal);
+            Chunk pricefield=new Chunk ("Total Amount inclusive of taxes: "+totalCost+"Rs"+"\n",normal);
 
             primaryDetails.add(nameField);
             primaryDetails.add(hotelField);
@@ -104,6 +102,7 @@ public class PDFGenerator {
             primaryDetails.add(stanRooms);
             primaryDetails.add(delRooms);
             primaryDetails.add(suiteRooms);
+            primaryDetails.add(pricefield);
             primaryDetails.add("\n\n\n\n\n");
             primaryDetails.setAlignment(Element.ALIGN_MIDDLE);
             primaryDetails.setAlignment(Element.ALIGN_JUSTIFIED);
@@ -111,9 +110,6 @@ public class PDFGenerator {
 
             cell.addElement(primaryDetails);
 
-//            primaryDetails.setFont(FontConstants.COURIER);
-
-//            primaryDetails.setVerticalAlignment(VerticalAlignment.TOP)
 
             Paragraph addressPara=new Paragraph();
             Chunk chunk=new Chunk("Address of Hotel:\n",addressTitleFont);
@@ -140,9 +136,7 @@ public class PDFGenerator {
 
             table.addCell(cell);
 
-//            document.add(titleParagraph);
-//            document.add(primaryDetails);
-//            document.add(bottomToast);
+
             document.add(table);
 
             document.close();

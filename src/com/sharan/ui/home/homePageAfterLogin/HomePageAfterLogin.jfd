@@ -5,7 +5,7 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq l {par l {seq l {space :p:37:p, par l {comp label1:::p:674:p, seq l {comp label4:::p::p, space s:::p, comp StateField:::p:274:p, space :p:74:p, comp label5:::p::p, space u:::p, comp CityField:::p:232:p}}}, seq l {space :p:244:p, comp label2:::p::p, space :p:26:p, comp checkInField:::p:148:p, space :p:42:p, comp label3:::p:41:p, space s:::p, comp checkOutField:::p:148:p}}, space ::182:x, comp SearchBottom:::p:276:p, space :p:208:p}, seq {par l {seq {space :::p, par l:::p {comp applicationName::::1436:x, comp menuBar1::::1436:x, comp homePagePhoto::::1436:x}}, seq l {space :p:168:p, comp label6:::p:141:p, space :p:38:p, comp noOfRooms:::p:46:p}}, space :::x}}"
-			"$verticalGroup": "par l {seq l {par t {seq {comp applicationName:::p:69:p, space :::p, comp menuBar1:::p::p, space u:::p, comp homePagePhoto:::p:369:p, space :p:42:p, par b {comp label4::b:p::p, comp label5::b:p::p, comp StateField::b:p:38:p, comp CityField::b:p:41:p}, space :p:29:p, comp label1:::p::p}, comp SearchBottom:::p:61:p}, space s:::p, par t {comp checkOutField:::p::p, par b {comp label3::b:p:30:p, comp checkInField::b:p::p, comp label2::b:p::p}}, space :p:26:p, par b {comp label6::b:p:29:p, comp noOfRooms::b:p:37:p}, space ::36:x}}"
+			"$verticalGroup": "par l {seq l {par t {seq {comp applicationName:::p:69:p, space :::p, comp menuBar1:::p::p, space u:::p, comp homePagePhoto:::p:369:p, space :p:42:p, par b {comp label4::b:p::p, comp label5::b:p::p, comp StateField::b:p:38:p, comp CityField::b:p:41:p}, space :p:29:p, comp label1:::p::p}, comp SearchBottom:::p:61:p}, space s:::p, par t {comp checkOutField:::p::p, par b {comp label3::b:p:30:p, comp checkInField::b:p::p, comp label2::b:p::p}}, space :p:26:p, par b {comp label6::b:p:29:p, comp noOfRooms::b:p:37:p}, space ::44:x}}"
 		} ) {
 			name: "homePageAfterLogin"
 			"defaultCloseOperation": 3
@@ -419,7 +419,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JSeparator" ) {
 					name: "separator1"
-					"maximumSize": &Dimension0 new java.awt.Dimension( 400, 50 )
+					"maximumSize": new java.awt.Dimension( 600, 50 )
 					"background": sfield java.awt.Color darkGray
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
@@ -427,7 +427,7 @@ new FormModel {
 					"font": new java.awt.Font( "Comic Sans MS", 2, 18 )
 					"toolTipText": "Search for Hotels"
 					"maximumSize": new java.awt.Dimension( 500, 50 )
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "HotelsActionPerformed", true ) )
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "HotelsItemStateChanged", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "Search"
@@ -440,18 +440,27 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JSeparator" ) {
 					name: "separator2"
-					"maximumSize": #Dimension0
+					"maximumSize": new java.awt.Dimension( 250, 50 )
 					"background": sfield java.awt.Color darkGray
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "profile"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem17"
+						"text": "My Account"
+						"font": new java.awt.Font( "Times New Roman", 0, 20 )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "Logout"
 						"text": "Logout"
 						"font": new java.awt.Font( "Arial", 0, 18 )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LogoutActionPerformed", true ) )
 					} )
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator3"
+					"maximumSize": new java.awt.Dimension( 150, 32767 )
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, par l {seq l {space :p:8:p, comp HotelDetails:::::x, space :p:10:p}, seq l {space s:::p, comp rateYourExperience:::p:222:p, space :::p, comp rating:::p:222:p, space :0:0:x}, seq l {space u:::p, comp checkAvailability:::::x}}}, seq {comp scrollPane2:::p:1021:p, space :0:0:x}, comp Title::l:::x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {comp Title:::p:72:p, space u:::p, par l {seq l {comp HotelDetails:::p:202:p, space u:::p, par l {comp rateYourExperience:::p::p, comp rating:::p::p}, space s:::p, comp checkAvailability::::102:x, space :p:19:p}, seq l {comp hotelPhoto::::365:x, space :::p, comp titleContactDetails:::p:45:p}}, space :::p, comp scrollPane2:::p:70:p, space :p:12:p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par t {seq t {par l {comp Title:::::x, seq {comp scrollPane2:::p:1021:p, space :0:259:x}}, space :::p}, seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, space s:::p, par l {seq {par l {seq {par l:::p {comp ratingLabel:::p:222:p, comp numberOfRatings:::::x}, space ::148:x, comp checkAvailability:::p:346:p}, comp HotelDetails:::::x}, space :p:10:p}, seq {comp rateYourExperience:::p:222:p, space ::504:x}}}}}}"
+			"$verticalGroup": "par l {seq l {comp Title:::p:72:p, space u:::p, par l {seq {comp hotelPhoto:::::x, space :::p, comp titleContactDetails:::p:45:p, space :p:4:p}, seq {comp HotelDetails:::p:346:p, space s:::p, par t {seq {comp rateYourExperience:::p::p, space u:::p, comp numberOfRatings:::p:42:p, space :::p, comp ratingLabel:::p::p}, comp checkAvailability::t:p:109:p}, space :p:48:p}}, comp scrollPane2:::p:92:p, space :p:12:p}}"
 		} ) {
 			name: "individualHotelHome"
 			"resizable": false
@@ -26,9 +26,10 @@ new FormModel {
 				name: "rateYourExperience"
 				"text": "Rate Your Experience"
 				"font": new java.awt.Font( "Droid Sans", 3, 15 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "rateYourExperienceActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "rating"
+				name: "ratingLabel"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/stars/5.0.jpg" )
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -47,6 +48,7 @@ new FormModel {
 				"font": new java.awt.Font( "Dialog", 1, 30 )
 				"background": new java.awt.Color( 153, 0, 0, 255 )
 				"foreground": #ColorUIResource0
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "checkAvailabilityActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "titleContactDetails"
@@ -62,6 +64,9 @@ new FormModel {
 					"editable": false
 					"text": "address is  some where"
 				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "numberOfRatings"
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar"
@@ -474,6 +479,7 @@ new FormModel {
 					"font": new java.awt.Font( "Comic Sans MS", 2, 18 )
 					"toolTipText": "Search for Hotels"
 					"maximumSize": new java.awt.Dimension( 500, 50 )
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "HotelsItemStateChanged", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "Search"
@@ -487,19 +493,25 @@ new FormModel {
 					name: "menu2"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem17"
+						name: "myAccountField"
 						"text": "My Account"
+						"font": new java.awt.Font( "Times New Roman", 0, 20 )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem18"
+						name: "LogoutField"
 						"text": "Log Out"
+						"font": new java.awt.Font( "Times New Roman", 0, 20 )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LogoutFieldActionPerformed", true ) )
 					} )
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator3"
+					"maximumSize": new java.awt.Dimension( 150, 32767 )
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 5 )
+			"location": new java.awt.Point( 0, 6 )
 			"size": new java.awt.Dimension( 1035, 670 )
 		} )
 	}
 }
-

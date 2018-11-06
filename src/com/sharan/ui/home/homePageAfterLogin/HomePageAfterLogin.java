@@ -7,7 +7,7 @@ package com.sharan.ui.home.homePageAfterLogin;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
-import com.sharan.ui.hotelView.hotelHome.HotelHomePageAfterLogin;
+import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -135,9 +135,16 @@ public class HomePageAfterLogin {
     private void SearchActionPerformed(ActionEvent e) {
         // TODO add your code here
     }
-    private void HotelsActionPerformed(ActionEvent e) {
-        // TODO add your code here
+
+    private void HotelsItemStateChanged(ItemEvent e) {
+        dataBaseController.initialiseDatabase();
+        ArrayList<String> list=dataBaseController.getUniversalSearchData();
+        dataBaseController.closeDatabaseConnection();
+        for(String str:list) {
+            Hotels.addItem(str);
+        }
     }
+
 
     //***************UNIVERSAL SEARCH FIELD*****************
 
@@ -213,7 +220,7 @@ public class HomePageAfterLogin {
     }
 
     private void IbisMumbaiAirportActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Mu_Ibis","Ibis Mumbai","room type-\n" +
 //                "standard :6199\n" +
 //                "deluxe   :6699",
@@ -225,7 +232,7 @@ public class HomePageAfterLogin {
     }
 
     private void TridentNarimanPointActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Mu_Trident","Trident Hotel","room type-\n" +
 //                "standard :11875\n" +
 //                "suite    :21625","address:\n" +
@@ -236,7 +243,7 @@ public class HomePageAfterLogin {
     }
 
     private void RoyalOrchidCentralGraziaActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin = new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin = new OldHotelIndividualSite(
 //                "Ma_Mu_Royal","Royal Orchid Central","room type-\n" +
 //                "standard :4979\n" +
 //                "deluxe   :5134\n" +
@@ -251,12 +258,13 @@ public class HomePageAfterLogin {
         dataBaseController.initialiseDatabase();
         ArrayList<String> list=dataBaseController.parseHotel("Ma_Pu_Mint");
         dataBaseController.closeDatabaseConnection();
-        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(list,dataBaseController);
+//        OldHotelIndividualSite oldHotelIndividualSite =new OldHotelIndividualSite(list,dataBaseController);
+        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
 
     }
 
     private void TajGatewayActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Pu_Taj","Taj Gateway","room type-\n" +
 //                "standard : rs 5825\n" +
 //                "suite    : rs 7025","address:\n" +
@@ -267,7 +275,7 @@ public class HomePageAfterLogin {
     }
 
     private void HotelMintHighstreetActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Pu_High","Hotel Mint Highstreet","room type-\n" +
 //                "standard : rs 1199\n" +
 //                "deluxe   : rs 1620\n","address:\n" +
@@ -277,7 +285,7 @@ public class HomePageAfterLogin {
     }
 
     private void FourPointsActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Pu_Four","Four Points","room type-\n" +
 //                "standard: rs 5875\n" +
 //                "deluxe  : rs 6500\n" +
@@ -289,7 +297,7 @@ public class HomePageAfterLogin {
     }
 
     private void LeMeridienNagpurActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Na_Mer","Le Meridien","room type-\n" +
 //                "standard : 6999\n" +
 //                "deluxe   : 7999\n" +
@@ -300,7 +308,7 @@ public class HomePageAfterLogin {
     }
 
     private void HotelGangakashiActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Na_Gang","Hotel Gangakashi","room type-\n" +
 //                "standard :2409\n" +
 //                "deluxe   :3408\n" +
@@ -311,7 +319,7 @@ public class HomePageAfterLogin {
     }
 
     private void HotelSiddharthaInnActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Na_Sid","Hotel Siddhartha Inn","room type-\n" +
 //                "standard : 984\n" +
 //                "deluxe   : 1000"
@@ -323,7 +331,7 @@ public class HomePageAfterLogin {
     }
 
     private void RadissonBluActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Na_Blu","Radisson Blu","room type-\n" +
 //                "standard :4876\n" +
 //                "deluxe   :6825\n" +
@@ -336,7 +344,7 @@ public class HomePageAfterLogin {
     }
 
     private void Ambassador_AjantaActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin homePageAfterLogin=new HotelHomePageAfterLogin("Ma_Au_Ajanta",
+//        OldHotelIndividualSite homePageAfterLogin=new OldHotelIndividualSite("Ma_Au_Ajanta",
 //                "Ambassador Ajanta",
 //                "room type-\n" +
 //                        "standard :3370\n" +
@@ -348,7 +356,7 @@ public class HomePageAfterLogin {
     }
 
     private void VivantaAurangabadActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Au_Vivan","Vivanta Aurangabad","room type-\n" +
 //                "standard :7095\n" +
 //                "deluxe   :8350\n" +
@@ -360,7 +368,7 @@ public class HomePageAfterLogin {
     }
 
     private void THEONEHOTELActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Au_One","The One Hotel","room type-\n" +
 //                "standard :7095\n" +
 //                "deluxe   :8350\n" +
@@ -373,7 +381,7 @@ public class HomePageAfterLogin {
     }
 
     private void HotelAtithiActionPerformed(ActionEvent e) {
-//        HotelHomePageAfterLogin hotelHomePageAfterLogin=new HotelHomePageAfterLogin(
+//        OldHotelIndividualSite hotelHomePageAfterLogin=new OldHotelIndividualSite(
 //                "Ma_Au_Athithi","Hotel Atithi","room type-\n" +
 //                "standard :2262\n" +
 //                "deluxe   :3744\n" +
@@ -431,6 +439,11 @@ public class HomePageAfterLogin {
     private void CityFieldItemStateChanged(ItemEvent e) {
         citySelected=e.getItem().toString();
     }
+
+    private void HotelsActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
 
 
 
@@ -536,7 +549,9 @@ public class HomePageAfterLogin {
         Search = new JButton();
         separator2 = new JSeparator();
         profile = new JMenu();
+        menuItem17 = new JMenuItem();
         Logout = new JMenuItem();
+        separator3 = new JSeparator();
         homePagePhoto = new JLabel();
         StateField = new JComboBox();
         CityField = new JComboBox();
@@ -1005,7 +1020,7 @@ public class HomePageAfterLogin {
                 menuBar1.add(New_Delhi);
 
                 //---- separator1 ----
-                separator1.setMaximumSize(new Dimension(400, 50));
+                separator1.setMaximumSize(new Dimension(600, 50));
                 separator1.setBackground(Color.darkGray);
                 menuBar1.add(separator1);
 
@@ -1013,7 +1028,7 @@ public class HomePageAfterLogin {
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
                 Hotels.setMaximumSize(new Dimension(500, 50));
-                Hotels.addActionListener(e -> HotelsActionPerformed(e));
+                Hotels.addItemListener(e -> HotelsItemStateChanged(e));
                 menuBar1.add(Hotels);
 
                 //---- Search ----
@@ -1026,13 +1041,18 @@ public class HomePageAfterLogin {
                 menuBar1.add(Search);
 
                 //---- separator2 ----
-                separator2.setMaximumSize(new Dimension(400, 50));
+                separator2.setMaximumSize(new Dimension(250, 50));
                 separator2.setBackground(Color.darkGray);
                 menuBar1.add(separator2);
 
                 //======== profile ========
                 {
                     profile.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
+
+                    //---- menuItem17 ----
+                    menuItem17.setText("My Account");
+                    menuItem17.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+                    profile.add(menuItem17);
 
                     //---- Logout ----
                     Logout.setText("Logout");
@@ -1041,6 +1061,10 @@ public class HomePageAfterLogin {
                     profile.add(Logout);
                 }
                 menuBar1.add(profile);
+
+                //---- separator3 ----
+                separator3.setMaximumSize(new Dimension(150, 32767));
+                menuBar1.add(separator3);
             }
 
             //---- homePagePhoto ----
@@ -1171,7 +1195,7 @@ public class HomePageAfterLogin {
                         .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label6, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
                             .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(36, Short.MAX_VALUE))
+                        .addContainerGap(44, Short.MAX_VALUE))
             );
             homePageAfterLogin.pack();
             homePageAfterLogin.setLocationRelativeTo(homePageAfterLogin.getOwner());
@@ -1273,7 +1297,9 @@ public class HomePageAfterLogin {
     private JButton Search;
     private JSeparator separator2;
     private JMenu profile;
+    private JMenuItem menuItem17;
     private JMenuItem Logout;
+    private JSeparator separator3;
     private JLabel homePagePhoto;
     private JComboBox StateField;
     private JComboBox CityField;

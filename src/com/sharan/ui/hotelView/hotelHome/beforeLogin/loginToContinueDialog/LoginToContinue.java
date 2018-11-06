@@ -35,7 +35,7 @@ public class LoginToContinue {
         if(loginSuccess==1) {
             loginToContinue.dispose();
             loginSuccess=0;
-//            HotelHomePageAfterLogin hotelHomePageAfterLogin =new HotelHomePageAfterLogin(uniqueId,dataBaseController);
+//            OldHotelIndividualSite hotelHomePageAfterLogin =new OldHotelIndividualSite(uniqueId,dataBaseController);
             login.getLogin().dispose();
         }
         dataBaseController.closeDatabaseConnection();
@@ -48,7 +48,7 @@ public class LoginToContinue {
         if(signUpSuccess==1) {
             loginToContinue.dispose();
             signUpSuccess=0;
-//            HotelHomePageAfterLogin hotelHomePageAfterLogin =new HotelHomePageAfterLogin(uniqueId,dataBaseController);
+//            OldHotelIndividualSite hotelHomePageAfterLogin =new OldHotelIndividualSite(uniqueId,dataBaseController);
             signUp.getSignUp().dispose();
         }
         dataBaseController.closeDatabaseConnection();
