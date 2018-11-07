@@ -3,8 +3,13 @@ package com.sharan;
 
 import com.sharan.ui.hotelView.displaySelectedHotels.ElementsInHotelView;
 
+import javax.swing.*;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class DataBaseController {
 
@@ -31,7 +36,13 @@ public class DataBaseController {
     private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT,NoOfRoomsRequested TEXT DEFAULT NA, " +
             "HotelUniqueId TEXT,AvailabilityStatus TEXT)";
     private String allotmentTableInsertParameters=" (UserName,State,City,CheckIN,CheckOUT,NoOfRoomsRequested)";
+    private String availableTableName = "availableTable";
+    private String availableTableColoumns = "(UniqueId TEXT,StandardAvailableArray TEXT,DeluxeAvailableArray TEXT,SuitAvailableArray TEXT,LatestBooking TEXT)";
+    private String availableInsertParametres = " (UniqueId,StandardAvailableArray,DeluxeAvailableArray,SuitAvailableArray,LatestBooking)";
 
+    private String waitingListTableName = "waitngListTable";
+    private String waitingListTableColoumns = "(UserName TEXT NOT NULL PRIMARY KEY,UniqueId TEXT,CheckIn TEXT,CheckOut TEXT,StandardRooms INTEGER,DeluxeRooms INTEGER,SuitRooms INTEGER,BookingDate TEXT)";
+    private String waitListInsertParametres = " (UserName,UniqueId,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuitRooms,BookingDate)";
     private Connection conn=null;
     private Statement statement=null;
 
@@ -44,10 +55,19 @@ public class DataBaseController {
             statement.execute(TABLE_CREATOR+ hotelsTableNAME + hotelsTableCOLUMNS);
             statement.execute(TABLE_CREATOR+idTableName+idTableColoumns);
             statement.execute(TABLE_CREATOR+allotmentTableName+allotmentTableColumns);
-
-
+            statement.execute(TABLE_CREATOR+availableTableName+availableTableColoumns);
+            statement.execute(TABLE_CREATOR+waitingListTableName+waitingListTableColoumns);
         }catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+    public void addToWaitList(String userName,String uniqueId,String checkIn,String checkOut,int standardRooms,int deluxeRooms,int suitRooms,String bookedDate)
+    {
+        try {
+            statement.execute("INSERT INTO "+waitingListTableName+waitListInsertParametres+" VALUES('"+userName+"','"+uniqueId+"','"+checkIn+"','"+
+                    checkOut+"',"+standardRooms+","+deluxeRooms+","+suitRooms+"'"+bookedDate+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -62,6 +82,285 @@ public class DataBaseController {
         statement.execute("INSERT INTO "+hotelsTableNAME+hotelsInsertParameters+"VALUES('"+uniqueId+"','"+hotelName+"','"+description+"','"+state
                 +"','"+city+"','" +address+"','"+standard+"','"+stdPrice+"','"+stcapacity+"','"+deluxe+"','"+deluxePrice+"','"+delcapacity+"','"
                 +suite+"','"+suitePrice+"','" +suitecapacity+ "','"+imagePath+"')");
+    }
+    public void checkAvailable(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,int maxStandardRooms,int maxDeluxeRooms,int maxSuitRooms)
+    {
+        try {
+            if(!conn.isClosed())
+            {
+                int flag =0;
+                ResultSet rs = statement.executeQuery("SELECT UniqueId FROM " + availableTableName);
+                for (int i=0;i<rs.getFetchSize();i++)
+                {
+                    if(rs.getString(i).equals(uniqueId))
+                    {
+                        flag =1;
+                    }
+                }
+                Date current=null;
+                Date checkin=null;
+                Date checkout=null;
+
+                Date c = (Date) Calendar.getInstance().getTime();
+                System.out.println("Current time => " + c);
+
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c);
+
+                try {
+                    current = (Date) df.parse(formattedDate);
+                } catch (ParseException e) {
+
+                    e.printStackTrace();
+                }
+                try {
+                    checkin = (Date) df.parse(checkIn);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    checkout = (Date) df.parse(checkOut);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long duration = checkin.getTime()-current.getTime();
+                long diffInDaysForCheckIn = TimeUnit.MILLISECONDS.toDays(duration);
+                long duration1 = checkout.getTime()-current.getTime();
+                long diffInDaysForCheckOut = TimeUnit.MILLISECONDS.toDays(duration1);
+                if(flag ==1)
+                {
+
+
+                    int x=0,y=0,z=0;
+                    ResultSet resultSet = statement.executeQuery("SELECT * FROM "+availableTableName+" WHERE UniqueId='"+ uniqueId + "'");
+                    char[] standardAvailableArray= resultSet.getString("StandardAvailableArray").toCharArray();
+                    char[] deluxeAvailableArray = resultSet.getString("DeluxeAvailableArray").toCharArray();
+                    char[] suitAvailableArray = resultSet.getString("SuitAvailableArray").toCharArray();
+                    String lastLatestBooking = resultSet.getString("LatestBooking");
+                    Date latestBooking = null;
+                    try {
+                        latestBooking = (Date) df.parse(lastLatestBooking);
+                    } catch (ParseException e) {
+
+                        e.printStackTrace();
+                    }
+                    int diffBetweenBookings = (int) (current.getTime()-latestBooking.getTime());
+                    //pushing the availableArrays to get to current time
+                    for (int i=0;i<90-diffBetweenBookings;i++)
+                    {
+                        standardAvailableArray[i] = standardAvailableArray[i+diffBetweenBookings];
+                        deluxeAvailableArray[i]  = deluxeAvailableArray[i+diffBetweenBookings];
+                        suitAvailableArray[i] = suitAvailableArray[i+diffBetweenBookings];
+                    }
+                    for (int j=90-diffBetweenBookings;j<90;j++)
+                    {
+                        standardAvailableArray[j]=0;
+                        deluxeAvailableArray[j]=0;
+                        suitAvailableArray[j]=0;
+                    }
+
+                    for(int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++)
+                    {
+                        if(standardAvailableArray[i]<noOfStandardRooms)
+                        {
+                            x=1;
+                            //JOptionPane.showMessageDialog(null,"Sorry for inconvience,Required number of Standard Rooms are not available");
+                           // waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfDeluxeRooms,noOfDeluxeRooms,noOfSuitRooms);
+                        }
+                        if(deluxeAvailableArray[i]<noOfDeluxeRooms)
+                        {
+                            y=1;
+                            JOptionPane.showMessageDialog(null,"Sorry for inconvience,Required number of Deluxe Rooms are not available");
+                        }
+                        if (suitAvailableArray[i]<noOfSuitRooms)
+                        {
+                            z=1;
+                            JOptionPane.showMessageDialog(null,"Sorry for inconvience,Required number of Suit Rooms are not available");
+                        }
+                    }
+                    if (x==0&&y==0&&z==0) {
+                        for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
+                            int f;
+                            char o;
+                            f = Character.getNumericValue(standardAvailableArray[i]) - noOfStandardRooms;
+                            o = (char) (f + '0');
+                            standardAvailableArray[i] = o;
+                        }
+
+                        for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
+                            int f;
+                            char o;
+                            f = Character.getNumericValue(deluxeAvailableArray[i]) - noOfStandardRooms;
+                            o = (char) (f + '0');
+                            deluxeAvailableArray[i] = o;
+                        }
+
+                        for(int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++)
+                        {
+                            int f;
+                            char o;
+                            f = Character.getNumericValue(suitAvailableArray[i])-noOfStandardRooms;
+                            o = (char)(f+'0');
+                            suitAvailableArray[i]=o;
+                        }
+                    }
+                    statement.execute("UPDATE "+availableTableName+ " SET StandardAvailableArray '"+standardAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
+                    statement.execute("UPDATE "+availableTableName+ " SET DeluxeAvailableArray '"+deluxeAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
+                    statement.execute("UPDATE "+availableTableName+ " SET SuitAvailableArray '"+suitAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
+                    statement.execute("UPDATE "+availableTableName+" SET LatestBooking '"+formattedDate+"' WHERE UniqueId='"+uniqueId+"'");
+                }
+                else
+                {
+                    char[] standardAvailableArray = new char[90];
+                    char[] deluxeAvailableArray = new char[90];
+                    char[] suitAvailableArray = new char[90];
+                    for(int i=0;i<90;i++)
+                    {
+                        standardAvailableArray[i] = (char) (maxStandardRooms+'o');
+                    }
+                    for(int i=0;i<90;i++)
+                    {
+                        deluxeAvailableArray[i] = (char) (maxDeluxeRooms+'o');
+                    }
+                    for(int i=0;i<90;i++)
+                    {
+                        suitAvailableArray[i] = (char) (maxSuitRooms+'o');
+                    }
+                    for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
+                        int f;
+                        char o;
+                        f = Character.getNumericValue(standardAvailableArray[i]) - noOfStandardRooms;
+                        o = (char) (f + '0');
+                        standardAvailableArray[i] = o;
+                    }
+
+                    for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
+                        int f;
+                        char o;
+                        f = Character.getNumericValue(deluxeAvailableArray[i]) - noOfDeluxeRooms;
+                        o = (char) (f + '0');
+                        deluxeAvailableArray[i] = o;
+                    }
+
+                    for(int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++)
+                    {
+                        int f;
+                        char o;
+                        f = Character.getNumericValue(suitAvailableArray[i])-noOfSuitRooms;
+                        o = (char)(f+'0');
+                        suitAvailableArray[i]=o;
+                    }
+                    statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+standardAvailableArray.toString()+"','"+
+                            deluxeAvailableArray.toString()+"','"+suitAvailableArray.toString()+"','"+formattedDate+"')");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void cancelBooking(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,String bookingDate) {
+        try {
+            if (!conn.isClosed()) {
+                Date current=null;
+                Date bookedDate = null;
+                Date checkin=null;
+                Date checkout=null;
+                Date lastUpdated = null;
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                Date c = (Date) Calendar.getInstance().getTime();
+                System.out.println("Current time => " + c);
+
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c);
+                //SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    current = (Date) df.parse(formattedDate);
+                } catch (ParseException e) {
+
+                    e.printStackTrace();
+                }
+                try {
+                    bookedDate = (Date) df.parse(bookingDate);
+                } catch (ParseException e) {
+
+                    e.printStackTrace();
+                }
+
+                try {
+                    checkin = (Date) df.parse(checkIn);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    checkout = (Date) df.parse(checkOut);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                ResultSet rs = statement.executeQuery("SELECT UniqueId FROM " + availableTableName);
+                for (int j = 0; j < rs.getFetchSize(); j++) {
+                    if (rs.getString(j).equals(uniqueId)) {
+                        int x=0,y=0,z=0;
+                        ResultSet resultSet = statement.executeQuery("SELECT * FROM "+availableTableName+" WHERE UniqueId='"+ uniqueId + "'");
+                        char[] standardAvailableArray= resultSet.getString("StandardAvailableArray").toCharArray();
+                        char[] deluxeAvailableArray = resultSet.getString("DeluxeAvailableArray").toCharArray();
+                        char[] suitAvailableArray = resultSet.getString("SuitAvailableArray").toCharArray();
+                        String latestBookedDate = resultSet.getString("LatestBooking");
+                        try {
+                            lastUpdated = (Date) df.parse(latestBookedDate);
+                        } catch (ParseException e) {
+
+                            e.printStackTrace();
+                        }
+                        long duration = checkin.getTime()-lastUpdated.getTime();
+                        int diffInDaysForCheckIn = (int) TimeUnit.MILLISECONDS.toDays(duration);
+                        long duration1 = checkout.getTime()-lastUpdated.getTime();
+                        int diffInDaysForCheckOut = (int) TimeUnit.MILLISECONDS.toDays(duration1);
+                        for (int i = diffInDaysForCheckIn; i < diffInDaysForCheckOut; i++) {
+                            int f;
+                            char o;
+                            f = Character.getNumericValue(standardAvailableArray[i]) + noOfStandardRooms;
+                            o = (char) (f + '0');
+                            standardAvailableArray[i] = o;
+                        }
+
+                        for (int i = diffInDaysForCheckIn; i < diffInDaysForCheckOut; i++) {
+                            int f;
+                            char o;
+                            f = Character.getNumericValue(deluxeAvailableArray[i]) + noOfDeluxeRooms;
+                            o = (char) (f + '0');
+                            deluxeAvailableArray[i] = o;
+                        }
+
+                        for(int i=diffInDaysForCheckIn;i<diffInDaysForCheckOut;i++)
+                        {
+                            int f;
+                            char o;
+                            f = Character.getNumericValue(suitAvailableArray[i])+noOfSuitRooms;
+                            o = (char)(f+'0');
+                            suitAvailableArray[i]=o;
+                        }
+                        statement.execute("UPDATE "+availableTableName+ " SET StandardAvailableArray '"+standardAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
+                        statement.execute("UPDATE "+availableTableName+ " SET DeluxeAvailableArray '"+deluxeAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
+                        statement.execute("UPDATE "+availableTableName+ " SET SuitAvailableArray '"+suitAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
+                        long duration2 = current.getTime()-checkin.getTime();
+                        int diffInDaysForCancel= (int) TimeUnit.MILLISECONDS.toDays(duration2);
+                        if (diffInDaysForCancel>3)
+                        {
+                            JOptionPane.showMessageDialog(null,"Successful!,Your Total Money has been Credited!!");
+                        }
+                        else if (diffInDaysForCancel>=0&&diffInDaysForCancel<=3)
+                        {
+                            JOptionPane.showMessageDialog(null,"Successful!,50% of  Total Money has been Credited!!");
+
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addRating(String id,int rate) throws SQLException{

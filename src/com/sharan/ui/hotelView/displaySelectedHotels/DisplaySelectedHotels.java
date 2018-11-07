@@ -9,6 +9,7 @@ import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
 import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
+import com.sharan.ui.hotelView.roomBooking.RoomBooking;
 import com.sharan.ui.myAccount.MyAccount;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -558,6 +559,15 @@ public class DisplaySelectedHotels {
 
 
 
+    private void bookNow1ActionPerformed(ActionEvent e) {
+        String hotel = hotelName1.getText();
+        String suit = priceSuite1.getText();
+        String deluxe = priceDeluxe1.getText();
+        String standard = priceStandard1.getText();
+        String uniqueId = displayList.get(0).getUniqueId();
+        RoomBooking roomBooking = new RoomBooking(hotel, standard, deluxe, suit, uniqueId, checkIN, checkOUT);
+
+    }
 
 
     private void initComponents() {
