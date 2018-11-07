@@ -1,7 +1,7 @@
 package com.sharan;
 
 
-import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.hotelView.paymentPage.PaymentPage;
 
 public class Main {
 
@@ -12,7 +12,7 @@ public class Main {
 
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
-        HomePage homePage=new HomePage(dataBaseController);
+//        HomePage homePage=new HomePage(dataBaseController);
 //        MyAccount myAccount=new MyAccount();
 //        ArrayList<String> list=new ArrayList<>();
 //        list.add("final");
@@ -31,6 +31,8 @@ public class Main {
 //        PDFGenerator pdfGenerator=new PDFGenerator(list,path);
 //        PDFSaveFileChooser pdfSaveFileChooser=new PDFSaveFileChooser();
 
+
+        PaymentPage paymentPage=new PaymentPage();
         dataBaseController.closeDatabaseConnection();
 
 
