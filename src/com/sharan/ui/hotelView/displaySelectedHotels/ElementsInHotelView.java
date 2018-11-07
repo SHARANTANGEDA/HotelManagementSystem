@@ -13,10 +13,15 @@ public class ElementsInHotelView {
     private String imagePath;
     private String starRating;
     private int numberOfVotes;
+    private String address;
 
-    public ElementsInHotelView(String uniqueId,String hotelName,String hotelDescription,String standardRoomPrice,int standardRoomCapacity
-                                ,String deluxeRoomPrice,int deluxeRoomCapacity,String suiteRoomPrice,int suiteRoomCapacity,String imagePath,
-                               String starRating,int numberOfVotes) {
+    public String getAddress() {
+        return address;
+    }
+
+    public ElementsInHotelView(String uniqueId, String hotelName,String address,String hotelDescription, String standardRoomPrice, int standardRoomCapacity
+                                , String deluxeRoomPrice, int deluxeRoomCapacity, String suiteRoomPrice, int suiteRoomCapacity, String imagePath,
+                               String starRating, int numberOfVotes) {
 
         this.uniqueId=uniqueId;
         this.hotelName=hotelName;
@@ -30,6 +35,7 @@ public class ElementsInHotelView {
         this.imagePath=imagePath;
         this.starRating=starRating;
         this.numberOfVotes=numberOfVotes;
+        this.address=address;
     }
 
     public String getUniqueId() {

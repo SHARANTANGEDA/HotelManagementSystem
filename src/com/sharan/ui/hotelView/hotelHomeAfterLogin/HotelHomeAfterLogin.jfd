@@ -75,6 +75,14 @@ new FormModel {
 				"font": new java.awt.Font( "Arial Black", 3, 20 )
 				"background": sfield java.awt.Color darkGray
 				"foreground": #ColorUIResource0
+				add( new FormComponent( "javax.swing.JMenuItem" ) {
+					name: "backButton"
+					"background": sfield java.awt.Color darkGray
+					"preferredSize": new java.awt.Dimension( 50, 13 )
+					"maximumSize": new java.awt.Dimension( 50, 32767 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/Back24.gif" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "backButtonActionPerformed", true ) )
+				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "Telangana"
 					"text": "Telangana"
@@ -489,6 +497,7 @@ new FormModel {
 					"text": "Search"
 					"foreground": #ColorUIResource0
 					"background": sfield java.awt.Color darkGray
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SearchActionPerformed", true ) )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu2"

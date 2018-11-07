@@ -122,6 +122,7 @@ public class DataBaseController {
     }
 
 
+
     public double calculateRating(String id) {
         double finalrate=0;
         String srate="5.0";
@@ -199,7 +200,7 @@ public class DataBaseController {
             while (resultSet.next()) {
 
 
-                ElementsInHotelView elements=new ElementsInHotelView(resultSet.getString("UniqueId"),resultSet.getString("HotelName"),
+                ElementsInHotelView elements=new ElementsInHotelView(resultSet.getString("UniqueId"),resultSet.getString("HotelName"),resultSet.getString("Address"),
                         resultSet.getString("HotelDescription"),resultSet.getString("StandardPrice"),resultSet.getInt("StandardCapacity"),
                         resultSet.getString("DeluxePrice"),resultSet.getInt("DeluxeCapacity"),resultSet.getString("SuitePrice"),resultSet.getInt("SuiteCapacity"),
                         resultSet.getString("HomeImagePath"),resultSet.getString("StarRating"),resultSet.getInt("NumberOfVotes"));

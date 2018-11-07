@@ -5,7 +5,7 @@
 package com.sharan.ui.hotelView.hotelHome;
 
 import com.sharan.DataBaseController;
-import com.sharan.ui.hotelView.hotelHome.beforeLogin.HotelHomePageBeforeLogin;
+import com.sharan.ui.hotelView.hotelHome.TOBEREMOVEDbeforeLogin.HotelHomePageBeforeLogin;
 import com.sharan.ui.hotelView.hotelHome.rating.Rating;
 
 import javax.swing.*;

@@ -9,6 +9,7 @@ public class Main {
     public static int signUpSuccess;
     public static int starUpdate;
     public static int checkInCheckOutCheck;
+    public static int viewToindividual;
     public static void main(String[] args) {
 
         DataBaseController dataBaseController=new DataBaseController();

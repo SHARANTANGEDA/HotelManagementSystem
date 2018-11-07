@@ -4,9 +4,11 @@
 
 package com.sharan.ui.hotelView.hotelHomeAfterLogin;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
-import com.sharan.ui.hotelView.hotelHome.beforeLogin.HotelHomePageBeforeLogin;
+import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
+import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
+import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
 import com.sharan.ui.hotelView.hotelHome.rating.Rating;
 
 import javax.swing.*;
@@ -16,6 +18,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
 import static com.sharan.Main.starUpdate;
+import static com.sharan.Main.viewToindividual;
 
 /**
  * @author vamsi adapa
@@ -35,7 +38,12 @@ public class HotelHomeAfterLogin {
     private String numberOfVotes;
     private ArrayList<String> list;
     private JButton ratingConfirm;
-
+    private String universalHotelSearch;
+    private String checkIn;
+    private String checkOut;
+    private String userName;
+    private String state;
+    private String city;
 
     public HotelHomeAfterLogin(ArrayList<String> list, DataBaseController dataBaseController) {
 
@@ -51,6 +59,11 @@ public class HotelHomeAfterLogin {
         this.address=list.get(3);
         this.hotelMainImagePath=list.get(4);
         this.numberOfVotes=list.get(5);
+        this.checkIn=list.get(6);
+        this.checkOut=list.get(7);
+        this.userName=list.get(8);
+        this.city=list.get(9);
+        this.state=list.get(10);
 
 
         dataBaseController.initialiseDatabase();
@@ -79,6 +92,22 @@ public class HotelHomeAfterLogin {
         dataBaseController.closeDatabaseConnection();
         for(String str:list) {
             Hotels.addItem(str);
+        }
+    }
+    private void backButtonActionPerformed(ActionEvent e) {
+        ArrayList<String> displayList=new ArrayList<>();
+        displayList.add(userName);
+        displayList.add(state);
+        displayList.add(city);
+        displayList.add(checkIn);
+        displayList.add(checkOut);
+        if(viewToindividual==1) {
+            individualHotelHome.dispose();
+            DisplaySelectedHotels displaySelectedHotels=new DisplaySelectedHotels(displayList,dataBaseController);
+            viewToindividual=0;
+        }else {
+            individualHotelHome.dispose();
+            HomePageAfterLogin hotelHomeAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
         }
     }
 
@@ -211,19 +240,15 @@ public class HotelHomeAfterLogin {
     }
 
     private void HotelsItemStateChanged(ItemEvent e) {
-            dataBaseController.initialiseDatabase();
-            ArrayList<String> list=dataBaseController.getUniversalSearchData();
-            dataBaseController.closeDatabaseConnection();
-            for(String str:list) {
-                Hotels.addItem(str);
-            }
+        universalHotelSearch=e.getItem().toString();
     }
 
 
 //********ButtonFields****************************************
     private void LogoutFieldActionPerformed(ActionEvent e) {
         dataBaseController.initialiseDatabase();
-        HotelHomePageBeforeLogin beforeLogin=new HotelHomePageBeforeLogin(list,dataBaseController);
+        individualHotelHome.dispose();
+        HomePage homePage=new HomePage(dataBaseController);
         dataBaseController.closeDatabaseConnection();
     }
 
@@ -245,6 +270,20 @@ public class HotelHomeAfterLogin {
         // TODO add your code here
     }
 
+    private void SearchActionPerformed(ActionEvent e) {
+        if((!universalHotelSearch.isEmpty()) && (!universalHotelSearch.equalsIgnoreCase("Select The Hotel"))) {
+            String temp[]=universalHotelSearch.split(",");
+            dataBaseController.initialiseDatabase();
+            String uniqueId=dataBaseController.setUniversalSearchData(temp);
+            dataBaseController.closeDatabaseConnection();
+            LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Please Select a Hotel First");
+        }
+    }
+
+
 
 
 //********ButtonFields****************************************
@@ -254,6 +293,7 @@ public class HotelHomeAfterLogin {
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
         individualHotelHome = new JFrame();
         menuBar = new JMenuBar();
+        backButton = new JMenuItem();
         Telangana = new JMenu();
         Hyderabad = new JMenu();
         itckohenur = new JMenuItem();
@@ -370,6 +410,14 @@ public class HotelHomeAfterLogin {
                 menuBar.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 20));
                 menuBar.setBackground(Color.darkGray);
                 menuBar.setForeground(new Color(238, 238, 238));
+
+                //---- backButton ----
+                backButton.setBackground(Color.darkGray);
+                backButton.setPreferredSize(new Dimension(50, 13));
+                backButton.setMaximumSize(new Dimension(50, 32767));
+                backButton.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Back24.gif")));
+                backButton.addActionListener(e -> backButtonActionPerformed(e));
+                menuBar.add(backButton);
 
                 //======== Telangana ========
                 {
@@ -824,6 +872,7 @@ public class HotelHomeAfterLogin {
                 Search.setText("Search");
                 Search.setForeground(new Color(238, 238, 238));
                 Search.setBackground(Color.darkGray);
+                Search.addActionListener(e -> SearchActionPerformed(e));
                 menuBar.add(Search);
 
                 //======== menu2 ========
@@ -970,6 +1019,7 @@ public class HotelHomeAfterLogin {
     // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JFrame individualHotelHome;
     private JMenuBar menuBar;
+    private JMenuItem backButton;
     private JMenu Telangana;
     private JMenu Hyderabad;
     private JMenuItem itckohenur;

@@ -5,6 +5,11 @@
 package com.sharan.ui.hotelView.displaySelectedHotels;
 
 import com.sharan.DataBaseController;
+import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
+import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
+import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
+import com.sharan.ui.myAccount.MyAccount;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
@@ -12,7 +17,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+
+import static com.sharan.Main.viewToindividual;
 
 /**
  * @author SAI SHARAN
@@ -23,7 +31,7 @@ public class DisplaySelectedHotels {
     private String city;
     private String checkIN;
     private String checkOUT;
-    private String noOfRooms;
+//    private String noOfRooms;
     private String userName;
 
 //    private String uniqueId[];
@@ -40,7 +48,11 @@ public class DisplaySelectedHotels {
 //    private int numberOfVotes[];
 
     private DataBaseController dataBaseController;
-//
+    private String universalHotelSearch;
+    private ArrayList<String> list;
+    private ArrayList<ElementsInHotelView> displayList;
+    private String rating;
+
 //    private ArrayList<JLabel> hotelPhoto;
 //    private ArrayList<JLabel> hotelNameTitle;
 //    private ArrayList<JLabel> priceStandard;
@@ -55,12 +67,14 @@ public class DisplaySelectedHotels {
 
         this.userName=list.get(0);
         this.state=list.get(1);
+//        System.out.println(state);
         this.city=list.get(2);
+//        System.out.println(city);
         this.checkIN=list.get(3);
         this.checkOUT=list.get(4);
-        this.noOfRooms=list.get(5);
+//        this.noOfRooms=list.get(5);
         this.dataBaseController=dataBaseController;
-
+        System.out.println("check-1");
 
         initComponents();
         addToUniversalHotelSearch();
@@ -85,38 +99,53 @@ public class DisplaySelectedHotels {
 //
 //        priceDeluxe.set(0,priceDeluxe1);
 //
+        this.displayList=displayList;
 
         {//hotel1************************************************************************************
             ElementsInHotelView elements = displayList.get(0);
             hotelPhoto1.setIcon(new ImageIcon(getClass().getResource(elements.getImagePath())));
             hotelName1.setText(elements.getHotelName());
+            System.out.println("check-2");
 
-            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
-                priceStandard1.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceStandard1.setText(totalPriceString);
-            }
+//            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
+//                priceStandard1.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceStandard1.setText(totalPriceString);
+//            }
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
+//                priceDeluxe1.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceDeluxe1.setText(totalPriceString);
+//            }
+//
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
+//                priceSuite1.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceSuite1.setText(totalPriceString);
+//            }
+            dataBaseController.initialiseDatabase();
+            String databaseRate=String.valueOf(dataBaseController.calculateRating(elements.getUniqueId()));
+            rating="/com/sharan/ui/pictures/stars/"+databaseRate+".jpg";
+            dataBaseController.closeDatabaseConnection();
 
-            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
-                priceDeluxe1.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceDeluxe1.setText(totalPriceString);
-            }
 
+            priceStandard1.setText("Rs."+elements.getStandardRoomPrice());
+            priceDeluxe1.setText("Rs."+elements.getDeluxeRoomPrice());
+            priceSuite1.setText("Rs."+elements.getSuiteRoomPrice());
 
-            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
-                priceSuite1.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceSuite1.setText(totalPriceString);
-            }
+            standardRooms1.setText(String.valueOf(elements.getStandardRoomCapacity()));
+            deluxeRooms.setText(String.valueOf(elements.getDeluxeRoomCapacity()));
+            suiteRooms.setText(String.valueOf(elements.getSuiteRoomCapacity()));
 
-            hotelRating1.setText("ToBeAddedLater");
+            hotelRating1.setIcon(new ImageIcon(getClass().getResource(rating)));
             ratingBracket1.setText("Rating(" + String.valueOf(elements.getNumberOfVotes()) + ")");
             //hotel1************************************************************************************
         }
@@ -128,32 +157,45 @@ public class DisplaySelectedHotels {
             hotelPhoto2.setIcon(new ImageIcon(getClass().getResource(elements.getImagePath())));
             hotelName2.setText(elements.getHotelName());
 
-            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
-                priceStandard2.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceStandard2.setText(totalPriceString);
-            }
-
-            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
-                priceDeluxe2.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceDeluxe2.setText(totalPriceString);
-            }
+            dataBaseController.initialiseDatabase();
+            String databaseRate=String.valueOf(dataBaseController.calculateRating(elements.getUniqueId()));
+            rating="/com/sharan/ui/pictures/stars/"+databaseRate+".jpg";
+            dataBaseController.closeDatabaseConnection();
 
 
-            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
-                priceSuite2.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceSuite2.setText(totalPriceString);
-            }
+//            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
+//                priceStandard2.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceStandard2.setText(totalPriceString);
+//            }
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
+//                priceDeluxe2.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceDeluxe2.setText(totalPriceString);
+//            }
+//
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
+//                priceSuite2.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceSuite2.setText(totalPriceString);
+//            }
+            priceStandard2.setText("Rs."+elements.getStandardRoomPrice());
+            priceDeluxe2.setText("Rs."+elements.getDeluxeRoomPrice());
+            priceSuite2.setText("Rs."+elements.getSuiteRoomPrice());
 
-            hotelRating2.setText("ToBeAddedLater");
+            standardRooms2.setText(String.valueOf(elements.getStandardRoomCapacity()));
+            deluxeRooms2.setText(String.valueOf(elements.getDeluxeRoomCapacity()));
+            suiteRooms2.setText(String.valueOf(elements.getSuiteRoomCapacity()));
+
+            hotelRating2.setIcon(new ImageIcon(getClass().getResource(rating)));
             ratingBracket2.setText("Rating(" + String.valueOf(elements.getNumberOfVotes()) + ")");
             //hotel2************************************************************************************
         }
@@ -164,32 +206,45 @@ public class DisplaySelectedHotels {
             hotelPhoto3.setIcon(new ImageIcon(getClass().getResource(elements.getImagePath())));
             hotelName3.setText(elements.getHotelName());
 
-            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
-                priceStandard3.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceStandard3.setText(totalPriceString);
-            }
-
-            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
-                priceDeluxe3.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceDeluxe3.setText(totalPriceString);
-            }
+            dataBaseController.initialiseDatabase();
+            String databaseRate=String.valueOf(dataBaseController.calculateRating(elements.getUniqueId()));
+            rating="/com/sharan/ui/pictures/stars/"+databaseRate+".jpg";
+            dataBaseController.closeDatabaseConnection();
 
 
-            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
-                priceSuite3.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceSuite3.setText(totalPriceString);
-            }
+//            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
+//                priceStandard3.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceStandard3.setText(totalPriceString);
+//            }
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
+//                priceDeluxe3.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceDeluxe3.setText(totalPriceString);
+//            }
+//
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
+//                priceSuite3.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceSuite3.setText(totalPriceString);
+//            }
+            priceStandard3.setText("Rs."+elements.getStandardRoomPrice());
+            priceDeluxe3.setText("Rs."+elements.getDeluxeRoomPrice());
+            priceSuite3.setText("Rs."+elements.getSuiteRoomPrice());
 
-            hotelRating3.setText("ToBeAddedLater");
+            standardRooms3.setText(String.valueOf(elements.getStandardRoomCapacity()));
+            deluxeRooms3.setText(String.valueOf(elements.getDeluxeRoomCapacity()));
+            suiteRooms3.setText(String.valueOf(elements.getSuiteRoomCapacity()));
+
+            hotelRating3.setIcon(new ImageIcon(getClass().getResource(rating)));
             ratingBracket3.setText("Rating(" + String.valueOf(elements.getNumberOfVotes()) + ")");
             //hotel3************************************************************************************
         }
@@ -200,32 +255,45 @@ public class DisplaySelectedHotels {
             hotelPhoto4.setIcon(new ImageIcon(getClass().getResource(elements.getImagePath())));
             hotelName4.setText(elements.getHotelName());
 
-            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
-                priceStandard4.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceStandard4.setText(totalPriceString);
-            }
+//            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
+//                priceStandard4.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getStandardRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceStandard4.setText(totalPriceString);
+//            }
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
+//                priceDeluxe4.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceDeluxe4.setText(totalPriceString);
+//            }
+//
+//
+//            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
+//                priceSuite4.setText("Not Enough Rooms Available");
+//            } else {
+//                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
+//                String totalPriceString = String.valueOf(totalPrice);
+//                priceSuite4.setText(totalPriceString);
+//            }
+            dataBaseController.initialiseDatabase();
+            String databaseRate=String.valueOf(dataBaseController.calculateRating(elements.getUniqueId()));
+            rating="/com/sharan/ui/pictures/stars/"+databaseRate+".jpg";
+            dataBaseController.closeDatabaseConnection();
 
-            if (Integer.parseInt(noOfRooms) > elements.getDeluxeRoomCapacity()) {
-                priceDeluxe4.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getDeluxeRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceDeluxe4.setText(totalPriceString);
-            }
 
+            priceStandard4.setText("Rs."+elements.getStandardRoomPrice());
+            priceDeluxe4.setText("Rs."+elements.getDeluxeRoomPrice());
+            priceSuite4.setText("Rs."+elements.getSuiteRoomPrice());
 
-            if (Integer.parseInt(noOfRooms) > elements.getSuiteRoomCapacity()) {
-                priceSuite4.setText("Not Enough Rooms Available");
-            } else {
-                int totalPrice = (Integer.parseInt(noOfRooms)) * (Integer.parseInt(elements.getSuiteRoomPrice()));
-                String totalPriceString = String.valueOf(totalPrice);
-                priceSuite4.setText(totalPriceString);
-            }
+            standardRooms4.setText(String.valueOf(elements.getStandardRoomCapacity()));
+            deluxeRooms4.setText(String.valueOf(elements.getDeluxeRoomCapacity()));
+            suiteRooms4.setText(String.valueOf(elements.getSuiteRoomCapacity()));
 
-            hotelRating4.setText("ToBeAddedLater");
+            hotelRating4.setIcon(new ImageIcon(getClass().getResource(rating)));
             ratingBracket4.setText("Rating(" + String.valueOf(elements.getNumberOfVotes()) + ")");
             //hotel4************************************************************************************
         }
@@ -242,10 +310,119 @@ public class DisplaySelectedHotels {
         dataBaseController.initialiseDatabase();
         ArrayList<String> list=dataBaseController.getUniversalSearchData();
         dataBaseController.closeDatabaseConnection();
+        Hotels.addItem("Select a Hotel");
         for(String str:list) {
             Hotels.addItem(str);
         }
     }
+
+
+    private void myAccountActionPerformed(ActionEvent e) {
+        displayTable.dispose();
+        MyAccount myAccount=new MyAccount(dataBaseController);
+    }
+
+    private void LogoutActionPerformed(ActionEvent e) {
+        displayTable.dispose();
+        HomePage page=new HomePage(dataBaseController);
+    }
+
+    private void backButtonActionPerformed(ActionEvent e) {
+        displayTable.dispose();
+        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName, dataBaseController);
+    }
+
+
+    private void HotelsItemStateChanged(ItemEvent e) {
+        universalHotelSearch=e.getItem().toString();
+    }
+
+
+    private void SearchActionPerformed(ActionEvent e) {
+        if((!universalHotelSearch.isEmpty()) && (!universalHotelSearch.equalsIgnoreCase("Select a Hotel"))) {
+            String temp[]=universalHotelSearch.split(",");
+            dataBaseController.initialiseDatabase();
+            String uniqueId=dataBaseController.setUniversalSearchData(temp);
+            dataBaseController.closeDatabaseConnection();
+            LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Please Select a Hotel First");
+        }
+    }
+
+    private void viewHotel1ActionPerformed(ActionEvent e) {
+        list=new ArrayList<>();
+        list.add(displayList.get(0).getUniqueId());
+        list.add(displayList.get(0).getHotelName());
+        list.add(displayList.get(0).getHotelDescription());
+        list.add(displayList.get(0).getAddress());
+        list.add(displayList.get(0).getImagePath());
+        list.add(String.valueOf(displayList.get(0).getNumberOfVotes()));
+        list.add(checkIN);
+        list.add(checkOUT);
+        list.add(userName);
+        list.add(city);
+        list.add(state);
+        viewToindividual=1;
+        displayTable.dispose();
+        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
+    }
+
+    private void viewHotel2ActionPerformed(ActionEvent e) {
+        list=new ArrayList<>();
+        list.add(displayList.get(1).getUniqueId());
+        list.add(displayList.get(1).getHotelName());
+        list.add(displayList.get(1).getHotelDescription());
+        list.add(displayList.get(1).getAddress());
+        list.add(displayList.get(1).getImagePath());
+        list.add(String.valueOf(displayList.get(1).getNumberOfVotes()));
+        list.add(checkIN);
+        list.add(checkOUT);
+        list.add(userName);
+        list.add(city);
+        list.add(state);
+        viewToindividual=1;
+        displayTable.dispose();
+        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
+    }
+
+    private void viewHotel3ActionPerformed(ActionEvent e) {
+        list=new ArrayList<>();
+        list.add(displayList.get(2).getUniqueId());
+        list.add(displayList.get(2).getHotelName());
+        list.add(displayList.get(2).getHotelDescription());
+        list.add(displayList.get(2).getAddress());
+        list.add(displayList.get(2).getImagePath());
+        list.add(String.valueOf(displayList.get(2).getNumberOfVotes()));
+        list.add(checkIN);
+        list.add(checkOUT);
+        list.add(userName);
+        list.add(city);
+        list.add(state);
+        viewToindividual=1;
+        displayTable.dispose();
+        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
+    }
+
+    private void viewHotel4ActionPerformed(ActionEvent e) {
+        list=new ArrayList<>();
+        list.add(displayList.get(3).getUniqueId());
+        list.add(displayList.get(3).getHotelName());
+        list.add(displayList.get(3).getHotelDescription());
+        list.add(displayList.get(3).getAddress());
+        list.add(displayList.get(3).getImagePath());
+        list.add(String.valueOf(displayList.get(3).getNumberOfVotes()));
+        list.add(checkIN);
+        list.add(checkOUT);
+        list.add(userName);
+        list.add(city);
+        list.add(state);
+        viewToindividual=1;
+        displayTable.dispose();
+        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
+    }
+
 
     private void itckohenurActionPerformed(ActionEvent e) {
         // TODO add your code here
@@ -379,20 +556,9 @@ public class DisplaySelectedHotels {
         // TODO add your code here
     }
 
-    private void SearchActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
-
-    private void LogoutActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
 
 
 
-//
-//private void addRowsToTable(JTable table) {
-//        table.
-//}
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -486,12 +652,13 @@ public class DisplaySelectedHotels {
         THEONEHOTEL = new JMenuItem();
         HotelAtithi = new JMenuItem();
         separator2 = new JSeparator();
-        Hotels = new JComboBox<String>();
+        Hotels = new JComboBox();
         Search = new JButton();
         separator1 = new JSeparator();
         profile = new JMenu();
         myAccount = new JMenuItem();
         Logout = new JMenuItem();
+        separator3 = new JSeparator();
         scrollPane1 = new JScrollPane();
         homePanel = new JPanel();
         hotelPanel1 = new JPanel();
@@ -508,51 +675,80 @@ public class DisplaySelectedHotels {
         scrollPane2 = new JScrollPane();
         description1 = new JTextPane();
         bookNow1 = new JButton();
+        viewHotel1 = new JButton();
+        label50 = new JLabel();
+        label = new JLabel();
+        label60 = new JLabel();
+        standardRooms1 = new JLabel();
+        deluxeRooms = new JLabel();
+        suiteRooms = new JLabel();
         hotelPanel2 = new JPanel();
         hotelPhoto2 = new JLabel();
         hotelName2 = new JLabel();
-        label13 = new JLabel();
-        label14 = new JLabel();
-        label15 = new JLabel();
-        priceStandard2 = new JLabel();
-        priceDeluxe2 = new JLabel();
-        priceSuite2 = new JLabel();
         hotelRating2 = new JLabel();
         ratingBracket2 = new JLabel();
         scrollPane3 = new JScrollPane();
         description2 = new JTextPane();
         bookNow2 = new JButton();
+        viewHotel2 = new JButton();
+        standardRooms2 = new JLabel();
+        label2 = new JLabel();
+        label51 = new JLabel();
+        label61 = new JLabel();
+        priceStandard2 = new JLabel();
+        label12 = new JLabel();
+        label13 = new JLabel();
+        priceDeluxe2 = new JLabel();
+        deluxeRooms2 = new JLabel();
+        suiteRooms2 = new JLabel();
+        priceSuite2 = new JLabel();
+        label14 = new JLabel();
         hotelPanel3 = new JPanel();
         hotelPhoto3 = new JLabel();
         hotelName3 = new JLabel();
-        label17 = new JLabel();
-        label18 = new JLabel();
-        label19 = new JLabel();
-        priceStandard3 = new JLabel();
-        priceDeluxe3 = new JLabel();
-        priceSuite3 = new JLabel();
         hotelRating3 = new JLabel();
         ratingBracket3 = new JLabel();
         scrollPane4 = new JScrollPane();
         description3 = new JTextPane();
         bookNow3 = new JButton();
+        viewHotel3 = new JButton();
+        standardRooms3 = new JLabel();
+        label3 = new JLabel();
+        label52 = new JLabel();
+        label62 = new JLabel();
+        priceStandard3 = new JLabel();
+        label15 = new JLabel();
+        label16 = new JLabel();
+        priceDeluxe3 = new JLabel();
+        deluxeRooms3 = new JLabel();
+        suiteRooms3 = new JLabel();
+        priceSuite3 = new JLabel();
+        label17 = new JLabel();
         hotelPanel4 = new JPanel();
         hotelPhoto4 = new JLabel();
         hotelName4 = new JLabel();
-        label21 = new JLabel();
-        label22 = new JLabel();
-        label23 = new JLabel();
-        priceStandard4 = new JLabel();
-        priceDeluxe4 = new JLabel();
-        priceSuite4 = new JLabel();
         hotelRating4 = new JLabel();
         ratingBracket4 = new JLabel();
         scrollPane5 = new JScrollPane();
-        textPane4 = new JTextPane();
+        description4 = new JTextPane();
         bookNow4 = new JButton();
+        viewHotel4 = new JButton();
+        standardRooms4 = new JLabel();
+        label4 = new JLabel();
+        label53 = new JLabel();
+        label63 = new JLabel();
+        priceStandard4 = new JLabel();
+        label18 = new JLabel();
+        label19 = new JLabel();
+        priceDeluxe4 = new JLabel();
+        deluxeRooms4 = new JLabel();
+        suiteRooms4 = new JLabel();
+        priceSuite4 = new JLabel();
+        label20 = new JLabel();
 
         //======== displayTable ========
         {
+            displayTable.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             Container displayTableContentPane = displayTable.getContentPane();
 
             //---- label1 ----
@@ -570,6 +766,8 @@ public class DisplaySelectedHotels {
                 backButton.setBackground(Color.darkGray);
                 backButton.setPreferredSize(new Dimension(50, 13));
                 backButton.setMaximumSize(new Dimension(50, 32767));
+                backButton.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Back24.gif")));
+                backButton.addActionListener(e -> backButtonActionPerformed(e));
                 menuBar1.add(backButton);
 
                 //======== Telangana ========
@@ -1021,6 +1219,7 @@ public class DisplaySelectedHotels {
                 Hotels.setFocusable(false);
                 Hotels.setLightWeightPopupEnabled(false);
                 Hotels.addActionListener(e -> HotelsActionPerformed(e));
+                Hotels.addItemListener(e -> HotelsItemStateChanged(e));
                 menuBar1.add(Hotels);
 
                 //---- Search ----
@@ -1033,7 +1232,7 @@ public class DisplaySelectedHotels {
                 menuBar1.add(Search);
 
                 //---- separator1 ----
-                separator1.setMaximumSize(new Dimension(400, 50));
+                separator1.setMaximumSize(new Dimension(300, 50));
                 separator1.setBackground(Color.darkGray);
                 menuBar1.add(separator1);
 
@@ -1042,7 +1241,9 @@ public class DisplaySelectedHotels {
                     profile.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
 
                     //---- myAccount ----
-                    myAccount.setText("text");
+                    myAccount.setText("My Account");
+                    myAccount.setFont(new Font("Arial", Font.PLAIN, 18));
+                    myAccount.addActionListener(e -> myAccountActionPerformed(e));
                     profile.add(myAccount);
 
                     //---- Logout ----
@@ -1052,6 +1253,10 @@ public class DisplaySelectedHotels {
                     profile.add(Logout);
                 }
                 menuBar1.add(profile);
+
+                //---- separator3 ----
+                separator3.setMaximumSize(new Dimension(150, 32767));
+                menuBar1.add(separator3);
             }
 
             //======== scrollPane1 ========
@@ -1132,6 +1337,37 @@ public class DisplaySelectedHotels {
                         bookNow1.setBackground(new Color(153, 0, 0));
                         bookNow1.setForeground(new Color(238, 238, 238));
 
+                        //---- viewHotel1 ----
+                        viewHotel1.setText("View Hotel");
+                        viewHotel1.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
+                        viewHotel1.setBackground(new Color(153, 0, 0));
+                        viewHotel1.setForeground(new Color(238, 238, 238));
+                        viewHotel1.addActionListener(e -> viewHotel1ActionPerformed(e));
+
+                        //---- label50 ----
+                        label50.setText("Room Price");
+                        label50.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- label ----
+                        label.setText("Types");
+                        label.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label60 ----
+                        label60.setText("Number of Rooms");
+                        label60.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- standardRooms1 ----
+                        standardRooms1.setText("text");
+                        standardRooms1.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- deluxeRooms ----
+                        deluxeRooms.setText("text");
+                        deluxeRooms.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- suiteRooms ----
+                        suiteRooms.setText("text");
+                        suiteRooms.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
                         GroupLayout hotelPanel1Layout = new GroupLayout(hotelPanel1);
                         hotelPanel1.setLayout(hotelPanel1Layout);
                         hotelPanel1Layout.setHorizontalGroup(
@@ -1142,24 +1378,41 @@ public class DisplaySelectedHotels {
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(hotelPanel1Layout.createParallelGroup()
                                         .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(label9, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                                .addComponent(label10, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(label11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(priceDeluxe1)
-                                                .addComponent(priceStandard1, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                                .addComponent(priceSuite1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(hotelPanel1Layout.createSequentialGroup()
                                             .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                .addComponent(hotelRating1, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                    .addGap(27, 27, 27)
-                                                    .addComponent(ratingBracket1, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(bookNow1, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(27, 27, 27)
+                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
+                                                        .addComponent(hotelRating1, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                                            .addGap(10, 10, 10)
+                                                            .addComponent(ratingBracket1, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)))
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
+                                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(label11, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
+                                                        .addComponent(priceDeluxe1)
+                                                        .addComponent(priceStandard1)
+                                                        .addComponent(priceSuite1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
+                                                        .addComponent(standardRooms1)
+                                                        .addComponent(deluxeRooms)
+                                                        .addComponent(suiteRooms))
+                                                    .addGap(121, 121, 121)))
+                                            .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(viewHotel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(bookNow1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGap(27, 27, 27))
+                                        .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                            .addComponent(label, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(label50, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(label60)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
                                     .addGap(30, 30, 30))
                                 .addComponent(hotelName1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1167,33 +1420,52 @@ public class DisplaySelectedHotels {
                         hotelPanel1Layout.setVerticalGroup(
                             hotelPanel1Layout.createParallelGroup()
                                 .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                    .addContainerGap(12, Short.MAX_VALUE)
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(hotelName1)
                                     .addGroup(hotelPanel1Layout.createParallelGroup()
-                                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label9)
-                                                .addComponent(priceStandard1))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label10)
-                                                .addComponent(priceDeluxe1))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label11)
-                                                .addComponent(priceSuite1))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
-                                                    .addComponent(ratingBracket1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(hotelPhoto1, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                                    .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(label)
+                                                        .addComponent(label50)
+                                                        .addComponent(label60))
                                                     .addGap(18, 18, 18)
-                                                    .addComponent(hotelRating1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
-                                                    .addComponent(bookNow1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(37, 37, 37))))
-                                        .addComponent(hotelPhoto1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
+                                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
+                                                            .addGroup(hotelPanel1Layout.createParallelGroup()
+                                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                                                    .addComponent(label9)
+                                                                    .addGap(18, 18, 18)
+                                                                    .addComponent(label10)
+                                                                    .addGap(18, 18, 18)
+                                                                    .addComponent(label11))
+                                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                                                    .addComponent(standardRooms1)
+                                                                    .addGap(18, 18, 18)
+                                                                    .addComponent(deluxeRooms)
+                                                                    .addGap(18, 18, 18)
+                                                                    .addComponent(suiteRooms))
+                                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                                                    .addComponent(priceStandard1)
+                                                                    .addGap(18, 18, 18)
+                                                                    .addComponent(priceDeluxe1)
+                                                                    .addGap(18, 18, 18)
+                                                                    .addComponent(priceSuite1)))
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(ratingBracket1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(hotelRating1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
+                                                            .addComponent(viewHotel1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                            .addComponent(bookNow1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                            .addGap(37, 37, 37))))))
+                                        .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE)))
                                     .addContainerGap())
                         );
                     }
@@ -1214,30 +1486,6 @@ public class DisplaySelectedHotels {
                         hotelName2.setOpaque(true);
                         hotelName2.setForeground(Color.black);
                         hotelName2.setHorizontalAlignment(SwingConstants.CENTER);
-
-                        //---- label13 ----
-                        label13.setText("standard");
-                        label13.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- label14 ----
-                        label14.setText("deluxe");
-                        label14.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- label15 ----
-                        label15.setText("suite");
-                        label15.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceStandard2 ----
-                        priceStandard2.setText("text");
-                        priceStandard2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceDeluxe2 ----
-                        priceDeluxe2.setText("text");
-                        priceDeluxe2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceSuite2 ----
-                        priceSuite2.setText("text");
-                        priceSuite2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         //---- hotelRating2 ----
                         hotelRating2.setText("_Rating here__");
@@ -1260,6 +1508,61 @@ public class DisplaySelectedHotels {
                         bookNow2.setBackground(new Color(153, 0, 0));
                         bookNow2.setForeground(new Color(238, 238, 238));
 
+                        //---- viewHotel2 ----
+                        viewHotel2.setText("View Hotel");
+                        viewHotel2.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
+                        viewHotel2.setBackground(new Color(153, 0, 0));
+                        viewHotel2.setForeground(new Color(238, 238, 238));
+                        viewHotel2.addActionListener(e -> viewHotel2ActionPerformed(e));
+
+                        //---- standardRooms2 ----
+                        standardRooms2.setText("text");
+                        standardRooms2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label2 ----
+                        label2.setText("Types");
+                        label2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label51 ----
+                        label51.setText("Room Price");
+                        label51.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- label61 ----
+                        label61.setText("Number of Rooms");
+                        label61.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- priceStandard2 ----
+                        priceStandard2.setText("text");
+                        priceStandard2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label12 ----
+                        label12.setText("standard");
+                        label12.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label13 ----
+                        label13.setText("deluxe");
+                        label13.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- priceDeluxe2 ----
+                        priceDeluxe2.setText("text");
+                        priceDeluxe2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- deluxeRooms2 ----
+                        deluxeRooms2.setText("text");
+                        deluxeRooms2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- suiteRooms2 ----
+                        suiteRooms2.setText("text");
+                        suiteRooms2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- priceSuite2 ----
+                        priceSuite2.setText("text");
+                        priceSuite2.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label14 ----
+                        label14.setText("suite");
+                        label14.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
                         GroupLayout hotelPanel2Layout = new GroupLayout(hotelPanel2);
                         hotelPanel2.setLayout(hotelPanel2Layout);
                         hotelPanel2Layout.setHorizontalGroup(
@@ -1267,26 +1570,37 @@ public class DisplaySelectedHotels {
                                 .addGroup(hotelPanel2Layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(hotelPhoto2, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGap(12, 12, 12)
                                     .addGroup(hotelPanel2Layout.createParallelGroup()
                                         .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(label13, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                                .addComponent(label14, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(label15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(priceDeluxe2)
-                                                .addComponent(priceStandard2, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                                .addComponent(priceSuite2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(hotelPanel2Layout.createParallelGroup()
+                                                .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(label51, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(hotelRating2, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(ratingBracket2, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(12, 12, 12)
+                                            .addComponent(label61))
                                         .addGroup(hotelPanel2Layout.createSequentialGroup()
                                             .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                .addComponent(hotelRating2, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                                    .addGap(27, 27, 27)
-                                                    .addComponent(ratingBracket2, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(bookNow2, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(label13, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(label14, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(32, 32, 32)
+                                            .addGroup(hotelPanel2Layout.createParallelGroup()
+                                                .addComponent(priceStandard2)
+                                                .addComponent(priceDeluxe2)
+                                                .addComponent(priceSuite2))
+                                            .addGap(107, 107, 107)
+                                            .addGroup(hotelPanel2Layout.createParallelGroup()
+                                                .addComponent(standardRooms2)
+                                                .addComponent(deluxeRooms2)
+                                                .addComponent(suiteRooms2))))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(viewHotel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bookNow2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGap(27, 27, 27)
                                     .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
                                     .addGap(30, 30, 30))
@@ -1295,33 +1609,56 @@ public class DisplaySelectedHotels {
                         hotelPanel2Layout.setVerticalGroup(
                             hotelPanel2Layout.createParallelGroup()
                                 .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                    .addContainerGap(12, Short.MAX_VALUE)
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(hotelName2)
                                     .addGroup(hotelPanel2Layout.createParallelGroup()
-                                        .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                            .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel2Layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label13)
-                                                .addComponent(priceStandard2))
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label14)
-                                                .addComponent(priceDeluxe2))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label15)
-                                                .addComponent(priceSuite2))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                                             .addGroup(hotelPanel2Layout.createParallelGroup()
                                                 .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel2Layout.createSequentialGroup()
+                                                    .addGroup(hotelPanel2Layout.createParallelGroup()
+                                                        .addComponent(label2)
+                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                                            .addGap(4, 4, 4)
+                                                            .addGroup(hotelPanel2Layout.createParallelGroup()
+                                                                .addComponent(label51)
+                                                                .addComponent(label61))))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(hotelPanel2Layout.createParallelGroup()
+                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                                            .addComponent(label12)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(label13)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(label14))
+                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                                            .addComponent(priceStandard2)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(priceDeluxe2)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(priceSuite2))
+                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                                            .addComponent(standardRooms2)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(deluxeRooms2)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(suiteRooms2)))
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(ratingBracket2, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
                                                     .addGap(18, 18, 18)
                                                     .addComponent(hotelRating2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel2Layout.createSequentialGroup()
+                                                    .addGap(0, 0, Short.MAX_VALUE)
+                                                    .addComponent(viewHotel2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                     .addComponent(bookNow2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(37, 37, 37))))
-                                        .addComponent(hotelPhoto2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(37, 37, 37))
+                                                .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                                    .addComponent(hotelPhoto2, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(0, 0, Short.MAX_VALUE)))))
                                     .addContainerGap())
                         );
                     }
@@ -1342,30 +1679,6 @@ public class DisplaySelectedHotels {
                         hotelName3.setOpaque(true);
                         hotelName3.setForeground(Color.black);
                         hotelName3.setHorizontalAlignment(SwingConstants.CENTER);
-
-                        //---- label17 ----
-                        label17.setText("standard");
-                        label17.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- label18 ----
-                        label18.setText("deluxe");
-                        label18.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- label19 ----
-                        label19.setText("suite");
-                        label19.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceStandard3 ----
-                        priceStandard3.setText("text");
-                        priceStandard3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceDeluxe3 ----
-                        priceDeluxe3.setText("text");
-                        priceDeluxe3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceSuite3 ----
-                        priceSuite3.setText("text");
-                        priceSuite3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         //---- hotelRating3 ----
                         hotelRating3.setText("_Rating here__");
@@ -1388,6 +1701,61 @@ public class DisplaySelectedHotels {
                         bookNow3.setBackground(new Color(153, 0, 0));
                         bookNow3.setForeground(new Color(238, 238, 238));
 
+                        //---- viewHotel3 ----
+                        viewHotel3.setText("View Hotel");
+                        viewHotel3.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
+                        viewHotel3.setBackground(new Color(153, 0, 0));
+                        viewHotel3.setForeground(new Color(238, 238, 238));
+                        viewHotel3.addActionListener(e -> viewHotel3ActionPerformed(e));
+
+                        //---- standardRooms3 ----
+                        standardRooms3.setText("text");
+                        standardRooms3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label3 ----
+                        label3.setText("Types");
+                        label3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label52 ----
+                        label52.setText("Room Price");
+                        label52.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- label62 ----
+                        label62.setText("Number of Rooms");
+                        label62.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- priceStandard3 ----
+                        priceStandard3.setText("text");
+                        priceStandard3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label15 ----
+                        label15.setText("standard");
+                        label15.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label16 ----
+                        label16.setText("deluxe");
+                        label16.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- priceDeluxe3 ----
+                        priceDeluxe3.setText("text");
+                        priceDeluxe3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- deluxeRooms3 ----
+                        deluxeRooms3.setText("text");
+                        deluxeRooms3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- suiteRooms3 ----
+                        suiteRooms3.setText("text");
+                        suiteRooms3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- priceSuite3 ----
+                        priceSuite3.setText("text");
+                        priceSuite3.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label17 ----
+                        label17.setText("suite");
+                        label17.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
                         GroupLayout hotelPanel3Layout = new GroupLayout(hotelPanel3);
                         hotelPanel3.setLayout(hotelPanel3Layout);
                         hotelPanel3Layout.setHorizontalGroup(
@@ -1397,59 +1765,92 @@ public class DisplaySelectedHotels {
                                     .addComponent(hotelPhoto3, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(hotelPanel3Layout.createParallelGroup()
-                                        .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(label17, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                                .addComponent(label18, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(label19, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(hotelPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(priceDeluxe3)
-                                                .addComponent(priceStandard3, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                                .addComponent(priceSuite3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
                                             .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                .addComponent(hotelRating3, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                                    .addGap(27, 27, 27)
-                                                    .addComponent(ratingBracket3, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(bookNow3, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(27, 27, 27)
+                                                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(label52, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(13, 13, 13)
+                                                    .addComponent(label62))
+                                                .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                                    .addComponent(label15, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(49, 49, 49)
+                                                    .addComponent(priceStandard3)
+                                                    .addGap(91, 91, 91)
+                                                    .addComponent(standardRooms3))
+                                                .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                                    .addComponent(label16, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(58, 58, 58)
+                                                    .addComponent(priceDeluxe3)
+                                                    .addGap(91, 91, 91)
+                                                    .addComponent(deluxeRooms3))
+                                                .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                                    .addComponent(label17, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(58, 58, 58)
+                                                    .addComponent(priceSuite3)
+                                                    .addGap(91, 91, 91)
+                                                    .addComponent(suiteRooms3))))
+                                        .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                            .addComponent(hotelRating3, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                            .addComponent(ratingBracket3, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(hotelPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(viewHotel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bookNow3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(36, 36, 36)
                                     .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30))
+                                    .addGap(21, 21, 21))
                                 .addComponent(hotelName3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
                         hotelPanel3Layout.setVerticalGroup(
                             hotelPanel3Layout.createParallelGroup()
                                 .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                    .addContainerGap(12, Short.MAX_VALUE)
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(hotelName3)
                                     .addGroup(hotelPanel3Layout.createParallelGroup()
-                                        .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addGroup(hotelPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label17)
-                                                .addComponent(priceStandard3))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label18)
-                                                .addComponent(priceDeluxe3))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label19)
-                                                .addComponent(priceSuite3))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(hotelPhoto3, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(hotelPanel3Layout.createParallelGroup()
                                                 .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
+                                                        .addComponent(label3)
+                                                        .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                                            .addGap(3, 3, 3)
+                                                            .addGroup(hotelPanel3Layout.createParallelGroup()
+                                                                .addComponent(label52)
+                                                                .addComponent(label62))))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
+                                                        .addComponent(label15)
+                                                        .addComponent(priceStandard3)
+                                                        .addComponent(standardRooms3))
+                                                    .addGap(17, 17, 17)
+                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
+                                                        .addComponent(label16)
+                                                        .addComponent(priceDeluxe3)
+                                                        .addComponent(deluxeRooms3))
+                                                    .addGap(19, 19, 19)
+                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
+                                                        .addComponent(label17)
+                                                        .addComponent(priceSuite3)
+                                                        .addComponent(suiteRooms3))
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(ratingBracket3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
                                                     .addGap(18, 18, 18)
                                                     .addComponent(hotelRating3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                                    .addComponent(viewHotel3, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
                                                     .addComponent(bookNow3, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(37, 37, 37))))
-                                        .addComponent(hotelPhoto3, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(37, 37, 37))
+                                                .addComponent(scrollPane4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))))
                                     .addContainerGap())
                         );
                     }
@@ -1471,30 +1872,6 @@ public class DisplaySelectedHotels {
                         hotelName4.setForeground(Color.black);
                         hotelName4.setHorizontalAlignment(SwingConstants.CENTER);
 
-                        //---- label21 ----
-                        label21.setText("standard");
-                        label21.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- label22 ----
-                        label22.setText("deluxe");
-                        label22.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- label23 ----
-                        label23.setText("suite");
-                        label23.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceStandard4 ----
-                        priceStandard4.setText("text");
-                        priceStandard4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceDeluxe4 ----
-                        priceDeluxe4.setText("text");
-                        priceDeluxe4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
-                        //---- priceSuite4 ----
-                        priceSuite4.setText("text");
-                        priceSuite4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
-
                         //---- hotelRating4 ----
                         hotelRating4.setText("_Rating here__");
 
@@ -1505,9 +1882,9 @@ public class DisplaySelectedHotels {
                         //======== scrollPane5 ========
                         {
 
-                            //---- textPane4 ----
-                            textPane4.setBackground(new Color(238, 238, 238));
-                            scrollPane5.setViewportView(textPane4);
+                            //---- description4 ----
+                            description4.setBackground(new Color(238, 238, 238));
+                            scrollPane5.setViewportView(description4);
                         }
 
                         //---- bookNow4 ----
@@ -1515,6 +1892,61 @@ public class DisplaySelectedHotels {
                         bookNow4.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         bookNow4.setBackground(new Color(153, 0, 0));
                         bookNow4.setForeground(new Color(238, 238, 238));
+
+                        //---- viewHotel4 ----
+                        viewHotel4.setText("View Hotel");
+                        viewHotel4.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
+                        viewHotel4.setBackground(new Color(153, 0, 0));
+                        viewHotel4.setForeground(new Color(238, 238, 238));
+                        viewHotel4.addActionListener(e -> viewHotel4ActionPerformed(e));
+
+                        //---- standardRooms4 ----
+                        standardRooms4.setText("text");
+                        standardRooms4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label4 ----
+                        label4.setText("Types");
+                        label4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label53 ----
+                        label53.setText("Room Price");
+                        label53.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- label63 ----
+                        label63.setText("Number of Rooms");
+                        label63.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+
+                        //---- priceStandard4 ----
+                        priceStandard4.setText("text");
+                        priceStandard4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label18 ----
+                        label18.setText("standard");
+                        label18.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label19 ----
+                        label19.setText("deluxe");
+                        label19.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- priceDeluxe4 ----
+                        priceDeluxe4.setText("text");
+                        priceDeluxe4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- deluxeRooms4 ----
+                        deluxeRooms4.setText("text");
+                        deluxeRooms4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- suiteRooms4 ----
+                        suiteRooms4.setText("text");
+                        suiteRooms4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- priceSuite4 ----
+                        priceSuite4.setText("text");
+                        priceSuite4.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+
+                        //---- label20 ----
+                        label20.setText("suite");
+                        label20.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         GroupLayout hotelPanel4Layout = new GroupLayout(hotelPanel4);
                         hotelPanel4.setLayout(hotelPanel4Layout);
@@ -1526,58 +1958,89 @@ public class DisplaySelectedHotels {
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(hotelPanel4Layout.createParallelGroup()
                                         .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel4Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(label21, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                                .addComponent(label22, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(label23, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(hotelPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(priceDeluxe4)
-                                                .addComponent(priceStandard4, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                                .addComponent(priceSuite4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(hotelRating4, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(hotelPanel4Layout.createSequentialGroup()
                                             .addGroup(hotelPanel4Layout.createParallelGroup()
-                                                .addComponent(hotelRating4, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(ratingBracket4, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                                    .addGap(27, 27, 27)
-                                                    .addComponent(ratingBracket4, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(bookNow4, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(27, 27, 27)
+                                                    .addComponent(label4, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(label53, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(13, 13, 13)
+                                                    .addComponent(label63))
+                                                .addGroup(hotelPanel4Layout.createSequentialGroup()
+                                                    .addComponent(label18, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(49, 49, 49)
+                                                    .addComponent(priceStandard4)
+                                                    .addGap(91, 91, 91)
+                                                    .addComponent(standardRooms4))
+                                                .addGroup(hotelPanel4Layout.createSequentialGroup()
+                                                    .addComponent(label19, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(58, 58, 58)
+                                                    .addComponent(priceDeluxe4)
+                                                    .addGap(91, 91, 91)
+                                                    .addComponent(deluxeRooms4))
+                                                .addGroup(hotelPanel4Layout.createSequentialGroup()
+                                                    .addComponent(label20, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(58, 58, 58)
+                                                    .addComponent(priceSuite4)
+                                                    .addGap(91, 91, 91)
+                                                    .addComponent(suiteRooms4)))
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(hotelPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(viewHotel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bookNow4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(36, 36, 36)
                                     .addComponent(scrollPane5, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30))
+                                    .addGap(21, 21, 21))
                                 .addComponent(hotelName4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
                         hotelPanel4Layout.setVerticalGroup(
                             hotelPanel4Layout.createParallelGroup()
                                 .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                    .addContainerGap(12, Short.MAX_VALUE)
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(hotelName4)
                                     .addGroup(hotelPanel4Layout.createParallelGroup()
-                                        .addComponent(scrollPane5, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addGroup(hotelPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label21)
-                                                .addComponent(priceStandard4))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label22)
-                                                .addComponent(priceDeluxe4))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label23)
-                                                .addComponent(priceSuite4))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(hotelPhoto4, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(hotelPanel4Layout.createParallelGroup()
                                                 .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
+                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
+                                                        .addComponent(label4)
+                                                        .addGroup(hotelPanel4Layout.createSequentialGroup()
+                                                            .addGap(3, 3, 3)
+                                                            .addGroup(hotelPanel4Layout.createParallelGroup()
+                                                                .addComponent(label53)
+                                                                .addComponent(label63))))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
+                                                        .addComponent(label18)
+                                                        .addComponent(priceStandard4)
+                                                        .addComponent(standardRooms4))
+                                                    .addGap(17, 17, 17)
+                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
+                                                        .addComponent(label19)
+                                                        .addComponent(priceDeluxe4)
+                                                        .addComponent(deluxeRooms4))
+                                                    .addGap(19, 19, 19)
+                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
+                                                        .addComponent(label20)
+                                                        .addComponent(priceSuite4)
+                                                        .addComponent(suiteRooms4))
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                     .addComponent(ratingBracket4, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
                                                     .addGap(18, 18, 18)
                                                     .addComponent(hotelRating4, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
+                                                    .addComponent(viewHotel4, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
                                                     .addComponent(bookNow4, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(37, 37, 37))))
-                                        .addComponent(hotelPhoto4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(37, 37, 37))
+                                                .addComponent(scrollPane5, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))))
                                     .addContainerGap())
                         );
                     }
@@ -1586,27 +2049,31 @@ public class DisplaySelectedHotels {
                     homePanel.setLayout(homePanelLayout);
                     homePanelLayout.setHorizontalGroup(
                         homePanelLayout.createParallelGroup()
+                            .addComponent(hotelPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(homePanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(homePanelLayout.createParallelGroup()
-                                    .addComponent(hotelPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
+                                    .addGroup(homePanelLayout.createSequentialGroup()
+                                        .addGroup(homePanelLayout.createParallelGroup()
+                                            .addComponent(hotelPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(hotelPanel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addContainerGap())
+                                    .addGroup(homePanelLayout.createSequentialGroup()
+                                        .addComponent(hotelPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(20, 20, 20))))
                     );
                     homePanelLayout.setVerticalGroup(
                         homePanelLayout.createParallelGroup()
                             .addGroup(homePanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(hotelPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hotelPanel1, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(hotelPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(hotelPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(hotelPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(82, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(hotelPanel3, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(hotelPanel4, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(348, Short.MAX_VALUE))
                     );
                 }
                 scrollPane1.setViewportView(homePanel);
@@ -1619,12 +2086,9 @@ public class DisplaySelectedHotels {
                     .addGroup(displayTableContentPaneLayout.createSequentialGroup()
                         .addGroup(displayTableContentPaneLayout.createParallelGroup()
                             .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE))
+                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1529, Short.MAX_VALUE)
+                            .addComponent(scrollPane1))
                         .addContainerGap())
-                    .addGroup(displayTableContentPaneLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1421, Short.MAX_VALUE)
-                        .addGap(15, 15, 15))
             );
             displayTableContentPaneLayout.setVerticalGroup(
                 displayTableContentPaneLayout.createParallelGroup()
@@ -1633,8 +2097,8 @@ public class DisplaySelectedHotels {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
-                        .addGap(27, 27, 27))
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 760, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             displayTable.pack();
             displayTable.setLocationRelativeTo(displayTable.getOwner());
@@ -1733,12 +2197,13 @@ public class DisplaySelectedHotels {
     private JMenuItem THEONEHOTEL;
     private JMenuItem HotelAtithi;
     private JSeparator separator2;
-    private JComboBox<String> Hotels;
+    private JComboBox Hotels;
     private JButton Search;
     private JSeparator separator1;
     private JMenu profile;
     private JMenuItem myAccount;
     private JMenuItem Logout;
+    private JSeparator separator3;
     private JScrollPane scrollPane1;
     private JPanel homePanel;
     private JPanel hotelPanel1;
@@ -1755,47 +2220,75 @@ public class DisplaySelectedHotels {
     private JScrollPane scrollPane2;
     private JTextPane description1;
     private JButton bookNow1;
+    private JButton viewHotel1;
+    private JLabel label50;
+    private JLabel label;
+    private JLabel label60;
+    private JLabel standardRooms1;
+    private JLabel deluxeRooms;
+    private JLabel suiteRooms;
     private JPanel hotelPanel2;
     private JLabel hotelPhoto2;
     private JLabel hotelName2;
-    private JLabel label13;
-    private JLabel label14;
-    private JLabel label15;
-    private JLabel priceStandard2;
-    private JLabel priceDeluxe2;
-    private JLabel priceSuite2;
     private JLabel hotelRating2;
     private JLabel ratingBracket2;
     private JScrollPane scrollPane3;
     private JTextPane description2;
     private JButton bookNow2;
+    private JButton viewHotel2;
+    private JLabel standardRooms2;
+    private JLabel label2;
+    private JLabel label51;
+    private JLabel label61;
+    private JLabel priceStandard2;
+    private JLabel label12;
+    private JLabel label13;
+    private JLabel priceDeluxe2;
+    private JLabel deluxeRooms2;
+    private JLabel suiteRooms2;
+    private JLabel priceSuite2;
+    private JLabel label14;
     private JPanel hotelPanel3;
     private JLabel hotelPhoto3;
     private JLabel hotelName3;
-    private JLabel label17;
-    private JLabel label18;
-    private JLabel label19;
-    private JLabel priceStandard3;
-    private JLabel priceDeluxe3;
-    private JLabel priceSuite3;
     private JLabel hotelRating3;
     private JLabel ratingBracket3;
     private JScrollPane scrollPane4;
     private JTextPane description3;
     private JButton bookNow3;
+    private JButton viewHotel3;
+    private JLabel standardRooms3;
+    private JLabel label3;
+    private JLabel label52;
+    private JLabel label62;
+    private JLabel priceStandard3;
+    private JLabel label15;
+    private JLabel label16;
+    private JLabel priceDeluxe3;
+    private JLabel deluxeRooms3;
+    private JLabel suiteRooms3;
+    private JLabel priceSuite3;
+    private JLabel label17;
     private JPanel hotelPanel4;
     private JLabel hotelPhoto4;
     private JLabel hotelName4;
-    private JLabel label21;
-    private JLabel label22;
-    private JLabel label23;
-    private JLabel priceStandard4;
-    private JLabel priceDeluxe4;
-    private JLabel priceSuite4;
     private JLabel hotelRating4;
     private JLabel ratingBracket4;
     private JScrollPane scrollPane5;
-    private JTextPane textPane4;
+    private JTextPane description4;
     private JButton bookNow4;
+    private JButton viewHotel4;
+    private JLabel standardRooms4;
+    private JLabel label4;
+    private JLabel label53;
+    private JLabel label63;
+    private JLabel priceStandard4;
+    private JLabel label18;
+    private JLabel label19;
+    private JLabel priceDeluxe4;
+    private JLabel deluxeRooms4;
+    private JLabel suiteRooms4;
+    private JLabel priceSuite4;
+    private JLabel label20;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

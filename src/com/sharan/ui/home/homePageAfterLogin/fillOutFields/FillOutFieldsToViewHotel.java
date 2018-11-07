@@ -31,6 +31,7 @@ public class FillOutFieldsToViewHotel {
     private String hotelName;
     private JButton toBeClicked;
     private ArrayList<String> list;
+    private ArrayList<String> argList;
 
 
 
@@ -102,8 +103,16 @@ public class FillOutFieldsToViewHotel {
             toBeClicked.doClick();
 
 
+
         dataBaseController.initialiseDatabase();
         list=dataBaseController.parseHotel(uniqueId);
+        list.add(checkInDate);
+        list.add(checkOutDate);
+        list.add(userName);
+        list.add(city);
+        list.add(state);
+
+
         HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
         dataBaseController.closeDatabaseConnection();
     }

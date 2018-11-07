@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Tue Oct 30 16:38:35 IST 2018
  */
 
-package com.sharan.ui.hotelView.hotelHome.beforeLogin;
+package com.sharan.ui.hotelView.hotelHome.TOBEREMOVEDbeforeLogin;
 
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.loginPopUp.Login;
