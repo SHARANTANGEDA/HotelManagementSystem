@@ -4,6 +4,7 @@
 
 package com.sharan.ui.hotelView.hotelHomeAfterLogin;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.hotelView.hotelHome.beforeLogin.HotelHomePageBeforeLogin;
 import com.sharan.ui.hotelView.hotelHome.rating.Rating;
@@ -40,6 +41,9 @@ public class HotelHomeAfterLogin {
 
         this.list=list;
 
+        for(String str:list) {
+            System.out.println(str);
+        }
         this.uniqueId=list.get(0);
         this.dataBaseController=dataBaseController;
         this.hotelName=list.get(1);
@@ -47,6 +51,7 @@ public class HotelHomeAfterLogin {
         this.address=list.get(3);
         this.hotelMainImagePath=list.get(4);
         this.numberOfVotes=list.get(5);
+
 
         dataBaseController.initialiseDatabase();
         rate=dataBaseController.calculateRating(uniqueId);
@@ -56,6 +61,7 @@ public class HotelHomeAfterLogin {
 
         initComponents();
         addToUniversalHotelSearch();
+//
         hotelPhoto.setIcon(new ImageIcon(getClass().getResource(hotelMainImagePath)));
         ratingLabel.setIcon(new ImageIcon(getClass().getResource(starRatingPath)));
         contactDetails.setText(address);
@@ -355,6 +361,7 @@ public class HotelHomeAfterLogin {
         {
             individualHotelHome.setResizable(false);
             individualHotelHome.setMaximizedBounds(new Rectangle(0, 0, 1500, 1080));
+            individualHotelHome.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             Container individualHotelHomeContentPane = individualHotelHome.getContentPane();
 
             //======== menuBar ========

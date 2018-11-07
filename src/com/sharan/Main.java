@@ -1,18 +1,22 @@
 package com.sharan;
 
 
-import com.sharan.ui.hotelView.paymentPage.PaymentPage;
+import com.sharan.ui.home.homePage.HomePage;
 
 public class Main {
 
     public static int loginSuccess;
     public static int signUpSuccess;
     public static int starUpdate;
+    public static int checkInCheckOutCheck;
     public static void main(String[] args) {
 
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
-//        HomePage homePage=new HomePage(dataBaseController);
+        HomePage homePage=new HomePage(dataBaseController);
+
+//        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin();
+
 //        MyAccount myAccount=new MyAccount();
 //        ArrayList<String> list=new ArrayList<>();
 //        list.add("final");
@@ -32,7 +36,7 @@ public class Main {
 //        PDFSaveFileChooser pdfSaveFileChooser=new PDFSaveFileChooser();
 
 
-        PaymentPage paymentPage=new PaymentPage();
+//        PaymentPage paymentPage=new PaymentPage();
         dataBaseController.closeDatabaseConnection();
 
 

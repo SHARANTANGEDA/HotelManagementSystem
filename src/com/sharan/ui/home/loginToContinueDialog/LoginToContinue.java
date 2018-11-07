@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Oct 31 10:17:03 IST 2018
  */
 
-package com.sharan.ui.hotelView.hotelHome.beforeLogin.loginToContinueDialog;
+package com.sharan.ui.home.loginToContinueDialog;
 
 import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
@@ -26,7 +26,10 @@ public class LoginToContinue {
 
     public LoginToContinue(String id,DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
+        this.uniqueId=id;
         initComponents();
+
+
     }
 
     private void redirectLoginActionPerformed(ActionEvent e) {
@@ -36,7 +39,6 @@ public class LoginToContinue {
         if(loginSuccess==1) {
             loginToContinue.dispose();
             loginSuccess=0;
-//            OldHotelIndividualSite hotelHomePageAfterLogin =new OldHotelIndividualSite(uniqueId,dataBaseController);
             login.getLogin().dispose();
         }
         dataBaseController.closeDatabaseConnection();
@@ -49,7 +51,6 @@ public class LoginToContinue {
         if(signUpSuccess==1) {
             loginToContinue.dispose();
             signUpSuccess=0;
-//            OldHotelIndividualSite hotelHomePageAfterLogin =new OldHotelIndividualSite(uniqueId,dataBaseController);
             signUp.getSignUp().dispose();
         }
         dataBaseController.closeDatabaseConnection();
@@ -119,7 +120,7 @@ public class LoginToContinue {
                         .addGap(51, 51, 51)
                         .addComponent(redirectLogin, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label2, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(label2, GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                         .addGap(11, 11, 11)
                         .addComponent(redirectSignUp, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
             );

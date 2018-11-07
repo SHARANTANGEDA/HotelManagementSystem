@@ -91,20 +91,27 @@ public class DataBaseController {
         try {
             if(!conn.isClosed()) {
                 ResultSet rs=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+id+"'");
-                String hotelName=rs.getString("HotelName");
-                String hotelDescription=rs.getString("HotelDescription");
-                String hotelAddress=rs.getString("Address");
-                String imagePath=rs.getString("HomeImagePath");
-                int numberOfVotes=rs.getInt("NumberOfVotes");
-                String numOfVotes=String.valueOf(numberOfVotes);
+
+                System.out.println(id);
+                while (rs.next()) {
+
+                    String hotelName=rs.getString("HotelName");
+                    String hotelDescription=rs.getString("HotelDescription");
+                    String hotelAddress=rs.getString("Address");
+                    String imagePath=rs.getString("HomeImagePath");
+                    int numberOfVotes=rs.getInt("NumberOfVotes");
+                    String numOfVotes=String.valueOf(numberOfVotes);
 
 
-                list.add(id);
-                list.add(hotelName);
-                list.add(hotelDescription);
-                list.add(hotelAddress);
-                list.add(imagePath);
-                list.add(numOfVotes);
+                    list.add(id);
+                    list.add(hotelName);
+                    list.add(hotelDescription);
+                    list.add(hotelAddress);
+                    list.add(imagePath);
+                    list.add(numOfVotes);
+                }
+
+                return list;
             }
         }catch (SQLException e){
             System.out.println("Parsing Error "+e.getMessage());
@@ -117,14 +124,18 @@ public class DataBaseController {
 
     public double calculateRating(String id) {
         double finalrate=0;
-
+        String srate="5.0";
         try {
             if (!conn.isClosed()) {
+
                 ResultSet rs = statement.executeQuery("SELECT * FROM " + hotelsTableNAME + " WHERE UniqueId='" + id + "'");
 
-                String srate = rs.getString("StarRating");
+                while (rs.next()) {
+                    srate = rs.getString("StarRating");
 
+                }
                 double rating = Double.parseDouble(srate);
+
 
 
 
@@ -260,7 +271,7 @@ public class DataBaseController {
     public ArrayList<String> getUniversalSearchData() {
         ArrayList<String> list=new ArrayList<>();
         try {
-            ResultSet rs=statement.executeQuery("SELECT HotelName,State,City  FROM "+hotelsTableNAME);
+            ResultSet rs=statement.executeQuery("SELECT *  FROM "+hotelsTableNAME);
             while (rs.next()) {
                 list.add(rs.getString("HotelName")+","+rs.getString("City")+","+rs.getString("State"));
             }
@@ -270,6 +281,29 @@ public class DataBaseController {
         return list;
     }
 
+    public String setUniversalSearchData(String temp[]) {
+        String uniqueId;
+        boolean exist=false;
+        try {
+            if(!conn.isClosed()) {
+
+                ResultSet resultSet=statement.executeQuery("SELECT * FROM " + hotelsTableNAME + " WHERE ( (HotelName = '" + temp[0] + "') AND (City = '" + temp[1] +
+                        "') AND (State = '" + temp[2] + "') )");
+
+                do {
+                    uniqueId=resultSet.getString("UniqueId");
+                    return uniqueId;
+                }while (resultSet.next());
+
+            }
+
+
+        }catch (SQLException  e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     public void closeDatabaseConnection() {
         try {
             if (!conn.isClosed()) {
@@ -277,10 +311,12 @@ public class DataBaseController {
                 conn.close();
             } else {
                 System.out.println("Error Closing DataBase");
+
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println(e.getCause());
         }
     }
 

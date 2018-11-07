@@ -6,6 +6,7 @@ package com.sharan.ui.home.homePageAfterLogin;
 
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
 import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
 import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
 import org.jdesktop.swingx.JXDatePicker;
@@ -17,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import static com.sharan.Main.checkInCheckOutCheck;
 
 /**
  * @author SAI SHARAN
@@ -31,6 +34,7 @@ public class HomePageAfterLogin {
 
     private String userName;
     private ArrayList<String> list;
+    private String universalHotelSearch;
 
     private DataBaseController dataBaseController;
 
@@ -58,6 +62,7 @@ public class HomePageAfterLogin {
         AutoCompleteDecorator.decorate(CityField);
         AutoCompleteDecorator.decorate(Hotels);
         homePageAfterLogin.setVisible(true);
+        checkInCheckOutCheck=0;
 
     }
 
@@ -65,9 +70,47 @@ public class HomePageAfterLogin {
         dataBaseController.initialiseDatabase();
         ArrayList<String> list=dataBaseController.getUniversalSearchData();
         dataBaseController.closeDatabaseConnection();
+        Hotels.addItem("Select a Hotel");
         for(String str:list) {
             Hotels.addItem(str);
         }
+    }
+
+    private void SearchActionPerformed(ActionEvent e) {
+        if((!universalHotelSearch.isEmpty()) && (!universalHotelSearch.equalsIgnoreCase("Select a Hotel"))) {
+
+            String temp[]=universalHotelSearch.split(",");
+            dataBaseController.initialiseDatabase();
+            System.out.println(temp[0]+"/"+temp[1]+"/"+temp[2]);
+            String uniqueId=dataBaseController.setUniversalSearchData(temp);
+            dataBaseController.closeDatabaseConnection();
+//            if(login.returnLoginStatus()==1) {
+//                loginSuccess=0;
+//                homeFrame.dispose();
+//                HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
+//                login.getLogin().dispose();
+//
+//            }
+//
+            if(checkInCheckOutCheck==0) {
+                FillOutFieldsToViewHotel fillOutFieldsToViewHotel = new FillOutFieldsToViewHotel(userName, uniqueId, universalHotelSearch, Search, dataBaseController);
+            }else {
+                checkInCheckOutCheck=0;
+                homePageAfterLogin.dispose();
+            }
+
+
+
+
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Please Select a Hotel First");
+        }
+    }
+
+
+    private void HotelsItemStateChanged(ItemEvent e) {
+        universalHotelSearch=e.getItem().toString();
     }
 
     private void addtoStateComboBox(JComboBox<String> stateField) {
@@ -77,6 +120,7 @@ public class HomePageAfterLogin {
         stateField.addItem("NewDelhi");
     }
 
+    //**@HARD CODED**//
     private void addtoCityComboBox(JComboBox<String> cityField) {
         if(stateSelected.equalsIgnoreCase("Telangana")) {
             cityField.removeAllItems();
@@ -138,21 +182,6 @@ public class HomePageAfterLogin {
         HomePage homePage=new HomePage(dataBaseController);
 
     }
-
-
-    //***************UNIVERSAL SEARCH FIELD*****************
-
-
-    private void SearchActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
-
-    private void HotelsItemStateChanged(ItemEvent e) {
-
-    }
-
-
-    //***************UNIVERSAL SEARCH FIELD*****************
 
 
     private void itckohenurActionPerformed(ActionEvent e) {
@@ -409,13 +438,13 @@ public class HomePageAfterLogin {
 
         checkInDate=getDate(checkInField);
         checkOutDate=getDate(checkOutField);
-        try {
-            noOfRooms.commitEdit();
-        } catch ( java.text.ParseException exception ) {
-            System.out.println(exception.getMessage());
-        }
-        int value = (Integer) noOfRooms.getValue();
-        roomsSelected=String.valueOf(value);
+//        try {
+//            noOfRooms.commitEdit();
+//        } catch ( java.text.ParseException exception ) {
+//            System.out.println(exception.getMessage());
+//        }
+//        int value = (Integer) noOfRooms.getValue();
+//        roomsSelected=String.valueOf(value);
 
         System.out.println(userName);
         ArrayList<String> list=new ArrayList<>();
@@ -424,7 +453,7 @@ public class HomePageAfterLogin {
         list.add(citySelected);
         list.add(checkInDate);
         list.add(checkOutDate);
-        list.add(roomsSelected);
+//        list.add(roomsSelected);
 
 
         dataBaseController.initialiseDatabase();
@@ -569,8 +598,6 @@ public class HomePageAfterLogin {
         label4 = new JLabel();
         label5 = new JLabel();
         SearchBottom = new JButton();
-        label6 = new JLabel();
-        noOfRooms = new JSpinner();
 
         //======== homePageAfterLogin ========
         {
@@ -1119,14 +1146,8 @@ public class HomePageAfterLogin {
             SearchBottom.setBackground(new Color(204, 0, 0));
             SearchBottom.setFont(SearchBottom.getFont().deriveFont(SearchBottom.getFont().getSize() + 6f));
             SearchBottom.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/findSmall.png")));
+            SearchBottom.setForeground(Color.white);
             SearchBottom.addActionListener(e -> SearchBottomActionPerformed(e));
-
-            //---- label6 ----
-            label6.setText("No of Rooms:");
-            label6.setFont(label6.getFont().deriveFont(label6.getFont().getSize() + 5f));
-
-            //---- noOfRooms ----
-            noOfRooms.setFont(noOfRooms.getFont().deriveFont(noOfRooms.getFont().getSize() + 4f));
 
             GroupLayout homePageAfterLoginContentPaneLayout = new GroupLayout(homePageAfterLoginContentPane);
             homePageAfterLoginContentPane.setLayout(homePageAfterLoginContentPaneLayout);
@@ -1155,22 +1176,15 @@ public class HomePageAfterLogin {
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(checkOutField, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                         .addComponent(SearchBottom, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                         .addGap(208, 208, 208))
                     .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup()
-                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(applicationName, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
-                                    .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
-                                    .addComponent(homePagePhoto, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)))
-                            .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
-                                .addGap(168, 168, 168)
-                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(applicationName, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
+                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
+                            .addComponent(homePagePhoto, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE))
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             homePageAfterLoginContentPaneLayout.setVerticalGroup(
@@ -1199,11 +1213,7 @@ public class HomePageAfterLogin {
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(checkInField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label2)))
-                        .addGap(26, 26, 26)
-                        .addGroup(homePageAfterLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(noOfRooms, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(44, Short.MAX_VALUE))
+                        .addContainerGap(107, Short.MAX_VALUE))
             );
             homePageAfterLogin.pack();
             homePageAfterLogin.setLocationRelativeTo(homePageAfterLogin.getOwner());
@@ -1319,7 +1329,5 @@ public class HomePageAfterLogin {
     private JLabel label4;
     private JLabel label5;
     private JButton SearchBottom;
-    private JLabel label6;
-    private JSpinner noOfRooms;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -5,7 +5,7 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq {par l {seq {space :p:156:p, comp label1:::p:293:p}, seq l {space :p:223:p, comp redirectLogin:::p:152:p}, seq l {space :p:224:p, comp redirectSignUp:::p:152:p}, seq l {space :p:58:p, comp label2:::p:521:p}}, space ::50:x}}"
-			"$verticalGroup": "par l {seq l {comp label1:::p:57:p, space :p:51:p, comp redirectLogin:::p:57:p, space :::p, comp label2::::32:x, space :p:11:p, comp redirectSignUp:::p:57:p}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p:57:p, space :p:51:p, comp redirectLogin:::p:57:p, space :::p, comp label2::::82:x, space :p:11:p, comp redirectSignUp:::p:57:p}}"
 		} ) {
 			name: "loginToContinue"
 			"defaultCloseOperation": 2
@@ -36,7 +36,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 46, 30 )
-			"size": new java.awt.Dimension( 505, 246 )
+			"size": new java.awt.Dimension( 505, 286 )
 		} )
 	}
 }

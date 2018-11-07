@@ -7,7 +7,7 @@ package com.sharan.ui.hotelView.hotelHome.beforeLogin;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.loginPopUp.Login;
 import com.sharan.ui.home.signUpPopUp.SignUp;
-import com.sharan.ui.hotelView.hotelHome.beforeLogin.loginToContinueDialog.LoginToContinue;
+import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

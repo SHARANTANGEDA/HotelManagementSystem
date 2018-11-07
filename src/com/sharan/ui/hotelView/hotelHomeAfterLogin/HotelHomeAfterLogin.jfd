@@ -10,6 +10,7 @@ new FormModel {
 			name: "individualHotelHome"
 			"resizable": false
 			"maximizedBounds": new java.awt.Rectangle( 0, 0, 1500, 1080 )
+			"defaultCloseOperation": 3
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "Title"
 				"text": "Hotel"

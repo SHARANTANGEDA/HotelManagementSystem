@@ -1,0 +1,54 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp applicationName:::p:755:p}, seq l {space :p:96:p, comp label2:::p::p, space s:::p, comp checkInField:::p:148:p, space :p:78:p, comp label3:::p:41:p, space s:::p, comp checkOutField:::p:148:p}}, space :0:0:x}, seq l {space :p:251:p, comp hotelView:::p:254:p, space :::x}}"
+			"$verticalGroup": "par l {seq l {comp applicationName:::p:53:p, space :p:105:p, par b {comp label2::b:p::p, comp checkInField::b:p::p, comp label3::b:p:30:p, comp checkOutField::b:p::p}, space ::169:x, comp hotelView:::p:62:p, space :p:52:p}}"
+		} ) {
+			name: "fillTheseToContinue"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "From:"
+				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 0, 5, false )
+			} )
+			add( new FormComponent( "org.jdesktop.swingx.JXDatePicker" ) {
+				name: "checkInField"
+				"font": &SwingDerivedFont1 new com.jformdesigner.model.SwingDerivedFont( null, 0, 6, false )
+				"toolTipText": "CheckIN"
+				"inheritsPopupMenu": true
+				"opaque": true
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "To:"
+				"font": #SwingDerivedFont0
+			} )
+			add( new FormComponent( "org.jdesktop.swingx.JXDatePicker" ) {
+				name: "checkOutField"
+				"font": #SwingDerivedFont1
+				"toolTipText": "CheckOut"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "applicationName"
+				"text": "Check-In and Check-Out to view selected Hotel:"
+				"horizontalAlignment": 0
+				"font": new java.awt.Font( "Dialog", 1, 26 )
+				"background": new java.awt.Color( 255, 204, 0, 255 )
+				"opaque": true
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "hotelView"
+				"text": "View Hotel"
+				"background": new java.awt.Color( 204, 0, 0, 255 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"font": new java.awt.Font( "FreeSans", 1, 20 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "hotelViewActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 0 )
+			"size": new java.awt.Dimension( 615, 406 )
+		} )
+	}
+}

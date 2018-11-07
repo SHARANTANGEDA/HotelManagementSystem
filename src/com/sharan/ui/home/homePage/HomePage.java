@@ -8,12 +8,14 @@ import com.sharan.DataBaseController;
 import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginPopUp.Login;
+import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
 import com.sharan.ui.home.signUpPopUp.SignUp;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
 import static com.sharan.Main.loginSuccess;
@@ -24,22 +26,27 @@ public class HomePage {
 
     private DataBaseController dataBaseController;
     private String userName;
+    private String universalHotelSearch;
+    private String uniqueId;
 
     public HomePage(DataBaseController dataBaseController) {
 
         this.dataBaseController=dataBaseController;
+        dataBaseController.initialiseDatabase();
         initComponents();
         addToUniversalHotelSearch();
         AutoCompleteDecorator.decorate(Hotels);
         homeFrame.setVisible(true);
         TextFileController textFileController=new TextFileController();
         userName=textFileController.readFile();
+        dataBaseController.closeDatabaseConnection();
 
     }
     private void addToUniversalHotelSearch() {
         dataBaseController.initialiseDatabase();
         ArrayList<String> list=dataBaseController.getUniversalSearchData();
         dataBaseController.closeDatabaseConnection();
+        Hotels.addItem("Select The Hotel");
         for(String str:list) {
             Hotels.addItem(str);
         }
@@ -76,11 +83,25 @@ public class HomePage {
 
 
     private void SearchActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        if((!universalHotelSearch.isEmpty()) && (!universalHotelSearch.equalsIgnoreCase("Select The Hotel"))) {
+            String temp[]=universalHotelSearch.split(",");
+            dataBaseController.initialiseDatabase();
+            String uniqueId=dataBaseController.setUniversalSearchData(temp);
+            dataBaseController.closeDatabaseConnection();
+            LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Please Select a Hotel First");
+        }
     }
 
+
+    private void HotelsItemStateChanged(ItemEvent e) {
+        universalHotelSearch=e.getItem().toString();
+    }
+
+
     private void itckohenurActionPerformed(ActionEvent e) {
-        // TODO add your code here
     }
 
     private void TheParkActionPerformed(ActionEvent e) {
@@ -209,6 +230,10 @@ public class HomePage {
 
 
 
+
+
+
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
@@ -300,7 +325,7 @@ public class HomePage {
         menuItem47 = new JMenuItem();
         menuItem48 = new JMenuItem();
         separator1 = new JSeparator();
-        Hotels = new JComboBox();
+        Hotels = new JComboBox<String>();
         Search = new JButton();
         homePagePhoto = new JLabel();
         LoginField = new JButton();
@@ -769,6 +794,8 @@ public class HomePage {
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
                 Hotels.setMaximumSize(new Dimension(600, 50));
+                Hotels.setEditable(true);
+                Hotels.addItemListener(e -> HotelsItemStateChanged(e));
                 menuBar1.add(Hotels);
 
                 //---- Search ----
@@ -813,8 +840,8 @@ public class HomePage {
                             .addComponent(applicationName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 1151, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LoginField)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SignUpField, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)))
@@ -833,13 +860,14 @@ public class HomePage {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(homeFrameContentPaneLayout.createParallelGroup()
                             .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
+                                .addGroup(homeFrameContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(LoginField, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                                    .addComponent(SignUpField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE))
+                            .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                                .addGap(6, 6, 6))
-                            .addGroup(homeFrameContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(LoginField, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                                .addComponent(SignUpField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(21, 21, 21)
+                                .addGap(27, 27, 27)))
                         .addComponent(homePagePhoto, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
@@ -941,7 +969,7 @@ public class HomePage {
     private JMenuItem menuItem47;
     private JMenuItem menuItem48;
     private JSeparator separator1;
-    private JComboBox Hotels;
+    private JComboBox<String> Hotels;
     private JButton Search;
     private JLabel homePagePhoto;
     private JButton LoginField;

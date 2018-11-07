@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, par l {comp applicationName:::::x, seq {space :6:6:p, comp menuBar1:::p:1151:p, space ::38:x, comp LoginField:::p::p, space :::p, comp SignUpField:::p:132:p}}, space :::p}, comp homePagePhoto::t::1448:x, seq l {space :p:26:p, comp scrollPane1:::p:1292:p, space ::130:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp applicationName:::p:69:p, space :::p, par l {seq {space :6:6:p, comp menuBar1::::47:x, space :6:6:p}, par t:::p {comp LoginField::t::52:x, comp SignUpField::t:::x}}, space :p:21:p, comp homePagePhoto:::p:369:p, space :p:47:p, comp scrollPane1:::p:283:p, space ::35:x}}"
+			"$horizontalGroup": "par l {seq l {space :::p, par l {comp applicationName:::::x, seq l {space :p:6:p, comp menuBar1::::1183:x, space :::p, comp LoginField:::p::p, space :::p, comp SignUpField:::p:132:p}}, space :::p}, comp homePagePhoto::t::1448:x, seq l {space :p:26:p, comp scrollPane1:::p:1292:p, space ::130:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp applicationName:::p:69:p, space :::p, par l {seq {par t:::p {comp LoginField::t::52:x, comp SignUpField::t:::x}, space ::28:x}, seq {space :p:6:p, comp menuBar1::::47:x, space :p:27:p}}, comp homePagePhoto:::p:369:p, space :p:47:p, comp scrollPane1:::p:283:p, space ::35:x}}"
 		} ) {
 			name: "homeFrame"
 			"defaultCloseOperation": 3
@@ -426,6 +426,8 @@ new FormModel {
 					"font": new java.awt.Font( "Comic Sans MS", 2, 18 )
 					"toolTipText": "Search for Hotels"
 					"maximumSize": new java.awt.Dimension( 600, 50 )
+					"editable": true
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "HotelsItemStateChanged", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "Search"
