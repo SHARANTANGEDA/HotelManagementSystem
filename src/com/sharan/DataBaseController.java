@@ -12,8 +12,8 @@ public class DataBaseController {
     private String TABLE_CREATOR="CREATE TABLE IF NOT EXISTS ";
 
     private String userTableNAME ="userDatabase";
-    private String userTableCOLUMNS ="(UserName TEXT NOT NULL PRIMARY KEY,Password TEXT,DOB TEXT,ResidentialAddress TEXT,Email TEXT,IdCard TEXT,Phone TEXT)";
-    private String userInsertParameters =" (UserName,Password,DOB,ResidentialAddress,Email,IdCard,Phone)";
+    private String userTableCOLUMNS ="(FullName TEXT,UserName TEXT NOT NULL PRIMARY KEY,Password TEXT,DOB TEXT,ResidentialAddress TEXT,Email TEXT,Phone TEXT)";
+    private String userInsertParameters =" (FullName,UserName,Password,DOB,ResidentialAddress,Email,Phone)";
 
     private String hotelsTableNAME ="hotelsDatabase";
     private String hotelsTableCOLUMNS ="(UniqueId TEXT,HotelName TEXT,HotelDescription TEXT,State TEXT,City TEXT,Address TEXT," +
@@ -51,9 +51,9 @@ public class DataBaseController {
         }
     }
 
-    public void addUser (String userName,String password,String dateOfBirth,String address,String email,String idCard,String phone) throws SQLException{
-        statement.execute("INSERT INTO "+ userTableNAME + userInsertParameters +" VALUES('" +userName+"','"+password+"','"
-                +dateOfBirth+"','"+address+"','"+email+"','"+idCard+"','"+phone+"')");
+    public void addUser (String fullName,String userName,String password,String dateOfBirth,String address,String email,String phone) throws SQLException{
+        statement.execute("INSERT INTO "+ userTableNAME + userInsertParameters +" VALUES('" +fullName+"','"+userName+"','"
+                +password+"','"+dateOfBirth+"','"+address+"','"+email+"','"+phone+"')");
     }
 
     public void addHotel (String uniqueId,String hotelName,String description,String state,String city,String address,String standard,String stdPrice,String stcapacity

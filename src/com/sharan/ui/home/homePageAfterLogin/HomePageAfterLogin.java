@@ -9,6 +9,7 @@ import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
 import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
 import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
+import com.sharan.ui.myAccount.MyAccount;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -475,8 +476,10 @@ public class HomePageAfterLogin {
         citySelected=e.getItem().toString();
     }
 
-    private void HotelsActionPerformed(ActionEvent e) {
-        // TODO add your code here
+
+    private void myAccountActionPerformed(ActionEvent e) {
+        homePageAfterLogin.dispose();
+        MyAccount account=new MyAccount(dataBaseController);
     }
 
 
@@ -584,7 +587,7 @@ public class HomePageAfterLogin {
         Search = new JButton();
         separator2 = new JSeparator();
         profile = new JMenu();
-        menuItem17 = new JMenuItem();
+        myAccount = new JMenuItem();
         Logout = new JMenuItem();
         separator3 = new JSeparator();
         homePagePhoto = new JLabel();
@@ -1082,10 +1085,11 @@ public class HomePageAfterLogin {
                 {
                     profile.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
 
-                    //---- menuItem17 ----
-                    menuItem17.setText("My Account");
-                    menuItem17.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-                    profile.add(menuItem17);
+                    //---- myAccount ----
+                    myAccount.setText("My Account");
+                    myAccount.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+                    myAccount.addActionListener(e -> myAccountActionPerformed(e));
+                    profile.add(myAccount);
 
                     //---- Logout ----
                     Logout.setText("Logout");
@@ -1176,7 +1180,7 @@ public class HomePageAfterLogin {
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(checkOutField, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                         .addComponent(SearchBottom, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                         .addGap(208, 208, 208))
                     .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
@@ -1315,7 +1319,7 @@ public class HomePageAfterLogin {
     private JButton Search;
     private JSeparator separator2;
     private JMenu profile;
-    private JMenuItem menuItem17;
+    private JMenuItem myAccount;
     private JMenuItem Logout;
     private JSeparator separator3;
     private JLabel homePagePhoto;

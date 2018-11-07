@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp password:::p:204:p, space :p:32:p, par l {comp xDatePicker1::l:p:223:p, comp HNoInput::l:p:223:p, comp AreaInput::l:p:223:p, comp CityInput::l:p:223:p, comp StateInput::l:p:223:p, comp userNameField::l:p:223:p, comp passwordField::l:p:223:p}}, seq {space :::p, par t {comp userName::l:p:204:p, seq {space :p:3:p, comp label1:::p:442:p}}}, seq l {space :p:297:p, comp SignUpField:::p:204:p}, seq {space :::p, par l {comp dobField::l:p:204:p, comp addressField::l:p:224:p, comp HnoField::l:p:204:p, comp areaField::l:p:204:p, comp cityField::l:p:204:p, comp stateField::l:p:204:p, seq l {par t:::p {seq {comp emailField:::p:204:p, space :p:32:p, comp emailInput:::p:259:p}, seq {comp aadharField:::p:218:p, space s:::p, comp AadharInput:::p:259:p}, seq l {comp phone:::p:204:p, space :::x, comp phoneInput:::p:259:p}, comp signUpButton::t:p:207:p}, space :::p, comp slashSeparator:::p:18:p, space :::p, comp PanInput:::p:277:p}}}}, space :::x}}"
-			"$verticalGroup": "par l {seq l {comp SignUpField:::p:58:p, space :p:18:p, comp label1:::p:35:p, space u:::p, par b {comp userName::b:p:31:p, comp userNameField::b:p::p}, space s:::p, par b {comp passwordField::b:p:31:p, comp password::b:p:31:p}, space :p:14:p, par b {comp dobField::b:p:31:p, comp xDatePicker1::b:p::p}, space s:::p, comp addressField:::p:31:p, space s:::p, par b {comp HnoField::b:p:31:p, comp HNoInput::b:p:32:p}, space s:::p, par b {comp areaField::b:p:31:p, comp AreaInput::b:p:32:p}, space s:::p, par b {comp cityField::b:p:31:p, comp CityInput::b:p:32:p}, space s:::p, par b {comp stateField::b:p:31:p, comp StateInput::b:p:32:p}, space u:::p, par b {comp aadharField::b:p:31:p, comp AadharInput::b:p:32:p, comp slashSeparator::b:p::p, comp PanInput::b:p:32:p}, space s:::p, par b {comp emailField::b:p:31:p, comp emailInput::b:p:32:p}, space s:::p, par b {comp phone::b:p:31:p, comp phoneInput::b:p:32:p}, space :p:53:p, comp signUpButton:::p:60:p, space ::58:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:297:p, comp SignUpField:::p:204:p}, seq {space :::p, par t:::p {seq l {comp phone:::p:204:p, space :::x, comp phoneInput:::p:259:p}, seq t {par t {seq {comp emailField:::p:204:p, space :p:32:p}, seq l {comp stateField:::p:204:p, space :::p}}, par l {comp StateInput:::p:223:p, comp emailInput:::p:259:p, comp CityInput::l:p:223:p, comp AreaInput::l:p:223:p, comp HNoInput::l:p:223:p}}, comp signUpButton::t:p:207:p}}, seq l {par l {seq l {space :p:242:p, par l {comp xDatePicker1::l:p:223:p, comp passwordField::l:p:223:p, comp userNameField::l:p:223:p, comp fullNameField::l:p:223:p}}, seq l {space :::p, par l {comp cityField::l:p:204:p, comp areaField::l:p:204:p, comp HnoField::l:p:204:p, comp addressField::l:p:224:p, comp dobField::l:p:204:p, comp password::l:p:204:p, comp userName::l:p:204:p, comp userName2::l:p:204:p, comp label1::l:p:442:p}}}, space s:::p, comp label2:::p:28:p}}, space ::362:x}}"
+			"$verticalGroup": "par l {seq l {comp SignUpField:::p:58:p, space :p:7:p, comp label1:::p:35:p, space u:::p, par b {comp userName2::b:p:31:p, comp fullNameField::b:p::p}, space s:::p, par b {comp userName::b:p:31:p, comp userNameField::b:p::p}, space s:::p, par t {comp password:::p:31:p, comp passwordField:::p:31:p, comp label2::l:p:31:p}, space s:::p, par b {comp dobField::b:p:31:p, comp xDatePicker1::b:p::p}, space s:::p, comp addressField:::p:31:p, space s:::p, par b {comp HnoField::b:p:31:p, comp HNoInput::b:p:32:p}, space s:::p, par b {comp areaField::b:p:31:p, comp AreaInput::b:p:32:p}, space s:::p, par b {comp cityField::b:p:31:p, comp CityInput::b:p:32:p}, space s:::p, par b {comp StateInput::b:p:32:p, comp stateField::b:p:31:p}, space :p:19:p, par b {comp emailField::b:p:31:p, comp emailInput::b:p:32:p}, space s:::p, par b {comp phone::b:p:31:p, comp phoneInput::b:p:32:p}, space :p:30:p, comp signUpButton:::p:60:p, space ::83:x}}"
 		} ) {
 			name: "SignUp"
 			"defaultCloseOperation": 2
@@ -26,7 +26,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "userName"
 				"text": "User Name:"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 5, false )
+				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 0, 5, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "password"
@@ -36,7 +36,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "dobField"
 				"text": "Date of Birth:"
-				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 0, 5, false )
+				"font": &SwingDerivedFont1 new com.jformdesigner.model.SwingDerivedFont( null, 0, 5, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "addressField"
@@ -60,32 +60,27 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "HnoField"
 				"text": "H.No:"
-				"font": #SwingDerivedFont0
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "areaField"
 				"text": "Area/Locality:"
-				"font": #SwingDerivedFont0
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "cityField"
 				"text": "City:"
-				"font": #SwingDerivedFont0
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "stateField"
 				"text": "State:"
-				"font": #SwingDerivedFont0
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "aadharField"
-				"text": "Aadhar Card/Pan Card:"
-				"font": #SwingDerivedFont0
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "emailField"
 				"text": "Email Id:"
-				"font": #SwingDerivedFont0
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "HNoInput"
@@ -108,21 +103,6 @@ new FormModel {
 				"toolTipText": "EnterUserName"
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "AadharInput"
-				"font": #Font0
-				"toolTipText": "EnterUserName"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "PanInput"
-				"font": #Font0
-				"toolTipText": "EnterUserName"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "slashSeparator"
-				"text": "/"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 11, false )
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "emailInput"
 				"font": #Font0
 				"toolTipText": "EnterUserName"
@@ -136,16 +116,30 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "phone"
 				"text": "Phone Number:"
-				"font": #SwingDerivedFont0
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "phoneInput"
 				"font": #Font0
 				"toolTipText": "EnterUserName"
 			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "fullNameField"
+				"font": #Font0
+				"toolTipText": "EnterUserName"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "userName2"
+				"text": "Full Name:"
+				"font": #SwingDerivedFont0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/payment/lock-icon.png" )
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 235, 0 )
-			"size": new java.awt.Dimension( 660, 686 )
+			"location": new java.awt.Point( 250, 0 )
+			"size": new java.awt.Dimension( 700, 686 )
 		} )
 	}
 }

@@ -21,10 +21,11 @@ import static com.sharan.Main.signUpSuccess;
  */
 public class SignUp {
     private String name;
+    private String fullName;
     private String hashedPassword;
     private String dob;
-    private String aadhar;
-    private String pan;
+//    private String aadhar;
+//    private String pan;
     private String phn;
 
     public String getName() {
@@ -55,6 +56,7 @@ public class SignUp {
 
     public void getInformation()
     {
+        fullName=fullNameField.getText();
         name = userNameField.getText();
         PasswordHashing passwordHashing = new PasswordHashing();
         hashedPassword = passwordHashing.hashPassword(passwordField.getText());
@@ -77,22 +79,22 @@ public class SignUp {
         dob=sb.toString();
         System.out.println(dob);
         address = HNoInput.getText() + AreaInput.getText() +CityInput.getText()+StateInput.getText();
-        aadhar = AadharInput.getText();
-        pan = PanInput.getText();
+//        aadhar = AadharInput.getText();
+//        pan = PanInput.getText();
         email = emailInput.getText();
         phn = phoneInput.getText();
-        if(aadhar.equals(""))
-        {
-            id = pan+"p";
-        }
-        else if(pan.equals(""))
-        {
-            id = aadhar+"a";
-        }
-        else
-        {
-            id = aadhar+"a";
-        }
+//        if(aadhar.equals(""))
+//        {
+//            id = pan+"p";
+//        }
+//        else if(pan.equals(""))
+//        {
+//            id = aadhar+"a";
+//        }
+//        else
+//        {
+//            id = aadhar+"a";
+//        }
     }
 
 
@@ -119,12 +121,15 @@ public class SignUp {
         {
             JOptionPane.showMessageDialog(null,"Enter Address");
             flag =1;
+        }else if(fullName.isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Enter Your Name");
+
         }
-        else if(pan.equals("")&&aadhar.equals(""))
-        {
-            JOptionPane.showMessageDialog(null,"Enter Aadhar or Pan Card Details");
-            flag =1;
-        }
+//        else if(pan.equals("")&&aadhar.equals(""))
+//        {
+//            JOptionPane.showMessageDialog(null,"Enter Aadhar or Pan Card Details");
+//            flag =1;
+//        }
 
         else if(phn.equals("")||phn.length()!=10||phn.matches(".*[a-zA-Z]+.*"))
         {
@@ -146,19 +151,19 @@ public class SignUp {
         {
             try {
                 dataBaseController.initialiseDatabase();
-                if(aadhar.equals(""))
-                {
-                    id = pan;
-                }
-                else if(pan.equals(""))
-                {
-                    id = aadhar;
-                }
-                else
-                {
-                    id = aadhar;
-                }
-                dataBaseController.addUser(name,hashedPassword,dob,address,email,id,phn);
+//                if(aadhar.equals(""))
+//                {
+//                    id = pan;
+//                }
+//                else if(pan.equals(""))
+//                {
+//                    id = aadhar;
+//                }
+//                else
+//                {
+//                    id = aadhar;
+//                }
+                dataBaseController.addUser(name,fullName,hashedPassword,dob,address,email,phn);
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
@@ -174,6 +179,10 @@ public class SignUp {
 
     private void xDatePicker1ActionPerformed(ActionEvent e) {
         getInformation();
+    }
+
+    private void fullNameFieldActionPerformed(ActionEvent e) {
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -193,19 +202,18 @@ public class SignUp {
         areaField = new JLabel();
         cityField = new JLabel();
         stateField = new JLabel();
-        aadharField = new JLabel();
         emailField = new JLabel();
         HNoInput = new JTextField();
         AreaInput = new JTextField();
         CityInput = new JTextField();
         StateInput = new JTextField();
-        AadharInput = new JTextField();
-        PanInput = new JTextField();
-        slashSeparator = new JLabel();
         emailInput = new JTextField();
         signUpButton = new JButton();
         phone = new JLabel();
         phoneInput = new JTextField();
+        fullNameField = new JTextField();
+        userName2 = new JLabel();
+        label2 = new JLabel();
 
         //======== SignUp ========
         {
@@ -265,10 +273,6 @@ public class SignUp {
             stateField.setText("State:");
             stateField.setFont(stateField.getFont().deriveFont(stateField.getFont().getSize() + 5f));
 
-            //---- aadharField ----
-            aadharField.setText("Aadhar Card/Pan Card:");
-            aadharField.setFont(aadharField.getFont().deriveFont(aadharField.getFont().getSize() + 5f));
-
             //---- emailField ----
             emailField.setText("Email Id:");
             emailField.setFont(emailField.getFont().deriveFont(emailField.getFont().getSize() + 5f));
@@ -289,18 +293,6 @@ public class SignUp {
             StateInput.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
             StateInput.setToolTipText("EnterUserName");
 
-            //---- AadharInput ----
-            AadharInput.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-            AadharInput.setToolTipText("EnterUserName");
-
-            //---- PanInput ----
-            PanInput.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-            PanInput.setToolTipText("EnterUserName");
-
-            //---- slashSeparator ----
-            slashSeparator.setText("/");
-            slashSeparator.setFont(slashSeparator.getFont().deriveFont(slashSeparator.getFont().getSize() + 11f));
-
             //---- emailInput ----
             emailInput.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
             emailInput.setToolTipText("EnterUserName");
@@ -318,6 +310,17 @@ public class SignUp {
             phoneInput.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
             phoneInput.setToolTipText("EnterUserName");
 
+            //---- fullNameField ----
+            fullNameField.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+            fullNameField.setToolTipText("EnterUserName");
+
+            //---- userName2 ----
+            userName2.setText("Full Name:");
+            userName2.setFont(userName2.getFont().deriveFont(userName2.getFont().getSize() + 5f));
+
+            //---- label2 ----
+            label2.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/payment/lock-icon.png")));
+
             GroupLayout SignUpContentPaneLayout = new GroupLayout(SignUpContentPane);
             SignUpContentPane.setLayout(SignUpContentPaneLayout);
             SignUpContentPaneLayout.setHorizontalGroup(
@@ -325,72 +328,75 @@ public class SignUp {
                     .addGroup(SignUpContentPaneLayout.createSequentialGroup()
                         .addGroup(SignUpContentPaneLayout.createParallelGroup()
                             .addGroup(SignUpContentPaneLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(password, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addGroup(SignUpContentPaneLayout.createParallelGroup()
-                                    .addComponent(xDatePicker1, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HNoInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AreaInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CityInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(StateInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(userNameField, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(SignUpContentPaneLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(userName, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(SignUpContentPaneLayout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 442, GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(SignUpContentPaneLayout.createSequentialGroup()
                                 .addGap(297, 297, 297)
                                 .addComponent(SignUpField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
                             .addGroup(SignUpContentPaneLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(SignUpContentPaneLayout.createParallelGroup()
-                                    .addComponent(dobField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addressField, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HnoField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(areaField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cityField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(GroupLayout.Alignment.LEADING, SignUpContentPaneLayout.createSequentialGroup()
+                                        .addComponent(phone, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(phoneInput, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(SignUpContentPaneLayout.createSequentialGroup()
-                                        .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                             .addGroup(SignUpContentPaneLayout.createSequentialGroup()
                                                 .addComponent(emailField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(32, 32, 32)
-                                                .addComponent(emailInput, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(SignUpContentPaneLayout.createSequentialGroup()
-                                                .addComponent(aadharField, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(AadharInput, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(32, 32, 32))
                                             .addGroup(GroupLayout.Alignment.LEADING, SignUpContentPaneLayout.createSequentialGroup()
-                                                .addComponent(phone, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(phoneInput, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(signUpButton, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slashSeparator, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(PanInput, GroupLayout.PREFERRED_SIZE, 277, GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGroup(SignUpContentPaneLayout.createParallelGroup()
+                                            .addComponent(StateInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(emailInput, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CityInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(AreaInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(HNoInput, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(signUpButton, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(SignUpContentPaneLayout.createSequentialGroup()
+                                .addGroup(SignUpContentPaneLayout.createParallelGroup()
+                                    .addGroup(SignUpContentPaneLayout.createSequentialGroup()
+                                        .addGap(242, 242, 242)
+                                        .addGroup(SignUpContentPaneLayout.createParallelGroup()
+                                            .addComponent(xDatePicker1, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(userNameField, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(fullNameField, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(SignUpContentPaneLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addGroup(SignUpContentPaneLayout.createParallelGroup()
+                                            .addComponent(cityField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(areaField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(HnoField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(addressField, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dobField, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(password, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(userName, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(userName2, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 442, GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(362, Short.MAX_VALUE))
             );
             SignUpContentPaneLayout.setVerticalGroup(
                 SignUpContentPaneLayout.createParallelGroup()
                     .addGroup(SignUpContentPaneLayout.createSequentialGroup()
                         .addComponent(SignUpField, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(7, 7, 7)
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(userName2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fullNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(userName, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                             .addComponent(userNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(password, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
+                            .addComponent(label2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(dobField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                             .addComponent(xDatePicker1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -410,15 +416,9 @@ public class SignUp {
                             .addComponent(CityInput, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StateInput, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(aadharField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AadharInput, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(slashSeparator)
-                            .addComponent(PanInput, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(StateInput, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
                         .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(emailField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                             .addComponent(emailInput, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
@@ -426,9 +426,9 @@ public class SignUp {
                         .addGroup(SignUpContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(phone, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                             .addComponent(phoneInput, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
+                        .addGap(30, 30, 30)
                         .addComponent(signUpButton, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(58, Short.MAX_VALUE))
+                        .addContainerGap(83, Short.MAX_VALUE))
             );
             SignUp.pack();
             SignUp.setLocationRelativeTo(SignUp.getOwner());
@@ -452,19 +452,18 @@ public class SignUp {
     private JLabel areaField;
     private JLabel cityField;
     private JLabel stateField;
-    private JLabel aadharField;
     private JLabel emailField;
     private JTextField HNoInput;
     private JTextField AreaInput;
     private JTextField CityInput;
     private JTextField StateInput;
-    private JTextField AadharInput;
-    private JTextField PanInput;
-    private JLabel slashSeparator;
     private JTextField emailInput;
     private JButton signUpButton;
     private JLabel phone;
     private JTextField phoneInput;
+    private JTextField fullNameField;
+    private JLabel userName2;
+    private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }

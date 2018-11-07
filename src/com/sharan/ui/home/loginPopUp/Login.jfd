@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp label1::l::592:x, seq {space :p:48:p, par l:::p {comp label2::::225:x, comp label3::::225:x}, space s:::p, par l {comp userNameField:::p:245:p, comp passwordField1:::p:245:p}, space ::56:x}, seq t {space ::153:x, comp button1:::p:197:p, space :p:242:p}}"
-			"$verticalGroup": "par l {seq {comp label1:::p::p, space :p:64:p, par b {comp label2::b:p:45:p, comp userNameField::b:p:45:p}, space s:::p, par b {comp label3::b:p:40:p, comp passwordField1::b:p:40:p}, space :p:89:p, comp button1:::p:44:p, space ::135:x}}"
+			"$horizontalGroup": "par l {comp label1::l::592:x, seq {par l {seq {space :p:48:p, par l:::p {comp label2::::225:x, comp label3::::225:x}, space s:::p, par l {comp userNameField:::p:245:p, comp passwordField1:::p:245:p}}, seq l {space :p:196:p, comp button1:::p:197:p}}, space ::56:x}}"
+			"$verticalGroup": "par l {seq {comp label1:::p::p, space :p:64:p, par b {comp label2::b:p:45:p, comp userNameField::b:p:45:p}, space s:::p, par b {comp label3::b:p:40:p, comp passwordField1::b:p:40:p}, space :p:91:p, comp button1:::p:44:p, space ::26:x}}"
 		} ) {
 			name: "Login"
 			"minimumSize": new java.awt.Dimension( 10, 25 )
@@ -52,7 +52,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 55 )
-			"size": new java.awt.Dimension( 475, 415 )
+			"size": new java.awt.Dimension( 475, 330 )
 		} )
 	}
 }
