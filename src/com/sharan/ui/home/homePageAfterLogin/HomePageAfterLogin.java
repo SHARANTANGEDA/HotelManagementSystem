@@ -479,7 +479,7 @@ public class HomePageAfterLogin {
 
     private void myAccountActionPerformed(ActionEvent e) {
         homePageAfterLogin.dispose();
-        MyAccount account=new MyAccount(dataBaseController);
+        MyAccount account=new MyAccount(userName,dataBaseController);
     }
 
 

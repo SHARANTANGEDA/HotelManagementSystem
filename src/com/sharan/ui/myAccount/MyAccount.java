@@ -4,13 +4,18 @@
 
 package com.sharan.ui.myAccount;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
+import com.sharan.ui.myAccount.renderers.GenerateRenderer;
+import com.sharan.ui.myAccount.renderers.HeaderRenderer;
+import com.sharan.ui.myAccount.renderers.LabelRenderer;
+import com.sharan.ui.pdfSaveLocationPopUp.PDFSaveFileChooser;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
@@ -23,17 +28,46 @@ public class MyAccount {
     private DataBaseController dataBaseController;
     private ArrayList<String> list;
     private String pathPre;
+    private String userName;
+    private String hotelName;
+    private String bookingId;
+    private String bookingStatus;
+    private String checkInDate;
+    private String checkOutDate;
+    private String standardRoom;
+    private String deluxeRoom;
+    private String suiteRoom;
+    private String totalCost;
+    private String address;
+    private String bookingDate;
 
-    public MyAccount(DataBaseController dataBaseController) {
+    public MyAccount(String userName,DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
+        this.userName=userName;
 
 
         initComponents();
-        previousPage.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Back24.gif")));
-        homePage.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Home24.gif")));
+
+        dataBaseController.initialiseDatabase();
+        ArrayList<ColumnsInMyBooking> tableList=dataBaseController.getMyAccountTableRows();
+        dataBaseController.closeDatabaseConnection();
+
+        MyTableModel myTableModel=new MyTableModel(tableList);
+        activeBookings.setModel(myTableModel);
+        activeBookings.getTableHeader().setDefaultRenderer(new HeaderRenderer());
+
+        for(int i=0;i<activeBookings.getColumnCount()-2;i++) {
+            activeBookings.setDefaultRenderer(activeBookings.getColumnClass(i),new LabelRenderer());
+        }
+        activeBookings.getColumnModel().getColumn(activeBookings.getColumnCount()-1).setCellRenderer(new GenerateRenderer());
+
+        myAccountField.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         myAccountField.setVisible(true);
+        activeBookings.setCellSelectionEnabled(true);
         ListSelectionModel listSelectionModel=activeBookings.getSelectionModel();
-        listSelectionModel.addListSelectionListener(e -> cellSelectedInTable(e));
+        listSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listSelectionModel.addListSelectionListener(this::cellSelectedInTable);
+
     }
 
     private void LogoutFieldActionPerformed(ActionEvent e) {
@@ -45,24 +79,52 @@ public class MyAccount {
     private void cellSelectedInTable(ListSelectionEvent e) {
         int row=activeBookings.getSelectedRow();
         int column=activeBookings.getSelectedColumn();
-        selectedBookingId=(String) activeBookings.getValueAt(row,column);
+        if(column==9) {
+
+            selectedBookingId=(String) activeBookings.getValueAt(row,1);
+            if(!selectedBookingId.isEmpty()) {
+            dataBaseController.initialiseDatabase();
+            list= dataBaseController.getPDFdetails(selectedBookingId);
+            dataBaseController.closeDatabaseConnection();
+            PDFSaveFileChooser fileChooser=new PDFSaveFileChooser(list);
+            }
+
+        }
 
     }
+
+
+//    private TableCellRenderer getRenderer() {
+//        return new DefaultTableCellRenderer(){
+//            @Override
+//            public Component getTableCellRendererComponent(JTable table,
+//                                                           Object value, boolean isSelected, boolean hasFocus,
+//                                                           int row, int column) {
+//                Component tableCellRendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus,row, column);
+//
+//
+//
+////                if("doc".equals(value)){
+////                    tableCellRendererComponent.setBackground(Color.YELLOW);
+////                } else  if("xlsx".equals(value)){
+////                    tableCellRendererComponent.setBackground(Color.GREEN);
+////                } else {
+////                    tableCellRendererComponent.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
+////                }
+////                return tableCellRendererComponent;
+//            }
+//        };
+//    }
 
     private void activeBookingsPropertyChange(PropertyChangeEvent e) {
 
     }
 
-    private void GeneratePDF1ActionPerformed(ActionEvent e) {
-        if(!selectedBookingId.isEmpty()) {
-
-//            dataBaseController.initialiseDatabase();
-//            list= dataBaseController.getBookingDetails(selectedBookingId);
-//            dataBaseController.closeDatabaseConnection();
-//            PDFSaveFileChooser fileChooser=new PDFSaveFileChooser(ArrayList<String> list);
 
 
-        }
+    private void homePageActionPerformed(ActionEvent e) {
+        myAccountField.dispose();
+        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
     }
 
     private void initComponents() {
@@ -70,7 +132,6 @@ public class MyAccount {
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
         myAccountField = new JFrame();
         menuBar = new JMenuBar();
-        previousPage = new JMenuItem();
         homePage = new JMenuItem();
         separator1 = new JSeparator();
         menu2 = new JMenu();
@@ -84,7 +145,6 @@ public class MyAccount {
         GeneratePDF1 = new JButton();
         scrollPane3 = new JScrollPane();
         textPane1 = new JTextPane();
-        tabbedPane2 = new JTabbedPane();
 
         //======== myAccountField ========
         {
@@ -97,22 +157,19 @@ public class MyAccount {
                 menuBar.setBackground(Color.darkGray);
                 menuBar.setForeground(new Color(238, 238, 238));
 
-                //---- previousPage ----
-                previousPage.setText("Previous Page");
-                previousPage.setBackground(Color.darkGray);
-                previousPage.setMaximumSize(new Dimension(115, 32767));
-                previousPage.setForeground(new Color(238, 238, 238));
-                menuBar.add(previousPage);
-
                 //---- homePage ----
-                homePage.setText("Previous Page");
+                homePage.setText("Home Page");
                 homePage.setBackground(Color.darkGray);
                 homePage.setMaximumSize(new Dimension(115, 32767));
                 homePage.setForeground(new Color(238, 238, 238));
+                homePage.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Home24.gif")));
+                homePage.addActionListener(e -> homePageActionPerformed(e));
                 menuBar.add(homePage);
 
                 //---- separator1 ----
-                separator1.setMaximumSize(new Dimension(1115, 250));
+                separator1.setMaximumSize(new Dimension(1300, 500));
+                separator1.setPreferredSize(new Dimension(0, 250));
+                separator1.setMinimumSize(new Dimension(1, 50));
                 menuBar.add(separator1);
 
                 //======== menu2 ========
@@ -159,19 +216,33 @@ public class MyAccount {
                             //---- activeBookings ----
                             activeBookings.setModel(new DefaultTableModel(
                                 new Object[][] {
-                                    {null, null, null, null, null, null, null, null, null},
-                                    {null, null, null, null, null, null, null, null, null},
-                                    {null, null, null, null, null, null, null, null, null},
-                                    {null, null, null, null, null, null, null, null, null},
-                                    {null, null, null, null, null, null, null, null, null},
-                                    {null, null, null, null, null, null, null, null, null},
-                                    {null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
                                 },
                                 new String[] {
-                                    "Hotel Name", "Booking Id", "Booking Status", "CheckIn Date", "CheckOut Date", "Number of Standard Rooms", "Number of DeluxeRooms", "Number Of SuiteRooms", "Total Price Paid"
+                                    "Hotel Name", "Booking Id", "Booking Status", "CheckIn Date", "CheckOut Date", "Number of Standard Rooms", "Number of DeluxeRooms", "Number Of SuiteRooms", "Total Price Paid", "Generate PDF"
                                 }
                             ));
-                            activeBookings.setRowHeight(63);
+                            {
+                                TableColumnModel cm = activeBookings.getColumnModel();
+                                cm.getColumn(0).setPreferredWidth(140);
+                                cm.getColumn(1).setPreferredWidth(120);
+                                cm.getColumn(2).setPreferredWidth(140);
+                                cm.getColumn(3).setPreferredWidth(115);
+                                cm.getColumn(4).setPreferredWidth(130);
+                                cm.getColumn(5).setPreferredWidth(230);
+                                cm.getColumn(6).setPreferredWidth(210);
+                                cm.getColumn(7).setPreferredWidth(200);
+                                cm.getColumn(8).setPreferredWidth(130);
+                                cm.getColumn(9).setPreferredWidth(115);
+                            }
+                            activeBookings.setRowHeight(78);
                             activeBookings.setCellSelectionEnabled(true);
                             activeBookings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
                             activeBookings.addPropertyChangeListener(e -> activeBookingsPropertyChange(e));
@@ -183,7 +254,6 @@ public class MyAccount {
                         GeneratePDF1.setBackground(new Color(153, 0, 0));
                         GeneratePDF1.setForeground(new Color(238, 238, 238));
                         GeneratePDF1.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-                        GeneratePDF1.addActionListener(e -> GeneratePDF1ActionPerformed(e));
 
                         //======== scrollPane3 ========
                         {
@@ -201,30 +271,28 @@ public class MyAccount {
                         panel1Layout.setHorizontalGroup(
                             panel1Layout.createParallelGroup()
                                 .addGroup(panel1Layout.createSequentialGroup()
-                                    .addGroup(panel1Layout.createParallelGroup()
-                                        .addGroup(panel1Layout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 1410, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panel1Layout.createSequentialGroup()
-                                            .addGap(691, 691, 691)
-                                            .addComponent(GeneratePDF1, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(153, 153, 153)
-                                            .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)))
-                                    .addContainerGap(178, Short.MAX_VALUE))
+                                    .addGap(819, 819, 819)
+                                    .addComponent(GeneratePDF1, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
+                                    .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(276, 276, 276))
+                                .addGroup(panel1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 1875, GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap(99, Short.MAX_VALUE))
                         );
                         panel1Layout.setVerticalGroup(
                             panel1Layout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panel1Layout.createSequentialGroup()
+                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 645, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                                     .addGroup(panel1Layout.createParallelGroup()
-                                        .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(GeneratePDF1, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
-                                    .addContainerGap(70, Short.MAX_VALUE))
+                                        .addComponent(GeneratePDF1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(scrollPane3, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(59, 59, 59))
                         );
                     }
                     tabbedPane1.addTab("My Bookings", panel1);
-                    tabbedPane1.addTab("Previous Bookings", tabbedPane2);
                 }
                 scrollPane1.setViewportView(tabbedPane1);
             }
@@ -236,16 +304,16 @@ public class MyAccount {
                     .addGroup(myAccountFieldContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(myAccountFieldContentPaneLayout.createParallelGroup()
-                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE))
+                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1903, Short.MAX_VALUE))
                         .addContainerGap())
             );
             myAccountFieldContentPaneLayout.setVerticalGroup(
                 myAccountFieldContentPaneLayout.createParallelGroup()
                     .addGroup(myAccountFieldContentPaneLayout.createSequentialGroup()
                         .addComponent(label1)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 527, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
                         .addContainerGap())
             );
             myAccountField.pack();
@@ -258,7 +326,6 @@ public class MyAccount {
     // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JFrame myAccountField;
     private JMenuBar menuBar;
-    private JMenuItem previousPage;
     private JMenuItem homePage;
     private JSeparator separator1;
     private JMenu menu2;
@@ -272,6 +339,5 @@ public class MyAccount {
     private JButton GeneratePDF1;
     private JScrollPane scrollPane3;
     private JTextPane textPane1;
-    private JTabbedPane tabbedPane2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

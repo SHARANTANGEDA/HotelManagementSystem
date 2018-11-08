@@ -23,6 +23,7 @@ public class PDFGenerator {
     private String bookingId;
     private String address;
     private String totalCost;
+    private String bookingDate;
     private String contactUs="Incase of any query ContactUs at DawnBreakers@support.com\n"+"Or call us at +91-9876543210.";
     private String ThankYouNote="Thank You For choosing us, We are always at your service \n"+"**********VISIT US AGAIN************";
 
@@ -38,6 +39,7 @@ public class PDFGenerator {
         this.suiteRoom=bookingDetails.get(8);
         this.address=bookingDetails.get(9);
         this.totalCost=bookingDetails.get(10);
+        this.bookingDate=bookingDetails.get(11);
 
 
         this.path=path+"/"+bookingId+".pdf";

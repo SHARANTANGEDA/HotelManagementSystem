@@ -321,7 +321,7 @@ public class DisplaySelectedHotels {
 
     private void myAccountActionPerformed(ActionEvent e) {
         displayTable.dispose();
-        MyAccount myAccount=new MyAccount(dataBaseController);
+        MyAccount myAccount=new MyAccount(userName,dataBaseController);
     }
 
     private void LogoutActionPerformed(ActionEvent e) {

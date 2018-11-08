@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {comp label1::::1436:x, comp scrollPane1::l::1436:x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::x, comp scrollPane1:::p:527:p, space :::p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp label1:::::x, comp scrollPane1::::1903:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::p, comp scrollPane1::::901:x, space :::p}}"
 		} ) {
 			name: "myAccountField"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -21,8 +21,8 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp scrollPane2:::p:1410:p}, seq l {space :p:691:p, comp GeneratePDF1:::p:160:p, space :p:153:p, comp scrollPane3:::p:410:p}}, space ::178:x}}"
-						"$verticalGroup": "par l {seq t {comp scrollPane2:::p:400:p, space u:::p, par l {comp scrollPane3:::p:73:p, comp GeneratePDF1::l:p:59:p}, space ::70:x}}"
+						"$horizontalGroup": "par l {seq l {space :p:819:p, comp GeneratePDF1:::p:160:p, space ::315:x, comp scrollPane3:::p:410:p, space :p:276:p}, seq l {space :::p, comp scrollPane2:::p:1875:p, space ::99:x}}"
+						"$verticalGroup": "par l {seq l {comp scrollPane2:::p:645:p, space ::79:x, par l {comp GeneratePDF1::t:p:59:p, comp scrollPane3::t:p:73:p}, space :p:59:p}}"
 					} ) {
 						name: "panel1"
 						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -40,30 +40,10 @@ new FormModel {
 										add( null )
 										add( null )
 										add( null )
-									} )
-									add( new java.util.Vector {
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
 										add( null )
 									} )
 									add( new java.util.Vector {
 										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-										add( null )
-									} )
-									add( new java.util.Vector {
 										add( null )
 										add( null )
 										add( null )
@@ -84,6 +64,19 @@ new FormModel {
 										add( null )
 										add( null )
 										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
 									} )
 									add( new java.util.Vector {
 										add( null )
@@ -95,8 +88,34 @@ new FormModel {
 										add( null )
 										add( null )
 										add( null )
+										add( null )
 									} )
 									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
 										add( null )
 										add( null )
 										add( null )
@@ -117,6 +136,7 @@ new FormModel {
 									add( "Number of DeluxeRooms" )
 									add( "Number Of SuiteRooms" )
 									add( "Total Price Paid" )
+									add( "Generate PDF" )
 								}, new java.util.Vector {
 									add( null )
 									add( null )
@@ -127,15 +147,6 @@ new FormModel {
 									add( null )
 									add( null )
 									add( null )
-								}, new java.util.Vector {
-									add( null )
-									add( null )
-									add( null )
-									add( null )
-									add( null )
-									add( null )
-									add( null )
-									add( null )
 									add( null )
 								}, new java.util.Vector {
 									add( null )
@@ -147,8 +158,20 @@ new FormModel {
 									add( null )
 									add( null )
 									add( null )
+									add( null )
+								}, new java.util.Vector {
+									add( new com.jformdesigner.model.SwingTableColumn( null, 140, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 140, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 115, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 130, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 230, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 210, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 130, 0, 0, true ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 115, 0, 0, true ) )
 								} )
-								"rowHeight": 63
+								"rowHeight": 78
 								"cellSelectionEnabled": true
 								"selectionMode": 1
 								addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "activeBookingsPropertyChange", true ) )
@@ -160,7 +183,6 @@ new FormModel {
 							"background": new java.awt.Color( 153, 0, 0, 255 )
 							"foreground": &ColorUIResource0 new javax.swing.plaf.ColorUIResource( 238, 238, 238 )
 							"font": new java.awt.Font( "Comic Sans MS", 1, 16 )
-							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GeneratePDF1ActionPerformed", true ) )
 						} )
 						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 							name: "scrollPane3"
@@ -175,11 +197,6 @@ new FormModel {
 					}, new FormLayoutConstraints( null ) {
 						"title": "My Bookings"
 					} )
-					add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
-						name: "tabbedPane2"
-					}, new FormLayoutConstraints( null ) {
-						"title": "Previous Bookings"
-					} )
 				} )
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
@@ -189,22 +206,19 @@ new FormModel {
 				"background": sfield java.awt.Color darkGray
 				"foreground": new javax.swing.plaf.ColorUIResource( 238, 238, 238 )
 				add( new FormComponent( "javax.swing.JMenuItem" ) {
-					name: "previousPage"
-					"text": "Previous Page"
-					"background": sfield java.awt.Color darkGray
-					"maximumSize": &Dimension0 new java.awt.Dimension( 115, 32767 )
-					"foreground": #ColorUIResource0
-				} )
-				add( new FormComponent( "javax.swing.JMenuItem" ) {
 					name: "homePage"
-					"text": "Previous Page"
+					"text": "Home Page"
 					"background": sfield java.awt.Color darkGray
-					"maximumSize": #Dimension0
+					"maximumSize": new java.awt.Dimension( 115, 32767 )
 					"foreground": #ColorUIResource0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/Home24.gif" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "homePageActionPerformed", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JSeparator" ) {
 					name: "separator1"
-					"maximumSize": new java.awt.Dimension( 1115, 250 )
+					"maximumSize": new java.awt.Dimension( 1300, 500 )
+					"preferredSize": new java.awt.Dimension( 0, 250 )
+					"minimumSize": new java.awt.Dimension( 1, 50 )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu2"
@@ -219,7 +233,7 @@ new FormModel {
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 6, 15 )
-			"size": new java.awt.Dimension( 1160, 540 )
+			"size": new java.awt.Dimension( 1534, 835 )
 		} )
 	}
 }

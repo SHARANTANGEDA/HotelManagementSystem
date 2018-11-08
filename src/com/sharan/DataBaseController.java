@@ -2,6 +2,7 @@ package com.sharan;
 
 
 import com.sharan.ui.hotelView.displaySelectedHotels.ElementsInHotelView;
+import com.sharan.ui.myAccount.ColumnsInMyBooking;
 
 import javax.swing.*;
 import java.sql.*;
@@ -41,8 +42,14 @@ public class DataBaseController {
     private String availableInsertParametres = " (UniqueId,StandardAvailableArray,DeluxeAvailableArray,SuitAvailableArray,LatestBooking)";
 
     private String waitingListTableName = "waitngListTable";
-    private String waitingListTableColoumns = "(UserName TEXT NOT NULL PRIMARY KEY,UniqueId TEXT,CheckIn TEXT,CheckOut TEXT,StandardRooms INTEGER,DeluxeRooms INTEGER,SuitRooms INTEGER,BookingDate TEXT)";
-    private String waitListInsertParametres = " (UserName,UniqueId,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuitRooms,BookingDate)";
+    private String waitingListTableColoumns = "(UserName TEXT NOT NULL PRIMARY KEY,BookingId TEXT,CheckIn TEXT,CheckOut TEXT,StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT)";
+    private String waitListInsertParametres = " (UserName,UniqueId,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate)";
+
+    private String myBookingsTableName="myBookingsTable";
+    private String myBookingsTableColumns="(UserName TEXT NOT NULL PRIMARY KEY,HotelName TEXT, BookingId TEXT,BookingStatus TEXT,CheckIn TEXT,CheckOut TEXT," +
+            "StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT,TotalPricePaid TEXT,Address TEXT)";
+
+
     private Connection conn=null;
     private Statement statement=null;
 
@@ -57,6 +64,7 @@ public class DataBaseController {
             statement.execute(TABLE_CREATOR+allotmentTableName+allotmentTableColumns);
             statement.execute(TABLE_CREATOR+availableTableName+availableTableColoumns);
             statement.execute(TABLE_CREATOR+waitingListTableName+waitingListTableColoumns);
+            statement.execute(TABLE_CREATOR+myBookingsTableName+myBookingsTableColumns);
         }catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -489,6 +497,36 @@ public class DataBaseController {
     }
 
 
+    public ArrayList<ColumnsInMyBooking> getMyAccountTableRows(){
+        ArrayList<ColumnsInMyBooking> list=new ArrayList<>();
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM "+myBookingsTableName);
+            while (resultSet.next()) {
+                ArrayList<String> rowList=new ArrayList<>();
+                rowList.add(resultSet.getString("UserName"));
+                rowList.add(resultSet.getString("HotelName"));
+                rowList.add(resultSet.getString("BookingId"));
+                rowList.add(resultSet.getString("BookingStatus"));
+                rowList.add(resultSet.getString("CheckIn"));
+                rowList.add(resultSet.getString("CheckOut"));
+                rowList.add(resultSet.getString("StandardRooms"));
+                rowList.add(resultSet.getString("DeluxeRooms"));
+                rowList.add(resultSet.getString("SuiteRooms"));
+                rowList.add(resultSet.getString("BookingDate"));
+                rowList.add(resultSet.getString("TotalPricePaid"));
+
+                ColumnsInMyBooking columnsInMyBooking=new ColumnsInMyBooking(rowList);
+                list.add(columnsInMyBooking);
+            }
+
+
+            return list;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 
     public ArrayList<ElementsInHotelView> getHotelsBasedOnAllotmentDetails(ArrayList<String> list) {
         ArrayList<ElementsInHotelView> displayList=new ArrayList<>();
@@ -513,6 +551,31 @@ public class DataBaseController {
 
         return displayList;
 
+    }
+    public ArrayList<String> getPDFdetails(String bookingId) {
+        ArrayList<String> list=new ArrayList<>();
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM "+myBookingsTableName+" WHERE BookingId = '"+bookingId+"'");
+            while (resultSet.next()) {
+                list.add(resultSet.getString("UserName"));
+                list.add(resultSet.getString("HotelName"));
+                list.add(resultSet.getString("BookingId"));
+                list.add(resultSet.getString("BookingStatus"));
+                list.add(resultSet.getString("CheckIn"));
+                list.add(resultSet.getString("CheckOut"));
+                list.add(String.valueOf(resultSet.getInt("StandardRooms")));
+                list.add(String.valueOf(resultSet.getInt("DeluxeRooms")));
+                list.add(String.valueOf(resultSet.getInt("SuiteRooms")));
+                list.add(resultSet.getString("BookingDate"));
+                list.add(resultSet.getString("TotalPricePaid"));
+                list.add(resultSet.getString("Address"));
+                return list;
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     public String Verify(String username) {

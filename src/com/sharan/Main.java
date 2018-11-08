@@ -1,7 +1,7 @@
 package com.sharan;
 
 
-import com.sharan.ui.home.homePage.HomePage;
+import com.sharan.ui.myAccount.MyAccount;
 
 public class Main {
 
@@ -14,7 +14,8 @@ public class Main {
 
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
-        HomePage homePage=new HomePage(dataBaseController);
+//        HomePage homePage=new HomePage(dataBaseController);
+        MyAccount myAccount=new MyAccount("hello",dataBaseController);
 
 //        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin();
 
