@@ -2,6 +2,7 @@ package com.sharan;
 
 
 import com.sharan.ui.hotelView.displaySelectedHotels.ElementsInHotelView;
+import com.sharan.ui.hotelView.roomBooking.waitingList.waitingList;
 import com.sharan.ui.myAccount.ColumnsInMyBooking;
 
 import javax.swing.*;
@@ -97,169 +98,261 @@ public class DataBaseController {
             if(!conn.isClosed())
             {
                 int flag =0;
-                ResultSet rs = statement.executeQuery("SELECT UniqueId FROM " + availableTableName);
-                for (int i=0;i<rs.getFetchSize();i++)
-                {
-                    if(rs.getString(i).equals(uniqueId))
-                    {
-                        flag =1;
-                    }
-                }
-                Date current=null;
-                Date checkin=null;
-                Date checkout=null;
+                ResultSet rs = statement.executeQuery("SELECT * FROM " + availableTableName);
+                System.out.println(rs);
+//                for (int i=0;i<rs.getFetchSize();i++)
+//                {
+//                    System.out.print(rs.getString(i));
+//                    if(rs.getString(i).equals(uniqueId))
+//                    {
+//
+//                        flag =1;
+//                    }
+//                }
+              while (rs.next())
+              {
+                  String getUniqueId = rs.getString("UniqueId");
+                  System.out.println(getUniqueId);
+                  if (getUniqueId.equals(uniqueId))
+                  {
+                      flag = 1;
+                  }
+              }
+                System.out.println("flag = "+flag);
+                java.util.Date current=null;
+                java.util.Date checkin=null;
+                java.util.Date checkout=null;
 
-                Date c = (Date) Calendar.getInstance().getTime();
+                java.util.Date c = Calendar.getInstance().getTime();
                 System.out.println("Current time => " + c);
 
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                String formattedDate = df.format(c);
+                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                    String formattedDate = df.format(c);
+                System.out.println(formattedDate+"/n"+checkIn+"/n"+checkOut);
 
                 try {
-                    current = (Date) df.parse(formattedDate);
+                    current =  df.parse(formattedDate);
                 } catch (ParseException e) {
 
                     e.printStackTrace();
                 }
                 try {
-                    checkin = (Date) df.parse(checkIn);
+                    checkin =  df.parse(checkIn);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 try {
-                    checkout = (Date) df.parse(checkOut);
+                    checkout =  df.parse(checkOut);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 long duration = checkin.getTime()-current.getTime();
                 long diffInDaysForCheckIn = TimeUnit.MILLISECONDS.toDays(duration);
+                System.out.println("diffInDaysForCheckIn"+diffInDaysForCheckIn);
                 long duration1 = checkout.getTime()-current.getTime();
                 long diffInDaysForCheckOut = TimeUnit.MILLISECONDS.toDays(duration1);
-                if(flag ==1)
-                {
+                System.out.println("diffInDaysForCheckOut"+diffInDaysForCheckOut);
+                if(flag ==1) {
 
 
-                    int x=0,y=0,z=0;
-                    ResultSet resultSet = statement.executeQuery("SELECT * FROM "+availableTableName+" WHERE UniqueId='"+ uniqueId + "'");
-                    char[] standardAvailableArray= resultSet.getString("StandardAvailableArray").toCharArray();
-                    char[] deluxeAvailableArray = resultSet.getString("DeluxeAvailableArray").toCharArray();
-                    char[] suitAvailableArray = resultSet.getString("SuitAvailableArray").toCharArray();
+                    int x = 0, y = 0, z = 0;
+                    ResultSet resultSet = statement.executeQuery("SELECT * FROM " + availableTableName + " WHERE UniqueId='" + uniqueId + "'");
+                    String standardAvailableString = resultSet.getString("StandardAvailableArray");
+                    String deluxeAvailableString = resultSet.getString("DeluxeAvailableArray");
+                    String suitAvailableString = resultSet.getString("SuitAvailableArray");
                     String lastLatestBooking = resultSet.getString("LatestBooking");
-                    Date latestBooking = null;
+                    java.util.Date latestBooking = null;
                     try {
-                        latestBooking = (Date) df.parse(lastLatestBooking);
+                        latestBooking = df.parse(lastLatestBooking);
                     } catch (ParseException e) {
 
                         e.printStackTrace();
                     }
-                    int diffBetweenBookings = (int) (current.getTime()-latestBooking.getTime());
+                    int[] standardAvailableArray = new int[90];
+                    int[] deluxeAvailableArray = new int[90];
+                    int[] suitAvailableArray = new int[90];
+                    StringBuffer intial = new StringBuffer();
+                    int j = 0;
+                    for (char i : standardAvailableString.toCharArray()) {
+                        if (i == ',') {
+                            standardAvailableArray[j] = Integer.parseInt(intial.toString());
+                            intial = new StringBuffer();
+                            j++;
+                        } else {
+                            intial.append(i);
+                        }
+                    }
+                    StringBuffer deluxe = new StringBuffer();
+                    int k = 0;
+                    for (char i : deluxeAvailableString.toCharArray()) {
+                        if (i == ',') {
+                            deluxeAvailableArray[k] = Integer.parseInt(deluxe.toString());
+                            deluxe = new StringBuffer();
+                            k++;
+                        } else {
+                            deluxe.append(i);
+                        }
+                    }
+                    StringBuffer suite = new StringBuffer();
+                    int l = 0;
+                    for (char i : suitAvailableString.toCharArray()) {
+                        if (i == ',') {
+                            standardAvailableArray[l] = Integer.parseInt(suite.toString());
+                            suite = new StringBuffer();
+                            l++;
+                        } else {
+                            suite.append(i);
+                        }
+                    }
+
+                    int diffBetweenBookings = (int) TimeUnit.MILLISECONDS.toDays((current.getTime() - latestBooking.getTime()));
                     //pushing the availableArrays to get to current time
-                    for (int i=0;i<90-diffBetweenBookings;i++)
-                    {
-                        standardAvailableArray[i] = standardAvailableArray[i+diffBetweenBookings];
-                        deluxeAvailableArray[i]  = deluxeAvailableArray[i+diffBetweenBookings];
-                        suitAvailableArray[i] = suitAvailableArray[i+diffBetweenBookings];
+                    for (int i = 0; i < 90 - diffBetweenBookings; i++) {
+                        standardAvailableArray[i] = standardAvailableArray[i + diffBetweenBookings];
+                        deluxeAvailableArray[i] = deluxeAvailableArray[i + diffBetweenBookings];
+                        suitAvailableArray[i] = suitAvailableArray[i + diffBetweenBookings];
                     }
-                    for (int j=90-diffBetweenBookings;j<90;j++)
-                    {
-                        standardAvailableArray[j]=0;
-                        deluxeAvailableArray[j]=0;
-                        suitAvailableArray[j]=0;
+                    for (int i = 90 - diffBetweenBookings; i < 90; i++) {
+                        standardAvailableArray[i] = 0;
+                        deluxeAvailableArray[i] = 0;
+                        suitAvailableArray[i] = 0;
                     }
 
-                    for(int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++)
-                    {
-                        if(standardAvailableArray[i]<noOfStandardRooms)
-                        {
-                            x=1;
-                            //JOptionPane.showMessageDialog(null,"Sorry for inconvience,Required number of Standard Rooms are not available");
-                           // waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfDeluxeRooms,noOfDeluxeRooms,noOfSuitRooms);
+                    for (int i = Integer.parseInt(String.valueOf(diffInDaysForCheckIn)); i < Integer.parseInt(String.valueOf(diffInDaysForCheckOut)); i++) {
+                        if (standardAvailableArray[i] < noOfStandardRooms) {
+                            x = 1;
+                            //JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Standard Rooms are not available");
+                            // waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfDeluxeRooms,noOfDeluxeRooms,noOfSuitRooms);
                         }
-                        if(deluxeAvailableArray[i]<noOfDeluxeRooms)
-                        {
-                            y=1;
-                            JOptionPane.showMessageDialog(null,"Sorry for inconvience,Required number of Deluxe Rooms are not available");
+                        if (deluxeAvailableArray[i] < noOfDeluxeRooms) {
+                            y = 1;
+                           // JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Deluxe Rooms are not available");
                         }
-                        if (suitAvailableArray[i]<noOfSuitRooms)
-                        {
-                            z=1;
-                            JOptionPane.showMessageDialog(null,"Sorry for inconvience,Required number of Suit Rooms are not available");
+                        if (suitAvailableArray[i] < noOfSuitRooms) {
+                            z = 1;
+                           // JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Suit Rooms are not available");
                         }
                     }
-                    if (x==0&&y==0&&z==0) {
-                        for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
-                            int f;
-                            char o;
-                            f = Character.getNumericValue(standardAvailableArray[i]) - noOfStandardRooms;
-                            o = (char) (f + '0');
-                            standardAvailableArray[i] = o;
+                    if (x == 0 && y == 0 && z == 0) {
+                        for (int i = Integer.parseInt(String.valueOf(diffInDaysForCheckIn)); i < Integer.parseInt(String.valueOf(diffInDaysForCheckOut)); i++) {
+
+                            standardAvailableArray[i] = standardAvailableArray[i] - noOfStandardRooms;
+
                         }
 
-                        for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
-                            int f;
-                            char o;
-                            f = Character.getNumericValue(deluxeAvailableArray[i]) - noOfStandardRooms;
-                            o = (char) (f + '0');
-                            deluxeAvailableArray[i] = o;
+                        for (int i = Integer.parseInt(String.valueOf(diffInDaysForCheckIn)); i < Integer.parseInt(String.valueOf(diffInDaysForCheckOut)); i++) {
+                            deluxeAvailableArray[i] = deluxeAvailableArray[i] - noOfDeluxeRooms;
                         }
 
-                        for(int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++)
-                        {
-                            int f;
-                            char o;
-                            f = Character.getNumericValue(suitAvailableArray[i])-noOfStandardRooms;
-                            o = (char)(f+'0');
-                            suitAvailableArray[i]=o;
+                        for (int i = Integer.parseInt(String.valueOf(diffInDaysForCheckIn)); i < Integer.parseInt(String.valueOf(diffInDaysForCheckOut)); i++) {
+                            suitAvailableArray[i] = suitAvailableArray[i] - noOfSuitRooms;
                         }
+
+                        StringBuffer standardBuilder = new StringBuffer();
+                        StringBuffer deluxeBuilder = new StringBuffer();
+                        StringBuffer suiteBuilder = new StringBuffer();
+                        for (int i = 0; i < 90; i++) {
+                            String s = String.valueOf(standardAvailableArray[i]);
+                            standardBuilder.append(s + ",");
+                        }
+                        String updatedStandardAvailableString = standardBuilder.toString();
+                        for (int i = 0; i < 90; i++) {
+                            String s = String.valueOf(deluxeAvailableArray[i]);
+                            deluxeBuilder.append(s + ",");
+                        }
+                        String updatedDeluxeAvailableString = deluxeBuilder.toString();
+                        for (int i = 0; i < 90; i++) {
+                            String s = String.valueOf(suitAvailableArray[i]);
+                            suiteBuilder.append(s + ",");
+                        }
+                        String updatedSuiteAvailableString = suiteBuilder.toString();
+                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + updatedStandardAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray '" + updatedDeluxeAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray '" + updatedSuiteAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + formattedDate + "' WHERE UniqueId='" + uniqueId + "'");
                     }
-                    statement.execute("UPDATE "+availableTableName+ " SET StandardAvailableArray '"+standardAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
-                    statement.execute("UPDATE "+availableTableName+ " SET DeluxeAvailableArray '"+deluxeAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
-                    statement.execute("UPDATE "+availableTableName+ " SET SuitAvailableArray '"+suitAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
-                    statement.execute("UPDATE "+availableTableName+" SET LatestBooking '"+formattedDate+"' WHERE UniqueId='"+uniqueId+"'");
+                    else {
+                        waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms);
+                    }
                 }
                 else
                 {
-                    char[] standardAvailableArray = new char[90];
-                    char[] deluxeAvailableArray = new char[90];
-                    char[] suitAvailableArray = new char[90];
+                    int[] standardAvailableArray = new int[90];
+                    int[] deluxeAvailableArray = new int[90];
+                    int[] suitAvailableArray = new int[90];
                     for(int i=0;i<90;i++)
                     {
-                        standardAvailableArray[i] = (char) (maxStandardRooms+'o');
+                        standardAvailableArray[i] =  maxStandardRooms;
                     }
                     for(int i=0;i<90;i++)
                     {
-                        deluxeAvailableArray[i] = (char) (maxDeluxeRooms+'o');
+                        deluxeAvailableArray[i] = maxDeluxeRooms;
                     }
                     for(int i=0;i<90;i++)
                     {
-                        suitAvailableArray[i] = (char) (maxSuitRooms+'o');
+                        suitAvailableArray[i] = maxSuitRooms;
                     }
+                    for (int i=0;i<90;i++)
+                    {
+                        System.out.print(standardAvailableArray[i]);
+                    }
+                    System.out.println("\n");
+                    for (int i=0;i<90;i++)
+                    {
+                        System.out.print(deluxeAvailableArray[i]);
+                    }
+                    System.out.println("\n");
+                    for (int i=0;i<90;i++)
+                    {
+                        System.out.print(suitAvailableArray[i]);
+                    }
+                    System.out.println("\n");
                     for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
                         int f;
-                        char o;
-                        f = Character.getNumericValue(standardAvailableArray[i]) - noOfStandardRooms;
-                        o = (char) (f + '0');
-                        standardAvailableArray[i] = o;
+
+                        f = standardAvailableArray[i] - noOfStandardRooms;
+
+                        standardAvailableArray[i] = f;
                     }
 
                     for (int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++) {
                         int f;
-                        char o;
-                        f = Character.getNumericValue(deluxeAvailableArray[i]) - noOfDeluxeRooms;
-                        o = (char) (f + '0');
-                        deluxeAvailableArray[i] = o;
+
+                        f =deluxeAvailableArray[i] - noOfDeluxeRooms;
+
+                        deluxeAvailableArray[i] = f;
                     }
 
                     for(int i=Integer.parseInt(String.valueOf(diffInDaysForCheckIn));i<Integer.parseInt(String.valueOf(diffInDaysForCheckOut));i++)
                     {
                         int f;
-                        char o;
-                        f = Character.getNumericValue(suitAvailableArray[i])-noOfSuitRooms;
-                        o = (char)(f+'0');
-                        suitAvailableArray[i]=o;
+
+                        f = suitAvailableArray[i]-noOfSuitRooms;
+
+                        suitAvailableArray[i]=f;
                     }
-                    statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+standardAvailableArray.toString()+"','"+
-                            deluxeAvailableArray.toString()+"','"+suitAvailableArray.toString()+"','"+formattedDate+"')");
+                    StringBuffer standardBuilder=new StringBuffer();
+                    StringBuffer deluxeBuilder=new StringBuffer();
+                    StringBuffer suiteBuilder=new StringBuffer();
+                    for (int i=0;i<90;i++) {
+                        String x = String.valueOf(standardAvailableArray[i]);
+                        standardBuilder.append(x + ",");
+                    }
+                    String standardAvailableString= standardBuilder.toString();
+                    for (int i=0;i<90;i++) {
+                        String x = String.valueOf(deluxeAvailableArray[i]);
+                       deluxeBuilder.append(x + ",");
+                    }
+                    String deluxeAvailableString= deluxeBuilder.toString();
+                    for (int i=0;i<90;i++) {
+                        String x = String.valueOf(suitAvailableArray[i]);
+                        suiteBuilder.append(x + ",");
+                    }
+                    String suiteAvailableString= suiteBuilder.toString();
+                System.out.println(standardAvailableString+"','"+
+                            deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate);
+                    statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+standardAvailableString+"','"+
+                            deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate+"')");
                 }
             }
         } catch (SQLException e) {
@@ -269,89 +362,142 @@ public class DataBaseController {
     public void cancelBooking(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,String bookingDate) {
         try {
             if (!conn.isClosed()) {
-                Date current=null;
-                Date bookedDate = null;
-                Date checkin=null;
-                Date checkout=null;
+                java.util.Date current=null;
+                java.util.Date bookedDate = null;
+                java.util.Date checkin=null;
+                java.util.Date checkout=null;
                 Date lastUpdated = null;
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                Date c = (Date) Calendar.getInstance().getTime();
+                java.util.Date c = Calendar.getInstance().getTime();
                 System.out.println("Current time => " + c);
 
                 SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 String formattedDate = df.format(c);
-                //SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+
                 try {
-                    current = (Date) df.parse(formattedDate);
+                    current =  df.parse(formattedDate);
                 } catch (ParseException e) {
 
                     e.printStackTrace();
                 }
                 try {
-                    bookedDate = (Date) df.parse(bookingDate);
+                    bookedDate =  df.parse(bookingDate);
                 } catch (ParseException e) {
 
                     e.printStackTrace();
                 }
 
                 try {
-                    checkin = (Date) df.parse(checkIn);
+                    checkin =  df.parse(checkIn);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 try {
-                    checkout = (Date) df.parse(checkOut);
+                    checkout =  df.parse(checkOut);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
 
-                ResultSet rs = statement.executeQuery("SELECT UniqueId FROM " + availableTableName);
-                for (int j = 0; j < rs.getFetchSize(); j++) {
-                    if (rs.getString(j).equals(uniqueId)) {
-                        int x=0,y=0,z=0;
+                ResultSet rs = statement.executeQuery("SELECT * FROM " + availableTableName);
+                while (rs.next())
+                {
+                    String getUniqueId = rs.getString("UniqueId");
+                    System.out.println(getUniqueId);
+                    if (getUniqueId.equals(uniqueId))
+                    {
                         ResultSet resultSet = statement.executeQuery("SELECT * FROM "+availableTableName+" WHERE UniqueId='"+ uniqueId + "'");
-                        char[] standardAvailableArray= resultSet.getString("StandardAvailableArray").toCharArray();
-                        char[] deluxeAvailableArray = resultSet.getString("DeluxeAvailableArray").toCharArray();
-                        char[] suitAvailableArray = resultSet.getString("SuitAvailableArray").toCharArray();
-                        String latestBookedDate = resultSet.getString("LatestBooking");
+                        String standardAvailableString = resultSet.getString("StandardAvailableArray");
+                        String deluxeAvailableString = resultSet.getString("DeluxeAvailableArray");
+                        String suitAvailableString = resultSet.getString("SuitAvailableArray");
+                        String lastLatestBooking = resultSet.getString("LatestBooking");
+                        java.util.Date latestBooking = null;
                         try {
-                            lastUpdated = (Date) df.parse(latestBookedDate);
+                            latestBooking = df.parse(lastLatestBooking);
                         } catch (ParseException e) {
 
                             e.printStackTrace();
                         }
-                        long duration = checkin.getTime()-lastUpdated.getTime();
+                        int[] standardAvailableArray = new int[90];
+                        int[] deluxeAvailableArray = new int[90];
+                        int[] suitAvailableArray = new int[90];
+                        StringBuffer intial = new StringBuffer();
+                        int j = 0;
+                        for (char i : standardAvailableString.toCharArray()) {
+                            if (i == ',') {
+                                standardAvailableArray[j] = Integer.parseInt(intial.toString());
+                                intial = new StringBuffer();
+                                j++;
+                            } else {
+                                intial.append(i);
+                            }
+                        }
+                        StringBuffer deluxe = new StringBuffer();
+                        int k = 0;
+                        for (char i : deluxeAvailableString.toCharArray()) {
+                            if (i == ',') {
+                                deluxeAvailableArray[k] = Integer.parseInt(deluxe.toString());
+                                deluxe = new StringBuffer();
+                                k++;
+                            } else {
+                                deluxe.append(i);
+                            }
+                        }
+                        StringBuffer suite = new StringBuffer();
+                        int l = 0;
+                        for (char i : suitAvailableString.toCharArray()) {
+                            if (i == ',') {
+                                standardAvailableArray[l] = Integer.parseInt(suite.toString());
+                                suite = new StringBuffer();
+                                l++;
+                            } else {
+                                suite.append(i);
+                            }
+                        }
+                        for (int i = 0; i < 90; i++) {
+                            System.out.print(standardAvailableArray[i]);
+                        }
+
+                        long duration = checkin.getTime()-latestBooking.getTime();
                         int diffInDaysForCheckIn = (int) TimeUnit.MILLISECONDS.toDays(duration);
-                        long duration1 = checkout.getTime()-lastUpdated.getTime();
+                        long duration1 = checkout.getTime()-latestBooking.getTime();
                         int diffInDaysForCheckOut = (int) TimeUnit.MILLISECONDS.toDays(duration1);
                         for (int i = diffInDaysForCheckIn; i < diffInDaysForCheckOut; i++) {
-                            int f;
-                            char o;
-                            f = Character.getNumericValue(standardAvailableArray[i]) + noOfStandardRooms;
-                            o = (char) (f + '0');
-                            standardAvailableArray[i] = o;
+
+                            standardAvailableArray[i] = standardAvailableArray[i] + noOfStandardRooms;
+
+
                         }
 
                         for (int i = diffInDaysForCheckIn; i < diffInDaysForCheckOut; i++) {
-                            int f;
-                            char o;
-                            f = Character.getNumericValue(deluxeAvailableArray[i]) + noOfDeluxeRooms;
-                            o = (char) (f + '0');
-                            deluxeAvailableArray[i] = o;
+                            deluxeAvailableArray[i] = deluxeAvailableArray[i] + noOfStandardRooms;
                         }
 
                         for(int i=diffInDaysForCheckIn;i<diffInDaysForCheckOut;i++)
                         {
-                            int f;
-                            char o;
-                            f = Character.getNumericValue(suitAvailableArray[i])+noOfSuitRooms;
-                            o = (char)(f+'0');
-                            suitAvailableArray[i]=o;
+                            suitAvailableArray[i] = suitAvailableArray[i] + noOfStandardRooms;
                         }
-                        statement.execute("UPDATE "+availableTableName+ " SET StandardAvailableArray '"+standardAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
-                        statement.execute("UPDATE "+availableTableName+ " SET DeluxeAvailableArray '"+deluxeAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
-                        statement.execute("UPDATE "+availableTableName+ " SET SuitAvailableArray '"+suitAvailableArray+"' WHERE UniqueId='"+uniqueId+"'");
+                        StringBuffer standardBuilder=new StringBuffer();
+                        StringBuffer deluxeBuilder=new StringBuffer();
+                        StringBuffer suiteBuilder=new StringBuffer();
+                        for (int i=0;i<90;i++) {
+                            String x = String.valueOf(standardAvailableArray[i]);
+                            standardBuilder.append(x + ",");
+                        }
+                        String updatedStandardAvailableString= standardBuilder.toString();
+                        for (int i=0;i<90;i++) {
+                            String x = String.valueOf(deluxeAvailableArray[i]);
+                            deluxeBuilder.append(x + ",");
+                        }
+                        String updatedDeluxeAvailableString= deluxeBuilder.toString();
+                        for (int i=0;i<90;i++) {
+                            String x = String.valueOf(suitAvailableArray[i]);
+                            suiteBuilder.append(x + ",");
+                        }
+                        String updatedSuiteAvailableString= suiteBuilder.toString();
+                        statement.execute("UPDATE "+availableTableName+ " SET StandardAvailableArray '"+updatedStandardAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
+                        statement.execute("UPDATE "+availableTableName+ " SET DeluxeAvailableArray '"+updatedDeluxeAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
+                        statement.execute("UPDATE "+availableTableName+ " SET SuitAvailableArray '"+updatedSuiteAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
                         long duration2 = current.getTime()-checkin.getTime();
                         int diffInDaysForCancel= (int) TimeUnit.MILLISECONDS.toDays(duration2);
                         if (diffInDaysForCancel>3)
@@ -364,7 +510,9 @@ public class DataBaseController {
 
                         }
                     }
+
                 }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

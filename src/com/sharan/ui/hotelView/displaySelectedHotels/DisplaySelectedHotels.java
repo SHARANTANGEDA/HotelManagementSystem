@@ -254,8 +254,8 @@ public class DisplaySelectedHotels {
         {
             //hotel4************************************************************************************
             ElementsInHotelView elements = displayList.get(3);
-            hotelPhoto4.setIcon(new ImageIcon(getClass().getResource(elements.getImagePath())));
-            hotelName4.setText(elements.getHotelName());
+//            hotelPhoto4.setIcon(new ImageIcon(getClass().getResource(elements.getImagePath())));
+  //          hotelName4.setText(elements.getHotelName());
 
 //            if (Integer.parseInt(noOfRooms) > elements.getStandardRoomCapacity()) {
 //                priceStandard4.setText("Not Enough Rooms Available");

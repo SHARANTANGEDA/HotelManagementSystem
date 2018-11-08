@@ -4,6 +4,7 @@
 
 package com.sharan.ui.home.homePageAfterLogin;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
@@ -159,20 +160,12 @@ public class HomePageAfterLogin {
 
     private String getDate(JXDatePicker checkField) {
 
-        String unparsedDate=checkField.getDate().toString();
+       java.util.Date unparsedDate=checkField.getDate();
 
-        String date=unparsedDate.substring(4,7);
-        String month=unparsedDate.substring(8,10);
-        String year=unparsedDate.substring(24,28);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(unparsedDate);
 
-        StringBuilder sb=new StringBuilder();
-        sb.append(date);
-        sb.append("/");
-        sb.append(month);
-        sb.append("/");
-        sb.append(year);
-
-        return sb.toString();
+        return formattedDate;
     }
 
 
@@ -494,7 +487,7 @@ public class HomePageAfterLogin {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - SAI SHARAN
+        // Generated using JFormDesigner Evaluation license - Ajith
         homePageAfterLogin = new JFrame();
         applicationName = new JLabel();
         menuBar1 = new JMenuBar();
@@ -1226,7 +1219,7 @@ public class HomePageAfterLogin {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - SAI SHARAN
+    // Generated using JFormDesigner Evaluation license - Ajith
     private JFrame homePageAfterLogin;
     private JLabel applicationName;
     private JMenuBar menuBar1;

@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp label1:::p::p}, seq l {space :p:138:p, comp button1:::p::p}}, space ::44:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space :p:69:p, comp button1:::p::p, space ::22:x}}"
+			"$horizontalGroup": "par l {seq {space ::37:x, par l {seq t {comp label1:::p::p, space :p:27:p}, seq t {comp button1:::p::p, space :p:103:p}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space s:::p, comp button1:::p::p, space ::70:x}}"
 		} ) {
 			name: "dialog1"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -22,7 +22,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 165, 40 )
-			"size": new java.awt.Dimension( 366, 166 )
+			"size": new java.awt.Dimension( 400, 200 )
 		} )
 	}
 }
