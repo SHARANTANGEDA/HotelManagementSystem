@@ -1,0 +1,88 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp hotelTitle::l::0:x, comp scrollPane1::l::1367:x, seq l {space :p:560:p, comp bookNow:::p:175:p, space ::632:x}}"
+			"$verticalGroup": "par l {seq {space u:::p, comp hotelTitle:::p:48:p, space :::p, comp scrollPane1:::p:702:p, space :p:58:p, comp bookNow:::p:60:p, space ::21:x}}"
+		} ) {
+			name: "roomBooking"
+			"defaultCloseOperation": 2
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "hotelTitle"
+				"text": "HOTEL NAME"
+				"font": new java.awt.Font( "Arial Black", 1, 20 )
+				"horizontalAlignment": 0
+				"background": new java.awt.Color( 255, 204, 0, 255 )
+				"opaque": true
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "bookNow"
+				"text": "BOOK NOW"
+				"font": new java.awt.Font( "Arial", 1, 20 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"background": new java.awt.Color( 153, 0, 0, 255 )
+				"actionCommand": "Book Now"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNowActionPerformed", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {comp deluxePicture:::p:334:p, comp suitePicture:::p:334:p, seq l {comp standardPicture:::p:334:p, space :p:142:p, par l {seq {comp label4:::p:308:p, space ::388:x, comp suiteFieid:::p:42:p}, seq {comp label3:::p:308:p, space ::388:x, comp deluxeField:::p:42:p}, seq {comp label2:::p:346:p, space ::350:x, comp standardField:::p:42:p}}}}, space :p:150:p}}"
+					"$verticalGroup": "par l {seq {space :::p, par b {comp standardPicture::b:p:321:p, seq l {space :p:129:p, par b {comp label2::b:p:54:p, comp standardField::b:p:50:p}}}, space u:::p, par l {seq {comp deluxePicture:::p:322:p, space s:::p}, seq t {par b {comp label3::b:p:36:p, comp deluxeField::b:p:55:p}, space :p:123:p}}, par l {comp suitePicture:::p:314:p, seq l {space :p:146:p, par b {comp label4::b:p:33:p, comp suiteFieid::b:p:52:p}}}, space ::114:x}}"
+				} ) {
+					name: "panel1"
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "suiteFieid"
+						"font": new java.awt.Font( "Arial", 1, 24 )
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "standardField"
+						"font": new java.awt.Font( "Arial", 1, 24 )
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "deluxeField"
+						"font": new java.awt.Font( "Arial", 1, 24 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "Select Number of Deluxe Rooms:"
+						"font": new java.awt.Font( "Arial", 1, 18 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Select Number of Suite Rooms:"
+						"font": new java.awt.Font( "Arial", 1, 18 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "Select Number of Standard Rooms:"
+						"font": new java.awt.Font( "Arial", 1, 18 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "standardPicture"
+						"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePic.png" )
+						"horizontalAlignment": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "deluxePicture"
+						"border": #LineBorder0
+						"horizontalAlignment": 0
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePic.png" )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "suitePicture"
+						"border": #LineBorder0
+						"horizontalAlignment": 0
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePic.png" )
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 10, 0 )
+			"size": new java.awt.Dimension( 1095, 750 )
+		} )
+	}
+}

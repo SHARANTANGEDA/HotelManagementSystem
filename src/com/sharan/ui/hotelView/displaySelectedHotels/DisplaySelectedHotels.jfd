@@ -4,11 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {comp label1::l:::x, comp menuBar1::l::1529:x, comp scrollPane1::l:::x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::p, comp menuBar1:::p::p, space :::p, comp scrollPane1:::p:760:p, space :::x}}"
+			"$horizontalGroup": "par l {seq {par l {comp label1::l:::x, comp menuBar1::l::1529:x, comp scrollPane1::l::1529:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p::p, space :::p, comp menuBar1:::p::p, space :::p, comp scrollPane1::::1492:x}}"
 		} ) {
 			name: "displayTable"
-			"defaultCloseOperation": 2
+			"defaultCloseOperation": 3
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Hotels For Selected Choice"
@@ -479,14 +479,14 @@ new FormModel {
 				name: "scrollPane1"
 				"autoscrolls": true
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {comp hotelPanel1::l:::x, seq {space :::p, par l {seq {par l {comp hotelPanel2::l:::x, comp hotelPanel3::t:::x}, space :::p}, seq {comp hotelPanel4:::::x, space :p:20:p}}}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp hotelPanel1:::p:334:p, space s:::p, comp hotelPanel2:::p::p, space s:::p, comp hotelPanel3:::p:336:p, space s:::p, comp hotelPanel4:::p:336:p, space ::348:x}}"
+					"$horizontalGroup": "par l {comp hotelPanel1::l:::x, seq {space :::p, par l {comp hotelPanel2:::::x, comp hotelPanel3:::::x, comp hotelPanel4::t:::x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp hotelPanel1:::p::p, space s:::p, comp hotelPanel2:::p::p, space s:::p, comp hotelPanel3:::p::p, space u:::p, comp hotelPanel4:::p::p, space ::313:x}}"
 				} ) {
 					name: "homePanel"
 					"foreground": sfield java.awt.Color darkGray
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto1:::p:350:p, space u:::p, par l {seq {par l {seq l {par l {comp hotelRating1:::p:154:p, seq l {space :p:10:p, comp ratingBracket1:::p:119:p}}, space :::x}, seq l {par l {comp label9::l:p:115:p, comp label10::l:p:106:p, comp label11::l:p:106:p}, space s:::p, par l {comp priceDeluxe1:::p::p, comp priceStandard1:::p::p, comp priceSuite1::l:p:52:p}, space :::x, par l {comp standardRooms1:::p::p, comp deluxeRooms:::p::p, comp suiteRooms:::p::p}, space :p:121:p}}, par l:::p {comp viewHotel1:::::x, comp bookNow1:::::x}, space :p:27:p}, seq l {comp label:::p:99:p, space s:::p, comp label50:::p:123:p, space u:::p, comp label60:::p::p, space :::x}}, comp scrollPane2:::p:402:p, space :p:30:p}, comp hotelName1::l:::x}"
-						"$verticalGroup": "par l {seq {space :::x, comp hotelName1:::p::p, par l {seq t {space :::x, par l {comp hotelPhoto1:::p:255:p, seq {par b {comp label::b:p::p, comp label50::b:p::p, comp label60::b:p::p}, space s:::p, par l {seq t {par l {seq {comp label9:::p::p, space s:::p, comp label10:::p::p, space s:::p, comp label11:::p::p}, seq {comp standardRooms1:::p::p, space :18:18:p, comp deluxeRooms:::p::p, space :18:18:p, comp suiteRooms:::p::p}, seq {comp priceStandard1:::p::p, space s:::p, comp priceDeluxe1:::p::p, space s:::p, comp priceSuite1:::p::p}}, space s:::p, comp ratingBracket1:::p:43:p, space s:::p, comp hotelRating1:::p:56:p}, seq t {comp viewHotel1:::p:52:p, space u:::p, comp bookNow1:::p:52:p, space :p:37:p}}}}}, seq l {comp scrollPane2:::p:276:p, space :0:0:x}}, space :::p}}"
+						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto1:::p:350:p, space u:::p, par l {seq {par l {seq {par l {comp label9::l:p:115:p, comp label10::l:p:106:p, comp label11::l:p:106:p}, space s:::p, par l {comp priceDeluxe1:::p::p, comp priceStandard1:::p::p, comp priceSuite1::l:p:52:p}, space :::x, par l {comp standardRooms1:::p::p, comp deluxeRooms:::p::p, comp suiteRooms:::p::p}, space :p:121:p}, seq {comp ratingBracket1:::p:119:p, space :::x}, seq {comp hotelRating1:::::x, space :p:258:p}}, par l:::p {comp viewHotel1:::::x, comp bookNow1:::::x}, space :p:27:p}, seq l {comp label:::p:99:p, space s:::p, comp label50:::p:123:p, space u:::p, comp label60:::p::p, space :::x}}, comp scrollPane2:::p:402:p, space :p:30:p}, comp hotelName1::l:::x}"
+						"$verticalGroup": "par l {seq {space ::12:x, comp hotelName1:::p::p, par l {seq t {space ::11:x, par l {comp hotelPhoto1:::p:255:p, seq {par b {comp label::b:p::p, comp label50::b:p::p, comp label60::b:p::p}, space s:::p, par l {seq t {par l {seq {comp label9:::p::p, space s:::p, comp label10:::p::p, space s:::p, comp label11:::p::p}, seq {comp standardRooms1:::p::p, space :18:18:p, comp deluxeRooms:::p::p, space :18:18:p, comp suiteRooms:::p::p}, seq {comp priceStandard1:::p::p, space s:::p, comp priceDeluxe1:::p::p, space s:::p, comp priceSuite1:::p::p}}, space :::p, comp ratingBracket1:::p:43:p, space :p:78:p}, seq t {comp viewHotel1:::p:52:p, space u:::p, comp bookNow1:::p:52:p, space :p:29:p}}}}}, seq l {comp scrollPane2:::p:276:p, space :::x}}}, seq t {space :::x, comp hotelRating1:::p:71:p}}"
 					} ) {
 						name: "hotelPanel1"
 						"border": &MatteBorder0 new javax.swing.border.MatteBorder( 1, 1, 1, 1, sfield java.awt.Color black )
@@ -537,7 +537,7 @@ new FormModel {
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "hotelRating1"
-							"text": "_Rating here__"
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "ratingBracket1"
@@ -557,6 +557,7 @@ new FormModel {
 							"font": &Font9 new java.awt.Font( "Droid Sans Mono Slashed", 1, 24 )
 							"background": &Color0 new java.awt.Color( 153, 0, 0, 255 )
 							"foreground": #ColorUIResource1
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNow1ActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "viewHotel1"
@@ -598,8 +599,8 @@ new FormModel {
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto2:::p:350:p, space :p:12:p, par l {seq l {par l {seq l {comp label2:::p:99:p, space :18:18:p, comp label51:::p:123:p}, comp hotelRating2::l:p:154:p, comp ratingBracket2::l:p:115:p}, space :p:12:p, comp label61:::p::p}, seq l {par l {comp label12::l:p:115:p, comp label13::l:p:106:p, comp label14::l:p:106:p}, space :p:32:p, par l {comp priceStandard2::l:p::p, comp priceDeluxe2::l:p::p, comp priceSuite2::l:p::p}, space :p:107:p, par l {comp standardRooms2::l:p::p, comp deluxeRooms2::l:p::p, comp suiteRooms2::l:p::p}}}, space :::x, par l:::p {comp viewHotel2:::::x, comp bookNow2:::::x}, space :27:27:p, comp scrollPane3:::p:402:p, space :p:30:p}, comp hotelName2::l:::x}"
-						"$verticalGroup": "par l {seq {space :::x, comp hotelName2:::p::p, par l {seq {comp scrollPane3:::p:276:p, space :0:0:x}, seq t {space :::p, par l {seq t {par l {comp label2:::p::p, seq l {space :4:4:p, par l {comp label51:::p::p, comp label61:::p::p}}}, space :18:18:p, par l {seq {comp label12:::p::p, space :18:18:p, comp label13:::p::p, space :18:18:p, comp label14:::p::p}, seq {comp priceStandard2:::p::p, space :18:18:p, comp priceDeluxe2:::p::p, space :18:18:p, comp priceSuite2:::p::p}, seq {comp standardRooms2:::p::p, space :18:18:p, comp deluxeRooms2:::p::p, space :18:18:p, comp suiteRooms2:::p::p}}, space :::x, comp ratingBracket2:::p:43:p, space s:::p, comp hotelRating2:::p:56:p}, seq t {space :0:0:x, comp viewHotel2:::p:52:p, space u:::p, comp bookNow2:::p:52:p, space :p:37:p}, seq l {comp hotelPhoto2:::p:255:p, space :0:0:x}}}}, space :::p}}"
+						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto2:::p:350:p, space :p:12:p, par l {seq l {par l:::p {seq l {comp label2:::p:99:p, space :18:18:p, comp label51:::p:123:p}, comp ratingBracket2::l:p:115:p, comp hotelRating2::l:::x}, space :p:12:p, comp label61:::p::p}, seq l {par l {comp label12::l:p:115:p, comp label13::l:p:106:p, comp label14::l:p:106:p}, space :p:32:p, par l {comp priceStandard2::l:p::p, comp priceDeluxe2::l:p::p, comp priceSuite2::l:p::p}, space :p:107:p, par l {comp standardRooms2::l:p::p, comp deluxeRooms2::l:p::p, comp suiteRooms2::l:p::p}}}, space :::x, par l:::p {comp viewHotel2:::::x, comp bookNow2:::::x}, space :27:27:p, comp scrollPane3:::p:402:p, space :p:30:p}, comp hotelName2::l:::x}"
+						"$verticalGroup": "par l {seq {space ::12:x, comp hotelName2:::p::p, par l {seq {comp scrollPane3:::p:276:p, space ::24:x}, seq t {space :::p, par l {seq t {par l {comp label2:::p::p, seq l {space :4:4:p, par l {comp label51:::p::p, comp label61:::p::p}}}, space :18:18:p, par l {seq {comp label12:::p::p, space :18:18:p, comp label13:::p::p, space :18:18:p, comp label14:::p::p}, seq {comp priceStandard2:::p::p, space :18:18:p, comp priceDeluxe2:::p::p, space :18:18:p, comp priceSuite2:::p::p}, seq {comp standardRooms2:::p::p, space :18:18:p, comp deluxeRooms2:::p::p, space :18:18:p, comp suiteRooms2:::p::p}}, space :::x, comp ratingBracket2:::p:43:p, space :::p, comp hotelRating2:::p:68:p}, seq t {space :0:0:x, comp viewHotel2:::p:52:p, space u:::p, comp bookNow2:::p:52:p, space :p:43:p}, seq l {comp hotelPhoto2:::p:255:p, space :::x}}}}}}"
 					} ) {
 						name: "hotelPanel2"
 						"border": #MatteBorder0
@@ -620,7 +621,7 @@ new FormModel {
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "hotelRating2"
-							"text": "_Rating here__"
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "ratingBracket2"
@@ -640,6 +641,7 @@ new FormModel {
 							"font": #Font9
 							"background": #Color0
 							"foreground": #ColorUIResource1
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNow2ActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "viewHotel2"
@@ -711,8 +713,8 @@ new FormModel {
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto3:::p:350:p, space u:::p, par l {seq t {space :0:0:x, par l {seq l {comp label3:::p:99:p, space :18:18:p, comp label52:::p:122:p, space :13:13:p, comp label62:::p::p}, seq l {comp label15:::p:115:p, space :49:49:p, comp priceStandard3:::p::p, space :91:91:p, comp standardRooms3:::p::p}, seq l {comp label16:::p:106:p, space :58:58:p, comp priceDeluxe3:::p::p, space :91:91:p, comp deluxeRooms3:::p::p}, seq l {comp label17:::p:106:p, space :58:58:p, comp priceSuite3:::p::p, space :91:91:p, comp suiteRooms3:::p::p}}}, seq l {comp hotelRating3:::p:154:p, space :0:0:x}, seq {comp ratingBracket3:::p:115:p, space :::x}}, par l:::p {comp viewHotel3:::::x, comp bookNow3:::::x}, space :p:36:p, comp scrollPane4:::p:402:p, space :p:21:p}, comp hotelName3::l:::x}"
-						"$verticalGroup": "par l {seq {space :::x, comp hotelName3:::p::p, par l {seq t {space :0:0:x, comp hotelPhoto3:::p:255:p}, seq t {space :::x, par l {seq t {par l {comp label3:::p::p, seq {space :3:3:p, par l {comp label52::l:p::p, comp label62::l:p::p}}}, space :18:18:p, par l {comp label15:::p::p, comp priceStandard3:::p::p, comp standardRooms3:::p::p}, space :17:17:p, par l {comp label16:::p::p, comp priceDeluxe3:::p::p, comp deluxeRooms3:::p::p}, space :19:19:p, par l {comp label17:::p::p, comp priceSuite3:::p::p, comp suiteRooms3:::p::p}, space :::p, comp ratingBracket3:::p:43:p, space s:::p, comp hotelRating3:::p:56:p}, seq t {comp viewHotel3:::p:52:p, space s:::p, comp bookNow3:::p:52:p, space :p:37:p}, comp scrollPane4::t:p:276:p}}}, space :::p}}"
+						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto3:::p:350:p, space u:::p, par l {seq t {space :0:0:x, par l {seq l {comp label3:::p:99:p, space :18:18:p, comp label52:::p:122:p, space :13:13:p, comp label62:::p::p}, seq l {comp label15:::p:115:p, space :49:49:p, comp priceStandard3:::p::p, space :91:91:p, comp standardRooms3:::p::p}, seq l {comp label16:::p:106:p, space :58:58:p, comp priceDeluxe3:::p::p, space :91:91:p, comp deluxeRooms3:::p::p}, seq l {comp label17:::p:106:p, space :58:58:p, comp priceSuite3:::p::p, space :91:91:p, comp suiteRooms3:::p::p}}}, seq {par l {comp ratingBracket3:::p:115:p, comp hotelRating3:::p:235:p}, space ::257:x}}, par l:::p {comp viewHotel3:::::x, comp bookNow3:::::x}, space :p:36:p, comp scrollPane4:::p:402:p, space :p:21:p}, comp hotelName3::l:::x}"
+						"$verticalGroup": "par l {seq {space :::x, comp hotelName3:::p::p, par l {seq t {space :0:0:x, comp hotelPhoto3:::p:255:p}, seq t {space :::x, par l {seq t {par l {comp label3:::p::p, seq {space :3:3:p, par l {comp label52::l:p::p, comp label62::l:p::p}}}, space :18:18:p, par l {comp label15:::p::p, comp priceStandard3:::p::p, comp standardRooms3:::p::p}, space :17:17:p, par l {comp label16:::p::p, comp priceDeluxe3:::p::p, comp deluxeRooms3:::p::p}, space :19:19:p, par l {comp label17:::p::p, comp priceSuite3:::p::p, comp suiteRooms3:::p::p}, space :::p, comp ratingBracket3:::p:43:p, space :::p, comp hotelRating3:::p:77:p}, seq t {comp viewHotel3:::p:52:p, space s:::p, comp bookNow3:::p:52:p, space :p:37:p}, comp scrollPane4::t:p:276:p}}}, space :::p}}"
 					} ) {
 						name: "hotelPanel3"
 						"border": #MatteBorder0
@@ -733,7 +735,7 @@ new FormModel {
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "hotelRating3"
-							"text": "_Rating here__"
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "ratingBracket3"
@@ -753,6 +755,7 @@ new FormModel {
 							"font": #Font9
 							"background": #Color0
 							"foreground": #ColorUIResource1
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNow3ActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "viewHotel3"
@@ -824,8 +827,8 @@ new FormModel {
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto4:::p:350:p, space u:::p, par l {seq l {comp hotelRating4:::p:154:p, space :0:0:x}, seq {par l {comp ratingBracket4:::p:115:p, seq l {comp label4:::p:99:p, space :18:18:p, comp label53:::p:122:p, space :13:13:p, comp label63:::p::p}, seq l {comp label18:::p:115:p, space :49:49:p, comp priceStandard4:::p::p, space :91:91:p, comp standardRooms4:::p::p}, seq l {comp label19:::p:106:p, space :58:58:p, comp priceDeluxe4:::p::p, space :91:91:p, comp deluxeRooms4:::p::p}, seq l {comp label20:::p:106:p, space :58:58:p, comp priceSuite4:::p::p, space :91:91:p, comp suiteRooms4:::p::p}}, space :::x}}, par l:::p {comp viewHotel4:::::x, comp bookNow4:::::x}, space :p:36:p, comp scrollPane5:::p:402:p, space :p:21:p}, comp hotelName4::l:::x}"
-						"$verticalGroup": "par l {seq {space :::x, comp hotelName4:::p::p, par l {seq t {space :0:0:x, comp hotelPhoto4:::p:255:p}, seq t {space :::x, par l {seq t {par l {comp label4:::p::p, seq l {space :3:3:p, par l {comp label53::l:p::p, comp label63::l:p::p}}}, space :18:18:p, par l {comp label18:::p::p, comp priceStandard4:::p::p, comp standardRooms4:::p::p}, space :17:17:p, par l {comp label19:::p::p, comp priceDeluxe4:::p::p, comp deluxeRooms4:::p::p}, space :19:19:p, par l {comp label20:::p::p, comp priceSuite4:::p::p, comp suiteRooms4:::p::p}, space u:::p, comp ratingBracket4:::p:43:p, space s:::p, comp hotelRating4:::p:56:p}, seq t {comp viewHotel4:::p:52:p, space s:::p, comp bookNow4:::p:52:p, space :p:37:p}, comp scrollPane5::t:p:276:p}}}, space :::p}}"
+						"$horizontalGroup": "par l {seq l {space :::p, comp hotelPhoto4:::p:350:p, space u:::p, par l {comp ratingBracket4:::p:115:p, seq l {comp label4:::p:99:p, space :18:18:p, comp label53:::p:122:p, space :13:13:p, comp label63:::p::p}, seq l {comp label18:::p:115:p, space :49:49:p, comp priceStandard4:::p::p, space :91:91:p, comp standardRooms4:::p::p}, seq l {comp label19:::p:106:p, space :58:58:p, comp priceDeluxe4:::p::p, space :91:91:p, comp deluxeRooms4:::p::p}, seq l {comp label20:::p:106:p, space :58:58:p, comp priceSuite4:::p::p, space :91:91:p, comp suiteRooms4:::p::p}, comp hotelRating4:::p:239:p}, space ::75:x, par l:::p {comp viewHotel4:::::x, comp bookNow4:::::x}, space :p:36:p, comp scrollPane5:::p:402:p, space :p:21:p}, comp hotelName4::l:::x}"
+						"$verticalGroup": "par l {seq {space :::x, comp hotelName4:::p::p, par l {seq t {space :0:0:x, comp hotelPhoto4:::p:255:p}, seq t {space :::x, par l {seq t {par l {comp label4:::p::p, seq l {space :3:3:p, par l {comp label53::l:p::p, comp label63::l:p::p}}}, space :18:18:p, par l {comp label18:::p::p, comp priceStandard4:::p::p, comp standardRooms4:::p::p}, space :17:17:p, par l {comp label19:::p::p, comp priceDeluxe4:::p::p, comp deluxeRooms4:::p::p}, space :19:19:p, par l {comp label20:::p::p, comp priceSuite4:::p::p, comp suiteRooms4:::p::p}, space u:::p, comp ratingBracket4:::p:43:p, space :::p, comp hotelRating4:::p:68:p}, seq t {comp viewHotel4:::p:52:p, space s:::p, comp bookNow4:::p:52:p, space :p:37:p}, comp scrollPane5::t:p:276:p}}}, space :::p}}"
 					} ) {
 						name: "hotelPanel4"
 						"border": #MatteBorder0
@@ -846,7 +849,7 @@ new FormModel {
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "hotelRating4"
-							"text": "_Rating here__"
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "ratingBracket4"
@@ -866,6 +869,7 @@ new FormModel {
 							"font": #Font9
 							"background": #Color0
 							"foreground": #ColorUIResource1
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNow4ActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "viewHotel4"
@@ -940,7 +944,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 1230, 720 )
+			"size": new java.awt.Dimension( 1230, 1310 )
 		} )
 	}
 }

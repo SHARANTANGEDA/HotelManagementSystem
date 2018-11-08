@@ -53,7 +53,7 @@ public class waitingList extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Ajith
+        // Generated using JFormDesigner Evaluation license - SAI SHARAN
         dialog1 = new JDialog();
         label1 = new JLabel();
         button1 = new JButton();
@@ -67,6 +67,9 @@ public class waitingList extends JFrame {
 
             //---- button1 ----
             button1.setText("Join Waiting List");
+            button1.setFont(new Font("Arial", Font.BOLD, 18));
+            button1.setForeground(Color.white);
+            button1.setBackground(new Color(204, 0, 0));
             button1.addActionListener(e -> button1ActionPerformed(e));
 
             GroupLayout dialog1ContentPaneLayout = new GroupLayout(dialog1ContentPane);
@@ -79,18 +82,18 @@ public class waitingList extends JFrame {
                                 .addContainerGap()
                                 .addComponent(label1))
                             .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
-                                .addGap(102, 102, 102)
+                                .addGap(138, 138, 138)
                                 .addComponent(button1)))
-                        .addContainerGap(13, Short.MAX_VALUE))
+                        .addContainerGap(44, Short.MAX_VALUE))
             );
             dialog1ContentPaneLayout.setVerticalGroup(
                 dialog1ContentPaneLayout.createParallelGroup()
                     .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(69, 69, 69)
                         .addComponent(button1)
-                        .addContainerGap(61, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
             );
             dialog1.pack();
             dialog1.setLocationRelativeTo(dialog1.getOwner());
@@ -99,7 +102,7 @@ public class waitingList extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Ajith
+    // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JDialog dialog1;
     private JLabel label1;
     private JButton button1;

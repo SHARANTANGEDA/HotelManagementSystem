@@ -604,6 +604,24 @@ public class DataBaseController {
         return null;
     }
 
+    public ArrayList<String> getIndividualHotelImages(String uniqueId) {
+        ArrayList<String> list=new ArrayList<>();
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+uniqueId+"'");
+
+            do{
+                list.add(resultSet.getString("Standard"));
+                list.add(resultSet.getString("Deluxe"));
+                list.add(resultSet.getString("Suite"));
+            }while (resultSet.next());
+
+            return list;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public void closeDatabaseConnection() {
         try {
             if (!conn.isClosed()) {

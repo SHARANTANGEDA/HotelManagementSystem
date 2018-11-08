@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp label1:::p::p}, seq l {space :p:102:p, comp button1:::p::p}}, space ::13:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space :p:33:p, comp button1:::p::p, space ::61:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp label1:::p::p}, seq l {space :p:138:p, comp button1:::p::p}}, space ::44:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space :p:69:p, comp button1:::p::p, space ::22:x}}"
 		} ) {
 			name: "dialog1"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -15,11 +15,14 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "Join Waiting List"
+				"font": new java.awt.Font( "Arial", 1, 18 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"background": new java.awt.Color( 204, 0, 0, 255 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 165, 40 )
-			"size": new java.awt.Dimension( 355, 200 )
+			"size": new java.awt.Dimension( 366, 166 )
 		} )
 	}
 }
