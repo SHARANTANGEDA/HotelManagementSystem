@@ -4,18 +4,102 @@
 
 package com.sharan.ui.hotelView.paymentPage;
 
+import com.sharan.DataBaseController;
+import com.sharan.encryptionAlgorithms.AES128Encyrption;
+import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
+
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
-import javax.swing.border.*;
-import javax.swing.plaf.*;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * @author SAI SHARAN
  */
 public class PaymentPage {
-    public PaymentPage() {
+
+    private String userName;
+    private DataBaseController dataBaseController;
+    private String totalPricePaid;
+    private ArrayList<String> list;
+
+
+    public PaymentPage(String userName, DataBaseController dataBaseController, int noOfStandardRooms, int noOfDeluxeRooms, int noOfSuiteRooms, String uniqueId) {
+
+
+        this.userName=userName;
+        this.dataBaseController=dataBaseController;
+        int totalPrice=0;
+
+        dataBaseController.initialiseDatabase();
+        list=dataBaseController.getRoomPriceFromHotel(uniqueId);
+
+
+        if(noOfStandardRooms!=0) {
+            totalPrice+=noOfStandardRooms*(Integer.parseInt(list.get(0)));
+        }
+
+        if(noOfDeluxeRooms!=0) {
+            totalPrice+=noOfDeluxeRooms*(Integer.parseInt(list.get(1)));
+        }
+
+        if(noOfSuiteRooms!=0) {
+            totalPrice+=noOfSuiteRooms*(Integer.parseInt(list.get(2)));
+        }
+        totalPricePaid=String.valueOf(totalPrice);
+
+
         initComponents();
+        totalPriceLabel.setText("Total Price To be Paid is Rs."+totalPricePaid);
         paymentPage.setVisible(true);
+    }
+
+    private void homePageActionPerformed(ActionEvent e) {
+        paymentPage.dispose();
+        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
+    }
+
+    private void confirmPaymenaadharActionPerformed(ActionEvent e) {
+        if(!aadharField.getText().isEmpty()) {
+            String encryptId= AES128Encyrption.encrypt(aadharField.getText());
+            dataBaseController.initialiseDatabase();
+            String check=dataBaseController.checkIdForPayment(userName,encryptId);
+            dataBaseController.closeDatabaseConnection();
+            if(check.equalsIgnoreCase("AadharSuccess")) {
+                paymentPage.dispose();
+                JOptionPane.showMessageDialog(null,"Transaction Successful, Rs."+totalPricePaid+" Paid");
+            }else {
+                JOptionPane.showMessageDialog(null,"Enter valid Aadhar to complete Payment");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Enter valid Aadhar to complete Payment");
+
+        }
+
+    }
+
+    private void cancelPaymentActionPerformed(ActionEvent e) {
+        paymentPage.dispose();
+        HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
+    }
+
+    private void confirmPaymentPanActionPerformed(ActionEvent e) {
+        if(!panField.getText().isEmpty()) {
+            String encryptId= AES128Encyrption.encrypt(panField.getText());
+            dataBaseController.initialiseDatabase();
+            String check=dataBaseController.checkIdForPayment(userName,encryptId);
+            dataBaseController.closeDatabaseConnection();
+            if(check.equalsIgnoreCase("PanSuccess")) {
+                paymentPage.dispose();
+                JOptionPane.showMessageDialog(null,"Transaction Successful, Rs."+totalPricePaid+" Paid");
+            } else {
+                JOptionPane.showMessageDialog(null,"Enter valid Pan to complete Payment");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Enter valid Pan to complete Payment");
+
+        }
     }
 
     private void initComponents() {
@@ -32,15 +116,16 @@ public class PaymentPage {
         aadharField = new JTextField();
         confirmPaymenaadhar = new JButton();
         label6 = new JLabel();
-        button1 = new JButton();
+        cancelPaymentaadhar = new JButton();
         panel1 = new JPanel();
         label7 = new JLabel();
         label8 = new JLabel();
-        aadharField2 = new JTextField();
-        confirmPaymenaadhar2 = new JButton();
+        panField = new JTextField();
+        confirmPaymentPan = new JButton();
         label9 = new JLabel();
-        button3 = new JButton();
-        button2 = new JButton();
+        cancelPaymentPan = new JButton();
+        homePage = new JButton();
+        totalPriceLabel = new JLabel();
 
         //======== paymentPage ========
         {
@@ -81,8 +166,8 @@ public class PaymentPage {
                     panel2.setBorder(new javax.swing.border.CompoundBorder(
                         new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
                             "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                            java.awt.Color.red), panel2.getBorder())); panel2.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                            javax.swing.border.TitledBorder.BOTTOM, new Font("Dialog", Font.BOLD, 12),
+                            Color.red), panel2.getBorder())); panel2.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 
                     //---- label4 ----
@@ -103,15 +188,17 @@ public class PaymentPage {
                     confirmPaymenaadhar.setBackground(new Color(204, 0, 0));
                     confirmPaymenaadhar.setForeground(new Color(238, 238, 238));
                     confirmPaymenaadhar.setFont(new Font("Arial Black", Font.BOLD, 20));
+                    confirmPaymenaadhar.addActionListener(e -> confirmPaymenaadharActionPerformed(e));
 
                     //---- label6 ----
                     label6.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/payment/lock-icon.png")));
 
-                    //---- button1 ----
-                    button1.setText("Cancel Payment");
-                    button1.setBackground(new Color(204, 0, 0));
-                    button1.setForeground(Color.white);
-                    button1.setFont(new Font("Arial Black", Font.BOLD, 20));
+                    //---- cancelPaymentaadhar ----
+                    cancelPaymentaadhar.setText("Cancel Payment");
+                    cancelPaymentaadhar.setBackground(new Color(204, 0, 0));
+                    cancelPaymentaadhar.setForeground(Color.white);
+                    cancelPaymentaadhar.setFont(new Font("Arial Black", Font.BOLD, 20));
+                    cancelPaymentaadhar.addActionListener(e -> cancelPaymentActionPerformed(e));
 
                     GroupLayout panel2Layout = new GroupLayout(panel2);
                     panel2.setLayout(panel2Layout);
@@ -131,7 +218,7 @@ public class PaymentPage {
                                     .addGroup(panel2Layout.createSequentialGroup()
                                         .addGap(224, 224, 224)
                                         .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(button1, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                                            .addComponent(cancelPaymentaadhar, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                                             .addComponent(confirmPaymenaadhar, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))))
                                 .addGap(323, 323, 323))
                     );
@@ -150,7 +237,7 @@ public class PaymentPage {
                                 .addGap(91, 91, 91)
                                 .addComponent(confirmPaymenaadhar, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(button1, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                .addComponent(cancelPaymentaadhar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(38, 38, 38))
                     );
                 }
@@ -169,24 +256,26 @@ public class PaymentPage {
                     label8.setText("Pan-Card:");
                     label8.setFont(new Font("Arial", Font.BOLD, 16));
 
-                    //---- aadharField2 ----
-                    aadharField2.setBackground(Color.white);
-                    aadharField2.setToolTipText("Enter Pan-Number");
+                    //---- panField ----
+                    panField.setBackground(Color.white);
+                    panField.setToolTipText("Enter Pan-Number");
 
-                    //---- confirmPaymenaadhar2 ----
-                    confirmPaymenaadhar2.setText("Confirm Payment");
-                    confirmPaymenaadhar2.setBackground(new Color(204, 0, 0));
-                    confirmPaymenaadhar2.setForeground(new Color(238, 238, 238));
-                    confirmPaymenaadhar2.setFont(new Font("Arial Black", Font.BOLD, 20));
+                    //---- confirmPaymentPan ----
+                    confirmPaymentPan.setText("Confirm Payment");
+                    confirmPaymentPan.setBackground(new Color(204, 0, 0));
+                    confirmPaymentPan.setForeground(new Color(238, 238, 238));
+                    confirmPaymentPan.setFont(new Font("Arial Black", Font.BOLD, 20));
+                    confirmPaymentPan.addActionListener(e -> confirmPaymentPanActionPerformed(e));
 
                     //---- label9 ----
                     label9.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/payment/lock-icon.png")));
 
-                    //---- button3 ----
-                    button3.setText("Cancel Payment");
-                    button3.setBackground(new Color(204, 0, 0));
-                    button3.setForeground(Color.white);
-                    button3.setFont(new Font("Arial Black", Font.BOLD, 20));
+                    //---- cancelPaymentPan ----
+                    cancelPaymentPan.setText("Cancel Payment");
+                    cancelPaymentPan.setBackground(new Color(204, 0, 0));
+                    cancelPaymentPan.setForeground(Color.white);
+                    cancelPaymentPan.setFont(new Font("Arial Black", Font.BOLD, 20));
+                    cancelPaymentPan.addActionListener(e -> cancelPaymentActionPerformed(e));
 
                     GroupLayout panel1Layout = new GroupLayout(panel1);
                     panel1.setLayout(panel1Layout);
@@ -201,14 +290,14 @@ public class PaymentPage {
                                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                         .addComponent(label8, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(aadharField2, GroupLayout.PREFERRED_SIZE, 430, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panField, GroupLayout.PREFERRED_SIZE, 430, GroupLayout.PREFERRED_SIZE)
                                         .addGap(26, 26, 26)
                                         .addComponent(label9)
                                         .addGap(434, 434, 434))
                                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                         .addGroup(panel1Layout.createParallelGroup()
-                                            .addComponent(button3, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(confirmPaymenaadhar2, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(cancelPaymentPan, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(confirmPaymentPan, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE))
                                         .addGap(564, 564, 564))))
                     );
                     panel1Layout.setVerticalGroup(
@@ -216,28 +305,35 @@ public class PaymentPage {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(label7, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createParallelGroup()
                                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(aadharField2, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panField, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(label8, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))
                                     .addComponent(label9, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
                                 .addGap(83, 83, 83)
-                                .addComponent(confirmPaymenaadhar2, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(confirmPaymentPan, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cancelPaymentPan, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27))
                     );
                 }
                 tabbedPane2.addTab("Pan-Card", panel1);
             }
 
-            //---- button2 ----
-            button2.setText("Go to HomePage");
-            button2.setBackground(new Color(204, 0, 0));
-            button2.setForeground(Color.white);
-            button2.setFont(new Font("Arial", Font.BOLD, 16));
-            button2.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Home24.gif")));
+            //---- homePage ----
+            homePage.setText("Go to HomePage");
+            homePage.setBackground(new Color(204, 0, 0));
+            homePage.setForeground(Color.white);
+            homePage.setFont(new Font("Arial", Font.BOLD, 16));
+            homePage.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Home24.gif")));
+            homePage.addActionListener(e -> homePageActionPerformed(e));
+
+            //---- totalPriceLabel ----
+            totalPriceLabel.setFont(new Font("Arial", Font.BOLD, 22));
+            totalPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            totalPriceLabel.setOpaque(true);
+            totalPriceLabel.setBackground(Color.white);
 
             GroupLayout paymentPageContentPaneLayout = new GroupLayout(paymentPageContentPane);
             paymentPageContentPane.setLayout(paymentPageContentPaneLayout);
@@ -247,13 +343,16 @@ public class PaymentPage {
                         .addContainerGap()
                         .addGroup(paymentPageContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(GroupLayout.Alignment.TRAILING, paymentPageContentPaneLayout.createSequentialGroup()
-                                .addComponent(button2)
+                                .addComponent(homePage)
+                                .addGap(213, 213, 213)
+                                .addComponent(totalPriceLabel, GroupLayout.PREFERRED_SIZE, 445, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(label2, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tabbedPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 1430, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 1430, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabbedPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             paymentPageContentPaneLayout.setVerticalGroup(
@@ -262,12 +361,15 @@ public class PaymentPage {
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(paymentPageContentPaneLayout.createParallelGroup()
-                            .addGroup(paymentPageContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                                .addComponent(button2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-                            .addComponent(label3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(paymentPageContentPaneLayout.createSequentialGroup()
+                                .addGroup(paymentPageContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(totalPriceLabel, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(homePage, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(label3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tabbedPane2)
+                        .addComponent(tabbedPane2, GroupLayout.PREFERRED_SIZE, 533, GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15))
             );
             paymentPage.pack();
@@ -289,14 +391,15 @@ public class PaymentPage {
     private JTextField aadharField;
     private JButton confirmPaymenaadhar;
     private JLabel label6;
-    private JButton button1;
+    private JButton cancelPaymentaadhar;
     private JPanel panel1;
     private JLabel label7;
     private JLabel label8;
-    private JTextField aadharField2;
-    private JButton confirmPaymenaadhar2;
+    private JTextField panField;
+    private JButton confirmPaymentPan;
     private JLabel label9;
-    private JButton button3;
-    private JButton button2;
+    private JButton cancelPaymentPan;
+    private JButton homePage;
+    private JLabel totalPriceLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

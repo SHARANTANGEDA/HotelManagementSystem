@@ -1,7 +1,9 @@
 package com.sharan;
 
 
+import com.sharan.encryptionAlgorithms.AES128Encyrption;
 import com.sharan.ui.hotelView.displaySelectedHotels.ElementsInHotelView;
+import com.sharan.ui.hotelView.paymentPage.PaymentPage;
 import com.sharan.ui.hotelView.roomBooking.waitingList.waitingList;
 import com.sharan.ui.myAccount.ColumnsInMyBooking;
 
@@ -31,7 +33,7 @@ public class DataBaseController {
 
     private String idTableName = "idDatabase";
     private String idTableColoumns = "(UserName TEXT NOT NULL PRIMARY KEY,Aadhar TEXT,PanCard TEXT)";
-//    private String idInsertParametres = "(UserName,Aadhar,PanCard)";
+    private String idInsertParameters="(UserName,Aadhar,PanCard)";
 
 
     private String allotmentTableName="allotmentTable";
@@ -92,23 +94,15 @@ public class DataBaseController {
                 +"','"+city+"','" +address+"','"+standard+"','"+stdPrice+"','"+stcapacity+"','"+deluxe+"','"+deluxePrice+"','"+delcapacity+"','"
                 +suite+"','"+suitePrice+"','" +suitecapacity+ "','"+imagePath+"')");
     }
-    public void checkAvailable(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,int maxStandardRooms,int maxDeluxeRooms,int maxSuitRooms)
+    public void checkAvailable(String userName,String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,int maxStandardRooms,int maxDeluxeRooms,int maxSuitRooms)
     {
         try {
             if(!conn.isClosed())
             {
                 int flag =0;
+                ArrayList<String> availableList = new ArrayList<>();
                 ResultSet rs = statement.executeQuery("SELECT * FROM " + availableTableName);
                 System.out.println(rs);
-//                for (int i=0;i<rs.getFetchSize();i++)
-//                {
-//                    System.out.print(rs.getString(i));
-//                    if(rs.getString(i).equals(uniqueId))
-//                    {
-//
-//                        flag =1;
-//                    }
-//                }
               while (rs.next())
               {
                   String getUniqueId = rs.getString("UniqueId");
@@ -266,10 +260,17 @@ public class DataBaseController {
                             suiteBuilder.append(s + ",");
                         }
                         String updatedSuiteAvailableString = suiteBuilder.toString();
+                        availableList.add(updatedStandardAvailableString);
+                        availableList.add(updatedDeluxeAvailableString);
+                        availableList.add(updatedSuiteAvailableString);
+                        availableList.add(formattedDate);
+                        System.out.println("Trying to open Payment Page");
+                        PaymentPage paymentPage = new PaymentPage(userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId);
                         statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + updatedStandardAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
                         statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray '" + updatedDeluxeAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
                         statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray '" + updatedSuiteAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
                         statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + formattedDate + "' WHERE UniqueId='" + uniqueId + "'");
+
                     }
                     else {
                         waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms);
@@ -349,10 +350,17 @@ public class DataBaseController {
                         suiteBuilder.append(x + ",");
                     }
                     String suiteAvailableString= suiteBuilder.toString();
+                    availableList.add(standardAvailableString);
+                    availableList.add(deluxeAvailableString);
+                    availableList.add(suiteAvailableString);
+                    availableList.add(formattedDate);
+                    PaymentPage paymentPage = new PaymentPage(userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId);
                 System.out.println(standardAvailableString+"','"+
                             deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate);
                     statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+standardAvailableString+"','"+
                             deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate+"')");
+                    System.out.println("Trying to open Payment Page");
+
                 }
             }
         } catch (SQLException e) {
@@ -539,7 +547,58 @@ public class DataBaseController {
         }
     }
 
+    public ArrayList<String> getRoomPriceFromHotel(String uniqueId) {
+        ArrayList<String> list=new ArrayList<>();
+        try {
+            if (!conn.isClosed()) {
+                ResultSet rs=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+uniqueId+"'");
 
+                while (rs.next()) {
+                    String standardPrice=rs.getString("StandardPrice");
+                    String deluxePrice=rs.getString("DeluxePrice");
+                    String suitePrice=rs.getString("SuitePrice");
+
+                    list.add(standardPrice);
+                    list.add(deluxePrice);
+                    list.add(suitePrice);
+                }
+            }
+            return list;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public String checkIdForPayment(String userName,String encrptedId) {
+        String encryptedAadharFromDataBase;
+        String encryptedPanFromDatabase;
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM "+idTableName+" WHERE UserName = '"+userName+"'");
+
+            do{
+                encryptedAadharFromDataBase= AES128Encyrption.encrypt(resultSet.getString("Aadhar"));
+                encryptedPanFromDatabase=AES128Encyrption.encrypt(resultSet.getString("PanCard"));
+            }while (resultSet.next());
+
+          if(encryptedAadharFromDataBase.equals(encrptedId)) {
+              return "AadharSuccess";
+          }else if(encryptedPanFromDatabase.equals(encrptedId)) {
+              return "PanSuccess";
+          } else {
+              return "fail";
+          }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public void addAadharDetailsToTable(String userName,String aadhar,String Pan) {
+        try {
+            statement.execute("INSERT INTO "+idTableName+idInsertParameters+" VALUES ('"+userName+"','"+aadhar+"','"+Pan+"')");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public ArrayList<String> parseHotel(String id) {
         ArrayList<String> list=new ArrayList<>();
 

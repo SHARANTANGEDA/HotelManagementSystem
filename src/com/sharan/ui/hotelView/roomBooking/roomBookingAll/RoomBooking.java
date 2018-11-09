@@ -83,7 +83,7 @@ public class RoomBooking {
         int noOfSuiteRooms = (Integer) suiteFieid.getValue();
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.initialiseDatabase();
-        dataBaseController.checkAvailable(uniqueId,checkIn,checkOut,noofStandardRooms,noofDeluxeRooms,noOfSuiteRooms,Integer.parseInt(maxnoofStandardRooms),
+        dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,noofStandardRooms,noofDeluxeRooms,noOfSuiteRooms,Integer.parseInt(maxnoofStandardRooms),
                 Integer.parseInt(maxnoofDeluxeRooms),Integer.parseInt(maxnoOfSuitRooms));
     }
 
@@ -97,7 +97,9 @@ public class RoomBooking {
         hotelTitle = new JLabel();
         scrollPane1 = new JScrollPane();
         panel1 = new JPanel();
-
+        suiteFieid = new JSpinner();
+        standardField = new JSpinner();
+        deluxeField = new JSpinner();
         label3 = new JLabel();
         label4 = new JLabel();
         label2 = new JLabel();
@@ -174,11 +176,7 @@ public class RoomBooking {
                     bookNow.setForeground(Color.white);
                     bookNow.setBackground(new Color(153, 0, 0));
                     bookNow.setActionCommand("Book Now");
-                    bookNow.addActionListener(e -> {
-
-			bookNowActionPerformed(e);
-			bookNowActionPerformed(e);
-		});
+                    bookNow.addActionListener(e -> bookNowActionPerformed(e));
 
                     GroupLayout panel1Layout = new GroupLayout(panel1);
                     panel1.setLayout(panel1Layout);

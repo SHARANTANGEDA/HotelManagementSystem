@@ -10,9 +10,9 @@ import com.sharan.fileHandler.TextFileController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Ajith
@@ -36,7 +36,7 @@ public class waitingList extends JFrame {
         this.noOfSuitRooms = noOfSuitRooms;
         TextFileController textFileController=new TextFileController();
         userName=textFileController.readFile();
-        Date c = (Date) Calendar.getInstance().getTime();
+        Date c =  Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");

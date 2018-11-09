@@ -77,7 +77,6 @@ new FormModel {
 						"background": new java.awt.Color( 153, 0, 0, 255 )
 						"actionCommand": "Book Now"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNowActionPerformed", true ) )
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNowActionPerformed", true ) )
 					} )
 				} )
 			} )
