@@ -54,13 +54,14 @@ public class waitingList extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Ajith
+        // Generated using JFormDesigner Evaluation license - SAI SHARAN
         dialog1 = new JDialog();
         label1 = new JLabel();
         button1 = new JButton();
 
         //======== dialog1 ========
         {
+            dialog1.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             Container dialog1ContentPane = dialog1.getContentPane();
 
             //---- label1 ----
@@ -78,23 +79,23 @@ public class waitingList extends JFrame {
             dialog1ContentPaneLayout.setHorizontalGroup(
                 dialog1ContentPaneLayout.createParallelGroup()
                     .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
-                        .addContainerGap(37, Short.MAX_VALUE)
                         .addGroup(dialog1ContentPaneLayout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, dialog1ContentPaneLayout.createSequentialGroup()
-                                .addComponent(label1)
-                                .addGap(27, 27, 27))
-                            .addGroup(GroupLayout.Alignment.TRAILING, dialog1ContentPaneLayout.createSequentialGroup()
-                                .addComponent(button1)
-                                .addGap(103, 103, 103))))
+                            .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(label1))
+                            .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
+                                .addGap(242, 242, 242)
+                                .addComponent(button1)))
+                        .addContainerGap(157, Short.MAX_VALUE))
             );
             dialog1ContentPaneLayout.setVerticalGroup(
                 dialog1ContentPaneLayout.createParallelGroup()
                     .addGroup(dialog1ContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(button1)
-                        .addContainerGap(70, Short.MAX_VALUE))
+                        .addGap(63, 63, 63))
             );
             dialog1.pack();
             dialog1.setLocationRelativeTo(dialog1.getOwner());
@@ -103,7 +104,7 @@ public class waitingList extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Ajith
+    // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JDialog dialog1;
     private JLabel label1;
     private JButton button1;

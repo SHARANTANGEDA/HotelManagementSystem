@@ -4,10 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space ::37:x, par l {seq t {comp label1:::p::p, space :p:27:p}, seq t {comp button1:::p::p, space :p:103:p}}}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space s:::p, comp button1:::p::p, space ::70:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:118:p, comp label1:::p::p}, seq l {space :p:242:p, comp button1:::p::p}}, space ::157:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space ::71:x, comp button1:::p::p, space :p:63:p}}"
 		} ) {
 			name: "dialog1"
+			"defaultCloseOperation": 2
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Sorry for inconvenience ,Would you like to join waiting list?"
@@ -22,7 +23,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 165, 40 )
-			"size": new java.awt.Dimension( 400, 200 )
+			"size": new java.awt.Dimension( 546, 200 )
 		} )
 	}
 }

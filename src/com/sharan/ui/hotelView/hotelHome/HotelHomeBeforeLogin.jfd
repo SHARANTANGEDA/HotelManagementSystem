@@ -4,10 +4,10 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par t {seq t {par l {comp Title:::::x, seq {comp scrollPane2:::p:1021:p, space :0:259:x}}, space :::p}, seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, space s:::p, par l {seq {par l {seq {par l:::p {comp ratingLabel:::p:222:p, comp numberOfRatings:::::x}, space ::148:x, comp checkAvailability:::p:346:p}, comp HotelDetails:::::x}, space :p:10:p}, seq {comp rateYourExperience:::p:222:p, space ::504:x}}}}}}"
-			"$verticalGroup": "par l {seq l {comp Title:::p:72:p, space u:::p, par l {seq {comp hotelPhoto:::::x, space :::p, comp titleContactDetails:::p:45:p, space :p:4:p}, seq {comp HotelDetails:::p:346:p, space s:::p, par t {seq {comp rateYourExperience:::p::p, space u:::p, comp numberOfRatings:::p:42:p, space :::p, comp ratingLabel:::p::p}, comp checkAvailability::t:p:109:p}, space :p:48:p}}, comp scrollPane2:::p:92:p, space :p:12:p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq t {comp scrollPane2:::p:1021:p, space ::265:x}, seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, space s:::p, par l {seq {par l:::p {comp ratingLabel:::p:222:p, seq {comp rateYourExperience:::p:222:p, space :::p, comp numberOfRatings:::::x}}, space ::142:x, comp checkAvailability:::p:346:p}, comp HotelDetails:::::x}, space :p:10:p}, comp Title::l:::x}}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp Title:::p:72:p, space s:::p, par l {seq {comp hotelPhoto:::::x, space :::p, comp titleContactDetails:::p:45:p, space :p:4:p}, seq {comp HotelDetails:::p:346:p, space :p:58:p, par t {seq {par t {comp numberOfRatings:::p:42:p, comp rateYourExperience:::p::p}, space :::p, comp ratingLabel:::p::p}, comp checkAvailability::t:p:109:p}, space :p:48:p}}, comp scrollPane2:::p:92:p, space :p:12:p}}"
 		} ) {
-			name: "individualHotelHome"
+			name: "hotelHomeBeforeLogin"
 			"resizable": false
 			"maximizedBounds": new java.awt.Rectangle( 0, 0, 1500, 1080 )
 			"defaultCloseOperation": 3
@@ -85,7 +85,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JSeparator" ) {
 					name: "separator1"
-					"maximumSize": new java.awt.Dimension( 400, 50 )
+					"maximumSize": new java.awt.Dimension( 350, 50 )
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "Hotels"
@@ -103,29 +103,22 @@ new FormModel {
 					"background": sfield java.awt.Color darkGray
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SearchActionPerformed", true ) )
 				} )
-				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menu2"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/profilePicSmall.png" )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "myAccountField"
-						"text": "My Account"
-						"font": new java.awt.Font( "Times New Roman", 0, 20 )
-					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "LogoutField"
-						"text": "Log Out"
-						"font": new java.awt.Font( "Times New Roman", 0, 20 )
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LogoutFieldActionPerformed", true ) )
-					} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "LoginField"
+					"text": "Login"
+					"font": &Font0 new java.awt.Font( "Dialog", 1, 22 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "loginActionPerformed", true ) )
 				} )
-				add( new FormComponent( "javax.swing.JSeparator" ) {
-					name: "separator3"
-					"maximumSize": new java.awt.Dimension( 150, 32767 )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "SignUpField"
+					"text": "Sign Up"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "signUpActionPerformed", true ) )
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 6 )
 			"size": new java.awt.Dimension( 1035, 670 )
+			"location": new java.awt.Point( 26, 0 )
 		} )
 	}
 }

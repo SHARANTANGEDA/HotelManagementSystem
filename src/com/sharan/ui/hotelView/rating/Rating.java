@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Tue Oct 30 18:38:55 IST 2018
  */
 
-package com.sharan.ui.hotelView.hotelHome.rating;
+package com.sharan.ui.hotelView.rating;
 
 import com.sharan.DataBaseController;
 
