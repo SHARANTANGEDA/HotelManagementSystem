@@ -1,11 +1,13 @@
-package com.sharan.ui.myAccount;
+package com.sharan.ui.myAccount.customTableProperties.tableModels;
+
+import com.sharan.ui.myAccount.ColumnsInMyBooking;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class MyTableModel extends javax.swing.table.DefaultTableModel {
-    Object[] row = {new JLabel(""), new JLabel(""), new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),
-            new JLabel(""),new JLabel("")};
+public class MyBookingTableModel extends javax.swing.table.DefaultTableModel {
+    Object[] row = {new JLabel(""), new JLabel(""), new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),
+            new JLabel(""),new JButton(""),new JButton("")};
 
 //    JLabel l1=new JLabel();
 //    JLabel l2=new JLabel();
@@ -19,15 +21,15 @@ public class MyTableModel extends javax.swing.table.DefaultTableModel {
 //    JLabel l10=new JLabel();
 
     Object[] col = new String[]{
-            "Hotel Name","Booking Id", "Booking Status","CheckIn Date",
+            "Hotel Name","Booking Id","Booking Date", "Booking Status","CheckIn Date",
                     "CheckOut Date","Number of Standard Rooms","Number of DeluxeRooms"
-                            ,"Number Of SuiteRooms","Total Price Paid","Generate PDF"};
+                            ,"Number Of SuiteRooms","Total Price Paid","Cancel Booking","Generate PDF"};
 
     public void createRow(ColumnsInMyBooking myBooking) {
-        this.row= new String[]{myBooking.getHotelName(), myBooking.getBookingId(),myBooking.getBookingStatus(),
+        this.row= new String[]{myBooking.getHotelName(),myBooking.getBookingDate(), myBooking.getBookingId(),myBooking.getBookingStatus(),
                 myBooking.getCheckIn(),myBooking.getCheckOut(),myBooking.getStandardRooms(),
-                myBooking.getDeluxeRooms(), myBooking.getSuiteRooms(),myBooking.getTotalPricePaid(),
-                "Generate Ticket"};
+                myBooking.getDeluxeRooms(), myBooking.getSuiteRooms(),myBooking.getTotalPricePaid(),"Cancel Booking", "Generate Ticket"};
+
     }
 
     @Override
@@ -36,7 +38,7 @@ public class MyTableModel extends javax.swing.table.DefaultTableModel {
     }
 
 
-    public MyTableModel (ArrayList<ColumnsInMyBooking> list){
+    public MyBookingTableModel(ArrayList<ColumnsInMyBooking> list){
 
         for (Object c:col)
             addColumn(c);

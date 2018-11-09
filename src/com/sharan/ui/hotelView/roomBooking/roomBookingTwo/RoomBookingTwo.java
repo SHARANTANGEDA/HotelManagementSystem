@@ -137,7 +137,7 @@ public class RoomBookingTwo {
             reqnoOfSuiteRooms =(Integer)enterField2.getValue();
         }
         dataBaseController.initialiseDatabase();
-        dataBaseController.checkAvailable(uniqueId,checkIn,checkOut,reqnoofStandardRooms,reqnoofDeluxeRooms,reqnoOfSuiteRooms,Integer.parseInt(noofStandardRooms),Integer.parseInt(noofStandardRooms),Integer.parseInt(noOfSuiteRooms));
+        dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,reqnoofStandardRooms,reqnoofDeluxeRooms,reqnoOfSuiteRooms,Integer.parseInt(noofStandardRooms),Integer.parseInt(noofStandardRooms),Integer.parseInt(noOfSuiteRooms));
         dataBaseController.closeDatabaseConnection();
     }
 

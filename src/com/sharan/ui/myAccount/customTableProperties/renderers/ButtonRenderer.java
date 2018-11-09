@@ -1,12 +1,12 @@
-package com.sharan.ui.myAccount.renderers;
+package com.sharan.ui.myAccount.customTableProperties.renderers;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
-public class GenerateRenderer extends JButton implements TableCellRenderer {
+public class ButtonRenderer extends JButton implements TableCellRenderer {
 
-    public GenerateRenderer() {
+    public ButtonRenderer() {
         setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 16));
         setOpaque(true);
         setForeground(Color.WHITE);

@@ -4,7 +4,6 @@
 
 package com.sharan.ui.home.homePageAfterLogin;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
@@ -118,7 +117,7 @@ public class HomePageAfterLogin {
     private void addtoStateComboBox(JComboBox<String> stateField) {
         stateField.addItem("Telangana");
         stateField.addItem("AndhraPradesh");
-        stateField.addItem("Maharastra");
+        stateField.addItem("Maharashtra");
         stateField.addItem("NewDelhi");
     }
 
@@ -138,7 +137,7 @@ public class HomePageAfterLogin {
             cityField.addItem("Vishakapatnam");
             cityField.addItem("Guntur");
         }
-        else if (stateSelected.equalsIgnoreCase("Maharastra")) {
+        else if (stateSelected.equalsIgnoreCase("Maharashtra")) {
             cityField.removeAllItems();
             cityField.addItem("Aurangabad");
             cityField.addItem("Mumbai");
@@ -533,7 +532,7 @@ public class HomePageAfterLogin {
         menuItem14 = new JMenuItem();
         menuItem15 = new JMenuItem();
         menuItem16 = new JMenuItem();
-        Maharastra = new JMenu();
+        Maharashtra = new JMenu();
         Mumbai = new JMenu();
         GingerMumbaiAndheri = new JMenuItem();
         IbisMumbaiAirport = new JMenuItem();
@@ -830,12 +829,12 @@ public class HomePageAfterLogin {
                 }
                 menuBar1.add(Andhra_Pradesh);
 
-                //======== Maharastra ========
+                //======== Maharashtra ========
                 {
-                    Maharastra.setText("Maharastra");
-                    Maharastra.setPreferredSize(new Dimension(110, 50));
-                    Maharastra.setFont(new Font("Arial", Font.BOLD, 18));
-                    Maharastra.setForeground(new Color(238, 238, 238));
+                    Maharashtra.setText("Maharashtra");
+                    Maharashtra.setPreferredSize(new Dimension(110, 50));
+                    Maharashtra.setFont(new Font("Arial", Font.BOLD, 18));
+                    Maharashtra.setForeground(new Color(238, 238, 238));
 
                     //======== Mumbai ========
                     {
@@ -862,7 +861,7 @@ public class HomePageAfterLogin {
                         RoyalOrchidCentralGrazia.addActionListener(e -> RoyalOrchidCentralGraziaActionPerformed(e));
                         Mumbai.add(RoyalOrchidCentralGrazia);
                     }
-                    Maharastra.add(Mumbai);
+                    Maharashtra.add(Mumbai);
 
                     //======== Pune ========
                     {
@@ -889,7 +888,7 @@ public class HomePageAfterLogin {
                         FourPoints.addActionListener(e -> FourPointsActionPerformed(e));
                         Pune.add(FourPoints);
                     }
-                    Maharastra.add(Pune);
+                    Maharashtra.add(Pune);
 
                     //======== Nagpur ========
                     {
@@ -916,7 +915,7 @@ public class HomePageAfterLogin {
                         RadissonBlu.addActionListener(e -> RadissonBluActionPerformed(e));
                         Nagpur.add(RadissonBlu);
                     }
-                    Maharastra.add(Nagpur);
+                    Maharashtra.add(Nagpur);
 
                     //======== Aurangabad ========
                     {
@@ -943,9 +942,9 @@ public class HomePageAfterLogin {
                         HotelAtithi.addActionListener(e -> HotelAtithiActionPerformed(e));
                         Aurangabad.add(HotelAtithi);
                     }
-                    Maharastra.add(Aurangabad);
+                    Maharashtra.add(Aurangabad);
                 }
-                menuBar1.add(Maharastra);
+                menuBar1.add(Maharashtra);
 
                 //======== New_Delhi ========
                 {
@@ -1265,7 +1264,7 @@ public class HomePageAfterLogin {
     private JMenuItem menuItem14;
     private JMenuItem menuItem15;
     private JMenuItem menuItem16;
-    private JMenu Maharastra;
+    private JMenu Maharashtra;
     private JMenu Mumbai;
     private JMenuItem GingerMumbaiAndheri;
     private JMenuItem IbisMumbaiAirport;

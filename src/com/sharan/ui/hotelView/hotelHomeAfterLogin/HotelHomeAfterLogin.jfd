@@ -282,8 +282,8 @@ new FormModel {
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "Maharastra"
-					"text": "Maharastra"
+					name: "Maharashtra"
+					"text": "Maharashtra"
 					"preferredSize": new java.awt.Dimension( 110, 50 )
 					"font": #Font0
 					"foreground": #ColorUIResource0

@@ -1,4 +1,4 @@
-package com.sharan.ui.myAccount.renderers;
+package com.sharan.ui.myAccount.customTableProperties.renderers;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;

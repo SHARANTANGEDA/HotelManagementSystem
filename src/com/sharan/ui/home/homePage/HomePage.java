@@ -282,7 +282,7 @@ public class HomePage {
         menuItem14 = new JMenuItem();
         menuItem15 = new JMenuItem();
         menuItem16 = new JMenuItem();
-        Maharastra = new JMenu();
+        Maharashtra = new JMenu();
         Mumbai = new JMenu();
         GingerMumbaiAndheri = new JMenuItem();
         IbisMumbaiAirport = new JMenuItem();
@@ -567,12 +567,12 @@ public class HomePage {
                 }
                 menuBar1.add(Andhra_Pradesh);
 
-                //======== Maharastra ========
+                //======== Maharashtra ========
                 {
-                    Maharastra.setText("Maharastra");
-                    Maharastra.setPreferredSize(new Dimension(110, 50));
-                    Maharastra.setFont(new Font("Arial", Font.BOLD, 18));
-                    Maharastra.setForeground(new Color(238, 238, 238));
+                    Maharashtra.setText("Maharashtra");
+                    Maharashtra.setPreferredSize(new Dimension(110, 50));
+                    Maharashtra.setFont(new Font("Arial", Font.BOLD, 18));
+                    Maharashtra.setForeground(new Color(238, 238, 238));
 
                     //======== Mumbai ========
                     {
@@ -599,7 +599,7 @@ public class HomePage {
                         RoyalOrchidCentralGrazia.addActionListener(e -> RoyalOrchidCentralGraziaActionPerformed(e));
                         Mumbai.add(RoyalOrchidCentralGrazia);
                     }
-                    Maharastra.add(Mumbai);
+                    Maharashtra.add(Mumbai);
 
                     //======== Pune ========
                     {
@@ -626,7 +626,7 @@ public class HomePage {
                         FourPoints.addActionListener(e -> FourPointsActionPerformed(e));
                         Pune.add(FourPoints);
                     }
-                    Maharastra.add(Pune);
+                    Maharashtra.add(Pune);
 
                     //======== Nagpur ========
                     {
@@ -653,7 +653,7 @@ public class HomePage {
                         RadissonBlu.addActionListener(e -> RadissonBluActionPerformed(e));
                         Nagpur.add(RadissonBlu);
                     }
-                    Maharastra.add(Nagpur);
+                    Maharashtra.add(Nagpur);
 
                     //======== Aurangabad ========
                     {
@@ -680,9 +680,9 @@ public class HomePage {
                         HotelAtithi.addActionListener(e -> HotelAtithiActionPerformed(e));
                         Aurangabad.add(HotelAtithi);
                     }
-                    Maharastra.add(Aurangabad);
+                    Maharashtra.add(Aurangabad);
                 }
-                menuBar1.add(Maharastra);
+                menuBar1.add(Maharashtra);
 
                 //======== New_Delhi ========
                 {
@@ -926,7 +926,7 @@ public class HomePage {
     private JMenuItem menuItem14;
     private JMenuItem menuItem15;
     private JMenuItem menuItem16;
-    private JMenu Maharastra;
+    private JMenu Maharashtra;
     private JMenu Mumbai;
     private JMenuItem GingerMumbaiAndheri;
     private JMenuItem IbisMumbaiAirport;
