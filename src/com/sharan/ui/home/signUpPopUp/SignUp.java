@@ -24,8 +24,7 @@ public class SignUp {
     private String fullName;
     private String hashedPassword;
     private String dob;
-//    private String aadhar;
-//    private String pan;
+
     private String phn;
 
     public String getName() {
@@ -36,7 +35,6 @@ public class SignUp {
     private String email;
     private int flag;
     private DataBaseController dataBaseController;
-    private String id;
     private JButton toBeClicked;
 
 
@@ -45,6 +43,7 @@ public class SignUp {
         initComponents();
 
         SignUp.setVisible(true);
+        SignUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.toBeClicked=toBeClicked;
         this.dataBaseController = dataBaseController;
     }
@@ -79,22 +78,9 @@ public class SignUp {
         dob=sb.toString();
         System.out.println(dob);
         address = HNoInput.getText() + AreaInput.getText() +CityInput.getText()+StateInput.getText();
-//        aadhar = AadharInput.getText();
-//        pan = PanInput.getText();
         email = emailInput.getText();
         phn = phoneInput.getText();
-//        if(aadhar.equals(""))
-//        {
-//            id = pan+"p";
-//        }
-//        else if(pan.equals(""))
-//        {
-//            id = aadhar+"a";
-//        }
-//        else
-//        {
-//            id = aadhar+"a";
-//        }
+
     }
 
 
@@ -125,11 +111,6 @@ public class SignUp {
             JOptionPane.showMessageDialog(null,"Enter Your Name");
 
         }
-//        else if(pan.equals("")&&aadhar.equals(""))
-//        {
-//            JOptionPane.showMessageDialog(null,"Enter Aadhar or Pan Card Details");
-//            flag =1;
-//        }
 
         else if(phn.equals("")||phn.length()!=10||phn.matches(".*[a-zA-Z]+.*"))
         {
@@ -151,18 +132,7 @@ public class SignUp {
         {
             try {
                 dataBaseController.initialiseDatabase();
-//                if(aadhar.equals(""))
-//                {
-//                    id = pan;
-//                }
-//                else if(pan.equals(""))
-//                {
-//                    id = aadhar;
-//                }
-//                else
-//                {
-//                    id = aadhar;
-//                }
+
                 dataBaseController.addUser(name,fullName,hashedPassword,dob,address,email,phn);
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -181,9 +151,7 @@ public class SignUp {
         getInformation();
     }
 
-    private void fullNameFieldActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents

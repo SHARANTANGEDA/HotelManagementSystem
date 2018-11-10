@@ -29,20 +29,20 @@ public class MyAccount {
     private String selectedBookingId;
     private DataBaseController dataBaseController;
     private ArrayList<String> list;
-    private String pathPre;
+//    private String pathPre;
     private String userName;
-    private String hotelName;
-    private String bookingId;
-    private String bookingStatus;
-    private String checkInDate;
-    private String checkOutDate;
-    private String standardRoom;
-    private String deluxeRoom;
-    private String suiteRoom;
-    private String totalCost;
-    private String address;
-    private String bookingDate;
-    private String uniqueId;
+//    private String hotelName;
+//    private String bookingId;
+//    private String bookingStatus;
+//    private String checkInDate;
+//    private String checkOutDate;
+//    private String standardRoom;
+//    private String deluxeRoom;
+//    private String suiteRoom;
+//    private String totalCost;
+//    private String address;
+//    private String bookingDate;
+//    private String uniqueId;
    private ArrayList<ColumnsInMyBooking> tableList;
    private ArrayList<ColumnsInWaitingList> waitList;
 
@@ -133,7 +133,6 @@ public class MyAccount {
 
         if(column==10) {
 
-            //Write Cancel Booking Code Here***************
 
             dataBaseController.initialiseDatabase();
             dataBaseController.cancelBooking(tableList.get(row).getBookingId(),tableList.get(row).getUniqueId(),tableList.get(row).getCheckIn(),tableList.get(row).getCheckOut(),

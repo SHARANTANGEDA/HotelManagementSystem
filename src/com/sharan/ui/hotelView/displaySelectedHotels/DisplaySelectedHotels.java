@@ -4,11 +4,11 @@
 
 package com.sharan.ui.hotelView.displaySelectedHotels;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
+import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.ElementsInHotelView;
 import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
 import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
 import com.sharan.ui.hotelView.roomBooking.roomBookingTwo.RoomBookingTwo;

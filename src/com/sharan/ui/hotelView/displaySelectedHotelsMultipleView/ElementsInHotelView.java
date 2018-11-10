@@ -1,4 +1,4 @@
-package com.sharan.ui.hotelView.displaySelectedHotels;
+package com.sharan.ui.hotelView.displaySelectedHotelsMultipleView;
 
 public class ElementsInHotelView {
     private String uniqueId;

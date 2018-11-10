@@ -7,7 +7,7 @@ package com.sharan.ui.hotelView.hotelHomeAfterLogin;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
-import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
+import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
 import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
 import com.sharan.ui.hotelView.rating.Rating;
 import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
@@ -39,7 +39,6 @@ public class HotelHomeAfterLogin {
     private String hotelMainImagePath;
     private String numberOfVotes;
     private ArrayList<String> list;
-    private JButton ratingConfirm;
     private String universalHotelSearch;
     private String checkIn;
     private String checkOut;
@@ -176,7 +175,7 @@ public class HotelHomeAfterLogin {
             dataBaseController.initialiseDatabase();
             String uniqueId = dataBaseController.setUniversalSearchData(temp);
             dataBaseController.closeDatabaseConnection();
-            LoginToContinue loginToContinue = new LoginToContinue(uniqueId, dataBaseController);
+            FillOutFieldsToViewHotel fillOutFieldsToViewHotel=new FillOutFieldsToViewHotel(userName,uniqueId,universalHotelSearch,Search,dataBaseController);
         } else {
             JOptionPane.showMessageDialog(null, "Please Select a Hotel First");
         }

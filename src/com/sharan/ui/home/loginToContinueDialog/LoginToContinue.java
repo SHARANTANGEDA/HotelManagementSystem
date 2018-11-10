@@ -4,7 +4,6 @@
 
 package com.sharan.ui.home.loginToContinueDialog;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.loginPopUp.Login;
 import com.sharan.ui.home.signUpPopUp.SignUp;
@@ -28,6 +27,8 @@ public class LoginToContinue {
         this.dataBaseController=dataBaseController;
         this.uniqueId=id;
         initComponents();
+        loginToContinue.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        loginToContinue.setVisible(true);
 
 
     }

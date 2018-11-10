@@ -4,7 +4,6 @@
 
 package com.sharan.ui.home.homePageAfterLogin;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
@@ -37,7 +36,7 @@ public class HomePageAfterLogin {
     private String roomsSelected;
 
     private String userName;
-    private ArrayList<String> list;
+//    private ArrayList<String> list;
     private String universalHotelSearch;
 
     private DataBaseController dataBaseController;
@@ -66,6 +65,7 @@ public class HomePageAfterLogin {
         AutoCompleteDecorator.decorate(CityField);
         AutoCompleteDecorator.decorate(Hotels);
         homePageAfterLogin.setVisible(true);
+        homePageAfterLogin.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         checkInCheckOutCheck=0;
 
     }
@@ -88,24 +88,12 @@ public class HomePageAfterLogin {
             System.out.println(temp[0]+"/"+temp[1]+"/"+temp[2]);
             String uniqueId=dataBaseController.setUniversalSearchData(temp);
             dataBaseController.closeDatabaseConnection();
-//            if(login.returnLoginStatus()==1) {
-//                loginSuccess=0;
-//                homeFrame.dispose();
-//                HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
-//                login.getLogin().dispose();
-//
-//            }
-//
             if(checkInCheckOutCheck==0) {
                 FillOutFieldsToViewHotel fillOutFieldsToViewHotel = new FillOutFieldsToViewHotel(userName, uniqueId, universalHotelSearch, Search, dataBaseController);
             }else {
                 checkInCheckOutCheck=0;
                 homePageAfterLogin.dispose();
             }
-
-
-
-
         }
         else {
             JOptionPane.showMessageDialog(null,"Please Select a Hotel First");
@@ -124,7 +112,6 @@ public class HomePageAfterLogin {
         stateField.addItem("NewDelhi");
     }
 
-    //**@HARD CODED**//
     private void addtoCityComboBox(JComboBox<String> cityField) {
         if(stateSelected.equalsIgnoreCase("Telangana")) {
             cityField.removeAllItems();
@@ -184,13 +171,7 @@ public class HomePageAfterLogin {
 
         checkInDate=getDate(checkInField);
         checkOutDate=getDate(checkOutField);
-//        try {
-//            noOfRooms.commitEdit();
-//        } catch ( java.text.ParseException exception ) {
-//            System.out.println(exception.getMessage());
-//        }
-//        int value = (Integer) noOfRooms.getValue();
-//        roomsSelected=String.valueOf(value);
+
         java.util.Date current=null;
         java.util.Date checkin=null;
         java.util.Date checkout=null;
@@ -249,7 +230,7 @@ public class HomePageAfterLogin {
 
 
             dataBaseController.initialiseDatabase();
-            dataBaseController.addAllotmentDetailsToDatabase(userName, stateSelected, citySelected, checkInDate, checkOutDate, roomsSelected);
+            dataBaseController.addAllotmentDetailsToDatabase(userName, stateSelected, citySelected, checkInDate, checkOutDate);
             dataBaseController.closeDatabaseConnection();
 
             homePageAfterLogin.dispose();
@@ -279,7 +260,6 @@ public class HomePageAfterLogin {
 
 
 
-    //*********************SEARCH FIELDS**********************************************
 
 
 

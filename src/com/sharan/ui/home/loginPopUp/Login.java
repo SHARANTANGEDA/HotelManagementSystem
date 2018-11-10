@@ -37,6 +37,8 @@ public class Login extends JPanel {
         this.dataBaseController = dataBaseController;
         this.tobeClicked=tobeClicked;
         initComponents();
+        Login.setVisible(true);
+        Login.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 
     }
@@ -49,8 +51,26 @@ public class Login extends JPanel {
         }
         PasswordHashing passwordHashing = new PasswordHashing();
         String password =passwordHashing.hashPassword(passwordField1.getText());
-        // System.out.println(password);
         verify(username,password);
+    }
+
+    public void verify(String username,String password)
+    {
+        dataBaseController.initialiseDatabase();
+        String p= dataBaseController.Verify(username);
+        dataBaseController.closeDatabaseConnection();
+        if(p.equals(password))
+        {
+            Login.dispose();
+            loginSuccess=1;
+            tobeClicked.doClick();
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Check Your Password");
+        }
+
     }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -155,24 +175,7 @@ public class Login extends JPanel {
     private JPasswordField passwordField1;
     private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
-    public void verify(String username,String password)
-    {
-        dataBaseController.initialiseDatabase();
-        String p= dataBaseController.Verify(username);
-        dataBaseController.closeDatabaseConnection();
-        if(p.equals(password))
-        {
-            Login.dispose();
-            loginSuccess=1;
-            tobeClicked.doClick();
 
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"Check Your Password");
-        }
-
-    }
 
 
 }

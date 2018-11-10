@@ -2,7 +2,7 @@ package com.sharan;
 
 
 import com.sharan.encryptionAlgorithms.AES128Encyrption;
-import com.sharan.ui.hotelView.displaySelectedHotels.ElementsInHotelView;
+import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.ElementsInHotelView;
 import com.sharan.ui.hotelView.paymentPage.PaymentPage;
 import com.sharan.ui.hotelView.roomBooking.waitingList.waitingList;
 import com.sharan.ui.myAccount.ColumnsInMyBooking;
@@ -39,7 +39,7 @@ public class DataBaseController {
 
 
     private String allotmentTableName="allotmentTable";
-    private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT,NoOfRoomsRequested TEXT DEFAULT NA, " +
+    private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT, " +
             "HotelUniqueId TEXT,AvailabilityStatus TEXT)";
     private String allotmentTableInsertParameters=" (UserName,State,City,CheckIN,CheckOUT,NoOfRoomsRequested)";
     private String availableTableName = "availableTable";
@@ -58,6 +58,14 @@ public class DataBaseController {
     private Connection conn=null;
     private Statement statement=null;
 
+
+    public Connection getConn() {
+        return conn;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
 
     public void initialiseDatabase() {
         try {
@@ -228,7 +236,9 @@ public class DataBaseController {
                             z = 1;
                            // JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Suit Rooms are not available");
                         }
+
                     }
+                    System.out.println(x+y+z);
                     if (x == 0 && y == 0 && z == 0) {
                         for (int i = Integer.parseInt(String.valueOf(diffInDaysForCheckIn)); i < Integer.parseInt(String.valueOf(diffInDaysForCheckOut)); i++) {
 
@@ -244,9 +254,9 @@ public class DataBaseController {
                             suitAvailableArray[i] = suitAvailableArray[i] - noOfSuitRooms;
                         }
 
-                        StringBuffer standardBuilder = new StringBuffer();
-                        StringBuffer deluxeBuilder = new StringBuffer();
-                        StringBuffer suiteBuilder = new StringBuffer();
+                        StringBuilder standardBuilder = new StringBuilder();
+                        StringBuilder deluxeBuilder = new StringBuilder();
+                        StringBuilder suiteBuilder = new StringBuilder();
                         for (int i = 0; i < 90; i++) {
                             String s = String.valueOf(standardAvailableArray[i]);
                             standardBuilder.append(s + ",");
@@ -267,11 +277,11 @@ public class DataBaseController {
                         availableList.add(updatedSuiteAvailableString);
                         availableList.add(formattedDate);
                         System.out.println("Trying to open Payment Page");
-                        PaymentPage paymentPage = new PaymentPage(1,availableList,userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId,checkIn,checkOut);
-                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + updatedStandardAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
-                        statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray '" + updatedDeluxeAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
-                        statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray '" + updatedSuiteAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
-                        statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + formattedDate + "' WHERE UniqueId='" + uniqueId + "'");
+                        PaymentPage paymentPage = new PaymentPage(statement,1,availableList,userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId,checkIn,checkOut);
+//                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + updatedStandardAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
+//                        statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray '" + updatedDeluxeAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
+//                        statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray '" + updatedSuiteAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
+//                        statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + formattedDate + "' WHERE UniqueId='" + uniqueId + "'");
 
                     }
                     else {
@@ -356,12 +366,12 @@ public class DataBaseController {
                     availableList.add(deluxeAvailableString);
                     availableList.add(suiteAvailableString);
                     availableList.add(formattedDate);
-                    PaymentPage paymentPage = new PaymentPage(0,availableList,userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId,checkIn,checkOut);
-                System.out.println(standardAvailableString+"','"+
-                            deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate);
-                    statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+standardAvailableString+"','"+
-                            deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate+"')");
-                    System.out.println("Trying to open Payment Page");
+                    PaymentPage paymentPage = new PaymentPage(statement,0,availableList,userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId,checkIn,checkOut);
+               // System.out.println(standardAvailableString+"','"+
+                         //   deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate);
+                 //   statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+standardAvailableString+"','"+
+                         //   deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate+"')");
+                  //  System.out.println("Trying to open Payment Page");
 
                 }
             }
@@ -565,6 +575,7 @@ public class DataBaseController {
     public void addToMyBookings(String userName,String hotelName,String status,String checkIn,String checkOut,int standardRooms,int deluxeRooms,int suiteRooms,String totalPrice,String address,String uniqueId)
     {
        String bookingId = generateBookingId(userName);
+       System.out.println(bookingId);
         java.util.Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String bookedDate = df.format(c);
@@ -721,10 +732,10 @@ public class DataBaseController {
         return finalrate;
     }
 
-    public void addAllotmentDetailsToDatabase(String userName,String state,String city,String checkIN,String checkOUT,String noOfRooms) {
+    public void addAllotmentDetailsToDatabase(String userName,String state,String city,String checkIN,String checkOUT) {
         try {
             statement.execute("INSERT INTO "+allotmentTableName+allotmentTableInsertParameters+"VALUES ('"+userName+"','"+state+"','"+city+"','"+
-                    checkIN+"','"+checkOUT+"','"+noOfRooms+"')");
+                    checkIN+"','"+checkOUT+"')");
         }catch (SQLException e) {
             e.printStackTrace();
         }

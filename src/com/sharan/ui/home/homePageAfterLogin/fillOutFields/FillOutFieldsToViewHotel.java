@@ -5,7 +5,6 @@
 package com.sharan.ui.home.homePageAfterLogin.fillOutFields;
 
 import com.sharan.DataBaseController;
-import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
 import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
 import com.sharan.ui.hotelView.roomBooking.roomBookingTwo.RoomBookingTwo;
 import org.jdesktop.swingx.JXDatePicker;
@@ -18,8 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
-
-import static com.sharan.Main.checkInCheckOutCheck;
 
 /**
  * @author SAI SHARAN
@@ -52,6 +49,7 @@ public class FillOutFieldsToViewHotel {
 
         initComponents();
         fillTheseToContinue.setVisible(true);
+        fillTheseToContinue.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         checkInField.setFormats(dateFormat);
         checkOutField.setFormats(dateFormat);

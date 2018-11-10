@@ -40,12 +40,13 @@ public class PaymentPage {
     private int flag;
     private String address;
 
-    public PaymentPage(int flag,ArrayList<String> availableList, String userName, DataBaseController dataBaseController, int noOfStandardRooms, int noOfDeluxeRooms, int noOfSuiteRooms, String uniqueId,String checkIn,String checkOut) {
+    public PaymentPage(Statement statement,int flag,ArrayList<String> availableList, String userName, DataBaseController dataBaseController, int noOfStandardRooms, int noOfDeluxeRooms, int noOfSuiteRooms, String uniqueId,String checkIn,String checkOut) {
 
-        hotelName=dataBaseController.parseHotel(uniqueId).get(0);
+        hotelName=dataBaseController.parseHotel(uniqueId).get(1);
         address = dataBaseController.parseHotel(uniqueId).get(2);
         this.userName=userName;
         this.flag = flag;
+        this.statement = statement;
         this.dataBaseController=dataBaseController;
         this.availableList = availableList;
         this.noOfStandardRooms = noOfStandardRooms;
@@ -92,25 +93,26 @@ public class PaymentPage {
 
             if(check.equalsIgnoreCase("AadharSuccess")) {
 
-                paymentPage.dispose();
+
                 if(flag ==1) {
                     try {
-                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + availableList.get(0) + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray = '" + String.valueOf(availableList.get(0)) + "' WHERE UniqueId = '" + uniqueId + "'");
+                    } catch (SQLException e1) {
+                        System.out.println(e1.getMessage()+"::"+e1.getCause());
+                        e1.printStackTrace();
+                    }
+                    try {
+                        statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray = '" + String.valueOf(availableList.get(1)) + "' WHERE UniqueId = '" + uniqueId + "'");
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                     try {
-                        statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray '" + availableList.get(1) + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray = '" + String.valueOf(availableList.get(2)) + "' WHERE UniqueId = '" + uniqueId + "'");
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                     try {
-                        statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray '" + availableList.get(2) + "' WHERE UniqueId='" + uniqueId + "'");
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                    try {
-                        statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + availableList.get(3) + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET LatestBooking = '" + String.valueOf(availableList.get(3)) + "' WHERE UniqueId = '" + uniqueId + "'");
                         dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address,uniqueId);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
@@ -118,8 +120,9 @@ public class PaymentPage {
                 }
                 else {
                     try {
+                        System.out.println(uniqueId+availableList.get(0)+availableList.get(1)+availableList.get(2)+availableList.get(3));
                         statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+availableList.get(0)+"','"+
-                                availableList.get(1)+"','"+availableList.get(2)+"','"+availableList.get(3)+"')");
+                                   availableList.get(1)+"','"+availableList.get(2)+"','"+availableList.get(3)+"')");
                         dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address,uniqueId);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
@@ -134,7 +137,7 @@ public class PaymentPage {
             JOptionPane.showMessageDialog(null,"Enter valid Aadhar to complete Payment");
 
         }
-
+        paymentPage.dispose();
     }
 
     private void cancelPaymentActionPerformed(ActionEvent e) {
@@ -145,30 +148,33 @@ public class PaymentPage {
     private void confirmPaymentPanActionPerformed(ActionEvent e) {
         if(!panField.getText().isEmpty()) {
             String encryptId= AES128Encyrption.encrypt(panField.getText());
+            DataBaseController dataBaseController=new DataBaseController();
+            Statement statement=dataBaseController.getStatement();
             dataBaseController.initialiseDatabase();
             String check=dataBaseController.checkIdForPayment(userName,encryptId);
 
             if(check.equalsIgnoreCase("PanSuccess")) {
 
-                paymentPage.dispose();
+
                 if (flag==1) {
                     try {
-                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + availableList.get(0) + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + availableList.get(0) + "' WHERE UniqueId = '" + uniqueId + "'");
+                    } catch (SQLException e1) {
+                        System.out.println(e1.getMessage()+"::"+e1.getCause());
+                        e1.printStackTrace();
+                    }
+                    try {
+                        statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray '" + availableList.get(1) + "' WHERE UniqueId = '" + uniqueId + "'");
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                     try {
-                        statement.execute("UPDATE " + availableTableName + " SET DeluxeAvailableArray '" + availableList.get(1) + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray '" + availableList.get(2) + "' WHERE UniqueId = '" + uniqueId + "'");
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                     try {
-                        statement.execute("UPDATE " + availableTableName + " SET SuitAvailableArray '" + availableList.get(2) + "' WHERE UniqueId='" + uniqueId + "'");
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                    try {
-                        statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + availableList.get(3) + "' WHERE UniqueId='" + uniqueId + "'");
+                        statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + availableList.get(3) + "' WHERE UniqueId = '" + uniqueId + "'");
                         dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address,uniqueId);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
@@ -193,6 +199,7 @@ public class PaymentPage {
             JOptionPane.showMessageDialog(null,"Enter valid Pan to complete Payment");
 
         }
+        paymentPage.dispose();
     }
 
     private void initComponents() {

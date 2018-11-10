@@ -32,14 +32,14 @@ public class HomePage {
     public HomePage(DataBaseController dataBaseController) {
 
         this.dataBaseController=dataBaseController;
-        dataBaseController.initialiseDatabase();
         initComponents();
         addToUniversalHotelSearch();
         AutoCompleteDecorator.decorate(Hotels);
-        homeFrame.setVisible(true);
         TextFileController textFileController=new TextFileController();
         userName=textFileController.readFile();
-        dataBaseController.closeDatabaseConnection();
+
+        homeFrame.setVisible(true);
+
 
     }
     private void addToUniversalHotelSearch() {
