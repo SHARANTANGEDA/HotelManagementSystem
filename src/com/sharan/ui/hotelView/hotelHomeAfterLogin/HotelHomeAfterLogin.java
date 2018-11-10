@@ -228,7 +228,7 @@ public class HotelHomeAfterLogin {
                 backButton.setPreferredSize(new Dimension(50, 13));
                 backButton.setMaximumSize(new Dimension(50, 32767));
                 backButton.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Back24.gif")));
-                backButton.addActionListener(e -> backButtonActionPerformed(e));
+                backButton.addActionListener(this::backButtonActionPerformed);
                 menuBar.add(backButton);
 
                 //---- separator1 ----
@@ -239,7 +239,7 @@ public class HotelHomeAfterLogin {
                 Hotels.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                 Hotels.setToolTipText("Search for Hotels");
                 Hotels.setMaximumSize(new Dimension(500, 50));
-                Hotels.addItemListener(e -> HotelsItemStateChanged(e));
+                Hotels.addItemListener(this::HotelsItemStateChanged);
                 menuBar.add(Hotels);
 
                 //---- Search ----
@@ -248,7 +248,7 @@ public class HotelHomeAfterLogin {
                 Search.setText("Search");
                 Search.setForeground(new Color(238, 238, 238));
                 Search.setBackground(Color.darkGray);
-                Search.addActionListener(e -> SearchActionPerformed(e));
+                Search.addActionListener(this::SearchActionPerformed);
                 menuBar.add(Search);
 
                 //======== menu2 ========
@@ -263,7 +263,7 @@ public class HotelHomeAfterLogin {
                     //---- LogoutField ----
                     LogoutField.setText("Log Out");
                     LogoutField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-                    LogoutField.addActionListener(e -> LogoutFieldActionPerformed(e));
+                    LogoutField.addActionListener(this::LogoutFieldActionPerformed);
                     menu2.add(LogoutField);
                 }
                 menuBar.add(menu2);
@@ -287,7 +287,7 @@ public class HotelHomeAfterLogin {
             //---- rateYourExperience ----
             rateYourExperience.setText("Rate Your Experience");
             rateYourExperience.setFont(new Font("Droid Sans", Font.BOLD | Font.ITALIC, 15));
-            rateYourExperience.addActionListener(e -> rateYourExperienceActionPerformed(e));
+            rateYourExperience.addActionListener(this::rateYourExperienceActionPerformed);
 
             //---- ratingLabel ----
             ratingLabel.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/stars/5.0.jpg")));
@@ -308,7 +308,7 @@ public class HotelHomeAfterLogin {
             checkAvailability.setFont(new Font("Dialog", Font.BOLD, 30));
             checkAvailability.setBackground(new Color(153, 0, 0));
             checkAvailability.setForeground(new Color(238, 238, 238));
-            checkAvailability.addActionListener(e -> checkAvailabilityActionPerformed(e));
+            checkAvailability.addActionListener(this::checkAvailabilityActionPerformed);
 
             //---- titleContactDetails ----
             titleContactDetails.setText("Contact Details");

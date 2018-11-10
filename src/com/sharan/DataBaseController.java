@@ -51,7 +51,7 @@ public class DataBaseController {
     private String waitListInsertParametres = " (UserName,UniqueId,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate)";
 
     private String myBookingsTableName="myBookingsTable";
-    private String myBookingsTableColumns="(UserName TEXT NOT NULL PRIMARY KEY,HotelName TEXT, BookingId TEXT,BookingStatus TEXT,CheckIn TEXT,CheckOut TEXT," +
+    private String myBookingsTableColumns="(UserName TEXT,HotelName TEXT, BookingId TEXT NOT NULL PRIMARY KEY,BookingStatus TEXT,CheckIn TEXT,CheckOut TEXT," +
             "StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT,TotalPricePaid TEXT,Address TEXT,UniqueId TEXT)";
     private String myBookingParametres = " (UserName,HotelName,BookingId,BookingStatus,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate,TotalPricePaid,Address,UniqueId)";
 
@@ -201,7 +201,7 @@ public class DataBaseController {
                     int l = 0;
                     for (char i : suitAvailableString.toCharArray()) {
                         if (i == ',') {
-                            standardAvailableArray[l] = Integer.parseInt(suite.toString());
+                            suitAvailableArray[l] = Integer.parseInt(suite.toString());
                             suite = new StringBuffer();
                             l++;
                         } else {
@@ -989,7 +989,7 @@ public class DataBaseController {
     {
         ArrayList<String> list = new ArrayList<>();
         try {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM"+hotelsTableNAME+" WHERE UniqueId='"+uniqueId+"'");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId='"+uniqueId+"'");
             do {
                 list.add(resultSet.getString("HotelName"));
                 list.add(resultSet.getString("Address"));
