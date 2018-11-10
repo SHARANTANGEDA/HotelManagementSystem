@@ -230,7 +230,7 @@ public class HomePageAfterLogin {
 
 
             dataBaseController.initialiseDatabase();
-            dataBaseController.addAllotmentDetailsToDatabase(userName, stateSelected, citySelected, checkInDate, checkOutDate);
+//            dataBaseController.addAllotmentDetailsToDatabase(userName, stateSelected, citySelected, checkInDate, checkOutDate);
             dataBaseController.closeDatabaseConnection();
 
             homePageAfterLogin.dispose();

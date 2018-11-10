@@ -47,8 +47,8 @@ public class DataBaseController {
     private String availableInsertParametres = " (UniqueId,StandardAvailableArray,DeluxeAvailableArray,SuitAvailableArray,LatestBooking)";
 
     private String waitingListTableName = "waitngListTable";
-    private String waitingListTableColoumns = "(UserName TEXT NOT NULL PRIMARY KEY,UniqueId TEXT,CheckIn TEXT,CheckOut TEXT,StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT)";
-    private String waitListInsertParametres = " (UserName,UniqueId,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate)";
+    private String waitingListTableColoumns = "(UserName TEXT,BookingId TEXT NOT NULL PRIMARY KEY,UniqueId TEXT,CheckIn TEXT,CheckOut TEXT,StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT)";
+    private String waitListInsertParametres = " (UserName,BookingId,UniqueId,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate)";
 
     private String myBookingsTableName="myBookingsTable";
     private String myBookingsTableColumns="(UserName TEXT,HotelName TEXT, BookingId TEXT NOT NULL PRIMARY KEY,BookingStatus TEXT,CheckIn TEXT,CheckOut TEXT," +
@@ -85,8 +85,10 @@ public class DataBaseController {
     public void addToWaitList(String userName,String uniqueId,String checkIn,String checkOut,int standardRooms,int deluxeRooms,int suitRooms,String bookedDate)
     {
         try {
-            statement.execute("INSERT INTO "+waitingListTableName+waitListInsertParametres+" VALUES('"+userName+"','"+uniqueId+"','"+checkIn+"','"+
-                    checkOut+"',"+standardRooms+","+deluxeRooms+","+suitRooms+"'"+bookedDate+"')");
+            String bookingId = generateBookingId(userName);
+
+            statement.execute("INSERT INTO "+waitingListTableName+waitListInsertParametres+" VALUES('"+userName+"','"+bookingId+"','"+uniqueId+"','"+checkIn+"','"+
+                    checkOut+"',"+standardRooms+","+deluxeRooms+","+suitRooms+",'"+bookedDate+"')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -225,16 +227,17 @@ public class DataBaseController {
                     for (int i = Integer.parseInt(String.valueOf(diffInDaysForCheckIn)); i < Integer.parseInt(String.valueOf(diffInDaysForCheckOut)); i++) {
                         if (standardAvailableArray[i] < noOfStandardRooms) {
                             x = 1;
-                            //JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Standard Rooms are not available");
+                            JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Standard Rooms are not available");
+                            //
                             // waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfDeluxeRooms,noOfDeluxeRooms,noOfSuitRooms);
                         }
                         if (deluxeAvailableArray[i] < noOfDeluxeRooms) {
                             y = 1;
-                           // JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Deluxe Rooms are not available");
+                            JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Deluxe Rooms are not available");
                         }
                         if (suitAvailableArray[i] < noOfSuitRooms) {
                             z = 1;
-                           // JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Suit Rooms are not available");
+                           JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Suit Rooms are not available");
                         }
 
                     }
@@ -285,7 +288,7 @@ public class DataBaseController {
 
                     }
                     else {
-                        waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms);
+                        waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,this);
                     }
                 }
                 else

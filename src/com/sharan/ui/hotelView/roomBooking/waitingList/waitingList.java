@@ -26,14 +26,16 @@ public class waitingList extends JFrame {
     int noOfSuitRooms;
     String bookedDate;
     String userName;
+    DataBaseController dataBaseController;
 
-    public waitingList(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms) {
+    public waitingList(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,DataBaseController dataBaseController) {
         this.uniqueId = uniqueId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.noOfStandardRooms = noOfStandardRooms;
         this.noOfDeluxeRooms = noOfDeluxeRooms;
         this.noOfSuitRooms = noOfSuitRooms;
+        this.dataBaseController = dataBaseController;
         TextFileController textFileController=new TextFileController();
         userName=textFileController.readFile();
         Date c =  Calendar.getInstance().getTime();
@@ -47,7 +49,7 @@ public class waitingList extends JFrame {
     }
 
     private void button1ActionPerformed(ActionEvent e) {
-        DataBaseController dataBaseController = new DataBaseController();
+
         dataBaseController.initialiseDatabase();
         dataBaseController.addToWaitList(userName,uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,bookedDate);
         dataBaseController.closeDatabaseConnection();
