@@ -62,12 +62,12 @@ public class RoomBooking {
        standard = new SpinnerNumberModel(0,0,Integer.parseInt(maxnoofStandardRooms),1);
          deluxe = new SpinnerNumberModel(0,0,Integer.parseInt(maxnoofDeluxeRooms),1);
         suite = new SpinnerNumberModel(0,0,Integer.parseInt(maxnoOfSuitRooms),1);
+
+
+        initComponents();
         suiteField.setModel(suite);
         standardField.setModel(standard);
         deluxeField.setModel(deluxe);
-
-        initComponents();
-
         hotelTitle.setText(hotelName);
         standardPicture.setIcon(new ImageIcon(getClass().getResource(standardImagePath)));
         deluxePicture.setIcon(new ImageIcon(getClass().getResource(deluxeImagePath)));

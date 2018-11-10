@@ -158,7 +158,7 @@ public class DisplaySelectedHotelsMultipleView {
             priceSuite.get(i).setText("Rs." + elements.getSuiteRoomPrice());
 
             standardRoomNumber.get(i).setText(String.valueOf(elements.getStandardRoomCapacity()));
-            standardRoomNumber.get(i).setText(String.valueOf(elements.getDeluxeRoomCapacity()));
+            deluxeRoomNumber.get(i).setText(String.valueOf(elements.getDeluxeRoomCapacity()));
             suiteRoomNumber.get(i).setText(String.valueOf(elements.getSuiteRoomCapacity()));
 
             hotelRating.get(i).setIcon(new ImageIcon(getClass().getResource(rating)));
@@ -935,7 +935,7 @@ public class DisplaySelectedHotelsMultipleView {
                                                                                 .addGroup(hotelPanelLayout.createParallelGroup()
                                                                                         .addComponent(priceDeluxe.get(i))
                                                                                         .addComponent(priceStandard.get(i))
-                                                                                        .addComponent(priceSuite.get(i), GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+                                                                                        .addComponent(priceSuite.get(i)))
                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                 .addGroup(hotelPanelLayout.createParallelGroup()
                                                                                         .addComponent(standardRoomNumber.get(i))

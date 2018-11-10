@@ -4,6 +4,7 @@
 
 package com.sharan.ui.home.homePageAfterLogin;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
@@ -284,7 +285,7 @@ public class HomePageAfterLogin {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - SAI SHARAN
+        // Generated using JFormDesigner Evaluation license - Ajith
         homePageAfterLogin = new JFrame();
         applicationName = new JLabel();
         menuBar1 = new JMenuBar();
@@ -496,7 +497,7 @@ public class HomePageAfterLogin {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - SAI SHARAN
+    // Generated using JFormDesigner Evaluation license - Ajith
     private JFrame homePageAfterLogin;
     private JLabel applicationName;
     private JMenuBar menuBar1;

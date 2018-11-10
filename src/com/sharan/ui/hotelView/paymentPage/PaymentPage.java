@@ -61,6 +61,7 @@ public class PaymentPage {
 
         if(noOfStandardRooms!=0) {
             totalPrice+=noOfStandardRooms*(Integer.parseInt(list.get(0)));
+            System.out.println(list.get(0));
         }
 
         if(noOfDeluxeRooms!=0) {

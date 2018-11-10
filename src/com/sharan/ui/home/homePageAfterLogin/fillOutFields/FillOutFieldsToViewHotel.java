@@ -6,6 +6,8 @@ package com.sharan.ui.home.homePageAfterLogin.fillOutFields;
 
 import com.sharan.DataBaseController;
 import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
+import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
+import com.sharan.ui.hotelView.roomBooking.roomBookingTwo.RoomBookingTwo;
 import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
@@ -57,43 +59,25 @@ public class FillOutFieldsToViewHotel {
 
     private String getDate(JXDatePicker checkField) {
 
+        String unparsedDate=checkField.getDate().toString();
 
-        java.util.Date unparsedDate=checkField.getDate();
+        String date=unparsedDate.substring(4,7);
+        String month=unparsedDate.substring(8,10);
+        String year=unparsedDate.substring(24,28);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = df.format(unparsedDate);
+        StringBuilder sb=new StringBuilder();
+        sb.append(date);
+        sb.append("/");
+        sb.append(month);
+        sb.append("/");
+        sb.append(year);
 
-        return formattedDate;
+        return sb.toString();
     }
 
     private void hotelViewActionPerformed(ActionEvent e) {
         checkInDate=getDate(checkInField);
         checkOutDate=getDate(checkOutField);
-//
-//        list=new ArrayList<>();
-//        list.add(userName);
-//        list.add(hotelName);
-//        list.add(state);
-//        list.add(city);
-//        list.add(checkInDate);
-//        list.add(checkOutDate);
-////        if((!checkInDate.isEmpty()) && (!checkOutDate.isEmpty())) {
-////            String d1[]=checkInDate.split("/");
-////            String d2[]=checkOutDate.split("/");
-////
-////            int date1=Integer.parseInt(d1[0]);
-////            int date2=Integer.parseInt(d2[0]);
-////
-////            int month1=Integer.parseInt(d1[1]);
-////            int month2=Integer.parseInt(d2[1]);
-////
-////            int year1=Integer.parseInt(d1[2]);
-////            int year2=Integer.parseInt(d2[2]);
-////
-////            if ((year1==year2) && ()
-////        }
-//
-
         java.util.Date current=null;
         java.util.Date checkin=null;
         java.util.Date checkout=null;
@@ -140,29 +124,36 @@ public class FillOutFieldsToViewHotel {
         else if(diffInDaysForCheckIn>90||diffInDaysForCheckOut>90)
         {
             JOptionPane.showMessageDialog(null,"Sorry Bookings are not yet Opened!!!");
-        }else {
-            dataBaseController.initialiseDatabase();
-            list=dataBaseController.parseHotel(uniqueId);
+        }
+        else {
+            ArrayList<String> list = new ArrayList<>();
+            ArrayList<String> wholeData = new ArrayList<>();
+            wholeData = dataBaseController.getWholeData(uniqueId);
+            list.add(hotelName);
+            list.add(wholeData.get(3));
+            list.add(wholeData.get(6));
+            list.add(wholeData.get(9));
+            list.add(uniqueId);
             list.add(checkInDate);
             list.add(checkOutDate);
+            list.add(wholeData.get(4));
+            list.add(wholeData.get(7));
+            list.add(wholeData.get(10));
             list.add(userName);
-            list.add(city);
-            list.add(state);
-            fillTheseToContinue.dispose();
-            checkInCheckOutCheck=1;
-            toBeClicked.doClick();
-
-
-
-
-
-            HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
+            dataBaseController.initialiseDatabase();
+            ArrayList<String> imageList=dataBaseController.getIndividualHotelImages(uniqueId);
             dataBaseController.closeDatabaseConnection();
 
-        }
+            if((imageList.get(0).equalsIgnoreCase("NA")) || (imageList.get(1).equalsIgnoreCase("NA")) || (imageList.get(2).equalsIgnoreCase("NA"))) {
+                RoomBookingTwo roomBookingTwo =new RoomBookingTwo(list,dataBaseController);
 
+            }else  {
+                RoomBooking roomBooking = new RoomBooking(list,dataBaseController);
+            }    }
 
     }
+
+
 
 
     private void initComponents() {
