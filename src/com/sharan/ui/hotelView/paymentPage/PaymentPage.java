@@ -110,6 +110,7 @@ public class PaymentPage {
                     }
                     try {
                         statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + availableList.get(3) + "' WHERE UniqueId='" + uniqueId + "'");
+                        dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address,uniqueId);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
@@ -118,7 +119,7 @@ public class PaymentPage {
                     try {
                         statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+availableList.get(0)+"','"+
                                 availableList.get(1)+"','"+availableList.get(2)+"','"+availableList.get(3)+"')");
-                        dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address);
+                        dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address,uniqueId);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
@@ -167,6 +168,7 @@ public class PaymentPage {
                     }
                     try {
                         statement.execute("UPDATE " + availableTableName + " SET LatestBooking '" + availableList.get(3) + "' WHERE UniqueId='" + uniqueId + "'");
+                        dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address,uniqueId);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
@@ -175,6 +177,7 @@ public class PaymentPage {
                     try {
                         statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+availableList.get(0)+"','"+
                                 availableList.get(1)+"','"+availableList.get(2)+"','"+availableList.get(3)+"')");
+                        dataBaseController.addToMyBookings(userName,hotelName,"Confirmed",checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfsuiteRooms,totalPricePaid,address,uniqueId);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }

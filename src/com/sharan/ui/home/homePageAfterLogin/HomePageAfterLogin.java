@@ -7,7 +7,7 @@ package com.sharan.ui.home.homePageAfterLogin;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
-import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
+import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.DisplaySelectedHotelsMultipleView;
 import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
 import com.sharan.ui.myAccount.MyAccount;
 import org.jdesktop.swingx.JXDatePicker;
@@ -503,7 +503,7 @@ public class HomePageAfterLogin {
             dataBaseController.closeDatabaseConnection();
 
             homePageAfterLogin.dispose();
-            DisplaySelectedHotels displaySelectedHotels = new DisplaySelectedHotels(list, dataBaseController);
+            DisplaySelectedHotelsMultipleView displaySelectedHotels = new DisplaySelectedHotelsMultipleView(list, dataBaseController);
         }
 
     }

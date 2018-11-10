@@ -14,6 +14,7 @@ private String deluxeRooms;
 private String suiteRooms;
 private String bookingDate;
 private String totalPricePaid;
+private String uniqueId;
 
 public ColumnsInMyBooking(ArrayList<String> list) {
     this.userName = list.get(0);
@@ -27,8 +28,12 @@ public ColumnsInMyBooking(ArrayList<String> list) {
     this.suiteRooms = list.get(8);
     this.bookingDate = list.get(9);
     this.totalPricePaid = list.get(10);
+    this.uniqueId = list.get(11);
     }
-
+    public String getUniqueId()
+    {
+        return uniqueId;
+    }
     public String getUserName() {
         return userName;
     }

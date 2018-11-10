@@ -1,7 +1,7 @@
 package com.sharan;
 
 
-import com.sharan.ui.myAccount.MyAccount;
+import com.sharan.ui.home.homePage.HomePage;
 
 public class Main {
 
@@ -10,14 +10,15 @@ public class Main {
     public static int starUpdate;
     public static int checkInCheckOutCheck;
     public static int viewToindividual;
+    public static int loginToContinue;
     public static void main(String[] args) {
 
         DataBaseController dataBaseController=new DataBaseController();
         dataBaseController.initialiseDatabase();
-//        HomePage homePage=new HomePage(dataBaseController);
+        HomePage homePage=new HomePage(dataBaseController);
 
         
-        MyAccount myAccount=new MyAccount("hello",dataBaseController);
+//        MyAccount myAccount=new MyAccount("hello",dataBaseController);
 
 //        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin();
 

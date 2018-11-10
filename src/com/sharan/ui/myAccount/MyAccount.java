@@ -4,7 +4,6 @@
 
 package com.sharan.ui.myAccount;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
@@ -43,6 +42,9 @@ public class MyAccount {
     private String totalCost;
     private String address;
     private String bookingDate;
+    private String uniqueId;
+   private ArrayList<ColumnsInMyBooking> tableList;
+   private ArrayList<ColumnsInWaitingList> waitList;
 
     public MyAccount(String userName,DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
@@ -52,8 +54,9 @@ public class MyAccount {
         initComponents();
 
         dataBaseController.initialiseDatabase();
-        ArrayList<ColumnsInMyBooking> tableList=dataBaseController.getMyAccountTableRows(userName);
-        ArrayList<ColumnsInWaitingList> waitList=dataBaseController.getWaitingListTableRows(userName);
+        tableList=dataBaseController.getMyAccountTableRows(userName);
+
+        waitList=dataBaseController.getWaitingListTableRows(userName);
         dataBaseController.closeDatabaseConnection();
 
         MyBookingTableModel myBookingTableModel =new MyBookingTableModel(tableList);
@@ -85,6 +88,9 @@ public class MyAccount {
         listSelectionModel.addListSelectionListener(this::cellSelectedInTable);
 
         waitingListTable.setCellSelectionEnabled(true);
+        ListSelectionModel listSelectionModelWaitList=waitingListTable.getSelectionModel();
+        listSelectionModelWaitList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listSelectionModel.addListSelectionListener(this::cellSelectedTableWaitList);
 
 
     }
@@ -97,10 +103,23 @@ public class MyAccount {
 
     }
 
+    private void cellSelectedTableWaitList(ListSelectionEvent e) {
+        int row=waitingListTable.getSelectedRow();
+        int column=waitingListTable.getSelectedColumn();
+        if (column==8)
+        {
+            dataBaseController.initialiseDatabase();
+            dataBaseController.cancelBooking(waitList.get(row).getBookingId(),waitList.get(row).getUniqueId(),waitList.get(row).getCheckIn(),waitList.get(row).getCheckOut(),
+                    Integer.parseInt(waitList.get(row).getStandardRooms()),Integer.parseInt(waitList.get(row).getDeluxeRooms()),
+                    Integer.parseInt(waitList.get(row).getSuiteRooms()),waitList.get(row).getBookingDate());
+            dataBaseController.closeDatabaseConnection();
+        }
+    }
+
     private void cellSelectedInTable(ListSelectionEvent e) {
         int row=activeBookings.getSelectedRow();
         int column=activeBookings.getSelectedColumn();
-        if(column==10) {
+        if(column==11) {
 
             selectedBookingId=(String) activeBookings.getValueAt(row,1);
             if(!selectedBookingId.isEmpty()) {
@@ -112,9 +131,15 @@ public class MyAccount {
 
         }
 
-        if(column==9) {
+        if(column==10) {
 
             //Write Cancel Booking Code Here***************
+
+            dataBaseController.initialiseDatabase();
+            dataBaseController.cancelBooking(tableList.get(row).getBookingId(),tableList.get(row).getUniqueId(),tableList.get(row).getCheckIn(),tableList.get(row).getCheckOut(),
+                    Integer.parseInt(tableList.get(row).getStandardRooms()),Integer.parseInt(tableList.get(row).getDeluxeRooms()),
+                    Integer.parseInt(tableList.get(row).getSuiteRooms()),tableList.get(row).getBookingDate());
+            dataBaseController.closeDatabaseConnection();
         }
 
     }

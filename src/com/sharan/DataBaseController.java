@@ -52,8 +52,8 @@ public class DataBaseController {
 
     private String myBookingsTableName="myBookingsTable";
     private String myBookingsTableColumns="(UserName TEXT NOT NULL PRIMARY KEY,HotelName TEXT, BookingId TEXT,BookingStatus TEXT,CheckIn TEXT,CheckOut TEXT," +
-            "StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT,TotalPricePaid TEXT,Address TEXT)";
-    private String myBookingParametres = " (UserName,HotelName,BookingId,BookingStatus,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate,TotalPricePaid,Address)";
+            "StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT,TotalPricePaid TEXT,Address TEXT,UniqueId TEXT)";
+    private String myBookingParametres = " (UserName,HotelName,BookingId,BookingStatus,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate,TotalPricePaid,Address,UniqueId)";
 
     private Connection conn=null;
     private Statement statement=null;
@@ -369,7 +369,7 @@ public class DataBaseController {
             e.printStackTrace();
         }
     }
-    public void cancelBooking(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,String bookingDate) {
+    public void cancelBooking(String bookingId,String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,String bookingDate) {
         try {
             if (!conn.isClosed()) {
                 java.util.Date current=null;
@@ -407,6 +407,7 @@ public class DataBaseController {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                statement.executeQuery("DELETE FROM "+myBookingsTableName+" WHERE BookingId='"+bookingId +"'");
 
 
                 ResultSet rs = statement.executeQuery("SELECT * FROM " + availableTableName);
@@ -561,7 +562,7 @@ public class DataBaseController {
         bookingId = bookingId.append(n);
         return bookingId.toString();
     }
-    public void addToMyBookings(String userName,String hotelName,String status,String checkIn,String checkOut,int standardRooms,int deluxeRooms,int suiteRooms,String totalPrice,String address)
+    public void addToMyBookings(String userName,String hotelName,String status,String checkIn,String checkOut,int standardRooms,int deluxeRooms,int suiteRooms,String totalPrice,String address,String uniqueId)
     {
        String bookingId = generateBookingId(userName);
         java.util.Date c = Calendar.getInstance().getTime();
@@ -569,7 +570,7 @@ public class DataBaseController {
         String bookedDate = df.format(c);
         try {
             statement.execute("INSERT INTO "+myBookingsTableName+myBookingParametres+"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
-                    ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"')");
+                    ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"','"+uniqueId+"')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -748,6 +749,7 @@ public class DataBaseController {
                 rowList.add(resultSet.getString("SuiteRooms"));
                 rowList.add(resultSet.getString("BookingDate"));
                 rowList.add(resultSet.getString("TotalPricePaid"));
+                rowList.add(resultSet.getString("UniqueId"));
 
                 ColumnsInMyBooking columnsInMyBooking=new ColumnsInMyBooking(rowList);
                 list.add(columnsInMyBooking);
@@ -785,6 +787,7 @@ public class DataBaseController {
                 rowList.add(resultSet.getString("DeluxeRooms"));
                 rowList.add(resultSet.getString("SuiteRooms"));
                 rowList.add(resultSet.getString("BookingDate"));
+                rowList.add(resultSet.getString("UniqueId"));
 
                 ColumnsInWaitingList columnsInWaitingList=new ColumnsInWaitingList(rowList);
                 list.add(columnsInWaitingList);
@@ -970,6 +973,29 @@ public class DataBaseController {
             System.out.println(e.getMessage());
             System.out.println(e.getCause());
         }
+    }
+    public ArrayList<String> getWholeData(String uniqueId)
+    {
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM"+hotelsTableNAME+" WHERE UniqueId='"+uniqueId+"'");
+            do {
+                list.add(resultSet.getString("HotelName"));
+                list.add(resultSet.getString("Address"));
+                list.add(resultSet.getString("Standard"));
+                list.add(resultSet.getString("StandardPrice"));
+                list.add(String.valueOf(resultSet.getInt("StandardCapacity")));
+                list.add(resultSet.getString("Deluxe"));
+                list.add(resultSet.getString("DeluxePrice"));
+                list.add(String.valueOf(resultSet.getInt("DeluxeCapacity")));
+                list.add(resultSet.getString("Suite"));
+                list.add(resultSet.getString("SuitePrice"));
+                list.add(String.valueOf(resultSet.getInt("SuiteCapacity")));
+            }while (resultSet.next());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

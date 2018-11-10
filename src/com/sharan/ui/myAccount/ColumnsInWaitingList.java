@@ -12,6 +12,7 @@ public class ColumnsInWaitingList {
     private String deluxeRooms;
     private String suiteRooms;
     private String bookingDate;
+    private String uniqueId;
 
     public ColumnsInWaitingList(ArrayList<String> list) {
         this.userName = list.get(0);
@@ -23,8 +24,12 @@ public class ColumnsInWaitingList {
         this.deluxeRooms = list.get(6);
         this.suiteRooms = list.get(7);
         this.bookingDate = list.get(8);
+        this.uniqueId = list.get(9);
     }
-
+    public String getUniqueId()
+    {
+        return uniqueId;
+    }
     public String getUserName() {
         return userName;
     }

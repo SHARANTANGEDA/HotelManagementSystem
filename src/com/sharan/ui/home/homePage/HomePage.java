@@ -8,8 +8,8 @@ import com.sharan.DataBaseController;
 import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginPopUp.Login;
-import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
 import com.sharan.ui.home.signUpPopUp.SignUp;
+import com.sharan.ui.hotelView.hotelHome.HotelHomeBeforeLogin;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
@@ -88,7 +88,7 @@ public class HomePage {
             dataBaseController.initialiseDatabase();
             String uniqueId=dataBaseController.setUniversalSearchData(temp);
             dataBaseController.closeDatabaseConnection();
-            LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+            HotelHomeBeforeLogin hotelHomeBeforeLogin=new HotelHomeBeforeLogin(uniqueId,dataBaseController);
         }
         else {
             JOptionPane.showMessageDialog(null,"Please Select a Hotel First");

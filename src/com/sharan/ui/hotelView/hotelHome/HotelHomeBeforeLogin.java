@@ -30,9 +30,11 @@ public class HotelHomeBeforeLogin extends JFrame {
     DataBaseController dataBaseController;
     private String universalHotelSearch;
     private String userName;
+    private String uniqueId;
 
-    public HotelHomeBeforeLogin(DataBaseController dataBaseController) {
+    public HotelHomeBeforeLogin(String uniqueId,DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
+        this.uniqueId=uniqueId;
         initComponents();
         addToUniversalHotelSearch();
         AutoCompleteDecorator.decorate(Hotels);
@@ -59,7 +61,7 @@ public class HotelHomeBeforeLogin extends JFrame {
             dataBaseController.initialiseDatabase();
             String uniqueId=dataBaseController.setUniversalSearchData(temp);
             dataBaseController.closeDatabaseConnection();
-            LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+            HotelHomeBeforeLogin hotelHomeBeforeLogin=new HotelHomeBeforeLogin(uniqueId,dataBaseController);
         }
         else {
             JOptionPane.showMessageDialog(null,"Please Select a Hotel First");
@@ -75,10 +77,11 @@ public class HotelHomeBeforeLogin extends JFrame {
         }
     }
     private void rateYourExperienceActionPerformed(ActionEvent e) {
-
+        LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
     }
 
     private void checkAvailabilityActionPerformed(ActionEvent e) {
+        LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
     }
 
     private void loginActionPerformed(ActionEvent e) {
