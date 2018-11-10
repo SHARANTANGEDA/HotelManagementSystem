@@ -34,8 +34,8 @@ public class RoomBookingTwo {
     private String roomTypeImage1;
     private String roomTypeImage2;
 
-    SpinnerModel roomType1;
-    SpinnerModel roomType2;
+    private SpinnerModel roomType1;
+    private SpinnerModel roomType2;
 
     public RoomBookingTwo(ArrayList<String> list, DataBaseController dataBaseController) {
 
@@ -52,12 +52,9 @@ public class RoomBookingTwo {
         this.userName=list.get(10);
         this.dataBaseController=dataBaseController;
 
-
         dataBaseController.initialiseDatabase();
         ArrayList<String> imagesOfRoomType=dataBaseController.getIndividualHotelImages(uniqueId);
         dataBaseController.closeDatabaseConnection();
-        enterField2 = new JSpinner(roomType2);
-        enterField1 = new JSpinner(roomType1);
 
 
         initComponents();
@@ -110,6 +107,8 @@ public class RoomBookingTwo {
             picture1.setIcon(new ImageIcon(getClass().getResource(roomTypeImage1)));
             picture2.setIcon(new ImageIcon(getClass().getResource(roomTypeImage2)));
         }
+        enterField2.setModel(roomType2);
+        enterField1.setModel(roomType1);
 
         roomBookingTwo.setVisible(true);
     }
@@ -139,11 +138,13 @@ public class RoomBookingTwo {
         dataBaseController.initialiseDatabase();
         dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,reqnoofStandardRooms,reqnoofDeluxeRooms,reqnoOfSuiteRooms,Integer.parseInt(noofStandardRooms),Integer.parseInt(noofStandardRooms),Integer.parseInt(noOfSuiteRooms));
         dataBaseController.closeDatabaseConnection();
+
+        roomBookingTwo.dispose();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Ajith
+        // Generated using JFormDesigner Evaluation license - SAI SHARAN
         roomBookingTwo = new JDialog();
         hotelTitle = new JLabel();
         bookNow = new JButton();
@@ -155,7 +156,6 @@ public class RoomBookingTwo {
         roomType1Label = new JLabel();
         picture1 = new JLabel();
         picture2 = new JLabel();
-        button1 = new JButton();
 
         //======== roomBookingTwo ========
         {
@@ -215,12 +215,6 @@ public class RoomBookingTwo {
                     picture2.setHorizontalAlignment(SwingConstants.CENTER);
                     picture2.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePic.png")));
 
-                    //---- button1 ----
-                    button1.setText("Book Now");
-                    button1.setBackground(Color.red);
-                    button1.setForeground(Color.white);
-                    button1.addActionListener(e -> bookNowActionPerformed(e));
-
                     GroupLayout panel1Layout = new GroupLayout(panel1);
                     panel1.setLayout(panel1Layout);
                     panel1Layout.setHorizontalGroup(
@@ -228,11 +222,6 @@ public class RoomBookingTwo {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(panel1Layout.createParallelGroup()
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(picture2, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(161, 161, 161)
-                                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 600, Short.MAX_VALUE))
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(picture1, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(panel1Layout.createParallelGroup()
@@ -248,7 +237,10 @@ public class RoomBookingTwo {
                                                     .addGroup(panel1Layout.createSequentialGroup()
                                                         .addComponent(roomType1Label, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
-                                                        .addComponent(enterField1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))))))
+                                                        .addComponent(enterField1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(picture2, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(150, 150, 150))
                     );
                     panel1Layout.setVerticalGroup(
@@ -275,9 +267,7 @@ public class RoomBookingTwo {
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(roomType2Label, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(108, 108, 108)
-                                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(249, 249, 249))))
+                                        .addGap(409, 409, 409))))
                     );
                 }
                 scrollPane1.setViewportView(panel1);
@@ -315,7 +305,7 @@ public class RoomBookingTwo {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Ajith
+    // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JDialog roomBookingTwo;
     private JLabel hotelTitle;
     private JButton bookNow;
@@ -327,6 +317,5 @@ public class RoomBookingTwo {
     private JLabel roomType1Label;
     private JLabel picture1;
     private JLabel picture2;
-    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

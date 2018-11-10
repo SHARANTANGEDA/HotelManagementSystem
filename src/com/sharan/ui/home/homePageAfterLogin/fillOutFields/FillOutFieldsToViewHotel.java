@@ -57,20 +57,13 @@ public class FillOutFieldsToViewHotel {
 
     private String getDate(JXDatePicker checkField) {
 
-        String unparsedDate=checkField.getDate().toString();
 
-        String date=unparsedDate.substring(4,7);
-        String month=unparsedDate.substring(8,10);
-        String year=unparsedDate.substring(24,28);
+        java.util.Date unparsedDate=checkField.getDate();
 
-        StringBuilder sb=new StringBuilder();
-        sb.append(date);
-        sb.append("/");
-        sb.append(month);
-        sb.append("/");
-        sb.append(year);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(unparsedDate);
 
-        return sb.toString();
+        return formattedDate;
     }
 
     private void hotelViewActionPerformed(ActionEvent e) {

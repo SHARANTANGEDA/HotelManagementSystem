@@ -62,9 +62,9 @@ public class RoomBooking {
        standard = new SpinnerNumberModel(0,0,Integer.parseInt(maxnoofStandardRooms),1);
          deluxe = new SpinnerNumberModel(0,0,Integer.parseInt(maxnoofDeluxeRooms),1);
         suite = new SpinnerNumberModel(0,0,Integer.parseInt(maxnoOfSuitRooms),1);
-        suiteFieid = new JSpinner(suite);
-        standardField = new JSpinner(standard);
-        deluxeField = new JSpinner(deluxe);
+        suiteField.setModel(suite);
+        standardField.setModel(standard);
+        deluxeField.setModel(deluxe);
 
         initComponents();
 
@@ -80,7 +80,7 @@ public class RoomBooking {
     private void bookNowActionPerformed(ActionEvent e) {
         int noofStandardRooms = (Integer)standardField.getValue();
         int noofDeluxeRooms = (Integer)deluxeField.getValue();
-        int noOfSuiteRooms = (Integer) suiteFieid.getValue();
+        int noOfSuiteRooms = (Integer) suiteField.getValue();
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.initialiseDatabase();
         dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,noofStandardRooms,noofDeluxeRooms,noOfSuiteRooms,Integer.parseInt(maxnoofStandardRooms),
@@ -97,7 +97,7 @@ public class RoomBooking {
         hotelTitle = new JLabel();
         scrollPane1 = new JScrollPane();
         panel1 = new JPanel();
-        suiteFieid = new JSpinner();
+        suiteField = new JSpinner();
         standardField = new JSpinner();
         deluxeField = new JSpinner();
         label3 = new JLabel();
@@ -134,8 +134,8 @@ public class RoomBooking {
                             java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 
-                    //---- suiteFieid ----
-                    suiteFieid.setFont(new Font("Arial", Font.BOLD, 24));
+                    //---- suiteField ----
+                    suiteField.setFont(new Font("Arial", Font.BOLD, 24));
 
                     //---- standardField ----
                     standardField.setFont(new Font("Arial", Font.BOLD, 24));
@@ -192,7 +192,7 @@ public class RoomBooking {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(label4, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(suiteFieid, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(suiteField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
                                             .addGroup(panel1Layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
@@ -241,7 +241,7 @@ public class RoomBooking {
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addGap(159, 159, 159)
                                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(suiteFieid, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(suiteField, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(label4, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                                 .addComponent(bookNow, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
@@ -281,7 +281,7 @@ public class RoomBooking {
     private JLabel hotelTitle;
     private JScrollPane scrollPane1;
     private JPanel panel1;
-    private JSpinner suiteFieid;
+    private JSpinner suiteField;
     private JSpinner standardField;
     private JSpinner deluxeField;
     private JLabel label3;

@@ -978,7 +978,7 @@ public class DataBaseController {
     {
         ArrayList<String> list = new ArrayList<>();
         try {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM"+hotelsTableNAME+" WHERE UniqueId='"+uniqueId+"'");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId='"+uniqueId+"'");
             do {
                 list.add(resultSet.getString("HotelName"));
                 list.add(resultSet.getString("Address"));
