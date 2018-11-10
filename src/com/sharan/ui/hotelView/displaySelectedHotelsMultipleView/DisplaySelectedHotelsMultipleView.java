@@ -432,59 +432,59 @@ public class DisplaySelectedHotelsMultipleView {
         HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
     }
 
-    private void viewHotel2ActionPerformed(ActionEvent e) {
-        list = new ArrayList<>();
-        list.add(displayList.get(1).getUniqueId());
-        list.add(displayList.get(1).getHotelName());
-        list.add(displayList.get(1).getHotelDescription());
-        list.add(displayList.get(1).getAddress());
-        list.add(displayList.get(1).getImagePath());
-        list.add(String.valueOf(displayList.get(1).getNumberOfVotes()));
-        list.add(checkIN);
-        list.add(checkOUT);
-        list.add(userName);
-        list.add(city);
-        list.add(state);
-        viewToindividual = 1;
-        displayTable.dispose();
-        HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
-    }
-
-    private void viewHotel3ActionPerformed(ActionEvent e) {
-        list = new ArrayList<>();
-        list.add(displayList.get(2).getUniqueId());
-        list.add(displayList.get(2).getHotelName());
-        list.add(displayList.get(2).getHotelDescription());
-        list.add(displayList.get(2).getAddress());
-        list.add(displayList.get(2).getImagePath());
-        list.add(String.valueOf(displayList.get(2).getNumberOfVotes()));
-        list.add(checkIN);
-        list.add(checkOUT);
-        list.add(userName);
-        list.add(city);
-        list.add(state);
-        viewToindividual = 1;
-        displayTable.dispose();
-        HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
-    }
-
-    private void viewHotel4ActionPerformed(ActionEvent e) {
-        list = new ArrayList<>();
-        list.add(displayList.get(3).getUniqueId());
-        list.add(displayList.get(3).getHotelName());
-        list.add(displayList.get(3).getHotelDescription());
-        list.add(displayList.get(3).getAddress());
-        list.add(displayList.get(3).getImagePath());
-        list.add(String.valueOf(displayList.get(3).getNumberOfVotes()));
-        list.add(checkIN);
-        list.add(checkOUT);
-        list.add(userName);
-        list.add(city);
-        list.add(state);
-        viewToindividual = 1;
-        displayTable.dispose();
-        HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
-    }
+//    private void viewHotel2ActionPerformed(ActionEvent e) {
+//        list = new ArrayList<>();
+//        list.add(displayList.get(1).getUniqueId());
+//        list.add(displayList.get(1).getHotelName());
+//        list.add(displayList.get(1).getHotelDescription());
+//        list.add(displayList.get(1).getAddress());
+//        list.add(displayList.get(1).getImagePath());
+//        list.add(String.valueOf(displayList.get(1).getNumberOfVotes()));
+//        list.add(checkIN);
+//        list.add(checkOUT);
+//        list.add(userName);
+//        list.add(city);
+//        list.add(state);
+//        viewToindividual = 1;
+//        displayTable.dispose();
+//        HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
+//    }
+//
+//    private void viewHotel3ActionPerformed(ActionEvent e) {
+//        list = new ArrayList<>();
+//        list.add(displayList.get(2).getUniqueId());
+//        list.add(displayList.get(2).getHotelName());
+//        list.add(displayList.get(2).getHotelDescription());
+//        list.add(displayList.get(2).getAddress());
+//        list.add(displayList.get(2).getImagePath());
+//        list.add(String.valueOf(displayList.get(2).getNumberOfVotes()));
+//        list.add(checkIN);
+//        list.add(checkOUT);
+//        list.add(userName);
+//        list.add(city);
+//        list.add(state);
+//        viewToindividual = 1;
+//        displayTable.dispose();
+//        HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
+//    }
+//
+//    private void viewHotel4ActionPerformed(ActionEvent e) {
+//        list = new ArrayList<>();
+//        list.add(displayList.get(3).getUniqueId());
+//        list.add(displayList.get(3).getHotelName());
+//        list.add(displayList.get(3).getHotelDescription());
+//        list.add(displayList.get(3).getAddress());
+//        list.add(displayList.get(3).getImagePath());
+//        list.add(String.valueOf(displayList.get(3).getNumberOfVotes()));
+//        list.add(checkIN);
+//        list.add(checkOUT);
+//        list.add(userName);
+//        list.add(city);
+//        list.add(state);
+//        viewToindividual = 1;
+//        displayTable.dispose();
+//        HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
+//    }
 
 
     private void bookNowActionPerformed(ActionEvent e,int i) {
@@ -516,86 +516,86 @@ public class DisplaySelectedHotelsMultipleView {
 
     }
 
-    private void bookNow2ActionPerformed(ActionEvent e) {
-        ElementsInHotelView elements = displayList.get(1);
-        ArrayList<String> list = new ArrayList<>();
-        list.add(elements.getHotelName());
-        list.add(elements.getStandardRoomPrice());
-        list.add(elements.getDeluxeRoomPrice());
-        list.add(elements.getSuiteRoomPrice());
-        list.add(elements.getUniqueId());
-        list.add(checkIN);
-        list.add(checkOUT);
-        list.add(String.valueOf(elements.getStandardRoomCapacity()));
-        list.add(String.valueOf(elements.getDeluxeRoomCapacity()));
-        list.add(String.valueOf(elements.getSuiteRoomCapacity()));
-        list.add(userName);
-
-        dataBaseController.initialiseDatabase();
-        ArrayList<String> imageList = dataBaseController.getIndividualHotelImages(elements.getUniqueId());
-        dataBaseController.closeDatabaseConnection();
-
-        if ((imageList.get(0).equalsIgnoreCase("NA")) || (imageList.get(1).equalsIgnoreCase("NA")) || (imageList.get(2).equalsIgnoreCase("NA"))) {
-            RoomBookingTwo roomBookingTwo = new RoomBookingTwo(list, dataBaseController);
-
-        } else {
-            RoomBooking roomBooking = new RoomBooking(list, dataBaseController);
-        }
-    }
-
-    private void bookNow3ActionPerformed(ActionEvent e) {
-        ElementsInHotelView elements = displayList.get(2);
-        ArrayList<String> list = new ArrayList<>();
-        list.add(elements.getHotelName());
-        list.add(elements.getStandardRoomPrice());
-        list.add(elements.getDeluxeRoomPrice());
-        list.add(elements.getSuiteRoomPrice());
-        list.add(elements.getUniqueId());
-        list.add(checkIN);
-        list.add(checkOUT);
-        list.add(String.valueOf(elements.getStandardRoomCapacity()));
-        list.add(String.valueOf(elements.getDeluxeRoomCapacity()));
-        list.add(String.valueOf(elements.getSuiteRoomCapacity()));
-        list.add(userName);
-
-        dataBaseController.initialiseDatabase();
-        ArrayList<String> imageList = dataBaseController.getIndividualHotelImages(elements.getUniqueId());
-        dataBaseController.closeDatabaseConnection();
-
-        if ((imageList.get(0).equalsIgnoreCase("NA")) || (imageList.get(1).equalsIgnoreCase("NA")) || (imageList.get(2).equalsIgnoreCase("NA"))) {
-            RoomBookingTwo roomBookingTwo = new RoomBookingTwo(list, dataBaseController);
-
-        } else {
-            RoomBooking roomBooking = new RoomBooking(list, dataBaseController);
-        }
-    }
-
-    private void bookNow4ActionPerformed(ActionEvent e) {
-        ElementsInHotelView elements = displayList.get(3);
-        ArrayList<String> list = new ArrayList<>();
-        list.add(elements.getHotelName());
-        list.add(elements.getStandardRoomPrice());
-        list.add(elements.getDeluxeRoomPrice());
-        list.add(elements.getSuiteRoomPrice());
-        list.add(elements.getUniqueId());
-        list.add(checkIN);
-        list.add(checkOUT);
-        list.add(String.valueOf(elements.getStandardRoomCapacity()));
-        list.add(String.valueOf(elements.getDeluxeRoomCapacity()));
-        list.add(String.valueOf(elements.getSuiteRoomCapacity()));
-        list.add(userName);
-
-        dataBaseController.initialiseDatabase();
-        ArrayList<String> imageList = dataBaseController.getIndividualHotelImages(elements.getUniqueId());
-        dataBaseController.closeDatabaseConnection();
-
-        if ((imageList.get(0).equalsIgnoreCase("NA")) || (imageList.get(1).equalsIgnoreCase("NA")) || (imageList.get(2).equalsIgnoreCase("NA"))) {
-            RoomBookingTwo roomBookingTwo = new RoomBookingTwo(list, dataBaseController);
-
-        } else {
-            RoomBooking roomBooking = new RoomBooking(list, dataBaseController);
-        }
-    }
+//    private void bookNow2ActionPerformed(ActionEvent e) {
+//        ElementsInHotelView elements = displayList.get(1);
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add(elements.getHotelName());
+//        list.add(elements.getStandardRoomPrice());
+//        list.add(elements.getDeluxeRoomPrice());
+//        list.add(elements.getSuiteRoomPrice());
+//        list.add(elements.getUniqueId());
+//        list.add(checkIN);
+//        list.add(checkOUT);
+//        list.add(String.valueOf(elements.getStandardRoomCapacity()));
+//        list.add(String.valueOf(elements.getDeluxeRoomCapacity()));
+//        list.add(String.valueOf(elements.getSuiteRoomCapacity()));
+//        list.add(userName);
+//
+//        dataBaseController.initialiseDatabase();
+//        ArrayList<String> imageList = dataBaseController.getIndividualHotelImages(elements.getUniqueId());
+//        dataBaseController.closeDatabaseConnection();
+//
+//        if ((imageList.get(0).equalsIgnoreCase("NA")) || (imageList.get(1).equalsIgnoreCase("NA")) || (imageList.get(2).equalsIgnoreCase("NA"))) {
+//            RoomBookingTwo roomBookingTwo = new RoomBookingTwo(list, dataBaseController);
+//
+//        } else {
+//            RoomBooking roomBooking = new RoomBooking(list, dataBaseController);
+//        }
+//    }
+//
+//    private void bookNow3ActionPerformed(ActionEvent e) {
+//        ElementsInHotelView elements = displayList.get(2);
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add(elements.getHotelName());
+//        list.add(elements.getStandardRoomPrice());
+//        list.add(elements.getDeluxeRoomPrice());
+//        list.add(elements.getSuiteRoomPrice());
+//        list.add(elements.getUniqueId());
+//        list.add(checkIN);
+//        list.add(checkOUT);
+//        list.add(String.valueOf(elements.getStandardRoomCapacity()));
+//        list.add(String.valueOf(elements.getDeluxeRoomCapacity()));
+//        list.add(String.valueOf(elements.getSuiteRoomCapacity()));
+//        list.add(userName);
+//
+//        dataBaseController.initialiseDatabase();
+//        ArrayList<String> imageList = dataBaseController.getIndividualHotelImages(elements.getUniqueId());
+//        dataBaseController.closeDatabaseConnection();
+//
+//        if ((imageList.get(0).equalsIgnoreCase("NA")) || (imageList.get(1).equalsIgnoreCase("NA")) || (imageList.get(2).equalsIgnoreCase("NA"))) {
+//            RoomBookingTwo roomBookingTwo = new RoomBookingTwo(list, dataBaseController);
+//
+//        } else {
+//            RoomBooking roomBooking = new RoomBooking(list, dataBaseController);
+//        }
+//    }
+//
+//    private void bookNow4ActionPerformed(ActionEvent e) {
+//        ElementsInHotelView elements = displayList.get(3);
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add(elements.getHotelName());
+//        list.add(elements.getStandardRoomPrice());
+//        list.add(elements.getDeluxeRoomPrice());
+//        list.add(elements.getSuiteRoomPrice());
+//        list.add(elements.getUniqueId());
+//        list.add(checkIN);
+//        list.add(checkOUT);
+//        list.add(String.valueOf(elements.getStandardRoomCapacity()));
+//        list.add(String.valueOf(elements.getDeluxeRoomCapacity()));
+//        list.add(String.valueOf(elements.getSuiteRoomCapacity()));
+//        list.add(userName);
+//
+//        dataBaseController.initialiseDatabase();
+//        ArrayList<String> imageList = dataBaseController.getIndividualHotelImages(elements.getUniqueId());
+//        dataBaseController.closeDatabaseConnection();
+//
+//        if ((imageList.get(0).equalsIgnoreCase("NA")) || (imageList.get(1).equalsIgnoreCase("NA")) || (imageList.get(2).equalsIgnoreCase("NA"))) {
+//            RoomBookingTwo roomBookingTwo = new RoomBookingTwo(list, dataBaseController);
+//
+//        } else {
+//            RoomBooking roomBooking = new RoomBooking(list, dataBaseController);
+//        }
+//    }
 
 
     private void initComponents() {
