@@ -96,7 +96,6 @@
     <index id="27" parent="8" name="sqlite_autoindex_userDatabase_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>UserName</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="28" parent="8">

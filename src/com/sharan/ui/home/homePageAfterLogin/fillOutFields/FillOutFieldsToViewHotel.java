@@ -11,8 +11,11 @@ import org.jdesktop.swingx.JXDatePicker;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import static com.sharan.Main.checkInCheckOutCheck;
 
@@ -98,23 +101,74 @@ public class FillOutFieldsToViewHotel {
 ////        }
 //
 
-        fillTheseToContinue.dispose();
+        java.util.Date current=null;
+        java.util.Date checkin=null;
+        java.util.Date checkout=null;
+
+        java.util.Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(c);
+
+
+        try {
+            current =  df.parse(formattedDate);
+        } catch (ParseException p) {
+
+            p.printStackTrace();
+        }
+        try {
+            checkin =  df.parse(checkInDate);
+        } catch (ParseException p) {
+            p.printStackTrace();
+        }
+        try {
+            checkout =  df.parse(checkOutDate);
+        } catch (ParseException p) {
+            p.printStackTrace();
+        }
+        long duration = checkin.getTime()-current.getTime();
+        long diffInDaysForCheckIn = TimeUnit.MILLISECONDS.toDays(duration);
+        long duration1 = checkout.getTime()-current.getTime();
+        long diffInDaysForCheckOut = TimeUnit.MILLISECONDS.toDays(duration1);
+        if(diffInDaysForCheckIn<=0)
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter Valid CheckIn Date");
+        }
+        else if(diffInDaysForCheckOut<=0)
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter Valid CheckOut Date");
+        }
+        else if(diffInDaysForCheckIn>=diffInDaysForCheckOut)
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter Valid CheckIn and CheckOut Dates");
+        }
+        else if(diffInDaysForCheckIn>90||diffInDaysForCheckOut>90)
+        {
+            JOptionPane.showMessageDialog(null,"Sorry Bookings are not yet Opened!!!");
+        }else {
+            dataBaseController.initialiseDatabase();
+            list=dataBaseController.parseHotel(uniqueId);
+            list.add(checkInDate);
+            list.add(checkOutDate);
+            list.add(userName);
+            list.add(city);
+            list.add(state);
+            fillTheseToContinue.dispose();
             checkInCheckOutCheck=1;
             toBeClicked.doClick();
 
 
 
-        dataBaseController.initialiseDatabase();
-        list=dataBaseController.parseHotel(uniqueId);
-        list.add(checkInDate);
-        list.add(checkOutDate);
-        list.add(userName);
-        list.add(city);
-        list.add(state);
 
 
-        HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
-        dataBaseController.closeDatabaseConnection();
+            HotelHomeAfterLogin hotelHomeAfterLogin=new HotelHomeAfterLogin(list,dataBaseController);
+            dataBaseController.closeDatabaseConnection();
+
+        }
+
+
     }
 
 
