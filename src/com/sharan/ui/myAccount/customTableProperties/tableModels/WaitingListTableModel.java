@@ -52,9 +52,10 @@ public class WaitingListTableModel extends javax.swing.table.DefaultTableModel {
     @Override
 
     public Class getColumnClass(int columnIndex) {
-        if(columnIndex == 0)return getValueAt(0, columnIndex).getClass();
-
-        else return super.getColumnClass(columnIndex);
+//        if(columnIndex == 0)return getValueAt(0, columnIndex).getClass();
+//
+//        else
+            return super.getColumnClass(columnIndex);
 
     }
 }

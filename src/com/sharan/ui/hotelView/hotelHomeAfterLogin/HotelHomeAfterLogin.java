@@ -5,10 +5,10 @@
 package com.sharan.ui.hotelView.hotelHomeAfterLogin;
 
 import com.sharan.DataBaseController;
-import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
-import com.sharan.ui.hotelView.displaySelectedHotels.DisplaySelectedHotels;
+import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.DisplaySelectedHotelsMultipleView;
+import com.sharan.ui.hotelView.hotelHome.HotelHomeBeforeLogin;
 import com.sharan.ui.hotelView.rating.Rating;
 import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
 import com.sharan.ui.hotelView.roomBooking.roomBookingTwo.RoomBookingTwo;
@@ -106,7 +106,7 @@ public class HotelHomeAfterLogin {
         displayList.add(checkOut);
         if (viewToindividual == 1) {
             individualHotelHome.dispose();
-            DisplaySelectedHotels displaySelectedHotels = new DisplaySelectedHotels(displayList, dataBaseController);
+            DisplaySelectedHotelsMultipleView displaySelectedHotels = new DisplaySelectedHotelsMultipleView(displayList, dataBaseController);
             viewToindividual = 0;
         } else {
             individualHotelHome.dispose();
@@ -124,7 +124,7 @@ public class HotelHomeAfterLogin {
     private void LogoutFieldActionPerformed(ActionEvent e) {
         dataBaseController.initialiseDatabase();
         individualHotelHome.dispose();
-        HomePage homePage = new HomePage(dataBaseController);
+        HotelHomeBeforeLogin hotelHomeBeforeLogin=new HotelHomeBeforeLogin(uniqueId,dataBaseController);
         dataBaseController.closeDatabaseConnection();
     }
 

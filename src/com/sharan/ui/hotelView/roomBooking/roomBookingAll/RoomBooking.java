@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -65,6 +66,15 @@ public class RoomBooking {
 
 
         initComponents();
+
+        try {
+            suiteField.commitEdit();
+            standardField.commitEdit();
+            deluxeField.commitEdit();
+
+        }catch (ParseException e) {
+            e.printStackTrace();
+        }
         suiteField.setModel(suite);
         standardField.setModel(standard);
         deluxeField.setModel(deluxe);

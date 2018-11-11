@@ -10,7 +10,7 @@ public class Main {
     public static int starUpdate;
     public static int checkInCheckOutCheck;
     public static int viewToindividual;
-    public static int loginToContinue;
+    public static int loginToContinnueCheck;
     public static void main(String[] args) {
 
         DataBaseController dataBaseController=new DataBaseController();

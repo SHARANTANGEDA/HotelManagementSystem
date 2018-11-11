@@ -7,7 +7,6 @@ package com.sharan.ui.hotelView.displaySelectedHotels;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
-import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
 import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.ElementsInHotelView;
 import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
 import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
@@ -347,7 +346,7 @@ public class DisplaySelectedHotels {
             dataBaseController.initialiseDatabase();
             String uniqueId=dataBaseController.setUniversalSearchData(temp);
             dataBaseController.closeDatabaseConnection();
-            LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+//            LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
         }
         else {
             JOptionPane.showMessageDialog(null,"Please Select a Hotel First");

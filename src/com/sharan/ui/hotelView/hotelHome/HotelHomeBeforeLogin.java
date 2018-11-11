@@ -7,10 +7,9 @@ package com.sharan.ui.hotelView.hotelHome;
 import com.sharan.DataBaseController;
 import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePage.HomePage;
-import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.loginPopUp.Login;
-import com.sharan.ui.home.loginToContinueDialog.LoginToContinue;
 import com.sharan.ui.home.signUpPopUp.SignUp;
+import com.sharan.ui.hotelView.fillOutFields.FillOutFieldsToViewHotelIndividual;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
@@ -31,6 +30,9 @@ public class HotelHomeBeforeLogin extends JFrame {
     private String universalHotelSearch;
     private String userName;
     private String uniqueId;
+    private ArrayList<String> list;
+    private double rate;
+    private String starRatingPath;
 
     public HotelHomeBeforeLogin(String uniqueId,DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
@@ -40,7 +42,20 @@ public class HotelHomeBeforeLogin extends JFrame {
         AutoCompleteDecorator.decorate(Hotels);
         TextFileController textFileController=new TextFileController();
         userName=textFileController.readFile();
+
+        list=dataBaseController.parseHotel(uniqueId);
+
+        rate = dataBaseController.calculateRating(uniqueId);
+        String rateString = String.valueOf(rate);
+        starRatingPath = "/com/sharan/ui/pictures/stars/" + rateString + ".jpg";
         dataBaseController.closeDatabaseConnection();
+        ratingLabel.setIcon(new ImageIcon(getClass().getResource(starRatingPath)));
+        hotelPhoto.setIcon(new ImageIcon(getClass().getResource(list.get(4))));
+        Title.setText(list.get(1));
+        contactDetails.setText(list.get(3));
+        hotelDetails.setText(list.get(2));
+        numberOfRatings.setText(list.get(5) + " people rated this");
+
 
 
         hotelHomeBeforeLogin.setVisible(true);
@@ -77,11 +92,12 @@ public class HotelHomeBeforeLogin extends JFrame {
         }
     }
     private void rateYourExperienceActionPerformed(ActionEvent e) {
-        LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+        JOptionPane.showMessageDialog(null,"Please Login To Rate your Experience");
+
     }
 
     private void checkAvailabilityActionPerformed(ActionEvent e) {
-        LoginToContinue loginToContinue=new LoginToContinue(uniqueId,dataBaseController);
+        JOptionPane.showMessageDialog(null,"Please Login To Continue");
     }
 
     private void loginActionPerformed(ActionEvent e) {
@@ -91,7 +107,7 @@ public class HotelHomeBeforeLogin extends JFrame {
         if(login.returnLoginStatus()==1) {
             loginSuccess=0;
             hotelHomeBeforeLogin.dispose();
-            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
+            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(userName,uniqueId,list.get(1),LoginField,dataBaseController);
             login.getLogin().dispose();
 
         }
@@ -103,7 +119,7 @@ public class HotelHomeBeforeLogin extends JFrame {
         if(signUpSuccess==1) {
             signUpSuccess=0;
             hotelHomeBeforeLogin.dispose();
-            HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(signUp.getName(),dataBaseController);
+            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(userName,uniqueId,list.get(1),LoginField,dataBaseController);
             signUp.getSignUp().dispose();
         }
     }
@@ -235,6 +251,7 @@ public class HotelHomeBeforeLogin extends JFrame {
                 contactDetails.setBackground(new Color(238, 238, 238));
                 contactDetails.setEditable(false);
                 contactDetails.setText("address is  some where");
+                contactDetails.setFont(new Font("Arial", Font.ITALIC, 20));
                 scrollPane2.setViewportView(contactDetails);
             }
 
@@ -245,27 +262,28 @@ public class HotelHomeBeforeLogin extends JFrame {
                     .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
+                            .addComponent(Title, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(GroupLayout.Alignment.TRAILING, hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
-                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 1021, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(265, Short.MAX_VALUE))
-                            .addGroup(GroupLayout.Alignment.TRAILING, hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
-                                .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
-                                    .addComponent(hotelPhoto, GroupLayout.PREFERRED_SIZE, 542, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(titleContactDetails, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
+                                .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(scrollPane2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1276, Short.MAX_VALUE)
                                     .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
-                                        .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(ratingLabel, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
+                                            .addComponent(hotelPhoto, GroupLayout.PREFERRED_SIZE, 542, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(titleContactDetails, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
+                                            .addComponent(HotelDetails)
                                             .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
                                                 .addComponent(rateYourExperience, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(numberOfRatings, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                                        .addComponent(checkAvailability, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(HotelDetails))
-                                .addGap(10, 10, 10))
-                            .addComponent(Title, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addGap(0, 494, Short.MAX_VALUE))
+                                            .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
+                                                .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
+                                                    .addComponent(numberOfRatings, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(ratingLabel, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                                                .addComponent(checkAvailability, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(42, 42, 42)))))
+                                .addGap(10, 10, 10))))
             );
             hotelHomeBeforeLoginContentPaneLayout.setVerticalGroup(
                 hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
@@ -275,24 +293,23 @@ public class HotelHomeBeforeLogin extends JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
                             .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
-                                .addComponent(hotelPhoto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(titleContactDetails, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4))
-                            .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
                                 .addComponent(HotelDetails, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
-                                .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rateYourExperience)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
                                     .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
-                                        .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(numberOfRatings, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(rateYourExperience))
+                                        .addComponent(numberOfRatings, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ratingLabel))
-                                    .addComponent(checkAvailability, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-                                .addGap(48, 48, 48)))
+                                    .addComponent(checkAvailability, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
+                                .addComponent(hotelPhoto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(titleContactDetails, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
+                        .addGap(22, 22, 22))
             );
             hotelHomeBeforeLogin.pack();
             hotelHomeBeforeLogin.setLocationRelativeTo(hotelHomeBeforeLogin.getOwner());

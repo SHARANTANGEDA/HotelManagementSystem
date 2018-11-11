@@ -32,7 +32,7 @@ public class PaymentPage {
     private int noOfDeluxeRooms;
     private int noOfsuiteRooms;
     private String availableTableName = "availableTable";
-    private String availableTableColoumns = "(UniqueId TEXT,StandardAvailableArray TEXT,DeluxeAvailableArray TEXT,SuitAvailableArray TEXT,LatestBooking TEXT)";
+    private String availableTableColoumns = " (UniqueId TEXT,StandardAvailableArray TEXT,DeluxeAvailableArray TEXT,SuitAvailableArray TEXT,LatestBooking TEXT)";
     private String availableInsertParametres = " (UniqueId,StandardAvailableArray,DeluxeAvailableArray,SuitAvailableArray,LatestBooking)";
     private String uniqueId;
     private String checkIn;

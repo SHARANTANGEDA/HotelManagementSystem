@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {seq t {comp scrollPane2:::p:1021:p, space ::265:x}, seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, space s:::p, par l {seq {par l:::p {comp ratingLabel:::p:222:p, seq {comp rateYourExperience:::p:222:p, space :::p, comp numberOfRatings:::::x}}, space ::142:x, comp checkAvailability:::p:346:p}, comp HotelDetails:::::x}, space :p:10:p}, comp Title::l:::x}}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp Title:::p:72:p, space s:::p, par l {seq {comp hotelPhoto:::::x, space :::p, comp titleContactDetails:::p:45:p, space :p:4:p}, seq {comp HotelDetails:::p:346:p, space :p:58:p, par t {seq {par t {comp numberOfRatings:::p:42:p, comp rateYourExperience:::p::p}, space :::p, comp ratingLabel:::p::p}, comp checkAvailability::t:p:109:p}, space :p:48:p}}, comp scrollPane2:::p:92:p, space :p:12:p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp Title::l:::x, seq t {par t {comp scrollPane2::l::1276:x, seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, space s:::p, par l {comp HotelDetails:::::x, seq {comp rateYourExperience:::p:222:p, space :0:494:x}, seq l {par l {comp numberOfRatings::l:p:222:p, comp ratingLabel::l:p:222:p}, space ::106:x, comp checkAvailability:::p:346:p, space :p:42:p}}}}, space :p:10:p}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp Title:::p:72:p, space s:::p, par l {seq l {comp HotelDetails:::p:346:p, space u:::p, comp rateYourExperience:::p::p, space :::p, par l {seq {comp numberOfRatings:::p:42:p, space :::p, comp ratingLabel:::p::p}, comp checkAvailability:::p:109:p}}, seq {comp hotelPhoto:::::x, space :::p, comp titleContactDetails:::p:45:p}}, space :::p, comp scrollPane2:::p:92:p, space :p:22:p}}"
 		} ) {
 			name: "hotelHomeBeforeLogin"
 			"resizable": false
@@ -64,6 +64,7 @@ new FormModel {
 					"background": #ColorUIResource0
 					"editable": false
 					"text": "address is  some where"
+					"font": new java.awt.Font( "Arial", 2, 20 )
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

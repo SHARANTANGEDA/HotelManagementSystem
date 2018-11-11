@@ -39,7 +39,7 @@ public class DataBaseController {
 
 
     private String allotmentTableName="allotmentTable";
-    private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT, " +
+    private String allotmentTableColumns="(UserName TEXT,State TEXT,City TEXT, CheckIN TEXT,CheckOUT TEXT, NoOfRoomsRequested TEXT DEFAULT NULL," +
             "HotelUniqueId TEXT,AvailabilityStatus TEXT)";
     private String allotmentTableInsertParameters=" (UserName,State,City,CheckIN,CheckOUT,NoOfRoomsRequested)";
     private String availableTableName = "availableTable";
@@ -420,7 +420,7 @@ public class DataBaseController {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                statement.executeQuery("DELETE FROM "+myBookingsTableName+" WHERE BookingId='"+bookingId +"'");
+                statement.execute("DELETE FROM "+myBookingsTableName+" WHERE BookingId='"+bookingId +"'");
 
 
                 ResultSet rs = statement.executeQuery("SELECT * FROM " + availableTableName);
@@ -735,10 +735,10 @@ public class DataBaseController {
         return finalrate;
     }
 
-    public void addAllotmentDetailsToDatabase(String userName,String state,String city,String checkIN,String checkOUT) {
+    public void addAllotmentDetailsToDatabase(String userName,String state,String city,String checkIN,String checkOUT,String noOfRoomsRequested) {
         try {
             statement.execute("INSERT INTO "+allotmentTableName+allotmentTableInsertParameters+"VALUES ('"+userName+"','"+state+"','"+city+"','"+
-                    checkIN+"','"+checkOUT+"')");
+                    checkIN+"','"+checkOUT+"','"+noOfRoomsRequested+"')");
         }catch (SQLException e) {
             e.printStackTrace();
         }

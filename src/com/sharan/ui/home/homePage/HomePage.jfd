@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, par l {comp applicationName:::::x, seq l {space :p:6:p, comp menuBar1::::1183:x, space :::p, comp LoginField:::p::p, space :::p, comp SignUpField:::p:132:p}}, space :::p}, comp homePagePhoto::t::1448:x, seq l {space :p:26:p, comp scrollPane1:::p:1292:p, space ::130:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp applicationName:::p:69:p, space :::p, par l {seq {par t:::p {comp LoginField::t::52:x, comp SignUpField::t:::x}, space ::28:x}, seq {space :p:6:p, comp menuBar1::::47:x, space :p:27:p}}, comp homePagePhoto:::p:369:p, space :p:47:p, comp scrollPane1:::p:283:p, space ::35:x}}"
+			"$horizontalGroup": "par l {comp homePagePhoto::t::1448:x, seq {space :::p, par l {comp applicationName::l:::x, seq l {space :p:6:p, comp menuBar1::::1183:x, space :::p, comp LoginField:::p::p, space :::p, comp SignUpField:::p:132:p}, comp scrollPane1::l::1436:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp applicationName:::p:69:p, space :::p, par l {seq {par t:::p {comp LoginField::t::52:x, comp SignUpField::t:::x}, space ::28:x}, seq {space :p:6:p, comp menuBar1::::47:x, space :p:27:p}}, comp homePagePhoto:::p:369:p, space u:::p, comp scrollPane1:::p:347:p, space :::x}}"
 		} ) {
 			name: "homeFrame"
 			"defaultCloseOperation": 3
@@ -65,6 +65,8 @@ new FormModel {
 					name: "textPane1"
 					"background": new javax.swing.plaf.ColorUIResource( 238, 238, 238 )
 					"text": "BASIC INTRO HERE"
+					"editable": false
+					"font": new java.awt.Font( "Arial", 0, 20 )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

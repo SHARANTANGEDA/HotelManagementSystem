@@ -12,8 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-import static com.sharan.Main.loginSuccess;
-import static com.sharan.Main.signUpSuccess;
+import static com.sharan.Main.*;
 
 /**
  * @author SAI SHARAN
@@ -21,16 +20,23 @@ import static com.sharan.Main.signUpSuccess;
 public class LoginToContinue {
     private DataBaseController dataBaseController;
     private String uniqueId;
+    private String userName;
+    private JButton toBeClicked;
 
 
-    public LoginToContinue(String id,DataBaseController dataBaseController) {
+    public LoginToContinue(String id,DataBaseController dataBaseController,JButton tobeClicked) {
         this.dataBaseController=dataBaseController;
         this.uniqueId=id;
+        this.toBeClicked=tobeClicked;
         initComponents();
-        loginToContinue.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        loginToContinue.setVisible(true);
+        loginToContinueDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        loginToContinueDialog.setVisible(true);
 
 
+    }
+
+    public JDialog getLoginToContinueDialog() {
+        return loginToContinueDialog;
     }
 
     private void redirectLoginActionPerformed(ActionEvent e) {
@@ -38,7 +44,9 @@ public class LoginToContinue {
         dataBaseController.initialiseDatabase();
         Login login=new Login(dataBaseController,redirectLogin);
         if(loginSuccess==1) {
-            loginToContinue.dispose();
+            loginToContinueDialog.dispose();
+            toBeClicked.doClick();
+            loginToContinnueCheck =1;
             loginSuccess=0;
             login.getLogin().dispose();
         }
@@ -50,7 +58,7 @@ public class LoginToContinue {
         SignUp signUp=new SignUp(dataBaseController,redirectSignUp);
 
         if(signUpSuccess==1) {
-            loginToContinue.dispose();
+            loginToContinueDialog.dispose();
             signUpSuccess=0;
             signUp.getSignUp().dispose();
         }
@@ -62,16 +70,16 @@ public class LoginToContinue {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
-        loginToContinue = new JDialog();
+        loginToContinueDialog = new JDialog();
         label1 = new JLabel();
         redirectLogin = new JButton();
         redirectSignUp = new JButton();
         label2 = new JLabel();
 
-        //======== loginToContinue ========
+        //======== loginToContinueDialog ========
         {
-            loginToContinue.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            Container loginToContinueContentPane = loginToContinue.getContentPane();
+            loginToContinueDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            Container loginToContinueDialogContentPane = loginToContinueDialog.getContentPane();
 
             //---- label1 ----
             label1.setText("Please Login to Continue");
@@ -94,29 +102,29 @@ public class LoginToContinue {
             //---- label2 ----
             label2.setText("Don't have an account Yet?,No problem click the button below to signUp");
 
-            GroupLayout loginToContinueContentPaneLayout = new GroupLayout(loginToContinueContentPane);
-            loginToContinueContentPane.setLayout(loginToContinueContentPaneLayout);
-            loginToContinueContentPaneLayout.setHorizontalGroup(
-                loginToContinueContentPaneLayout.createParallelGroup()
-                    .addGroup(loginToContinueContentPaneLayout.createSequentialGroup()
-                        .addGroup(loginToContinueContentPaneLayout.createParallelGroup()
-                            .addGroup(loginToContinueContentPaneLayout.createSequentialGroup()
+            GroupLayout loginToContinueDialogContentPaneLayout = new GroupLayout(loginToContinueDialogContentPane);
+            loginToContinueDialogContentPane.setLayout(loginToContinueDialogContentPaneLayout);
+            loginToContinueDialogContentPaneLayout.setHorizontalGroup(
+                loginToContinueDialogContentPaneLayout.createParallelGroup()
+                    .addGroup(loginToContinueDialogContentPaneLayout.createSequentialGroup()
+                        .addGroup(loginToContinueDialogContentPaneLayout.createParallelGroup()
+                            .addGroup(loginToContinueDialogContentPaneLayout.createSequentialGroup()
                                 .addGap(156, 156, 156)
                                 .addComponent(label1, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(loginToContinueContentPaneLayout.createSequentialGroup()
+                            .addGroup(loginToContinueDialogContentPaneLayout.createSequentialGroup()
                                 .addGap(223, 223, 223)
                                 .addComponent(redirectLogin, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(loginToContinueContentPaneLayout.createSequentialGroup()
+                            .addGroup(loginToContinueDialogContentPaneLayout.createSequentialGroup()
                                 .addGap(224, 224, 224)
                                 .addComponent(redirectSignUp, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(loginToContinueContentPaneLayout.createSequentialGroup()
+                            .addGroup(loginToContinueDialogContentPaneLayout.createSequentialGroup()
                                 .addGap(58, 58, 58)
                                 .addComponent(label2, GroupLayout.PREFERRED_SIZE, 521, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(50, Short.MAX_VALUE))
             );
-            loginToContinueContentPaneLayout.setVerticalGroup(
-                loginToContinueContentPaneLayout.createParallelGroup()
-                    .addGroup(loginToContinueContentPaneLayout.createSequentialGroup()
+            loginToContinueDialogContentPaneLayout.setVerticalGroup(
+                loginToContinueDialogContentPaneLayout.createParallelGroup()
+                    .addGroup(loginToContinueDialogContentPaneLayout.createSequentialGroup()
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(redirectLogin, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
@@ -125,15 +133,15 @@ public class LoginToContinue {
                         .addGap(11, 11, 11)
                         .addComponent(redirectSignUp, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
             );
-            loginToContinue.pack();
-            loginToContinue.setLocationRelativeTo(loginToContinue.getOwner());
+            loginToContinueDialog.pack();
+            loginToContinueDialog.setLocationRelativeTo(loginToContinueDialog.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - SAI SHARAN
-    private JDialog loginToContinue;
+    private JDialog loginToContinueDialog;
     private JLabel label1;
     private JButton redirectLogin;
     private JButton redirectSignUp;

@@ -4,6 +4,7 @@
 
 package com.sharan.ui.home.homePage;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
@@ -178,6 +179,8 @@ public class HomePage {
                 //---- textPane1 ----
                 textPane1.setBackground(new Color(238, 238, 238));
                 textPane1.setText("BASIC INTRO HERE");
+                textPane1.setEditable(false);
+                textPane1.setFont(new Font("Arial", Font.PLAIN, 20));
                 scrollPane1.setViewportView(textPane1);
             }
 
@@ -185,6 +188,7 @@ public class HomePage {
             homeFrameContentPane.setLayout(homeFrameContentPaneLayout);
             homeFrameContentPaneLayout.setHorizontalGroup(
                 homeFrameContentPaneLayout.createParallelGroup()
+                    .addComponent(homePagePhoto, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1448, Short.MAX_VALUE)
                     .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(homeFrameContentPaneLayout.createParallelGroup()
@@ -195,13 +199,9 @@ public class HomePage {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LoginField)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SignUpField, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(SignUpField, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1436, Short.MAX_VALUE))
                         .addContainerGap())
-                    .addComponent(homePagePhoto, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1448, Short.MAX_VALUE)
-                    .addGroup(homeFrameContentPaneLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1292, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(130, Short.MAX_VALUE))
             );
             homeFrameContentPaneLayout.setVerticalGroup(
                 homeFrameContentPaneLayout.createParallelGroup()
@@ -220,9 +220,9 @@ public class HomePage {
                                 .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                                 .addGap(27, 27, 27)))
                         .addComponent(homePagePhoto, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(35, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 347, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             homeFrame.pack();
             homeFrame.setLocationRelativeTo(homeFrame.getOwner());
