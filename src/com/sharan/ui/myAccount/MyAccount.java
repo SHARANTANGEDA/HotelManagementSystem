@@ -4,6 +4,7 @@
 
 package com.sharan.ui.myAccount;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
@@ -118,6 +119,18 @@ public class MyAccount {
                 dataBaseController.closeDatabaseConnection();
                 SwingUtilities.updateComponentTreeUI(myAccountField);
             }
+            if(column==9) {
+                dataBaseController.initialiseDatabase();
+                ArrayList<String> list= dataBaseController.getWholeData(waitList.get(row).getUniqueId());
+
+                dataBaseController.checkAvailable(userName,waitList.get(row).getUniqueId(),waitList.get(row).getCheckIn(),waitList.get(row).getCheckOut(),
+                        Integer.parseInt(waitList.get(row).getStandardRooms()),Integer.parseInt(waitList.get(row).getDeluxeRooms()),
+                        Integer.parseInt(waitList.get(row).getSuiteRooms()),Integer.parseInt(list.get(4)),Integer.parseInt(list.get(7)),
+                        Integer.parseInt(list.get(10)));
+                dataBaseController.closeDatabaseConnection();
+                SwingUtilities.updateComponentTreeUI(waitingListTable);
+
+            }
         }
     }
 
@@ -167,10 +180,7 @@ public class MyAccount {
         HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
     }
 
-    private void refreshButtonActionPerformed(ActionEvent e) {
-        //It just updates or reloades the page
-        SwingUtilities.updateComponentTreeUI(myAccountField);
-    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -190,7 +200,6 @@ public class MyAccount {
         scrollPane3 = new JScrollPane();
         textPane1 = new JTextPane();
         panel2 = new JPanel();
-        refreshButton = new JButton();
         scrollPane4 = new JScrollPane();
         waitingListTable = new JTable();
 
@@ -332,14 +341,6 @@ public class MyAccount {
                     //======== panel2 ========
                     {
 
-                        //---- refreshButton ----
-                        refreshButton.setText("Refresh ");
-                        refreshButton.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Refresh24.gif")));
-                        refreshButton.setFont(new Font("Arial", Font.BOLD, 18));
-                        refreshButton.setBackground(new Color(204, 0, 0));
-                        refreshButton.setForeground(Color.white);
-                        refreshButton.addActionListener(e -> refreshButtonActionPerformed(e));
-
                         //======== scrollPane4 ========
                         {
 
@@ -353,23 +354,16 @@ public class MyAccount {
                         panel2Layout.setHorizontalGroup(
                             panel2Layout.createParallelGroup()
                                 .addGroup(panel2Layout.createSequentialGroup()
-                                    .addGroup(panel2Layout.createParallelGroup()
-                                        .addGroup(panel2Layout.createSequentialGroup()
-                                            .addGap(827, 827, 827)
-                                            .addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panel2Layout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 1996, GroupLayout.PREFERRED_SIZE)))
+                                    .addContainerGap()
+                                    .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 1996, GroupLayout.PREFERRED_SIZE)
                                     .addContainerGap(24, Short.MAX_VALUE))
                         );
                         panel2Layout.setVerticalGroup(
                             panel2Layout.createParallelGroup()
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(104, 104, 104))
+                                    .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 837, GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap(23, Short.MAX_VALUE))
                         );
                     }
                     tabbedPane1.addTab("Waiting List", panel2);
@@ -419,7 +413,6 @@ public class MyAccount {
     private JScrollPane scrollPane3;
     private JTextPane textPane1;
     private JPanel panel2;
-    private JButton refreshButton;
     private JScrollPane scrollPane4;
     private JTable waitingListTable;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

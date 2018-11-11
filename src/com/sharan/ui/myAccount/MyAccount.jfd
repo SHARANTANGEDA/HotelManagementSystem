@@ -190,19 +190,10 @@ new FormModel {
 						"title": "My Bookings"
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq {par l {seq {space :p:827:p, comp refreshButton:::p:309:p}, seq l {space :::p, comp scrollPane4:::p:1996:p}}, space ::24:x}}"
-						"$verticalGroup": "par l {seq l {space :::p, comp scrollPane4::::666:x, space s:::p, comp refreshButton:::p:72:p, space :p:104:p}}"
+						"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane4:::p:1996:p, space ::24:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp scrollPane4:::p:837:p, space ::23:x}}"
 					} ) {
 						name: "panel2"
-						add( new FormComponent( "javax.swing.JButton" ) {
-							name: "refreshButton"
-							"text": "Refresh "
-							"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/sharan/ui/pictures/Refresh24.gif" )
-							"font": new java.awt.Font( "Arial", 1, 18 )
-							"background": new java.awt.Color( 204, 0, 0, 255 )
-							"foreground": new java.awt.Color( 255, 255, 255, 255 )
-							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "refreshButtonActionPerformed", true ) )
-						} )
 						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 							name: "scrollPane4"
 							add( new FormComponent( "javax.swing.JTable" ) {

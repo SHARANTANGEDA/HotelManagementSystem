@@ -23,12 +23,12 @@ public class WaitingListTableModel extends javax.swing.table.DefaultTableModel {
     Object[] col = new String[]{
             "Hotel Name","Booking Date","Booking Id","CheckIn Date",
             "CheckOut Date","Number of Standard Rooms","Number of DeluxeRooms"
-            ,"Number Of SuiteRooms","Cancel Booking"};
+            ,"Number Of SuiteRooms","Cancel Booking","Check Status"};
 
     public void createRow(ColumnsInWaitingList myBooking) {
         this.row= new String[]{myBooking.getHotelName(),myBooking.getBookingDate(), myBooking.getBookingId(),
                 myBooking.getCheckIn(),myBooking.getCheckOut(),myBooking.getStandardRooms(),
-                myBooking.getDeluxeRooms(), myBooking.getSuiteRooms(),"Cancel Booking"};
+                myBooking.getDeluxeRooms(), myBooking.getSuiteRooms(),"Cancel Booking","Refresh"};
     }
 
     @Override
