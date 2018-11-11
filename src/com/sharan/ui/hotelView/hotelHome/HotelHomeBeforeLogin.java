@@ -119,7 +119,7 @@ public class HotelHomeBeforeLogin extends JFrame {
         if(signUpSuccess==1) {
             signUpSuccess=0;
             hotelHomeBeforeLogin.dispose();
-            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(userName,uniqueId,list.get(1),LoginField,dataBaseController);
+            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(signUp.getName(),uniqueId,list.get(1),LoginField,dataBaseController);
             signUp.getSignUp().dispose();
         }
     }
