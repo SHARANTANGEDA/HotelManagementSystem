@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class WaitingListTableModel extends javax.swing.table.DefaultTableModel {
     Object[] row = {new JLabel(""),new JLabel(""), new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),new JLabel(""),
-            new JLabel(""),new JButton("")};
+            new JLabel(""),new JButton(""),new JButton("")};
 
 //    JLabel l1=new JLabel();
 //    JLabel l2=new JLabel();
@@ -49,7 +49,12 @@ public class WaitingListTableModel extends javax.swing.table.DefaultTableModel {
 
     }
 
-    @Override
+//    @Override
+//    public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
+//        return super.getListeners(listenerType);
+//    }
+
+        @Override
 
     public Class getColumnClass(int columnIndex) {
 //        if(columnIndex == 0)return getValueAt(0, columnIndex).getClass();
@@ -58,4 +63,8 @@ public class WaitingListTableModel extends javax.swing.table.DefaultTableModel {
             return super.getColumnClass(columnIndex);
 
     }
+//@Override
+//public Class<?> getColumnClass(int columnIndex) {
+//    return super.getColumnClass(columnIndex);
+//}
 }

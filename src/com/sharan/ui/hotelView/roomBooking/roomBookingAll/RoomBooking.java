@@ -93,8 +93,11 @@ public class RoomBooking {
         int noOfSuiteRooms = (Integer) suiteField.getValue();
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.initialiseDatabase();
+        System.out.println(uniqueId);
         dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,noofStandardRooms,noofDeluxeRooms,noOfSuiteRooms,Integer.parseInt(maxnoofStandardRooms),
                 Integer.parseInt(maxnoofDeluxeRooms),Integer.parseInt(maxnoOfSuitRooms));
+        roomBooking.dispose();
+        dataBaseController.closeDatabaseConnection();
     }
 
 

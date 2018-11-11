@@ -20,8 +20,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
+
+import static com.sharan.Main.callFromWaitingList;
+import static com.sharan.Main.carryBookingId;
 
 
 public class MyAccount {
@@ -66,7 +71,7 @@ public class MyAccount {
         activeBookings.getTableHeader().setDefaultRenderer(new HeaderRenderer());
 
         for(int i=0;i<activeBookings.getColumnCount()-3;i++) {
-            activeBookings.setDefaultRenderer(activeBookings.getColumnClass(i),new LabelRenderer());
+            activeBookings.setDefaultRenderer(activeBookings.getColumnClass(0),new LabelRenderer());
         }
         activeBookings.getColumnModel().getColumn(activeBookings.getColumnCount()-2).setCellRenderer(new ButtonRenderer());
         activeBookings.getColumnModel().getColumn(activeBookings.getColumnCount()-1).setCellRenderer(new ButtonRenderer());
@@ -74,10 +79,13 @@ public class MyAccount {
         waitingListTable.setModel(waitingListTableModel);
         waitingListTable.getTableHeader().setDefaultRenderer(new HeaderRenderer());
 
-        for(int i=0;i<waitingListTable.getColumnCount()-2;i++) {
-            waitingListTable.setDefaultRenderer(activeBookings.getColumnClass(i),new LabelRenderer());
+        for(int i=0;i<waitingListTable.getColumnCount()-3;i++) {
+            waitingListTable.setDefaultRenderer(activeBookings.getColumnClass(0),new LabelRenderer());
         }
+        waitingListTable.getColumnModel().getColumn(waitingListTable.getColumnCount()-2).setCellRenderer(new ButtonRenderer());
         waitingListTable.getColumnModel().getColumn(waitingListTable.getColumnCount()-1).setCellRenderer(new ButtonRenderer());
+
+
 
         myAccountField.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         myAccountField.setVisible(true);
@@ -90,7 +98,8 @@ public class MyAccount {
         waitingListTable.setCellSelectionEnabled(true);
         ListSelectionModel listSelectionModelWaitList=waitingListTable.getSelectionModel();
         listSelectionModelWaitList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listSelectionModel.addListSelectionListener(this::cellSelectedTableWaitList);
+        listSelectionModelWaitList.addListSelectionListener(this::cellSelectedTableWaitList);
+
 
 
     }
@@ -121,15 +130,19 @@ public class MyAccount {
             if(column==9) {
                 dataBaseController.initialiseDatabase();
                 ArrayList<String> list= dataBaseController.getWholeData(waitList.get(row).getUniqueId());
-
+                callFromWaitingList=1;
+                carryBookingId=waitList.get(row).getBookingId();
                 dataBaseController.checkAvailable(userName,waitList.get(row).getUniqueId(),waitList.get(row).getCheckIn(),waitList.get(row).getCheckOut(),
                         Integer.parseInt(waitList.get(row).getStandardRooms()),Integer.parseInt(waitList.get(row).getDeluxeRooms()),
                         Integer.parseInt(waitList.get(row).getSuiteRooms()),Integer.parseInt(list.get(4)),Integer.parseInt(list.get(7)),
                         Integer.parseInt(list.get(10)));
-                dataBaseController.closeDatabaseConnection();
-                SwingUtilities.updateComponentTreeUI(waitingListTable);
 
+
+                dataBaseController.closeDatabaseConnection();
+                myAccountField.dispose();
             }
+        }else {
+            System.out.println("value is not adjusting");
         }
     }
 
@@ -164,6 +177,8 @@ public class MyAccount {
 
             }
 
+        }else {
+            System.out.println("value is not adjusting");
         }
     }
 
@@ -177,6 +192,14 @@ public class MyAccount {
     private void homePageActionPerformed(ActionEvent e) {
         myAccountField.dispose();
         HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
+    }
+
+    private void activeBookingsMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void waitingListTableMouseClicked(MouseEvent e) {
+        // TODO add your code here
     }
 
 
@@ -301,6 +324,12 @@ public class MyAccount {
                             activeBookings.setCellSelectionEnabled(true);
                             activeBookings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
                             activeBookings.addPropertyChangeListener(e -> activeBookingsPropertyChange(e));
+                            activeBookings.addMouseListener(new MouseAdapter() {
+                                @Override
+                                public void mouseClicked(MouseEvent e) {
+                                    activeBookingsMouseClicked(e);
+                                }
+                            });
                             scrollPane2.setViewportView(activeBookings);
                         }
 
@@ -345,6 +374,22 @@ public class MyAccount {
 
                             //---- waitingListTable ----
                             waitingListTable.setRowHeight(81);
+                            waitingListTable.setModel(new DefaultTableModel(
+                                new Object[][] {
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                    {null, null, null, null, null, null, null, null, null, null},
+                                },
+                                new String[] {
+                                    null, null, null, null, null, null, null, null, null, null
+                                }
+                            ));
+                            waitingListTable.setCellSelectionEnabled(true);
+                            waitingListTable.addMouseListener(new MouseAdapter() {
+                                @Override
+                                public void mouseClicked(MouseEvent e) {
+                                    waitingListTableMouseClicked(e);
+                                }
+                            });
                             scrollPane4.setViewportView(waitingListTable);
                         }
 

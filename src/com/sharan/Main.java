@@ -11,6 +11,9 @@ public class Main {
     public static int checkInCheckOutCheck;
     public static int viewToindividual;
     public static int loginToContinnueCheck;
+    public static String carryBookingId="notLoaded";
+    public static int callFromWaitingList=0;
+    public static int callForWaitListToMyBooking=0;
     public static void main(String[] args) {
 
         DataBaseController dataBaseController=new DataBaseController();

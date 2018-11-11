@@ -174,6 +174,7 @@ new FormModel {
 								"cellSelectionEnabled": true
 								"selectionMode": 1
 								addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "activeBookingsPropertyChange", true ) )
+								addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "activeBookingsMouseClicked", true ) )
 							} )
 						} )
 						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -199,6 +200,78 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JTable" ) {
 								name: "waitingListTable"
 								"rowHeight": 81
+								"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								} )
+								"cellSelectionEnabled": true
+								addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "waitingListTableMouseClicked", true ) )
 							} )
 						} )
 					}, new FormLayoutConstraints( null ) {

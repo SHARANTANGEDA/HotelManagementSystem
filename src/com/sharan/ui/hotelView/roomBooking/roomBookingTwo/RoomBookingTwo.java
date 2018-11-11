@@ -138,7 +138,6 @@ public class RoomBookingTwo {
         dataBaseController.initialiseDatabase();
         dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,reqnoofStandardRooms,reqnoofDeluxeRooms,reqnoOfSuiteRooms,Integer.parseInt(noofStandardRooms),Integer.parseInt(noofStandardRooms),Integer.parseInt(noOfSuiteRooms));
         dataBaseController.closeDatabaseConnection();
-
         roomBookingTwo.dispose();
     }
 

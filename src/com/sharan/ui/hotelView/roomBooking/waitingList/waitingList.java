@@ -54,6 +54,7 @@ public class waitingList extends JFrame {
         dataBaseController.addToWaitList(userName,uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,bookedDate);
         dataBaseController.closeDatabaseConnection();
         JOptionPane.showMessageDialog(null,"Thank You for joining waitingList,We will contact you sooner!!!");
+        waitingListDialog.dispose();
     }
 
     private void initComponents() {

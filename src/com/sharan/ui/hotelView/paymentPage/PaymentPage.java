@@ -12,9 +12,13 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import static com.sharan.Main.*;
 
 /**
  * @author SAI SHARAN
@@ -34,14 +38,21 @@ public class PaymentPage {
     private String availableTableName = "availableTable";
     private String availableTableColoumns = " (UniqueId TEXT,StandardAvailableArray TEXT,DeluxeAvailableArray TEXT,SuitAvailableArray TEXT,LatestBooking TEXT)";
     private String availableInsertParametres = " (UniqueId,StandardAvailableArray,DeluxeAvailableArray,SuitAvailableArray,LatestBooking)";
+
+    private String waitingListTableName = "waitngListTable";
+    private String waitingListTableColoumns = "(UserName TEXT,BookingId TEXT NOT NULL PRIMARY KEY,UniqueId TEXT,CheckIn TEXT,CheckOut TEXT,StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT)";
+    private String waitListInsertParametres = " (UserName,BookingId,UniqueId,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate)";
+
     private String uniqueId;
     private String checkIn;
     private String checkOut;
     private int flag;
     private String address;
+    private String bookingIdForWaitingList;
 
     public PaymentPage(Statement statement,int flag,ArrayList<String> availableList, String userName, DataBaseController dataBaseController, int noOfStandardRooms, int noOfDeluxeRooms, int noOfSuiteRooms, String uniqueId,String checkIn,String checkOut) {
 
+        dataBaseController.initialiseDatabase();
         hotelName=dataBaseController.parseHotel(uniqueId).get(1);
         address = dataBaseController.parseHotel(uniqueId).get(2);
         this.userName=userName;
@@ -56,7 +67,6 @@ public class PaymentPage {
         this.checkOut = checkOut;
         int totalPrice=0;
         this.uniqueId = uniqueId;
-        dataBaseController.initialiseDatabase();
         list=dataBaseController.getRoomPriceFromHotel(uniqueId);
 
 
@@ -74,13 +84,36 @@ public class PaymentPage {
         }
         totalPricePaid=String.valueOf(totalPrice);
 
+        dataBaseController.closeDatabaseConnection();
+
+        System.out.println("call:"+callFromWaitingList);
+        if(callFromWaitingList==1) {
+            callFromWaitingList=0;
+            if(!carryBookingId.equalsIgnoreCase("notLoaded")) {
+                bookingIdForWaitingList=carryBookingId;
+            }
+            try {
+                System.out.println("delete");
+                dataBaseController.initialiseDatabase();
+                System.out.println(bookingIdForWaitingList);
+                statement.execute("DELETE FROM "+waitingListTableName+" WHERE BookingId = '"+bookingIdForWaitingList+"'");
+                callForWaitListToMyBooking=1;
+                dataBaseController.closeDatabaseConnection();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         initComponents();
+
         totalPriceLabel.setText("Total Price To be Paid is Rs."+totalPricePaid);
         paymentPage.setVisible(true);
+        paymentPage.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     private void homePageActionPerformed(ActionEvent e) {
+        callForWaitListToMyBooking=0;
         paymentPage.dispose();
         HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
     }
@@ -92,6 +125,7 @@ public class PaymentPage {
             String check=dataBaseController.checkIdForPayment(userName,encryptId);
 
             if(check.equalsIgnoreCase("AadharSuccess")) {
+
 
 
                 if(flag ==1) {
@@ -131,6 +165,7 @@ public class PaymentPage {
                 JOptionPane.showMessageDialog(null,"Transaction Successful, Rs."+totalPricePaid+" Paid");
             }else {
                 JOptionPane.showMessageDialog(null,"Enter valid Aadhar to complete Payment");
+
             }
             dataBaseController.closeDatabaseConnection();
         }else {
@@ -141,8 +176,10 @@ public class PaymentPage {
     }
 
     private void cancelPaymentActionPerformed(ActionEvent e) {
+        callForWaitListToMyBooking=0;
         paymentPage.dispose();
         HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
+
     }
 
     private void confirmPaymentPanActionPerformed(ActionEvent e) {
@@ -202,6 +239,12 @@ public class PaymentPage {
         paymentPage.dispose();
     }
 
+
+    private void paymentPageWindowClosing(WindowEvent e) {
+        callForWaitListToMyBooking=0;
+        e.getWindow().dispose();
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
@@ -230,6 +273,12 @@ public class PaymentPage {
         //======== paymentPage ========
         {
             paymentPage.setBackground(Color.white);
+            paymentPage.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    paymentPageWindowClosing(e);
+                }
+            });
             Container paymentPageContentPane = paymentPage.getContentPane();
 
             //---- label1 ----
@@ -266,8 +315,8 @@ public class PaymentPage {
                     panel2.setBorder(new javax.swing.border.CompoundBorder(
                         new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
                             "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                            javax.swing.border.TitledBorder.BOTTOM, new Font("Dialog", Font.BOLD, 12),
-                            Color.red), panel2.getBorder())); panel2.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                            java.awt.Color.red), panel2.getBorder())); panel2.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 
                     //---- label4 ----

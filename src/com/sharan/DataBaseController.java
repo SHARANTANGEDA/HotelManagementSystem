@@ -17,6 +17,10 @@ import java.util.Calendar;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import static com.sharan.Main.callForWaitListToMyBooking;
+import static com.sharan.Main.callFromWaitingList;
+import static com.sharan.Main.carryBookingId;
+
 public class DataBaseController {
 
     private String databaseUrl="jdbc:sqlite:HotelBooking.db";
@@ -86,7 +90,8 @@ public class DataBaseController {
     {
         try {
             String bookingId = generateBookingId(userName);
-
+            closeDatabaseConnection();
+            initialiseDatabase();
             statement.execute("INSERT INTO "+waitingListTableName+waitListInsertParametres+" VALUES('"+userName+"','"+bookingId+"','"+uniqueId+"','"+checkIn+"','"+
                     checkOut+"',"+standardRooms+","+deluxeRooms+","+suitRooms+",'"+bookedDate+"')");
         } catch (SQLException e) {
@@ -162,11 +167,14 @@ public class DataBaseController {
 
 
                     int x = 0, y = 0, z = 0;
+                    initialiseDatabase();
                     ResultSet resultSet = statement.executeQuery("SELECT * FROM " + availableTableName + " WHERE UniqueId='" + uniqueId + "'");
+
                     String standardAvailableString = resultSet.getString("StandardAvailableArray");
                     String deluxeAvailableString = resultSet.getString("DeluxeAvailableArray");
                     String suitAvailableString = resultSet.getString("SuitAvailableArray");
                     String lastLatestBooking = resultSet.getString("LatestBooking");
+                    closeDatabaseConnection();
                     java.util.Date latestBooking = null;
                     try {
                         latestBooking = df.parse(lastLatestBooking);
@@ -288,7 +296,10 @@ public class DataBaseController {
 
                     }
                     else {
+                        initialiseDatabase();
+
                         waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,this);
+                        closeDatabaseConnection();
                     }
                 }
                 else
@@ -519,9 +530,9 @@ public class DataBaseController {
                             suiteBuilder.append(x + ",");
                         }
                         String updatedSuiteAvailableString= suiteBuilder.toString();
-                        statement.execute("UPDATE "+availableTableName+ " SET StandardAvailableArray '"+updatedStandardAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
-                        statement.execute("UPDATE "+availableTableName+ " SET DeluxeAvailableArray '"+updatedDeluxeAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
-                        statement.execute("UPDATE "+availableTableName+ " SET SuitAvailableArray '"+updatedSuiteAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
+                        statement.execute("UPDATE "+availableTableName+ " SET StandardAvailableArray= '"+updatedStandardAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
+                        statement.execute("UPDATE "+availableTableName+ " SET DeluxeAvailableArray ='"+updatedDeluxeAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
+                        statement.execute("UPDATE "+availableTableName+ " SET SuitAvailableArray= '"+updatedSuiteAvailableString+"' WHERE UniqueId='"+uniqueId+"'");
                         long duration2 = current.getTime()-checkin.getTime();
                         int diffInDaysForCancel= (int) TimeUnit.MILLISECONDS.toDays(duration2);
                         if (diffInDaysForCancel>3)
@@ -564,12 +575,13 @@ public class DataBaseController {
     }
     public String generateBookingId(String userName)
     {
-        StringBuffer bookingId= new StringBuffer();
+        StringBuilder bookingId= new StringBuilder();
         for(int i=0;i<3;i++)
         {
             bookingId = bookingId.append(userName.toCharArray()[i]);
 
         }
+
         Random rnd = new Random();
         int n = 1000000 + rnd.nextInt(9000000);
         bookingId = bookingId.append(n);
@@ -577,17 +589,37 @@ public class DataBaseController {
     }
     public void addToMyBookings(String userName,String hotelName,String status,String checkIn,String checkOut,int standardRooms,int deluxeRooms,int suiteRooms,String totalPrice,String address,String uniqueId)
     {
-       String bookingId = generateBookingId(userName);
-       System.out.println(bookingId);
-        java.util.Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String bookedDate = df.format(c);
-        try {
-            statement.execute("INSERT INTO "+myBookingsTableName+myBookingParametres+"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
-                    ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"','"+uniqueId+"')");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        System.out.println("call value"+callForWaitListToMyBooking+" "+carryBookingId);
+        if (callForWaitListToMyBooking==1) {
+            callForWaitListToMyBooking=0;
+            String bookingId = carryBookingId;
+            System.out.println(bookingId);
+            java.util.Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String bookedDate = df.format(c);
+            carryBookingId="notLoaded";
+            callFromWaitingList=0;
+            try {
+                statement.execute("INSERT INTO "+myBookingsTableName+myBookingParametres+"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
+                        ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"','"+uniqueId+"')");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        else {
+            String bookingId = generateBookingId(userName);
+            System.out.println(bookingId);
+            java.util.Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String bookedDate = df.format(c);
+            try {
+                statement.execute("INSERT INTO "+myBookingsTableName+myBookingParametres+"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
+                        ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"','"+uniqueId+"')");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
     public ArrayList<String> getRoomPriceFromHotel(String uniqueId) {
         ArrayList<String> list=new ArrayList<>();
