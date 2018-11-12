@@ -4,7 +4,6 @@
 
 package com.sharan.ui.home.homePage;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;

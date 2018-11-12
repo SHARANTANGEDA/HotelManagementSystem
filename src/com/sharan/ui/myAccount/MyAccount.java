@@ -22,7 +22,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
 import static com.sharan.Main.callFromWaitingList;
@@ -122,10 +121,6 @@ public class MyAccount {
     }
 
 
-    private void activeBookingsPropertyChange(PropertyChangeEvent e) {
-
-    }
-
 
 
     private void homePageActionPerformed(ActionEvent e) {
@@ -153,7 +148,8 @@ public class MyAccount {
 
 
             dataBaseController.initialiseDatabase();
-            dataBaseController.cancelBooking(tableList.get(row).getBookingId(), tableList.get(row).getUniqueId(), tableList.get(row).getCheckIn(), tableList.get(row).getCheckOut(),
+            dataBaseController.cancelBookingFromWaitList(tableList.get(row).getBookingId(), tableList.get(row).getUniqueId()
+                    , tableList.get(row).getCheckIn(), tableList.get(row).getCheckOut(),
                     Integer.parseInt(tableList.get(row).getStandardRooms()), Integer.parseInt(tableList.get(row).getDeluxeRooms()),
                     Integer.parseInt(tableList.get(row).getSuiteRooms()), tableList.get(row).getBookingDate());
             dataBaseController.closeDatabaseConnection();
