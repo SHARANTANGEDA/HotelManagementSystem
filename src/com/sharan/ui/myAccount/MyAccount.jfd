@@ -173,7 +173,6 @@ new FormModel {
 								"rowHeight": 78
 								"cellSelectionEnabled": true
 								"selectionMode": 1
-								addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "activeBookingsPropertyChange", true ) )
 								addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "activeBookingsMouseClicked", true ) )
 							} )
 						} )

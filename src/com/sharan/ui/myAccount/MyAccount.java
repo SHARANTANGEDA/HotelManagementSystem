@@ -113,73 +113,12 @@ public class MyAccount {
     }
 
     private void cellSelectedTableWaitList(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
 
-            int row = waitingListTable.getSelectedRow();
-            int column = waitingListTable.getSelectedColumn();
-            System.out.println(column);
-
-            if (column == 8) {
-                dataBaseController.initialiseDatabase();
-                dataBaseController.cancelBooking(waitList.get(row).getBookingId(), waitList.get(row).getUniqueId(), waitList.get(row).getCheckIn(), waitList.get(row).getCheckOut(),
-                        Integer.parseInt(waitList.get(row).getStandardRooms()), Integer.parseInt(waitList.get(row).getDeluxeRooms()),
-                        Integer.parseInt(waitList.get(row).getSuiteRooms()), waitList.get(row).getBookingDate());
-                dataBaseController.closeDatabaseConnection();
-                SwingUtilities.updateComponentTreeUI(myAccountField);
-            }
-            if(column==9) {
-                dataBaseController.initialiseDatabase();
-                ArrayList<String> list= dataBaseController.getWholeData(waitList.get(row).getUniqueId());
-                callFromWaitingList=1;
-                carryBookingId=waitList.get(row).getBookingId();
-                dataBaseController.checkAvailable(userName,waitList.get(row).getUniqueId(),waitList.get(row).getCheckIn(),waitList.get(row).getCheckOut(),
-                        Integer.parseInt(waitList.get(row).getStandardRooms()),Integer.parseInt(waitList.get(row).getDeluxeRooms()),
-                        Integer.parseInt(waitList.get(row).getSuiteRooms()),Integer.parseInt(list.get(4)),Integer.parseInt(list.get(7)),
-                        Integer.parseInt(list.get(10)));
-
-
-                dataBaseController.closeDatabaseConnection();
-                myAccountField.dispose();
-            }
-        }else {
-            System.out.println("value is not adjusting");
-        }
     }
 
     private void cellSelectedInTable(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
-
-            int row = activeBookings.getSelectedRow();
-            int column = activeBookings.getSelectedColumn();
-            System.out.println(column);
-            if (column == 11) {
-
-                selectedBookingId = (String) activeBookings.getValueAt(row, 1);
-                if (!selectedBookingId.isEmpty()) {
-                    dataBaseController.initialiseDatabase();
-                    list = dataBaseController.getPDFdetails(selectedBookingId);
-                    dataBaseController.closeDatabaseConnection();
-                    PDFSaveFileChooser fileChooser = new PDFSaveFileChooser(list);
-                }
-
-            }
-
-            if (column == 10) {
 
 
-                dataBaseController.initialiseDatabase();
-                dataBaseController.cancelBooking(tableList.get(row).getBookingId(), tableList.get(row).getUniqueId(), tableList.get(row).getCheckIn(), tableList.get(row).getCheckOut(),
-                        Integer.parseInt(tableList.get(row).getStandardRooms()), Integer.parseInt(tableList.get(row).getDeluxeRooms()),
-                        Integer.parseInt(tableList.get(row).getSuiteRooms()), tableList.get(row).getBookingDate());
-                dataBaseController.closeDatabaseConnection();
-
-                SwingUtilities.updateComponentTreeUI(myAccountField);
-
-            }
-
-        }else {
-            System.out.println("value is not adjusting");
-        }
     }
 
 
@@ -195,11 +134,67 @@ public class MyAccount {
     }
 
     private void activeBookingsMouseClicked(MouseEvent e) {
-        // TODO add your code here
+        int row = activeBookings.getSelectedRow();
+        int column = activeBookings.getSelectedColumn();
+        System.out.println(column);
+        if (column == 11) {
+
+            selectedBookingId = (String) activeBookings.getValueAt(row, 1);
+            if (!selectedBookingId.isEmpty()) {
+                dataBaseController.initialiseDatabase();
+                list = dataBaseController.getPDFdetails(selectedBookingId);
+                dataBaseController.closeDatabaseConnection();
+                PDFSaveFileChooser fileChooser = new PDFSaveFileChooser(list);
+            }
+
+        }
+
+        if (column == 10) {
+
+
+            dataBaseController.initialiseDatabase();
+            dataBaseController.cancelBooking(tableList.get(row).getBookingId(), tableList.get(row).getUniqueId(), tableList.get(row).getCheckIn(), tableList.get(row).getCheckOut(),
+                    Integer.parseInt(tableList.get(row).getStandardRooms()), Integer.parseInt(tableList.get(row).getDeluxeRooms()),
+                    Integer.parseInt(tableList.get(row).getSuiteRooms()), tableList.get(row).getBookingDate());
+            dataBaseController.closeDatabaseConnection();
+
+            myAccountField.dispose();
+            MyAccount myAccount=new MyAccount(userName,dataBaseController);
+
+
+        }
     }
 
     private void waitingListTableMouseClicked(MouseEvent e) {
-        // TODO add your code here
+
+        int row = waitingListTable.getSelectedRow();
+        int column = waitingListTable.getSelectedColumn();
+        System.out.println(column);
+
+        if (column == 8) {
+            dataBaseController.initialiseDatabase();
+            dataBaseController.cancelBooking(waitList.get(row).getBookingId(), waitList.get(row).getUniqueId(), waitList.get(row).getCheckIn(), waitList.get(row).getCheckOut(),
+                    Integer.parseInt(waitList.get(row).getStandardRooms()), Integer.parseInt(waitList.get(row).getDeluxeRooms()),
+                    Integer.parseInt(waitList.get(row).getSuiteRooms()), waitList.get(row).getBookingDate());
+            dataBaseController.closeDatabaseConnection();
+            myAccountField.dispose();
+            MyAccount myAccount = new MyAccount(userName, dataBaseController);
+
+        }
+        if (column == 9) {
+            dataBaseController.initialiseDatabase();
+            ArrayList<String> list = dataBaseController.getWholeData(waitList.get(row).getUniqueId());
+            callFromWaitingList = 1;
+            carryBookingId = waitList.get(row).getBookingId();
+            dataBaseController.checkAvailable(userName, waitList.get(row).getUniqueId(), waitList.get(row).getCheckIn(), waitList.get(row).getCheckOut(),
+                    Integer.parseInt(waitList.get(row).getStandardRooms()), Integer.parseInt(waitList.get(row).getDeluxeRooms()),
+                    Integer.parseInt(waitList.get(row).getSuiteRooms()), Integer.parseInt(list.get(4)), Integer.parseInt(list.get(7)),
+                    Integer.parseInt(list.get(10)));
+
+
+            dataBaseController.closeDatabaseConnection();
+            myAccountField.dispose();
+        }
     }
 
 
@@ -323,7 +318,6 @@ public class MyAccount {
                             activeBookings.setRowHeight(78);
                             activeBookings.setCellSelectionEnabled(true);
                             activeBookings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-                            activeBookings.addPropertyChangeListener(e -> activeBookingsPropertyChange(e));
                             activeBookings.addMouseListener(new MouseAdapter() {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {

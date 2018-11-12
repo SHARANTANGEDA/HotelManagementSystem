@@ -26,7 +26,7 @@ public class MyBookingTableModel extends javax.swing.table.DefaultTableModel {
                             ,"Number Of SuiteRooms","Total Price Paid","Cancel Booking","Generate PDF"};
 
     public void createRow(ColumnsInMyBooking myBooking) {
-        this.row= new String[]{myBooking.getHotelName(),myBooking.getBookingDate(), myBooking.getBookingId(),myBooking.getBookingStatus(),
+        this.row= new String[]{myBooking.getHotelName(), myBooking.getBookingId(),myBooking.getBookingDate(),myBooking.getBookingStatus(),
                 myBooking.getCheckIn(),myBooking.getCheckOut(),myBooking.getStandardRooms(),
                 myBooking.getDeluxeRooms(), myBooking.getSuiteRooms(),myBooking.getTotalPricePaid(),"Cancel Booking", "Generate Ticket"};
 
@@ -63,4 +63,5 @@ public class MyBookingTableModel extends javax.swing.table.DefaultTableModel {
          return super.getColumnClass(columnIndex);
 
     }
+
 }

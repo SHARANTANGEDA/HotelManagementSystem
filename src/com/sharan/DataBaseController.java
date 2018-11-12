@@ -3,7 +3,6 @@ package com.sharan;
 
 import com.sharan.encryptionAlgorithms.AES128Encyrption;
 import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.ElementsInHotelView;
-import com.sharan.ui.hotelView.paymentPage.PaymentPage;
 import com.sharan.ui.hotelView.roomBooking.waitingList.waitingList;
 import com.sharan.ui.myAccount.ColumnsInMyBooking;
 import com.sharan.ui.myAccount.ColumnsInWaitingList;
@@ -380,8 +379,10 @@ public class DataBaseController {
                     availableList.add(deluxeAvailableString);
                     availableList.add(suiteAvailableString);
                     availableList.add(formattedDate);
+                    initialiseDatabase();
                     PaymentPage paymentPage = new PaymentPage(statement,0,availableList,userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId,checkIn,checkOut);
-               // System.out.println(standardAvailableString+"','"+
+                    closeDatabaseConnection();
+                    // System.out.println(standardAvailableString+"','"+
                          //   deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate);
                  //   statement.execute("INSERT INTO "+ availableTableName+availableInsertParametres+"VALUES('"+uniqueId+"','"+standardAvailableString+"','"+
                          //   deluxeAvailableString+"','"+suiteAvailableString+"','"+formattedDate+"')");
@@ -599,12 +600,14 @@ public class DataBaseController {
             String bookedDate = df.format(c);
             carryBookingId="notLoaded";
             callFromWaitingList=0;
+            initialiseDatabase();
             try {
                 statement.execute("INSERT INTO "+myBookingsTableName+myBookingParametres+"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
                         ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"','"+uniqueId+"')");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            closeDatabaseConnection();
         }
         else {
             String bookingId = generateBookingId(userName);
@@ -820,13 +823,12 @@ public class DataBaseController {
                 String hotelName=parseHotelList.get(1);
 
 
-                String bookingId=generateBookingId(userName);
+//                String bookingId=generateBookingId(userName);
                 ArrayList<String> rowList=new ArrayList<>();
 
                 rowList.add(userName);
                 rowList.add(hotelName);
-                rowList.add(bookingId);
-
+                rowList.add(resultSet.getString("BookingId"));
                 rowList.add(resultSet.getString("CheckIn"));
                 rowList.add(resultSet.getString("CheckOut"));
                 rowList.add(resultSet.getString("StandardRooms"));
