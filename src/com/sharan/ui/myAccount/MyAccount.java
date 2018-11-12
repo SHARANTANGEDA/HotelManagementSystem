@@ -33,20 +33,8 @@ public class MyAccount {
     private String selectedBookingId;
     private DataBaseController dataBaseController;
     private ArrayList<String> list;
-//    private String pathPre;
     private String userName;
-//    private String hotelName;
-//    private String bookingId;
-//    private String bookingStatus;
-//    private String checkInDate;
-//    private String checkOutDate;
-//    private String standardRoom;
-//    private String deluxeRoom;
-//    private String suiteRoom;
-//    private String totalCost;
-//    private String address;
-//    private String bookingDate;
-//    private String uniqueId;
+
    private ArrayList<ColumnsInMyBooking> tableList;
    private ArrayList<ColumnsInWaitingList> waitList;
 
@@ -88,6 +76,8 @@ public class MyAccount {
 
         myAccountField.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         myAccountField.setVisible(true);
+        myAccountField.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
 
         activeBookings.setCellSelectionEnabled(true);
         ListSelectionModel listSelectionModel=activeBookings.getSelectionModel();
@@ -148,7 +138,7 @@ public class MyAccount {
 
 
             dataBaseController.initialiseDatabase();
-            dataBaseController.cancelBookingFromWaitList(tableList.get(row).getBookingId(), tableList.get(row).getUniqueId()
+            dataBaseController.cancelBooking(tableList.get(row).getBookingId(), tableList.get(row).getUniqueId()
                     , tableList.get(row).getCheckIn(), tableList.get(row).getCheckOut(),
                     Integer.parseInt(tableList.get(row).getStandardRooms()), Integer.parseInt(tableList.get(row).getDeluxeRooms()),
                     Integer.parseInt(tableList.get(row).getSuiteRooms()), tableList.get(row).getBookingDate());
@@ -169,7 +159,7 @@ public class MyAccount {
 
         if (column == 8) {
             dataBaseController.initialiseDatabase();
-            dataBaseController.cancelBooking(waitList.get(row).getBookingId(), waitList.get(row).getUniqueId(), waitList.get(row).getCheckIn(), waitList.get(row).getCheckOut(),
+            dataBaseController.cancelBookingFromWaitList(waitList.get(row).getBookingId(), waitList.get(row).getUniqueId(), waitList.get(row).getCheckIn(), waitList.get(row).getCheckOut(),
                     Integer.parseInt(waitList.get(row).getStandardRooms()), Integer.parseInt(waitList.get(row).getDeluxeRooms()),
                     Integer.parseInt(waitList.get(row).getSuiteRooms()), waitList.get(row).getBookingDate());
             dataBaseController.closeDatabaseConnection();

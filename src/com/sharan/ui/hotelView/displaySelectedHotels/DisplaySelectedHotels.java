@@ -4,6 +4,8 @@
 
 package com.sharan.ui.hotelView.displaySelectedHotels;
 
+import java.awt.event.*;
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
@@ -12,6 +14,8 @@ import com.sharan.ui.hotelView.hotelHomeAfterLogin.HotelHomeAfterLogin;
 import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
 import com.sharan.ui.hotelView.roomBooking.roomBookingTwo.RoomBookingTwo;
 import com.sharan.ui.myAccount.MyAccount;
+import org.jdesktop.layout.GroupLayout;
+import org.jdesktop.layout.LayoutStyle;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
@@ -791,7 +795,11 @@ public class DisplaySelectedHotels {
                 backButton.setPreferredSize(new Dimension(50, 13));
                 backButton.setMaximumSize(new Dimension(50, 32767));
                 backButton.setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/Back24.gif")));
-                backButton.addActionListener(e -> backButtonActionPerformed(e));
+                backButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        backButtonActionPerformed(e);
+                    }
+                });
                 menuBar1.add(backButton);
 
                 //---- separator2 ----
@@ -806,8 +814,16 @@ public class DisplaySelectedHotels {
                 Hotels.setMinimumSize(new Dimension(250, 35));
                 Hotels.setFocusable(false);
                 Hotels.setLightWeightPopupEnabled(false);
-                Hotels.addActionListener(e -> HotelsActionPerformed(e));
-                Hotels.addItemListener(e -> HotelsItemStateChanged(e));
+                Hotels.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        HotelsActionPerformed(e);
+                    }
+                });
+                Hotels.addItemListener(new ItemListener() {
+                    public void itemStateChanged(ItemEvent e) {
+                        HotelsItemStateChanged(e);
+                    }
+                });
                 menuBar1.add(Hotels);
 
                 //---- Search ----
@@ -816,7 +832,11 @@ public class DisplaySelectedHotels {
                 Search.setText("Search");
                 Search.setBackground(Color.darkGray);
                 Search.setForeground(new Color(238, 238, 238));
-                Search.addActionListener(e -> SearchActionPerformed(e));
+                Search.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        SearchActionPerformed(e);
+                    }
+                });
                 menuBar1.add(Search);
 
                 //---- separator1 ----
@@ -831,13 +851,21 @@ public class DisplaySelectedHotels {
                     //---- myAccount ----
                     myAccount.setText("My Account");
                     myAccount.setFont(new Font("Arial", Font.PLAIN, 18));
-                    myAccount.addActionListener(e -> myAccountActionPerformed(e));
+                    myAccount.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            myAccountActionPerformed(e);
+                        }
+                    });
                     profile.add(myAccount);
 
                     //---- Logout ----
                     Logout.setText("Logout");
                     Logout.setFont(new Font("Arial", Font.PLAIN, 18));
-                    Logout.addActionListener(e -> LogoutActionPerformed(e));
+                    Logout.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            LogoutActionPerformed(e);
+                        }
+                    });
                     profile.add(Logout);
                 }
                 menuBar1.add(profile);
@@ -924,14 +952,22 @@ public class DisplaySelectedHotels {
                         bookNow1.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         bookNow1.setBackground(new Color(153, 0, 0));
                         bookNow1.setForeground(new Color(238, 238, 238));
-                        bookNow1.addActionListener(e -> bookNow1ActionPerformed(e));
+                        bookNow1.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                bookNow1ActionPerformed(e);
+                            }
+                        });
 
                         //---- viewHotel1 ----
                         viewHotel1.setText("View Hotel");
                         viewHotel1.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         viewHotel1.setBackground(new Color(153, 0, 0));
                         viewHotel1.setForeground(new Color(238, 238, 238));
-                        viewHotel1.addActionListener(e -> viewHotel1ActionPerformed(e));
+                        viewHotel1.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                viewHotel1ActionPerformed(e);
+                            }
+                        });
 
                         //---- label50 ----
                         label50.setText("Room Price");
@@ -961,101 +997,101 @@ public class DisplaySelectedHotels {
                         hotelPanel1.setLayout(hotelPanel1Layout);
                         hotelPanel1Layout.setHorizontalGroup(
                             hotelPanel1Layout.createParallelGroup()
-                                .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                .add(hotelPanel1Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(hotelPhoto1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(hotelPanel1Layout.createParallelGroup()
-                                        .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(label11, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                        .addComponent(priceDeluxe1)
-                                                        .addComponent(priceStandard1)
-                                                        .addComponent(priceSuite1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                        .addComponent(standardRooms1)
-                                                        .addComponent(deluxeRooms)
-                                                        .addComponent(suiteRooms))
-                                                    .addGap(121, 121, 121))
-                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                    .addComponent(ratingBracket1, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                    .addComponent(hotelRating1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGap(258, 258, 258)))
-                                            .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(viewHotel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(bookNow1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGap(27, 27, 27))
-                                        .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                            .addComponent(label, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(label50, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(label60)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30))
-                                .addComponent(hotelName1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(hotelPhoto1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.UNRELATED)
+                                    .add(hotelPanel1Layout.createParallelGroup()
+                                        .add(hotelPanel1Layout.createSequentialGroup()
+                                            .add(hotelPanel1Layout.createParallelGroup()
+                                                .add(hotelPanel1Layout.createSequentialGroup()
+                                                    .add(hotelPanel1Layout.createParallelGroup()
+                                                        .add(label9, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                        .add(label10, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                        .add(label11, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+                                                    .add(18, 18, 18)
+                                                    .add(hotelPanel1Layout.createParallelGroup()
+                                                        .add(priceDeluxe1)
+                                                        .add(priceStandard1)
+                                                        .add(priceSuite1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(LayoutStyle.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .add(hotelPanel1Layout.createParallelGroup()
+                                                        .add(standardRooms1)
+                                                        .add(deluxeRooms)
+                                                        .add(suiteRooms))
+                                                    .add(121, 121, 121))
+                                                .add(hotelPanel1Layout.createSequentialGroup()
+                                                    .add(ratingBracket1, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .add(hotelPanel1Layout.createSequentialGroup()
+                                                    .add(hotelRating1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .add(258, 258, 258)))
+                                            .add(hotelPanel1Layout.createParallelGroup(GroupLayout.LEADING, false)
+                                                .add(viewHotel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .add(bookNow1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .add(27, 27, 27))
+                                        .add(hotelPanel1Layout.createSequentialGroup()
+                                            .add(label, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                            .add(18, 18, 18)
+                                            .add(label50, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.UNRELATED)
+                                            .add(label60)
+                                            .addPreferredGap(LayoutStyle.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .add(scrollPane2, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
+                                    .add(30, 30, 30))
+                                .add(hotelName1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
                         hotelPanel1Layout.setVerticalGroup(
                             hotelPanel1Layout.createParallelGroup()
-                                .addGroup(hotelPanel1Layout.createSequentialGroup()
+                                .add(hotelPanel1Layout.createSequentialGroup()
                                     .addContainerGap(12, Short.MAX_VALUE)
-                                    .addComponent(hotelName1)
-                                    .addGroup(hotelPanel1Layout.createParallelGroup()
-                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                                            .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                .addComponent(hotelPhoto1, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                    .addGroup(hotelPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(label)
-                                                        .addComponent(label50)
-                                                        .addComponent(label60))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
-                                                            .addGroup(hotelPanel1Layout.createParallelGroup()
-                                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                                    .addComponent(label9)
-                                                                    .addGap(18, 18, 18)
-                                                                    .addComponent(label10)
-                                                                    .addGap(18, 18, 18)
-                                                                    .addComponent(label11))
-                                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                                    .addComponent(standardRooms1)
-                                                                    .addGap(18, 18, 18)
-                                                                    .addComponent(deluxeRooms)
-                                                                    .addGap(18, 18, 18)
-                                                                    .addComponent(suiteRooms))
-                                                                .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                                                    .addComponent(priceStandard1)
-                                                                    .addGap(18, 18, 18)
-                                                                    .addComponent(priceDeluxe1)
-                                                                    .addGap(18, 18, 18)
-                                                                    .addComponent(priceSuite1)))
-                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(ratingBracket1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-                                                            .addGap(78, 78, 78))
-                                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
-                                                            .addComponent(viewHotel1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                            .addComponent(bookNow1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                            .addGap(29, 29, 29))))))
-                                        .addGroup(hotelPanel1Layout.createSequentialGroup()
-                                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+                                    .add(hotelName1)
+                                    .add(hotelPanel1Layout.createParallelGroup()
+                                        .add(GroupLayout.TRAILING, hotelPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(LayoutStyle.RELATED, 11, Short.MAX_VALUE)
+                                            .add(hotelPanel1Layout.createParallelGroup()
+                                                .add(hotelPhoto1, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
+                                                .add(hotelPanel1Layout.createSequentialGroup()
+                                                    .add(hotelPanel1Layout.createParallelGroup(GroupLayout.BASELINE)
+                                                        .add(label)
+                                                        .add(label50)
+                                                        .add(label60))
+                                                    .add(18, 18, 18)
+                                                    .add(hotelPanel1Layout.createParallelGroup()
+                                                        .add(GroupLayout.TRAILING, hotelPanel1Layout.createSequentialGroup()
+                                                            .add(hotelPanel1Layout.createParallelGroup()
+                                                                .add(hotelPanel1Layout.createSequentialGroup()
+                                                                    .add(label9)
+                                                                    .add(18, 18, 18)
+                                                                    .add(label10)
+                                                                    .add(18, 18, 18)
+                                                                    .add(label11))
+                                                                .add(hotelPanel1Layout.createSequentialGroup()
+                                                                    .add(standardRooms1)
+                                                                    .add(18, 18, 18)
+                                                                    .add(deluxeRooms)
+                                                                    .add(18, 18, 18)
+                                                                    .add(suiteRooms))
+                                                                .add(hotelPanel1Layout.createSequentialGroup()
+                                                                    .add(priceStandard1)
+                                                                    .add(18, 18, 18)
+                                                                    .add(priceDeluxe1)
+                                                                    .add(18, 18, 18)
+                                                                    .add(priceSuite1)))
+                                                            .addPreferredGap(LayoutStyle.RELATED)
+                                                            .add(ratingBracket1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                                            .add(78, 78, 78))
+                                                        .add(GroupLayout.TRAILING, hotelPanel1Layout.createSequentialGroup()
+                                                            .add(viewHotel1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(LayoutStyle.UNRELATED)
+                                                            .add(bookNow1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                            .add(29, 29, 29))))))
+                                        .add(hotelPanel1Layout.createSequentialGroup()
+                                            .add(scrollPane2, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                                             .addContainerGap())))
-                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel1Layout.createSequentialGroup()
+                                .add(GroupLayout.TRAILING, hotelPanel1Layout.createSequentialGroup()
                                     .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelRating1, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+                                    .add(hotelRating1, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
                         );
                     }
 
@@ -1096,14 +1132,22 @@ public class DisplaySelectedHotels {
                         bookNow2.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         bookNow2.setBackground(new Color(153, 0, 0));
                         bookNow2.setForeground(new Color(238, 238, 238));
-                        bookNow2.addActionListener(e -> bookNow2ActionPerformed(e));
+                        bookNow2.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                bookNow2ActionPerformed(e);
+                            }
+                        });
 
                         //---- viewHotel2 ----
                         viewHotel2.setText("View Hotel");
                         viewHotel2.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         viewHotel2.setBackground(new Color(153, 0, 0));
                         viewHotel2.setForeground(new Color(238, 238, 238));
-                        viewHotel2.addActionListener(e -> viewHotel2ActionPerformed(e));
+                        viewHotel2.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                viewHotel2ActionPerformed(e);
+                            }
+                        });
 
                         //---- standardRooms2 ----
                         standardRooms2.setText("text");
@@ -1157,97 +1201,97 @@ public class DisplaySelectedHotels {
                         hotelPanel2.setLayout(hotelPanel2Layout);
                         hotelPanel2Layout.setHorizontalGroup(
                             hotelPanel2Layout.createParallelGroup()
-                                .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                .add(hotelPanel2Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(hotelPhoto2, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(12, 12, 12)
-                                    .addGroup(hotelPanel2Layout.createParallelGroup()
-                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(label51, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(ratingBracket2, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(hotelRating2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGap(12, 12, 12)
-                                            .addComponent(label61))
-                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(label13, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(label14, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(32, 32, 32)
-                                            .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                .addComponent(priceStandard2)
-                                                .addComponent(priceDeluxe2)
-                                                .addComponent(priceSuite2))
-                                            .addGap(107, 107, 107)
-                                            .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                .addComponent(standardRooms2)
-                                                .addComponent(deluxeRooms2)
-                                                .addComponent(suiteRooms2))))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(hotelPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(viewHotel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bookNow2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(27, 27, 27)
-                                    .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30))
-                                .addComponent(hotelName2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(hotelPhoto2, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                                    .add(12, 12, 12)
+                                    .add(hotelPanel2Layout.createParallelGroup()
+                                        .add(hotelPanel2Layout.createSequentialGroup()
+                                            .add(hotelPanel2Layout.createParallelGroup(GroupLayout.LEADING, false)
+                                                .add(hotelPanel2Layout.createSequentialGroup()
+                                                    .add(label2, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                    .add(18, 18, 18)
+                                                    .add(label51, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+                                                .add(ratingBracket2, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                .add(hotelRating2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .add(12, 12, 12)
+                                            .add(label61))
+                                        .add(hotelPanel2Layout.createSequentialGroup()
+                                            .add(hotelPanel2Layout.createParallelGroup()
+                                                .add(label12, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                .add(label13, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                .add(label14, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+                                            .add(32, 32, 32)
+                                            .add(hotelPanel2Layout.createParallelGroup()
+                                                .add(priceStandard2)
+                                                .add(priceDeluxe2)
+                                                .add(priceSuite2))
+                                            .add(107, 107, 107)
+                                            .add(hotelPanel2Layout.createParallelGroup()
+                                                .add(standardRooms2)
+                                                .add(deluxeRooms2)
+                                                .add(suiteRooms2))))
+                                    .addPreferredGap(LayoutStyle.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(hotelPanel2Layout.createParallelGroup(GroupLayout.LEADING, false)
+                                        .add(viewHotel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(bookNow2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(27, 27, 27)
+                                    .add(scrollPane3, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
+                                    .add(30, 30, 30))
+                                .add(hotelName2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
                         hotelPanel2Layout.setVerticalGroup(
                             hotelPanel2Layout.createParallelGroup()
-                                .addGroup(hotelPanel2Layout.createSequentialGroup()
+                                .add(hotelPanel2Layout.createSequentialGroup()
                                     .addContainerGap(12, Short.MAX_VALUE)
-                                    .addComponent(hotelName2)
-                                    .addGroup(hotelPanel2Layout.createParallelGroup()
-                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                            .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+                                    .add(hotelName2)
+                                    .add(hotelPanel2Layout.createParallelGroup()
+                                        .add(hotelPanel2Layout.createSequentialGroup()
+                                            .add(scrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                                             .addContainerGap(24, Short.MAX_VALUE))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel2Layout.createSequentialGroup()
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel2Layout.createSequentialGroup()
-                                                    .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                        .addComponent(label2)
-                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                                            .addGap(4, 4, 4)
-                                                            .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                                .addComponent(label51)
-                                                                .addComponent(label61))))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(hotelPanel2Layout.createParallelGroup()
-                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                                            .addComponent(label12)
-                                                            .addGap(18, 18, 18)
-                                                            .addComponent(label13)
-                                                            .addGap(18, 18, 18)
-                                                            .addComponent(label14))
-                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                                            .addComponent(priceStandard2)
-                                                            .addGap(18, 18, 18)
-                                                            .addComponent(priceDeluxe2)
-                                                            .addGap(18, 18, 18)
-                                                            .addComponent(priceSuite2))
-                                                        .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                                            .addComponent(standardRooms2)
-                                                            .addGap(18, 18, 18)
-                                                            .addComponent(deluxeRooms2)
-                                                            .addGap(18, 18, 18)
-                                                            .addComponent(suiteRooms2)))
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(ratingBracket2, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(hotelRating2, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel2Layout.createSequentialGroup()
-                                                    .addGap(0, 0, Short.MAX_VALUE)
-                                                    .addComponent(viewHotel2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(bookNow2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(43, 43, 43))
-                                                .addGroup(hotelPanel2Layout.createSequentialGroup()
-                                                    .addComponent(hotelPhoto2, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
+                                        .add(GroupLayout.TRAILING, hotelPanel2Layout.createSequentialGroup()
+                                            .addPreferredGap(LayoutStyle.RELATED)
+                                            .add(hotelPanel2Layout.createParallelGroup()
+                                                .add(GroupLayout.TRAILING, hotelPanel2Layout.createSequentialGroup()
+                                                    .add(hotelPanel2Layout.createParallelGroup()
+                                                        .add(label2)
+                                                        .add(hotelPanel2Layout.createSequentialGroup()
+                                                            .add(4, 4, 4)
+                                                            .add(hotelPanel2Layout.createParallelGroup()
+                                                                .add(label51)
+                                                                .add(label61))))
+                                                    .add(18, 18, 18)
+                                                    .add(hotelPanel2Layout.createParallelGroup()
+                                                        .add(hotelPanel2Layout.createSequentialGroup()
+                                                            .add(label12)
+                                                            .add(18, 18, 18)
+                                                            .add(label13)
+                                                            .add(18, 18, 18)
+                                                            .add(label14))
+                                                        .add(hotelPanel2Layout.createSequentialGroup()
+                                                            .add(priceStandard2)
+                                                            .add(18, 18, 18)
+                                                            .add(priceDeluxe2)
+                                                            .add(18, 18, 18)
+                                                            .add(priceSuite2))
+                                                        .add(hotelPanel2Layout.createSequentialGroup()
+                                                            .add(standardRooms2)
+                                                            .add(18, 18, 18)
+                                                            .add(deluxeRooms2)
+                                                            .add(18, 18, 18)
+                                                            .add(suiteRooms2)))
+                                                    .addPreferredGap(LayoutStyle.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .add(ratingBracket2, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.RELATED)
+                                                    .add(hotelRating2, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
+                                                .add(GroupLayout.TRAILING, hotelPanel2Layout.createSequentialGroup()
+                                                    .add(0, 0, Short.MAX_VALUE)
+                                                    .add(viewHotel2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.UNRELATED)
+                                                    .add(bookNow2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .add(43, 43, 43))
+                                                .add(hotelPanel2Layout.createSequentialGroup()
+                                                    .add(hotelPhoto2, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
                                                     .addContainerGap())))))
                         );
                     }
@@ -1289,14 +1333,22 @@ public class DisplaySelectedHotels {
                         bookNow3.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         bookNow3.setBackground(new Color(153, 0, 0));
                         bookNow3.setForeground(new Color(238, 238, 238));
-                        bookNow3.addActionListener(e -> bookNow3ActionPerformed(e));
+                        bookNow3.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                bookNow3ActionPerformed(e);
+                            }
+                        });
 
                         //---- viewHotel3 ----
                         viewHotel3.setText("View Hotel");
                         viewHotel3.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         viewHotel3.setBackground(new Color(153, 0, 0));
                         viewHotel3.setForeground(new Color(238, 238, 238));
-                        viewHotel3.addActionListener(e -> viewHotel3ActionPerformed(e));
+                        viewHotel3.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                viewHotel3ActionPerformed(e);
+                            }
+                        });
 
                         //---- standardRooms3 ----
                         standardRooms3.setText("text");
@@ -1350,96 +1402,96 @@ public class DisplaySelectedHotels {
                         hotelPanel3.setLayout(hotelPanel3Layout);
                         hotelPanel3Layout.setHorizontalGroup(
                             hotelPanel3Layout.createParallelGroup()
-                                .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                .add(hotelPanel3Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(hotelPhoto3, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(hotelPanel3Layout.createParallelGroup()
-                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(label52, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(13, 13, 13)
-                                                    .addComponent(label62))
-                                                .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                                    .addComponent(label15, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(49, 49, 49)
-                                                    .addComponent(priceStandard3)
-                                                    .addGap(91, 91, 91)
-                                                    .addComponent(standardRooms3))
-                                                .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                                    .addComponent(label16, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(58, 58, 58)
-                                                    .addComponent(priceDeluxe3)
-                                                    .addGap(91, 91, 91)
-                                                    .addComponent(deluxeRooms3))
-                                                .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                                    .addComponent(label17, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(58, 58, 58)
-                                                    .addComponent(priceSuite3)
-                                                    .addGap(91, 91, 91)
-                                                    .addComponent(suiteRooms3))))
-                                        .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                            .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                .addComponent(ratingBracket3, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(hotelRating3, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)))
-                                    .addGroup(hotelPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(viewHotel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bookNow3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(36, 36, 36)
-                                    .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(21, 21, 21))
-                                .addComponent(hotelName3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(hotelPhoto3, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.UNRELATED)
+                                    .add(hotelPanel3Layout.createParallelGroup()
+                                        .add(GroupLayout.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                            .add(0, 0, Short.MAX_VALUE)
+                                            .add(hotelPanel3Layout.createParallelGroup()
+                                                .add(hotelPanel3Layout.createSequentialGroup()
+                                                    .add(label3, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                    .add(18, 18, 18)
+                                                    .add(label52, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+                                                    .add(13, 13, 13)
+                                                    .add(label62))
+                                                .add(hotelPanel3Layout.createSequentialGroup()
+                                                    .add(label15, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                    .add(49, 49, 49)
+                                                    .add(priceStandard3)
+                                                    .add(91, 91, 91)
+                                                    .add(standardRooms3))
+                                                .add(hotelPanel3Layout.createSequentialGroup()
+                                                    .add(label16, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                    .add(58, 58, 58)
+                                                    .add(priceDeluxe3)
+                                                    .add(91, 91, 91)
+                                                    .add(deluxeRooms3))
+                                                .add(hotelPanel3Layout.createSequentialGroup()
+                                                    .add(label17, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                    .add(58, 58, 58)
+                                                    .add(priceSuite3)
+                                                    .add(91, 91, 91)
+                                                    .add(suiteRooms3))))
+                                        .add(hotelPanel3Layout.createSequentialGroup()
+                                            .add(hotelPanel3Layout.createParallelGroup()
+                                                .add(ratingBracket3, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                .add(hotelRating3, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(LayoutStyle.RELATED, 257, Short.MAX_VALUE)))
+                                    .add(hotelPanel3Layout.createParallelGroup(GroupLayout.LEADING, false)
+                                        .add(viewHotel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(bookNow3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(36, 36, 36)
+                                    .add(scrollPane4, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
+                                    .add(21, 21, 21))
+                                .add(hotelName3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
                         hotelPanel3Layout.setVerticalGroup(
                             hotelPanel3Layout.createParallelGroup()
-                                .addGroup(hotelPanel3Layout.createSequentialGroup()
+                                .add(hotelPanel3Layout.createSequentialGroup()
                                     .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelName3)
-                                    .addGroup(hotelPanel3Layout.createParallelGroup()
-                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(hotelPhoto3, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
-                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                        .addComponent(label3)
-                                                        .addGroup(hotelPanel3Layout.createSequentialGroup()
-                                                            .addGap(3, 3, 3)
-                                                            .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                                .addComponent(label52)
-                                                                .addComponent(label62))))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                        .addComponent(label15)
-                                                        .addComponent(priceStandard3)
-                                                        .addComponent(standardRooms3))
-                                                    .addGap(17, 17, 17)
-                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                        .addComponent(label16)
-                                                        .addComponent(priceDeluxe3)
-                                                        .addComponent(deluxeRooms3))
-                                                    .addGap(19, 19, 19)
-                                                    .addGroup(hotelPanel3Layout.createParallelGroup()
-                                                        .addComponent(label17)
-                                                        .addComponent(priceSuite3)
-                                                        .addComponent(suiteRooms3))
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(ratingBracket3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(hotelRating3, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel3Layout.createSequentialGroup()
-                                                    .addComponent(viewHotel3, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(bookNow3, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(37, 37, 37))
-                                                .addComponent(scrollPane4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))))
+                                    .add(hotelName3)
+                                    .add(hotelPanel3Layout.createParallelGroup()
+                                        .add(GroupLayout.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                            .add(0, 0, Short.MAX_VALUE)
+                                            .add(hotelPhoto3, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                        .add(GroupLayout.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                            .addPreferredGap(LayoutStyle.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(hotelPanel3Layout.createParallelGroup()
+                                                .add(GroupLayout.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                                    .add(hotelPanel3Layout.createParallelGroup()
+                                                        .add(label3)
+                                                        .add(hotelPanel3Layout.createSequentialGroup()
+                                                            .add(3, 3, 3)
+                                                            .add(hotelPanel3Layout.createParallelGroup()
+                                                                .add(label52)
+                                                                .add(label62))))
+                                                    .add(18, 18, 18)
+                                                    .add(hotelPanel3Layout.createParallelGroup()
+                                                        .add(label15)
+                                                        .add(priceStandard3)
+                                                        .add(standardRooms3))
+                                                    .add(17, 17, 17)
+                                                    .add(hotelPanel3Layout.createParallelGroup()
+                                                        .add(label16)
+                                                        .add(priceDeluxe3)
+                                                        .add(deluxeRooms3))
+                                                    .add(19, 19, 19)
+                                                    .add(hotelPanel3Layout.createParallelGroup()
+                                                        .add(label17)
+                                                        .add(priceSuite3)
+                                                        .add(suiteRooms3))
+                                                    .addPreferredGap(LayoutStyle.RELATED)
+                                                    .add(ratingBracket3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.RELATED)
+                                                    .add(hotelRating3, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
+                                                .add(GroupLayout.TRAILING, hotelPanel3Layout.createSequentialGroup()
+                                                    .add(viewHotel3, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .add(18, 18, 18)
+                                                    .add(bookNow3, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .add(37, 37, 37))
+                                                .add(GroupLayout.TRAILING, scrollPane4, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))))
                                     .addContainerGap())
                         );
                     }
@@ -1481,14 +1533,22 @@ public class DisplaySelectedHotels {
                         bookNow4.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         bookNow4.setBackground(new Color(153, 0, 0));
                         bookNow4.setForeground(new Color(238, 238, 238));
-                        bookNow4.addActionListener(e -> bookNow4ActionPerformed(e));
+                        bookNow4.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                bookNow4ActionPerformed(e);
+                            }
+                        });
 
                         //---- viewHotel4 ----
                         viewHotel4.setText("View Hotel");
                         viewHotel4.setFont(new Font("Droid Sans Mono Slashed", Font.BOLD, 24));
                         viewHotel4.setBackground(new Color(153, 0, 0));
                         viewHotel4.setForeground(new Color(238, 238, 238));
-                        viewHotel4.addActionListener(e -> viewHotel4ActionPerformed(e));
+                        viewHotel4.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                viewHotel4ActionPerformed(e);
+                            }
+                        });
 
                         //---- standardRooms4 ----
                         standardRooms4.setText("text");
@@ -1542,91 +1602,91 @@ public class DisplaySelectedHotels {
                         hotelPanel4.setLayout(hotelPanel4Layout);
                         hotelPanel4Layout.setHorizontalGroup(
                             hotelPanel4Layout.createParallelGroup()
-                                .addGroup(hotelPanel4Layout.createSequentialGroup()
+                                .add(hotelPanel4Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(hotelPhoto4, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(hotelPanel4Layout.createParallelGroup()
-                                        .addComponent(ratingBracket4, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(label53, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(13, 13, 13)
-                                            .addComponent(label63))
-                                        .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                            .addComponent(label18, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(49, 49, 49)
-                                            .addComponent(priceStandard4)
-                                            .addGap(91, 91, 91)
-                                            .addComponent(standardRooms4))
-                                        .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                            .addComponent(label19, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(58, 58, 58)
-                                            .addComponent(priceDeluxe4)
-                                            .addGap(91, 91, 91)
-                                            .addComponent(deluxeRooms4))
-                                        .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                            .addComponent(label20, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(58, 58, 58)
-                                            .addComponent(priceSuite4)
-                                            .addGap(91, 91, 91)
-                                            .addComponent(suiteRooms4))
-                                        .addComponent(hotelRating4, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                                    .addGroup(hotelPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(viewHotel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bookNow4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(36, 36, 36)
-                                    .addComponent(scrollPane5, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(21, 21, 21))
-                                .addComponent(hotelName4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(hotelPhoto4, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.UNRELATED)
+                                    .add(hotelPanel4Layout.createParallelGroup()
+                                        .add(ratingBracket4, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                        .add(hotelPanel4Layout.createSequentialGroup()
+                                            .add(label4, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                            .add(18, 18, 18)
+                                            .add(label53, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+                                            .add(13, 13, 13)
+                                            .add(label63))
+                                        .add(hotelPanel4Layout.createSequentialGroup()
+                                            .add(label18, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                            .add(49, 49, 49)
+                                            .add(priceStandard4)
+                                            .add(91, 91, 91)
+                                            .add(standardRooms4))
+                                        .add(hotelPanel4Layout.createSequentialGroup()
+                                            .add(label19, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                            .add(58, 58, 58)
+                                            .add(priceDeluxe4)
+                                            .add(91, 91, 91)
+                                            .add(deluxeRooms4))
+                                        .add(hotelPanel4Layout.createSequentialGroup()
+                                            .add(label20, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                            .add(58, 58, 58)
+                                            .add(priceSuite4)
+                                            .add(91, 91, 91)
+                                            .add(suiteRooms4))
+                                        .add(hotelRating4, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.RELATED, 75, Short.MAX_VALUE)
+                                    .add(hotelPanel4Layout.createParallelGroup(GroupLayout.LEADING, false)
+                                        .add(viewHotel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(bookNow4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(36, 36, 36)
+                                    .add(scrollPane5, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
+                                    .add(21, 21, 21))
+                                .add(hotelName4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
                         hotelPanel4Layout.setVerticalGroup(
                             hotelPanel4Layout.createParallelGroup()
-                                .addGroup(hotelPanel4Layout.createSequentialGroup()
+                                .add(hotelPanel4Layout.createSequentialGroup()
                                     .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelName4)
-                                    .addGroup(hotelPanel4Layout.createParallelGroup()
-                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(hotelPhoto4, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(hotelPanel4Layout.createParallelGroup()
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
-                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
-                                                        .addComponent(label4)
-                                                        .addGroup(hotelPanel4Layout.createSequentialGroup()
-                                                            .addGap(3, 3, 3)
-                                                            .addGroup(hotelPanel4Layout.createParallelGroup()
-                                                                .addComponent(label53)
-                                                                .addComponent(label63))))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
-                                                        .addComponent(label18)
-                                                        .addComponent(priceStandard4)
-                                                        .addComponent(standardRooms4))
-                                                    .addGap(17, 17, 17)
-                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
-                                                        .addComponent(label19)
-                                                        .addComponent(priceDeluxe4)
-                                                        .addComponent(deluxeRooms4))
-                                                    .addGap(19, 19, 19)
-                                                    .addGroup(hotelPanel4Layout.createParallelGroup()
-                                                        .addComponent(label20)
-                                                        .addComponent(priceSuite4)
-                                                        .addComponent(suiteRooms4))
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(ratingBracket4, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(hotelRating4, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(GroupLayout.Alignment.TRAILING, hotelPanel4Layout.createSequentialGroup()
-                                                    .addComponent(viewHotel4, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(bookNow4, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(37, 37, 37))
-                                                .addComponent(scrollPane5, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))))
+                                    .add(hotelName4)
+                                    .add(hotelPanel4Layout.createParallelGroup()
+                                        .add(GroupLayout.TRAILING, hotelPanel4Layout.createSequentialGroup()
+                                            .add(0, 0, Short.MAX_VALUE)
+                                            .add(hotelPhoto4, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                                        .add(GroupLayout.TRAILING, hotelPanel4Layout.createSequentialGroup()
+                                            .addPreferredGap(LayoutStyle.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(hotelPanel4Layout.createParallelGroup()
+                                                .add(GroupLayout.TRAILING, hotelPanel4Layout.createSequentialGroup()
+                                                    .add(hotelPanel4Layout.createParallelGroup()
+                                                        .add(label4)
+                                                        .add(hotelPanel4Layout.createSequentialGroup()
+                                                            .add(3, 3, 3)
+                                                            .add(hotelPanel4Layout.createParallelGroup()
+                                                                .add(label53)
+                                                                .add(label63))))
+                                                    .add(18, 18, 18)
+                                                    .add(hotelPanel4Layout.createParallelGroup()
+                                                        .add(label18)
+                                                        .add(priceStandard4)
+                                                        .add(standardRooms4))
+                                                    .add(17, 17, 17)
+                                                    .add(hotelPanel4Layout.createParallelGroup()
+                                                        .add(label19)
+                                                        .add(priceDeluxe4)
+                                                        .add(deluxeRooms4))
+                                                    .add(19, 19, 19)
+                                                    .add(hotelPanel4Layout.createParallelGroup()
+                                                        .add(label20)
+                                                        .add(priceSuite4)
+                                                        .add(suiteRooms4))
+                                                    .addPreferredGap(LayoutStyle.UNRELATED)
+                                                    .add(ratingBracket4, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.RELATED)
+                                                    .add(hotelRating4, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
+                                                .add(GroupLayout.TRAILING, hotelPanel4Layout.createSequentialGroup()
+                                                    .add(viewHotel4, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .add(18, 18, 18)
+                                                    .add(bookNow4, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                                    .add(37, 37, 37))
+                                                .add(GroupLayout.TRAILING, scrollPane5, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))))
                                     .addContainerGap())
                         );
                     }
@@ -1635,26 +1695,26 @@ public class DisplaySelectedHotels {
                     homePanel.setLayout(homePanelLayout);
                     homePanelLayout.setHorizontalGroup(
                         homePanelLayout.createParallelGroup()
-                            .addComponent(hotelPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(homePanelLayout.createSequentialGroup()
+                            .add(hotelPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(homePanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(homePanelLayout.createParallelGroup()
-                                    .addComponent(hotelPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hotelPanel4, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .add(homePanelLayout.createParallelGroup()
+                                    .add(hotelPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(hotelPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(GroupLayout.TRAILING, hotelPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())
                     );
                     homePanelLayout.setVerticalGroup(
                         homePanelLayout.createParallelGroup()
-                            .addGroup(homePanelLayout.createSequentialGroup()
+                            .add(homePanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(hotelPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(hotelPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(hotelPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(hotelPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .add(hotelPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(hotelPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(hotelPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.UNRELATED)
+                                .add(hotelPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(313, Short.MAX_VALUE))
                     );
                 }
@@ -1665,21 +1725,21 @@ public class DisplaySelectedHotels {
             displayTableContentPane.setLayout(displayTableContentPaneLayout);
             displayTableContentPaneLayout.setHorizontalGroup(
                 displayTableContentPaneLayout.createParallelGroup()
-                    .addGroup(displayTableContentPaneLayout.createSequentialGroup()
-                        .addGroup(displayTableContentPaneLayout.createParallelGroup()
-                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1529, Short.MAX_VALUE)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1529, Short.MAX_VALUE))
+                    .add(displayTableContentPaneLayout.createSequentialGroup()
+                        .add(displayTableContentPaneLayout.createParallelGroup()
+                            .add(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(menuBar1, GroupLayout.DEFAULT_SIZE, 1529, Short.MAX_VALUE)
+                            .add(scrollPane1, GroupLayout.DEFAULT_SIZE, 1529, Short.MAX_VALUE))
                         .addContainerGap())
             );
             displayTableContentPaneLayout.setVerticalGroup(
                 displayTableContentPaneLayout.createParallelGroup()
-                    .addGroup(displayTableContentPaneLayout.createSequentialGroup()
-                        .addComponent(label1)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1492, Short.MAX_VALUE))
+                    .add(displayTableContentPaneLayout.createSequentialGroup()
+                        .add(label1)
+                        .addPreferredGap(LayoutStyle.RELATED)
+                        .add(menuBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.RELATED)
+                        .add(scrollPane1, GroupLayout.DEFAULT_SIZE, 1492, Short.MAX_VALUE))
             );
             displayTable.pack();
             displayTable.setLocationRelativeTo(displayTable.getOwner());

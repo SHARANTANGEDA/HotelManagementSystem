@@ -37,12 +37,13 @@ public class PDFGenerator {
         this.standardRoom=bookingDetails.get(6);
         this.deluxeRoom=bookingDetails.get(7);
         this.suiteRoom=bookingDetails.get(8);
-        this.address=bookingDetails.get(9);
+        this.address=bookingDetails.get(11);
         this.totalCost=bookingDetails.get(10);
-        this.bookingDate=bookingDetails.get(11);
+        this.bookingDate=bookingDetails.get(9);
 
 
-        this.path=path+"/"+bookingId+".pdf";
+        this.path=path+File.separator+bookingId+".pdf";
+        System.out.println(File.separator);
         File file=new File(path);
         file.getParentFile().mkdirs();
         generatePDF();

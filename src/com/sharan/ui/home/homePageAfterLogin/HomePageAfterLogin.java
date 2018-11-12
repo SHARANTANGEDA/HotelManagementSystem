@@ -36,7 +36,6 @@ public class HomePageAfterLogin {
     private String roomsSelected;
 
     private String userName;
-//    private ArrayList<String> list;
     private String universalHotelSearch;
 
     private DataBaseController dataBaseController;
@@ -65,6 +64,8 @@ public class HomePageAfterLogin {
         AutoCompleteDecorator.decorate(CityField);
         AutoCompleteDecorator.decorate(Hotels);
         homePageAfterLogin.setVisible(true);
+        homePageAfterLogin.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
         homePageAfterLogin.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         checkInCheckOutCheck=0;
 
@@ -150,9 +151,14 @@ public class HomePageAfterLogin {
     private String getDate(JXDatePicker checkField) {
 
        java.util.Date unparsedDate=checkField.getDate();
+       if(unparsedDate==null) {
+           JOptionPane.showMessageDialog(null,"Please Enter Valid CheckIn or CheckOut Dates");
+
+       }
 
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String formattedDate = df.format(unparsedDate);
+
 
         return formattedDate;
     }

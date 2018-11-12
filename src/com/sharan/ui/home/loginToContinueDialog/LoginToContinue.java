@@ -31,6 +31,8 @@ public class LoginToContinue {
         initComponents();
         loginToContinueDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         loginToContinueDialog.setVisible(true);
+        loginToContinueDialog.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
 
 
     }

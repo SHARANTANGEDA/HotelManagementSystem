@@ -39,6 +39,7 @@ public class HomePage {
         userName=textFileController.readFile();
 
         homeFrame.setVisible(true);
+        homeFrame.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
 
 
     }

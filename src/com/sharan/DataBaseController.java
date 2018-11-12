@@ -56,7 +56,7 @@ public class DataBaseController {
     private String myBookingsTableName="myBookingsTable";
     private String myBookingsTableColumns="(UserName TEXT,HotelName TEXT, BookingId TEXT NOT NULL PRIMARY KEY,BookingStatus TEXT,CheckIn TEXT,CheckOut TEXT," +
             "StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT,TotalPricePaid TEXT,Address TEXT,UniqueId TEXT)";
-    private String myBookingParametres = " (UserName,HotelName,BookingId,BookingStatus,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate,TotalPricePaid,Address,UniqueId)";
+    private String myBookingParameters = " (UserName,HotelName,BookingId,BookingStatus,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate,TotalPricePaid,Address,UniqueId)";
 
     private Connection conn=null;
     private Statement statement=null;
@@ -622,7 +622,7 @@ public class DataBaseController {
             callFromWaitingList=0;
             initialiseDatabase();
             try {
-                statement.execute("INSERT INTO "+myBookingsTableName+myBookingParametres+"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
+                statement.execute("INSERT INTO "+myBookingsTableName+ myBookingParameters +"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
                         ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"','"+uniqueId+"')");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -636,7 +636,7 @@ public class DataBaseController {
             SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             String bookedDate = df.format(c);
             try {
-                statement.execute("INSERT INTO "+myBookingsTableName+myBookingParametres+"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
+                statement.execute("INSERT INTO "+myBookingsTableName+" "+ myBookingParameters +"VALUES ('"+userName+"','"+hotelName+"','"+bookingId+"','"+status+"','"+checkIn+"','"+checkOut+"',"+standardRooms+
                         ","+deluxeRooms+","+suiteRooms+",'"+bookedDate+"','"+totalPrice+"','"+address+"','"+uniqueId+"')");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -1032,9 +1032,6 @@ public class DataBaseController {
             if (!conn.isClosed()) {
                 statement.close();
                 conn.close();
-            } else {
-                System.out.println("Error Closing DataBase");
-
             }
 
         } catch (SQLException e) {

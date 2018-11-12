@@ -83,6 +83,8 @@ public class RoomBooking {
         deluxePicture.setIcon(new ImageIcon(getClass().getResource(deluxeImagePath)));
         suitePicture.setIcon(new ImageIcon(getClass().getResource(suiteImagePath)));
         roomBooking.setVisible(true);
+        roomBooking.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
 
     }
 

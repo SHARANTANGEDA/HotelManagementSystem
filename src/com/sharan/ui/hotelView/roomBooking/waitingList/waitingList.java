@@ -45,6 +45,8 @@ public class waitingList extends JFrame {
        bookedDate = df.format(c);
         initComponents();
         waitingListDialog.setVisible(true);
+        waitingListDialog.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
         waitingListDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 

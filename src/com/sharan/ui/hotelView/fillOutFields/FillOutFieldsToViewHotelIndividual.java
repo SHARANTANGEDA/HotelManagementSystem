@@ -48,6 +48,8 @@ public class FillOutFieldsToViewHotelIndividual {
 
         initComponents();
         fillTheseToContinue.setVisible(true);
+        fillTheseToContinue.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
         fillTheseToContinue.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         checkInField.setFormats(dateFormat);

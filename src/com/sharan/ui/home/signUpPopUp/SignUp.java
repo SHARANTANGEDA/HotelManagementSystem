@@ -43,6 +43,8 @@ public class SignUp {
         initComponents();
 
         SignUp.setVisible(true);
+        SignUp.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
         SignUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.toBeClicked=toBeClicked;
         this.dataBaseController = dataBaseController;

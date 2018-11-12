@@ -111,6 +111,8 @@ public class RoomBookingTwo {
         enterField1.setModel(roomType1);
 
         roomBookingTwo.setVisible(true);
+        roomBookingTwo.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
     }
 
     private void bookNowActionPerformed(ActionEvent e) {

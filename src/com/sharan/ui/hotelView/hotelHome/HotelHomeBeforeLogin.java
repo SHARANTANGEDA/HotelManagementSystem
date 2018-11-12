@@ -59,6 +59,8 @@ public class HotelHomeBeforeLogin extends JFrame {
 
 
         hotelHomeBeforeLogin.setVisible(true);
+        hotelHomeBeforeLogin.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
     }
 
     private void backButtonActionPerformed(ActionEvent e) {

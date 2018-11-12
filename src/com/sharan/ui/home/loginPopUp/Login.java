@@ -38,6 +38,8 @@ public class Login extends JPanel {
         this.tobeClicked=tobeClicked;
         initComponents();
         Login.setVisible(true);
+        Login.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
         Login.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 

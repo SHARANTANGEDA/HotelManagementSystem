@@ -49,7 +49,6 @@ public class DisplaySelectedHotelsMultipleView {
     private ArrayList<JLabel> priceStandard = new ArrayList<>();
     private ArrayList<JLabel> priceDeluxe = new ArrayList<>();
     private ArrayList<JLabel> priceSuite = new ArrayList<>();
-    private ArrayList<JLabel> hotelRating = new ArrayList<>();
     private ArrayList<JLabel> ratingBracket = new ArrayList<>();
 
     private ArrayList<JTextPane> description = new ArrayList<>();
@@ -61,6 +60,29 @@ public class DisplaySelectedHotelsMultipleView {
     private ArrayList<JLabel> standardRoomNumber = new ArrayList<>();
     private ArrayList<JLabel> deluxeRoomNumber = new ArrayList<>();
     private ArrayList<JLabel> suiteRoomNumber = new ArrayList<>();
+    private ArrayList<JLabel> label9=new ArrayList<>();
+    private ArrayList<JLabel> label10=new ArrayList<>();
+    private ArrayList<JLabel> label11=new ArrayList<>();
+    private ArrayList<JLabel> label50=new ArrayList<>();
+    private ArrayList<JLabel> label=new ArrayList<>();
+    private ArrayList<JLabel> label60=new ArrayList<>();
+
+
+    private JFrame displayTable;
+    private JLabel label1;
+    private JMenuBar menuBar1;
+    private JMenuItem backButton;
+    private JSeparator separator2;
+    private JComboBox Hotels;
+    private JButton Search;
+    private JSeparator separator1;
+    private JMenu profile;
+    private JMenuItem myAccount;
+    private JMenuItem Logout;
+    private JSeparator separator3;
+    private JScrollPane scrollPane1;
+    private JPanel homePanel;
+
 
 
     public DisplaySelectedHotelsMultipleView(ArrayList<String> list, DataBaseController dataBaseController) {
@@ -108,13 +130,14 @@ public class DisplaySelectedHotelsMultipleView {
 
             description.get(i).setText(elements.getHotelDescription());
 
-            hotelRating.get(i).setIcon(new ImageIcon(getClass().getResource(rating)));
-            hotelRating.get(i).setText("Rating(" + String.valueOf(elements.getNumberOfVotes()) + ")");
+            hotelRatingStar.get(i).setIcon(new ImageIcon(getClass().getResource(rating)));
+            hotelRatingStar.get(i).setText("Rating(" + String.valueOf(elements.getNumberOfVotes()) + ")");
         }
 
 
-
+        displayTable.setExtendedState(JFrame.MAXIMIZED_BOTH);
         displayTable.setVisible(true);
+        displayTable.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
         displayTable.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         AutoCompleteDecorator.decorate(Hotels);
 
@@ -224,7 +247,7 @@ public class DisplaySelectedHotelsMultipleView {
             priceStandard.add(i, new JLabel());
             priceDeluxe.add(i, new JLabel());
             priceSuite.add(i, new JLabel());
-            hotelRating.add(i, new JLabel());
+            hotelRatingStar.add(i, new JLabel());
             ratingBracket.add(i, new JLabel());
             description.add(i, new JTextPane());
             hotelRatingStar.add(i, new JLabel());
@@ -233,6 +256,12 @@ public class DisplaySelectedHotelsMultipleView {
             standardRoomNumber.add(i, new JLabel());
             deluxeRoomNumber.add(i, new JLabel());
             suiteRoomNumber.add(i, new JLabel());
+            label.add(i, new JLabel());
+            label9.add(i, new JLabel());
+            label10.add(i, new JLabel());
+            label11.add(i, new JLabel());
+            label50.add(i, new JLabel());
+            label60.add(i, new JLabel());
         }
 
         displayTable = new JFrame();
@@ -255,12 +284,7 @@ public class DisplaySelectedHotelsMultipleView {
 
 
 
-        label9 = new JLabel();
-        label10 = new JLabel();
-        label11 = new JLabel();
-        label50 = new JLabel();
-        label = new JLabel();
-        label60 = new JLabel();
+
 
         //======== displayTable ========
         {
@@ -366,16 +390,16 @@ public class DisplaySelectedHotelsMultipleView {
                         hotelNameTitle.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 
                         //---- label9 ----
-                        label9.setText("standard");
-                        label9.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+                        label9.get(i).setText("standard");
+                        label9.get(i).setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         //---- label10 ----
-                        label10.setText("deluxe");
-                        label10.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+                        label10.get(i).setText("deluxe");
+                        label10.get(i).setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         //---- label11 ----
-                        label11.setText("suite");
-                        label11.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+                        label11.get(i).setText("suite");
+                        label11.get(i).setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         //---- priceStandard ----
                         priceStandard.get(i).setText("text");
@@ -390,7 +414,7 @@ public class DisplaySelectedHotelsMultipleView {
                         priceSuite.get(i).setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         //---- hotelRating ----
-                        hotelRating.get(i).setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
+                        hotelRatingStar.get(i).setIcon(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/profilePicSmall.png")));
 
                         //---- ratingBracket ----
                         ratingBracket.get(i).setText("Rating");
@@ -401,6 +425,7 @@ public class DisplaySelectedHotelsMultipleView {
 
                             //---- description1 ----
                             description.get(i).setBackground(new Color(238, 238, 238));
+                            description.get(i).setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
                             descriptionScrollPane.get(i).setViewportView(description.get(i));
                         }
 
@@ -421,16 +446,16 @@ public class DisplaySelectedHotelsMultipleView {
                         viewHotel.get(i).addActionListener(e -> viewHotelActionPerformed(e, iteration));
 
                         //---- label50 ----
-                        label50.setText("Room Price");
-                        label50.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+                        label50.get(i).setText("Room Price");
+                        label50.get(i).setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
 
                         //---- label ----
-                        label.setText("Types");
-                        label.setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
+                        label.get(i).setText("Types");
+                        label.get(i).setFont(new Font("Droid Sans Mono", Font.BOLD, 20));
 
                         //---- label60 ----
-                        label60.setText("Number of Rooms");
-                        label60.setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
+                        label60.get(i).setText("Number of Rooms");
+                        label60.get(i).setFont(new Font("Droid Sans Mono", Font.BOLD, 16));
 
                         //---- standardRooms1 ----
                         standardRoomNumber.get(i).setText("text");
@@ -457,9 +482,9 @@ public class DisplaySelectedHotelsMultipleView {
                                                                 .addGroup(hotelPanelLayout.createParallelGroup()
                                                                         .addGroup(hotelPanelLayout.createSequentialGroup()
                                                                                 .addGroup(hotelPanelLayout.createParallelGroup()
-                                                                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(label11, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+                                                                                        .addComponent(label9.get(i), GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(label10.get(i), GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(label11.get(i), GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
                                                                                 .addGap(18, 18, 18)
                                                                                 .addGroup(hotelPanelLayout.createParallelGroup()
                                                                                         .addComponent(priceDeluxe.get(i))
@@ -482,11 +507,11 @@ public class DisplaySelectedHotelsMultipleView {
                                                                         .addComponent(bookNow.get(i), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                 .addGap(27, 27, 27))
                                                         .addGroup(hotelPanelLayout.createSequentialGroup()
-                                                                .addComponent(label, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(label.get(i), GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(18, 18, 18)
-                                                                .addComponent(label50, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(label50.get(i), GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(label60)
+                                                                .addComponent(label60.get(i))
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                 .addComponent(descriptionScrollPane.get(i), GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(30, 30, 30))
@@ -504,19 +529,19 @@ public class DisplaySelectedHotelsMultipleView {
                                                                         .addComponent(hotelPhoto.get(i), GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
                                                                         .addGroup(hotelPanelLayout.createSequentialGroup()
                                                                                 .addGroup(hotelPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                                                        .addComponent(label)
-                                                                                        .addComponent(label50)
-                                                                                        .addComponent(label60))
+                                                                                        .addComponent(label.get(i))
+                                                                                        .addComponent(label50.get(i))
+                                                                                        .addComponent(label60.get(i)))
                                                                                 .addGap(18, 18, 18)
                                                                                 .addGroup(hotelPanelLayout.createParallelGroup()
                                                                                         .addGroup(GroupLayout.Alignment.TRAILING, hotelPanelLayout.createSequentialGroup()
                                                                                                 .addGroup(hotelPanelLayout.createParallelGroup()
                                                                                                         .addGroup(hotelPanelLayout.createSequentialGroup()
-                                                                                                                .addComponent(label9)
+                                                                                                                .addComponent(label9.get(i))
                                                                                                                 .addGap(18, 18, 18)
-                                                                                                                .addComponent(label10)
+                                                                                                                .addComponent(label10.get(i))
                                                                                                                 .addGap(18, 18, 18)
-                                                                                                                .addComponent(label11))
+                                                                                                                .addComponent(label11.get(i)))
                                                                                                         .addGroup(hotelPanelLayout.createSequentialGroup()
                                                                                                                 .addComponent(standardRoomNumber.get(i))
                                                                                                                 .addGap(18, 18, 18)
@@ -621,26 +646,7 @@ public class DisplaySelectedHotelsMultipleView {
     }
 
 
-    private JFrame displayTable;
-    private JLabel label1;
-    private JMenuBar menuBar1;
-    private JMenuItem backButton;
-    private JSeparator separator2;
-    private JComboBox Hotels;
-    private JButton Search;
-    private JSeparator separator1;
-    private JMenu profile;
-    private JMenuItem myAccount;
-    private JMenuItem Logout;
-    private JSeparator separator3;
-    private JScrollPane scrollPane1;
-    private JPanel homePanel;
-    private JLabel label9;
-    private JLabel label10;
-    private JLabel label11;
-    private JLabel label50;
-    private JLabel label;
-    private JLabel label60;
+
 
 
 

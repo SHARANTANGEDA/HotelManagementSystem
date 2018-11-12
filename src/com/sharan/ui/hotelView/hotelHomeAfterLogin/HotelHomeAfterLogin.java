@@ -84,6 +84,8 @@ public class HotelHomeAfterLogin {
         numberOfRatings.setText(numberOfVotes + " people rated this");
 
         individualHotelHome.setVisible(true);
+        individualHotelHome.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
 
     }
 

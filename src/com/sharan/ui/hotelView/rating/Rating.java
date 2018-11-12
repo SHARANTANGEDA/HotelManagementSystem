@@ -42,6 +42,10 @@ public class Rating extends JFrame {
         }else {
             JOptionPane.showMessageDialog(null,"Thank You, Y");
         }
+        rater.setVisible(true);
+        rater.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        rater.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
+
 
     }
 
