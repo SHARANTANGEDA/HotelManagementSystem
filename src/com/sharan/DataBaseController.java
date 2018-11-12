@@ -234,18 +234,28 @@ public class DataBaseController {
                     for (int i = Integer.parseInt(String.valueOf(diffInDaysForCheckIn)); i < Integer.parseInt(String.valueOf(diffInDaysForCheckOut)); i++) {
                         if (standardAvailableArray[i] < noOfStandardRooms) {
                             x = 1;
-                            JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Standard Rooms are not available");
-                            //
-                            // waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfDeluxeRooms,noOfDeluxeRooms,noOfSuitRooms);
+
                         }
                         if (deluxeAvailableArray[i] < noOfDeluxeRooms) {
                             y = 1;
-                            JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Deluxe Rooms are not available");
                         }
                         if (suitAvailableArray[i] < noOfSuitRooms) {
                             z = 1;
-                           JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Suit Rooms are not available");
                         }
+
+                    }
+                    if(x==1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Standard Rooms are not available");
+                    }
+                    if(y==1)
+                    {
+                        JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Deluxe Rooms are not available");
+
+                    }
+                    if(z==0)
+                    {
+                        JOptionPane.showMessageDialog(null, "Sorry for inconvience,Required number of Suit Rooms are not available");
 
                     }
                     System.out.println(x+y+z);
@@ -554,7 +564,17 @@ public class DataBaseController {
             e.printStackTrace();
         }
     }
-
+    public void cancelBookingFromWaitList(String bookingId,String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,String bookingDate)
+    {
+        try {
+            if (!conn.isClosed())
+            {
+                statement.execute("DELETE FROM "+waitingListTableName+" WHERE BookingId='"+bookingId +"'");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void addRating(String id,int rate) throws SQLException{
 
         if(!conn.isClosed()) {
@@ -1046,4 +1066,23 @@ public class DataBaseController {
         return list;
     }
 
+    public String checkWaitList(String userName, String uniqueId, String checkIn, String checkOut, int noOfStandardRooms, int noOfDeluxeRooms, int noOfSuitRooms, String bookedDate)
+    {
+        String existance = "no";
+        try {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM "+waitingListTableName);
+            while (resultSet.next())
+            {
+                if (userName.equals(resultSet.getString("UserName"))&&uniqueId.equals(resultSet.getString("UniqueId"))&&checkIn.equals("CheckIn")
+                &&checkOut.equals(resultSet.getString("CheckOut"))&&(noOfStandardRooms==resultSet.getInt("StandardRooms"))&&(noOfDeluxeRooms==resultSet.getInt("DeluxeRooms"))
+                &&(noOfSuitRooms==resultSet.getInt("SuiteRooms"))&&(bookedDate.equals(resultSet.getString("BookingDate"))))
+                {
+                    existance = "yes";
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return existance;
+    }
 }

@@ -51,7 +51,10 @@ public class waitingList extends JFrame {
     private void button1ActionPerformed(ActionEvent e) {
 
         dataBaseController.initialiseDatabase();
-        dataBaseController.addToWaitList(userName,uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,bookedDate);
+        String existance = dataBaseController.checkWaitList(userName,uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,bookedDate);
+        if(existance.equals("no")) {
+            dataBaseController.addToWaitList(userName, uniqueId, checkIn, checkOut, noOfStandardRooms, noOfDeluxeRooms, noOfSuitRooms, bookedDate);
+        }
         dataBaseController.closeDatabaseConnection();
         JOptionPane.showMessageDialog(null,"Thank You for joining waitingList,We will contact you sooner!!!");
         waitingListDialog.dispose();
