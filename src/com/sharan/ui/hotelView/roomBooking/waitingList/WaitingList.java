@@ -17,7 +17,7 @@ import java.util.Date;
 /**
  * @author Ajith
  */
-public class waitingList extends JFrame {
+public class WaitingList extends JFrame {
     String uniqueId;
     String checkIn;
     String checkOut;
@@ -28,7 +28,7 @@ public class waitingList extends JFrame {
     String userName;
     DataBaseController dataBaseController;
 
-    public waitingList(String uniqueId,String checkIn,String checkOut,int noOfStandardRooms,int noOfDeluxeRooms,int noOfSuitRooms,DataBaseController dataBaseController) {
+    public WaitingList(String uniqueId, String checkIn, String checkOut, int noOfStandardRooms, int noOfDeluxeRooms, int noOfSuitRooms, DataBaseController dataBaseController) {
         this.uniqueId = uniqueId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -58,7 +58,7 @@ public class waitingList extends JFrame {
             dataBaseController.addToWaitList(userName, uniqueId, checkIn, checkOut, noOfStandardRooms, noOfDeluxeRooms, noOfSuitRooms, bookedDate);
         }
         dataBaseController.closeDatabaseConnection();
-        JOptionPane.showMessageDialog(null,"Thank You for joining waitingList,We will contact you sooner!!!");
+        JOptionPane.showMessageDialog(null,"Thank You for joining WaitingList,We will contact you sooner!!!");
         waitingListDialog.dispose();
     }
 

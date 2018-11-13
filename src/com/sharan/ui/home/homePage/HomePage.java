@@ -35,8 +35,8 @@ public class HomePage {
         initComponents();
         addToUniversalHotelSearch();
         AutoCompleteDecorator.decorate(Hotels);
-        TextFileController textFileController=new TextFileController();
-        userName=textFileController.readFile();
+//        TextFileController textFileController=new TextFileController();
+//        userName=textFileController.readFile();
 
         homeFrame.setVisible(true);
         homeFrame.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
@@ -64,6 +64,8 @@ public class HomePage {
         if(login.returnLoginStatus()==1) {
             loginSuccess=0;
             homeFrame.dispose();
+            TextFileController textFileController=new TextFileController();
+            userName=textFileController.readFile();
             HomePageAfterLogin homePageAfterLogin=new HomePageAfterLogin(userName,dataBaseController);
             login.getLogin().dispose();
 

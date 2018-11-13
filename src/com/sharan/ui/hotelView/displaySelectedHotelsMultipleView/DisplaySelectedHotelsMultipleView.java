@@ -5,6 +5,7 @@
 package com.sharan.ui.hotelView.displaySelectedHotelsMultipleView;
 
 import com.sharan.DataBaseController;
+import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
@@ -22,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
+import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.viewToindividual;
 
 /**
@@ -162,7 +164,7 @@ public class DisplaySelectedHotelsMultipleView {
 
     private void LogoutActionPerformed(ActionEvent e) {
         displayTable.dispose();
-        HomePage page = new HomePage(dataBaseController);
+            HomePage homePage=new HomePage(dataBaseController);
     }
 
     private void backButtonActionPerformed(ActionEvent e) {

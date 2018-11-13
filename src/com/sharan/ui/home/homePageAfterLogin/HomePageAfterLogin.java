@@ -6,6 +6,7 @@ package com.sharan.ui.home.homePageAfterLogin;
 
 import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
+import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
 import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.DisplaySelectedHotelsMultipleView;
@@ -170,6 +171,8 @@ public class HomePageAfterLogin {
 
     private void LogoutActionPerformed(ActionEvent e) {
         loginSuccess =0;
+        TextFileController textFileController=new TextFileController();
+        textFileController.createFile();
         homePageAfterLogin.dispose();
         homePageAfterLogin.setVisible(false);
         HomePage homePage=new HomePage(dataBaseController);

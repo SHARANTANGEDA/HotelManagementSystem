@@ -6,6 +6,7 @@ package com.sharan.ui.hotelView.hotelHomeAfterLogin;
 
 import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
+import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.DisplaySelectedHotelsMultipleView;
 import com.sharan.ui.hotelView.fillOutFields.FillOutFieldsToViewHotelIndividual;
@@ -133,6 +134,7 @@ public class HotelHomeAfterLogin {
         loginSuccess =0;
         dataBaseController.initialiseDatabase();
         individualHotelHome.dispose();
+
         HotelHomeBeforeLogin hotelHomeBeforeLogin=new HotelHomeBeforeLogin(uniqueId,dataBaseController);
         dataBaseController.closeDatabaseConnection();
     }

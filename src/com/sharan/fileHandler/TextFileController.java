@@ -4,6 +4,7 @@ import com.sharan.encryptionAlgorithms.AES128Encyrption;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 
 public class TextFileController {
@@ -18,12 +19,22 @@ public class TextFileController {
     public TextFileController() {
     }
 
+    public void createFile() {
+        try {
+            Writer writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("userName.txt"), StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void writeToFile(String textToStore) {
         try {
             if(!textToStore.isEmpty()){
                 String encryptedUserName=AES128Encyrption.encrypt(textToStore);
                 URL url=getClass().getResource("userName.txt");
-                fileWriter=new FileWriter(url.getPath());
+                File file=new File(url.getPath());
+                fileWriter=new FileWriter(file);
                 bufferedWriter = new BufferedWriter(fileWriter);
                 bufferedWriter.write(encryptedUserName);
                 bufferedWriter.close();
@@ -36,6 +47,7 @@ public class TextFileController {
     public String readFile() {
         try {
             URL url=getClass().getResource("userName.txt");
+
             fileReader=new FileReader(url.getPath());
             bufferedReader=new BufferedReader(fileReader);
             String encryptedUserName=bufferedReader.readLine();
@@ -47,4 +59,7 @@ public class TextFileController {
         }
         return null;
     }
+
+
+
 }

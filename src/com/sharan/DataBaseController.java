@@ -3,7 +3,7 @@ package com.sharan;
 
 import com.sharan.encryptionAlgorithms.AES128Encyrption;
 import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.ElementsInHotelView;
-import com.sharan.ui.hotelView.roomBooking.waitingList.waitingList;
+import com.sharan.ui.hotelView.roomBooking.waitingList.WaitingList;
 import com.sharan.ui.myAccount.ColumnsInMyBooking;
 import com.sharan.ui.myAccount.ColumnsInWaitingList;
 
@@ -79,6 +79,7 @@ public class DataBaseController {
         try {
             conn=DriverManager.getConnection(databaseUrl);
             statement=conn.createStatement();
+            statement.execute(TABLE_CREATOR+ ratingTableName +ratingTableColumn);
             statement.execute(TABLE_CREATOR+ userTableNAME + userTableCOLUMNS);
             statement.execute(TABLE_CREATOR+ hotelsTableNAME + hotelsTableCOLUMNS);
             statement.execute(TABLE_CREATOR+idTableName+idTableColoumns);
@@ -86,7 +87,6 @@ public class DataBaseController {
             statement.execute(TABLE_CREATOR+availableTableName+availableTableColoumns);
             statement.execute(TABLE_CREATOR+waitingListTableName+waitingListTableColoumns);
             statement.execute(TABLE_CREATOR+myBookingsTableName+myBookingsTableColumns);
-            statement.execute(TABLE_CREATOR+ ratingTableName +ratingTableColumn);
         }catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -313,7 +313,7 @@ public class DataBaseController {
                     else {
                         initialiseDatabase();
 
-                        waitingList waitingList = new waitingList(uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,this);
+                        WaitingList waitingList = new WaitingList(uniqueId,checkIn,checkOut,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,this);
                         closeDatabaseConnection();
                     }
                 }

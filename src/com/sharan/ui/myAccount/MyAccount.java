@@ -182,6 +182,8 @@ public class MyAccount {
 
             dataBaseController.closeDatabaseConnection();
             myAccountField.dispose();
+            MyAccount myAccountField=new MyAccount(userName,dataBaseController);
+
         }
     }
 
