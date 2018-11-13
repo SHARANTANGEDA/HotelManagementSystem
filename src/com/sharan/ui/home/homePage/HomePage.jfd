@@ -67,6 +67,7 @@ new FormModel {
 					"text": "BASIC INTRO HERE"
 					"editable": false
 					"font": new java.awt.Font( "Arial", 0, 20 )
+					"visible": false
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

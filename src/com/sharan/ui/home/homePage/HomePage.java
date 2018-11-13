@@ -180,6 +180,7 @@ public class HomePage {
                 textPane1.setText("BASIC INTRO HERE");
                 textPane1.setEditable(false);
                 textPane1.setFont(new Font("Arial", Font.PLAIN, 20));
+                textPane1.setVisible(false);
                 scrollPane1.setViewportView(textPane1);
             }
 
