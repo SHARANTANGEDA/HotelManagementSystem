@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {par l {seq l {space :p:37:p, par l {comp label1:::p:674:p, seq l {comp label4:::p::p, space s:::p, comp StateField:::p:274:p, space :p:74:p, comp label5:::p::p, space u:::p, comp CityField:::p:232:p}}}, seq l {space :p:244:p, comp label2:::p::p, space :p:26:p, comp checkInField:::p:148:p, space :p:42:p, comp label3:::p:41:p, space s:::p, comp checkOutField:::p:148:p}}, space ::182:x, comp SearchBottom:::p:276:p, space :p:208:p}, seq {space :::p, par l:::p {comp applicationName::::1436:x, comp menuBar1::::1436:x, comp homePagePhoto::::1436:x}, space :::x}}"
-			"$verticalGroup": "par l {seq l {par t {seq {comp applicationName:::p:69:p, space :::p, comp menuBar1:::p::p, space u:::p, comp homePagePhoto:::p:369:p, space :p:42:p, par b {comp label4::b:p::p, comp label5::b:p::p, comp StateField::b:p:38:p, comp CityField::b:p:41:p}, space :p:29:p, comp label1:::p::p}, comp SearchBottom:::p:61:p}, space s:::p, par t {comp checkOutField:::p::p, par b {comp label3::b:p:30:p, comp checkInField::b:p::p, comp label2::b:p::p}}, space ::107:x}}"
+			"$horizontalGroup": "par l {seq l {par l {seq l {space :p:37:p, par l {comp label1:::p:674:p, seq l {comp label4:::p::p, space s:::p, comp StateField:::p:274:p, space :p:74:p, comp label5:::p::p, space u:::p, comp CityField:::p:232:p}}}, seq l {space :p:244:p, comp label2:::p::p, space :p:26:p, comp checkInField:::p:148:p, space :p:42:p, comp label3:::p:41:p, space s:::p, comp checkOutField:::p:148:p}}, space ::188:x, comp SearchBottom:::p:276:p, space :p:208:p}, seq {space :::p, par l:::p {comp applicationName::::1436:x, comp menuBar1::::1436:x, comp homePagePhoto::::1436:x}, space :::x}}"
+			"$verticalGroup": "par l {seq l {par t {seq {comp applicationName:::p:69:p, space :::p, comp menuBar1:::p::p, space u:::p, comp homePagePhoto:::p:369:p, space :p:42:p, par b {comp label4::b:p::p, comp label5::b:p::p, comp StateField::b:p:38:p, comp CityField::b:p:41:p}, space :p:29:p, comp label1:::p::p}, comp SearchBottom:::p:61:p}, space s:::p, par t {comp checkOutField:::p::p, par b {comp label3::b:p:30:p, comp checkInField::b:p::p, comp label2::b:p::p}}, space ::115:x}}"
 		} ) {
 			name: "homePageAfterLogin"
 			"defaultCloseOperation": 3
@@ -63,9 +63,13 @@ new FormModel {
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LogoutActionPerformed", true ) )
 					} )
 				} )
-				add( new FormComponent( "javax.swing.JSeparator" ) {
-					name: "separator3"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "userId"
 					"maximumSize": new java.awt.Dimension( 150, 32767 )
+					"text": "userName"
+					"font": new java.awt.Font( "Arial", 1, 16 )
+					"horizontalAlignment": 0
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

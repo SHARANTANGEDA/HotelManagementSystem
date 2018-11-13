@@ -4,6 +4,7 @@
 
 package com.sharan.ui.home.homePageAfterLogin;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.fillOutFields.FillOutFieldsToViewHotel;
@@ -47,6 +48,7 @@ public class HomePageAfterLogin {
 
 
         initComponents();
+        userId.setText(userName);
 
         addtoStateComboBox(StateField);
         addToUniversalHotelSearch();
@@ -76,14 +78,14 @@ public class HomePageAfterLogin {
         dataBaseController.initialiseDatabase();
         ArrayList<String> list=dataBaseController.getUniversalSearchData();
         dataBaseController.closeDatabaseConnection();
-        Hotels.addItem("Select a Hotel");
+        Hotels.addItem("Quick Booking");
         for(String str:list) {
             Hotels.addItem(str);
         }
     }
 
     private void SearchActionPerformed(ActionEvent e) {
-        if((!universalHotelSearch.isEmpty()) && (!universalHotelSearch.equalsIgnoreCase("Select a Hotel"))) {
+        if((!universalHotelSearch.isEmpty()) && (!universalHotelSearch.equalsIgnoreCase("Quick Booking"))) {
 
             String temp[]=universalHotelSearch.split(",");
             dataBaseController.initialiseDatabase();
@@ -273,7 +275,7 @@ public class HomePageAfterLogin {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Ajith
+        // Generated using JFormDesigner Evaluation license - SAI SHARAN
         homePageAfterLogin = new JFrame();
         applicationName = new JLabel();
         menuBar1 = new JMenuBar();
@@ -284,7 +286,7 @@ public class HomePageAfterLogin {
         profile = new JMenu();
         myAccount = new JMenuItem();
         Logout = new JMenuItem();
-        separator3 = new JSeparator();
+        userId = new JLabel();
         homePagePhoto = new JLabel();
         StateField = new JComboBox();
         CityField = new JComboBox();
@@ -358,9 +360,13 @@ public class HomePageAfterLogin {
                 }
                 menuBar1.add(profile);
 
-                //---- separator3 ----
-                separator3.setMaximumSize(new Dimension(150, 32767));
-                menuBar1.add(separator3);
+                //---- userId ----
+                userId.setMaximumSize(new Dimension(150, 32767));
+                userId.setText("userName");
+                userId.setFont(new Font("Arial", Font.BOLD, 16));
+                userId.setHorizontalAlignment(SwingConstants.CENTER);
+                userId.setForeground(Color.white);
+                menuBar1.add(userId);
             }
 
             //---- homePagePhoto ----
@@ -439,7 +445,7 @@ public class HomePageAfterLogin {
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(checkOutField, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                         .addComponent(SearchBottom, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
                         .addGap(208, 208, 208))
                     .addGroup(homePageAfterLoginContentPaneLayout.createSequentialGroup()
@@ -476,7 +482,7 @@ public class HomePageAfterLogin {
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(checkInField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label2)))
-                        .addContainerGap(107, Short.MAX_VALUE))
+                        .addContainerGap(115, Short.MAX_VALUE))
             );
             homePageAfterLogin.pack();
             homePageAfterLogin.setLocationRelativeTo(homePageAfterLogin.getOwner());
@@ -485,7 +491,7 @@ public class HomePageAfterLogin {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Ajith
+    // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JFrame homePageAfterLogin;
     private JLabel applicationName;
     private JMenuBar menuBar1;
@@ -496,7 +502,7 @@ public class HomePageAfterLogin {
     private JMenu profile;
     private JMenuItem myAccount;
     private JMenuItem Logout;
-    private JSeparator separator3;
+    private JLabel userId;
     private JLabel homePagePhoto;
     private JComboBox StateField;
     private JComboBox CityField;

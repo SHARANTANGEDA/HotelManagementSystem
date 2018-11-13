@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane1:::p:1343:p, space :::p, comp hotelTitle:::p:1343:p, space :p:6:p}}"
-			"$verticalGroup": "par l {seq {comp hotelTitle:::p:48:p, space ::900:x}, seq t {space :0:6:x, comp scrollPane1:::p:942:p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp hotelTitle:::p:1343:p, comp scrollPane1:::p:1343:p}, space :p:361:p}}"
+			"$verticalGroup": "par l {seq t {space :::p, comp hotelTitle:::p:48:p, space :::p, comp scrollPane1:::p:979:p, space :::x}}"
 		} ) {
 			name: "roomBookingTwo"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -19,14 +19,14 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp picture1:::p:334:p, par l {seq {space :35:844:x, comp enterField2:::p:42:p}, seq l {space :p:142:p, par l {seq {comp roomType2Label:::p:308:p, space :0:436:x}, seq {comp roomType1Label:::p:346:p, space ::356:x, comp enterField1:::p:42:p}}}}}, seq l {comp picture2:::p:334:p, space :0:0:x}}, space :p:150:p}, seq l {space :p:589:p, comp bookNow:::p:175:p, space ::612:x}}"
-					"$verticalGroup": "par l {seq {space :::p, par b {comp picture1::b:p:321:p, seq l {space :p:129:p, par b {comp enterField1::b:p:50:p, comp roomType1Label::b:p:54:p}}}, par t {seq {space :::x, comp roomType2Label:::p:36:p, space :p:150:p}, par l {seq {space u:::p, comp picture2:::p:322:p}, seq l {space :p:158:p, comp enterField2:::p:52:p}}}, space ::174:x, comp bookNow:::p:60:p, space :p:84:p}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp picture1:::p:334:p, par l {seq {space :35:856:x, comp enterField2:::p:42:p}, seq l {space :p:142:p, par l {seq {comp roomType2Label:::p:308:p, space :0:448:x}, seq {comp roomType1Label:::p:346:p, space ::368:x, comp enterField1:::p:42:p}}}}}, seq l {comp picture2:::p:334:p, space :0:0:x}}, space :p:150:p}, seq {par l {seq l {space :p:589:p, comp bookNow:::p:175:p}, seq l {space :p:442:p, comp roomType2Label2:::p:308:p, space :::p, comp enterField3:::p:42:p}}, space ::590:x}}"
+					"$verticalGroup": "par l {seq {space :::p, par b {comp picture1::b:p:321:p, seq l {space :p:129:p, par b {comp enterField1::b:p:50:p, comp roomType1Label::b:p:54:p}}}, par t {seq {space :::x, comp roomType2Label:::p:36:p, space :p:150:p}, par l {seq {space u:::p, comp picture2:::p:322:p}, seq l {space :p:158:p, comp enterField2:::p:52:p}}}, space ::66:x, par l {comp roomType2Label2::t:p:36:p, comp enterField3::t:p:52:p}, space :p:117:p, comp bookNow:::p:60:p, space :p:84:p}}"
 				} ) {
 					name: "panel1"
 					"background": sfield java.awt.Color white
 					add( new FormComponent( "javax.swing.JSpinner" ) {
 						name: "enterField2"
-						"font": new java.awt.Font( "Arial", 1, 24 )
+						"font": &Font0 new java.awt.Font( "Arial", 1, 24 )
 					} )
 					add( new FormComponent( "javax.swing.JSpinner" ) {
 						name: "enterField1"
@@ -35,7 +35,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "roomType2Label"
 						"text": "Select Number of Deluxe Rooms:"
-						"font": new java.awt.Font( "Arial", 1, 18 )
+						"font": &Font1 new java.awt.Font( "Arial", 1, 18 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "roomType1Label"
@@ -63,11 +63,20 @@ new FormModel {
 						"actionCommand": "Book Now"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookNowActionPerformed", true ) )
 					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "roomType2Label2"
+						"text": "Select Number of People:"
+						"font": #Font1
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "enterField3"
+						"font": #Font0
+					} )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 1370, 980 )
+			"size": new java.awt.Dimension( 1080, 860 )
 		} )
 	}
 }

@@ -41,7 +41,6 @@ public class HomePage {
         homeFrame.setVisible(true);
         homeFrame.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
 
-
     }
     private void addToUniversalHotelSearch() {
         dataBaseController.initialiseDatabase();

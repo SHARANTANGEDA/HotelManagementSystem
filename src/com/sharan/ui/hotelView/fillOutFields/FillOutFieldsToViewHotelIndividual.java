@@ -39,6 +39,7 @@ public class FillOutFieldsToViewHotelIndividual {
     public FillOutFieldsToViewHotelIndividual(String userName, String uniqueId, String hotel, JButton toBeClicked, DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
         this.uniqueId=uniqueId;
+        System.out.println(hotel);
         String temp[]=hotel.split(",");
         hotelName=temp[0];
         city=temp[1];
@@ -58,20 +59,17 @@ public class FillOutFieldsToViewHotelIndividual {
 
     private String getDate(JXDatePicker checkField) {
 
-        String unparsedDate=checkField.getDate().toString();
+        java.util.Date unparsedDate=checkField.getDate();
+        if(unparsedDate==null) {
+            JOptionPane.showMessageDialog(null,"Please Enter Valid CheckIn or CheckOut Dates");
 
-        String date=unparsedDate.substring(4,7);
-        String month=unparsedDate.substring(8,10);
-        String year=unparsedDate.substring(24,28);
+        }
 
-        StringBuilder sb=new StringBuilder();
-        sb.append(date);
-        sb.append("/");
-        sb.append(month);
-        sb.append("/");
-        sb.append(year);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(unparsedDate);
 
-        return sb.toString();
+
+        return formattedDate;
     }
 
     private void hotelViewActionPerformed(ActionEvent e) {
@@ -134,7 +132,7 @@ public class FillOutFieldsToViewHotelIndividual {
             list.add(state);
             list.add(userName);
 
-
+            fillTheseToContinue.dispose();
             HotelHomeAfterLogin hotelHomeAfterLogin = new HotelHomeAfterLogin(list, dataBaseController);
 
         }

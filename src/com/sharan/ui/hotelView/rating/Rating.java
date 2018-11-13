@@ -21,6 +21,8 @@ public class Rating extends JFrame {
     private DataBaseController dataBaseController;
     private int rate;
     private String uniqueId;
+    private String userName;
+    private Boolean status;
 
     private JButton tobeClicked;
 
@@ -33,15 +35,28 @@ public class Rating extends JFrame {
     }
 
 
-    public Rating(String id, DataBaseController dataBaseController, JButton tobeClicked) {
+    public Rating(String id, String userName,DataBaseController dataBaseController, JButton tobeClicked) {
         this.dataBaseController=dataBaseController;
         this.uniqueId=id;
+        this.userName=userName;
         this.tobeClicked=tobeClicked;
-        if(starUpdate==1) {
-            initComponents();
+
+        dataBaseController.initialiseDatabase();
+        boolean status=dataBaseController.getRatingStatus(userName,id);
+        dataBaseController.closeDatabaseConnection();
+        this.status=status;
+
+
+        if(status) {
+            int option=JOptionPane.showConfirmDialog(null,"Do you want to update the given Rating?","Confirm To Update Rating",JOptionPane.YES_NO_OPTION);
+            if(option==JOptionPane.YES_OPTION) {
+                initComponents();
+            }
         }else {
-            JOptionPane.showMessageDialog(null,"Thank You, Y");
+            initComponents();
         }
+
+
         rater.setVisible(true);
         rater.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         rater.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
@@ -59,7 +74,7 @@ public class Rating extends JFrame {
         rate=1;
         try{
             dataBaseController.initialiseDatabase();
-            dataBaseController.addRating(uniqueId,rate);
+            dataBaseController.addRating(uniqueId,rate,userName,status);
             dataBaseController.closeDatabaseConnection();
         }catch (SQLException ex) {
             ex.printStackTrace();
@@ -80,7 +95,7 @@ public class Rating extends JFrame {
         rate=2;
         try{
             dataBaseController.initialiseDatabase();
-            dataBaseController.addRating(uniqueId,rate);
+            dataBaseController.addRating(uniqueId,rate,userName,status);
             dataBaseController.closeDatabaseConnection();
         }catch (SQLException ex) {
             ex.printStackTrace();
@@ -98,7 +113,7 @@ public class Rating extends JFrame {
         rate=3;
         try{
             dataBaseController.initialiseDatabase();
-            dataBaseController.addRating(uniqueId,rate);
+            dataBaseController.addRating(uniqueId,rate,userName,status);
             dataBaseController.closeDatabaseConnection();
         }catch (SQLException ex) {
             ex.printStackTrace();
@@ -115,7 +130,7 @@ public class Rating extends JFrame {
         rate=4;
         try{
             dataBaseController.initialiseDatabase();
-            dataBaseController.addRating(uniqueId,rate);
+            dataBaseController.addRating(uniqueId,rate,userName,status);
             dataBaseController.closeDatabaseConnection();
         }catch (SQLException ex) {
             ex.printStackTrace();
@@ -133,7 +148,7 @@ public class Rating extends JFrame {
         rate=5;
         try{
             dataBaseController.initialiseDatabase();
-            dataBaseController.addRating(uniqueId,rate);
+            dataBaseController.addRating(uniqueId,rate,userName,status);
             dataBaseController.closeDatabaseConnection();
         }catch (SQLException ex) {
             ex.printStackTrace();
@@ -141,6 +156,10 @@ public class Rating extends JFrame {
     }
 
     private void confirmActionPerformed(ActionEvent e) {
+        if(starUpdate==0) {
+            tobeClicked.doClick();
+            rater.dispose();
+        }
         rater.dispose();
         rater.setVisible(false);
     }

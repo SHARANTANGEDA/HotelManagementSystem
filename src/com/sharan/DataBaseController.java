@@ -58,6 +58,11 @@ public class DataBaseController {
             "StandardRooms INTEGER,DeluxeRooms INTEGER,SuiteRooms INTEGER,BookingDate TEXT,TotalPricePaid TEXT,Address TEXT,UniqueId TEXT)";
     private String myBookingParameters = " (UserName,HotelName,BookingId,BookingStatus,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate,TotalPricePaid,Address,UniqueId)";
 
+    private String ratingTableName ="RatingTable";
+    private String ratingTableColumn="(UserName TEXT,UniqueId TEXT,ratingGiven INTEGER DEFAULT 0)";
+    private String ratingTableParameters="(USerName,HotelName,ratingGiven)";
+
+
     private Connection conn=null;
     private Statement statement=null;
 
@@ -81,6 +86,7 @@ public class DataBaseController {
             statement.execute(TABLE_CREATOR+availableTableName+availableTableColoumns);
             statement.execute(TABLE_CREATOR+waitingListTableName+waitingListTableColoumns);
             statement.execute(TABLE_CREATOR+myBookingsTableName+myBookingsTableColumns);
+            statement.execute(TABLE_CREATOR+ ratingTableName +ratingTableColumn);
         }catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -575,25 +581,64 @@ public class DataBaseController {
             e.printStackTrace();
         }
     }
-    public void addRating(String id,int rate) throws SQLException{
+    public void addRating(String id,int rate,String userName,boolean status) throws SQLException{
 
         if(!conn.isClosed()) {
             ResultSet rs = statement.executeQuery("SELECT * FROM " + hotelsTableNAME + " WHERE UniqueId='" + id + "'");
+            if(status) {
+                ResultSet res2=statement.executeQuery("SELECT * FROM "+ratingTableName+
+                        " WHERE ( UserName = '"+userName+"' "+"AND UniqueId = '"+id+"')");
+                int rateToBeUpdated=res2.getInt("rateGiven");
+                String srate = rs.getString("StarRating");
+                String nRate=rs.getString("NumberOfVotes");
+                int num=Integer.parseInt(nRate);
+                double initialRating = Double.parseDouble(srate);
+                double newRating=((initialRating*num)-rateToBeUpdated+(double)rate)/num;
+                String rating=String.valueOf(newRating);
+                statement.execute("UPDATE "+ratingTableName + " SET ratingGiven="+rate+" WHERE ( UserName = '"+userName+"' "+"AND UniqueId = '"+id+"')");
+                statement.execute("UPDATE  "+hotelsTableNAME + " SET StarRating= '"+rating+"' WHERE  UniqueId='"+id+"'");
 
-            String srate = rs.getString("StarRating");
-            String nRate=rs.getString("NumberOfVotes");
-            int num=Integer.parseInt(nRate);
+            }else {
+                String srate = rs.getString("StarRating");
+                String nRate=rs.getString("NumberOfVotes");
+                int num=Integer.parseInt(nRate);
 
-            double initialRating = Double.parseDouble(srate);
-            num+=1;
-            double newRating=((initialRating*(num-1))+(double)rate )/(num);
+                double initialRating = Double.parseDouble(srate);
+                num+=1;
+                double newRating=((initialRating*(num-1))+(double)rate )/(num);
 
-            String rating=String.valueOf(newRating);
-            String newNumberOfVotes=String.valueOf(num);
-            statement.execute("UPDATE  "+hotelsTableNAME + " SET StarRating= '"+rating+"' WHERE  UniqueId='"+id+"'");
-            statement.execute("UPDATE  "+hotelsTableNAME + " SET NumberOfVotes= "+newNumberOfVotes+" WHERE  UniqueId='"+id+"'");
+                String rating=String.valueOf(newRating);
+                String newNumberOfVotes=String.valueOf(num);
+                statement.execute("INSERT INTO "+ratingTableName+ratingTableParameters+" VALUES('"+userName+"','"+id+"',"+rate+")");
+                statement.execute("UPDATE  "+hotelsTableNAME + " SET StarRating= '"+rating+"' WHERE  UniqueId='"+id+"'");
+                statement.execute("UPDATE  "+hotelsTableNAME + " SET NumberOfVotes= "+newNumberOfVotes+" WHERE  UniqueId='"+id+"'");
+            }
+
+
         }
     }
+
+    public boolean getRatingStatus(String userName,String id) {
+        boolean status=false;
+        try {
+            if(!conn.isClosed()) {
+                ResultSet resultSet=statement.executeQuery("SELECT * FROM "+ratingTableName+
+                        " WHERE ( UserName = '"+userName+"' "+"AND UniqueId = '"+id+"')");
+
+                do {
+                    if(resultSet.getInt("ratingGiven")!=0) {
+                        status=true;
+                    }
+                }while (resultSet.next());
+                return status;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+
+    }
+
     public String generateBookingId(String userName)
     {
         StringBuilder bookingId= new StringBuilder();
@@ -672,13 +717,13 @@ public class DataBaseController {
         try {
             initialiseDatabase();
             ResultSet resultSet=statement.executeQuery("SELECT * FROM "+idTableName+" WHERE UserName = '"+userName+"'");
-            closeDatabaseConnection();
             do{
                 encryptedAadharFromDataBase= AES128Encyrption.encrypt(resultSet.getString("Aadhar"));
                 encryptedPanFromDatabase=AES128Encyrption.encrypt(resultSet.getString("PanCard"));
             }while (resultSet.next());
+            closeDatabaseConnection();
 
-          if(encryptedAadharFromDataBase.equals(encrptedId)) {
+        if(encryptedAadharFromDataBase.equals(encrptedId)) {
               return "AadharSuccess";
           }else if(encryptedPanFromDatabase.equals(encrptedId)) {
               return "PanSuccess";
@@ -1028,6 +1073,21 @@ public class DataBaseController {
         return list;
     }
 
+    public String getSelectedQuickSearch(String uniqueId) {
+    String uniName=null;
+    try {
+        initialiseDatabase();
+        ResultSet resultSet=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+uniqueId+"'");
+
+            while (resultSet.next()) {
+                uniName=resultSet.getString("HotelName")+","+resultSet.getString("City")+","+resultSet.getString("State");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeDatabaseConnection();
+        return uniName;
+    }
     public void closeDatabaseConnection() {
         try {
             if (!conn.isClosed()) {

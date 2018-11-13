@@ -4,7 +4,6 @@
 
 package com.sharan.ui.hotelView.hotelHome;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePage.HomePage;
@@ -34,6 +33,7 @@ public class HotelHomeBeforeLogin extends JFrame {
     private ArrayList<String> list;
     private double rate;
     private String starRatingPath;
+    private String setHotel;
 
     public HotelHomeBeforeLogin(String uniqueId,DataBaseController dataBaseController) {
         this.dataBaseController=dataBaseController;
@@ -48,15 +48,16 @@ public class HotelHomeBeforeLogin extends JFrame {
         rate = dataBaseController.calculateRating(uniqueId);
         String rateString = String.valueOf(rate);
         starRatingPath = "/com/sharan/ui/pictures/stars/" + rateString + ".jpg";
-        dataBaseController.closeDatabaseConnection();
         ratingLabel.setIcon(new ImageIcon(getClass().getResource(starRatingPath)));
         hotelPhoto.setIcon(new ImageIcon(getClass().getResource(list.get(4))));
         Title.setText(list.get(1));
         contactDetails.setText(list.get(3));
         hotelDetails.setText(list.get(2));
         numberOfRatings.setText(list.get(5) + " people rated this");
+        setHotel=dataBaseController.getSelectedQuickSearch(uniqueId);
 
 
+        dataBaseController.closeDatabaseConnection();
 
         hotelHomeBeforeLogin.setVisible(true);
         hotelHomeBeforeLogin.setIconImage(new ImageIcon(getClass().getResource("/com/sharan/ui/pictures/hotel.png")).getImage());
@@ -109,7 +110,7 @@ public class HotelHomeBeforeLogin extends JFrame {
         if(login.returnLoginStatus()==1) {
             loginSuccess=0;
             hotelHomeBeforeLogin.dispose();
-            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(userName,uniqueId,list.get(1),LoginField,dataBaseController);
+            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(userName,uniqueId,setHotel,LoginField,dataBaseController);
             login.getLogin().dispose();
 
         }
@@ -121,7 +122,7 @@ public class HotelHomeBeforeLogin extends JFrame {
         if(signUpSuccess==1) {
             signUpSuccess=0;
             hotelHomeBeforeLogin.dispose();
-            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(signUp.getName(),uniqueId,list.get(1),LoginField,dataBaseController);
+            FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(signUp.getName(),uniqueId,setHotel,LoginField,dataBaseController);
             signUp.getSignUp().dispose();
         }
     }

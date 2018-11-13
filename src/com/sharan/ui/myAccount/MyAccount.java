@@ -4,6 +4,7 @@
 
 package com.sharan.ui.myAccount;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.ui.home.homePage.HomePage;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
@@ -44,6 +45,7 @@ public class MyAccount {
 
 
         initComponents();
+        userId.setText(userName);
 
         dataBaseController.initialiseDatabase();
         tableList=dataBaseController.getMyAccountTableRows(userName);
@@ -194,6 +196,7 @@ public class MyAccount {
         separator1 = new JSeparator();
         menu2 = new JMenu();
         LogoutField = new JMenuItem();
+        userId = new JLabel();
         label1 = new JLabel();
         scrollPane1 = new JScrollPane();
         tabbedPane1 = new JTabbedPane();
@@ -227,7 +230,7 @@ public class MyAccount {
                 menuBar.add(homePage);
 
                 //---- separator1 ----
-                separator1.setMaximumSize(new Dimension(1300, 500));
+                separator1.setMaximumSize(new Dimension(1600, 500));
                 separator1.setPreferredSize(new Dimension(0, 250));
                 separator1.setMinimumSize(new Dimension(1, 50));
                 menuBar.add(separator1);
@@ -243,6 +246,14 @@ public class MyAccount {
                     menu2.add(LogoutField);
                 }
                 menuBar.add(menu2);
+
+                //---- userId ----
+                userId.setMaximumSize(new Dimension(150, 32767));
+                userId.setText("userName");
+                userId.setFont(new Font("Arial", Font.BOLD, 16));
+                userId.setHorizontalAlignment(SwingConstants.CENTER);
+                userId.setForeground(Color.white);
+                menuBar.add(userId);
             }
             myAccountField.setJMenuBar(menuBar);
 
@@ -428,6 +439,7 @@ public class MyAccount {
     private JSeparator separator1;
     private JMenu menu2;
     private JMenuItem LogoutField;
+    private JLabel userId;
     private JLabel label1;
     private JScrollPane scrollPane1;
     private JTabbedPane tabbedPane1;

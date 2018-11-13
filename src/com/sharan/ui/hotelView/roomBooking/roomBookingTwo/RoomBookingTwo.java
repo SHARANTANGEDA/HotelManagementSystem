@@ -137,15 +137,22 @@ public class RoomBookingTwo {
             reqnoofDeluxeRooms =(Integer)enterField1.getValue() ;
             reqnoOfSuiteRooms =(Integer)enterField2.getValue();
         }
+        int noOfPeople = (Integer)enterField3.getValue();
+        int maxCapacity = (reqnoofStandardRooms)*2+(reqnoofDeluxeRooms)*3+(reqnoOfSuiteRooms)*4;
+        if(noOfPeople>maxCapacity)
+        {
+            JOptionPane.showMessageDialog(null,"Sorry,Cannot Accomidate Selected Number in the Selected Rooms,Please Select More!!");
+        }
+        else {
         dataBaseController.initialiseDatabase();
         dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,reqnoofStandardRooms,reqnoofDeluxeRooms,reqnoOfSuiteRooms,Integer.parseInt(noofStandardRooms),Integer.parseInt(noofStandardRooms),Integer.parseInt(noOfSuiteRooms));
         dataBaseController.closeDatabaseConnection();
-        roomBookingTwo.dispose();
+        roomBookingTwo.dispose();}
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Ajith
+        // Generated using JFormDesigner Evaluation license - SAI SHARAN
         roomBookingTwo = new JDialog();
         hotelTitle = new JLabel();
         scrollPane1 = new JScrollPane();
@@ -157,6 +164,8 @@ public class RoomBookingTwo {
         picture1 = new JLabel();
         picture2 = new JLabel();
         bookNow = new JButton();
+        roomType2Label2 = new JLabel();
+        enterField3 = new JSpinner();
 
         //======== roomBookingTwo ========
         {
@@ -216,6 +225,13 @@ public class RoomBookingTwo {
                     bookNow.setActionCommand("Book Now");
                     bookNow.addActionListener(e -> bookNowActionPerformed(e));
 
+                    //---- roomType2Label2 ----
+                    roomType2Label2.setText("Select Number of People:");
+                    roomType2Label2.setFont(new Font("Arial", Font.BOLD, 18));
+
+                    //---- enterField3 ----
+                    enterField3.setFont(new Font("Arial", Font.BOLD, 24));
+
                     GroupLayout panel1Layout = new GroupLayout(panel1);
                     panel1.setLayout(panel1Layout);
                     panel1Layout.setHorizontalGroup(
@@ -227,26 +243,33 @@ public class RoomBookingTwo {
                                         .addComponent(picture1, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(panel1Layout.createParallelGroup()
                                             .addGroup(panel1Layout.createSequentialGroup()
-                                                .addGap(35, 844, Short.MAX_VALUE)
+                                                .addGap(35, 856, Short.MAX_VALUE)
                                                 .addComponent(enterField2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
                                             .addGroup(panel1Layout.createSequentialGroup()
                                                 .addGap(142, 142, 142)
                                                 .addGroup(panel1Layout.createParallelGroup()
                                                     .addGroup(panel1Layout.createSequentialGroup()
                                                         .addComponent(roomType2Label, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(0, 436, Short.MAX_VALUE))
+                                                        .addGap(0, 448, Short.MAX_VALUE))
                                                     .addGroup(panel1Layout.createSequentialGroup()
                                                         .addComponent(roomType1Label, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
                                                         .addComponent(enterField1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))))))
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(picture2, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(150, 150, 150))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(589, 589, 589)
-                                .addComponent(bookNow, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(612, Short.MAX_VALUE))
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(589, 589, 589)
+                                        .addComponent(bookNow, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(442, 442, 442)
+                                        .addComponent(roomType2Label2, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(enterField3, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(590, Short.MAX_VALUE))
                     );
                     panel1Layout.setVerticalGroup(
                         panel1Layout.createParallelGroup()
@@ -271,7 +294,11 @@ public class RoomBookingTwo {
                                         .addGroup(panel1Layout.createSequentialGroup()
                                             .addGap(158, 158, 158)
                                             .addComponent(enterField2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(roomType2Label2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enterField3, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+                                .addGap(117, 117, 117)
                                 .addComponent(bookNow, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                 .addGap(84, 84, 84))
                     );
@@ -285,19 +312,19 @@ public class RoomBookingTwo {
                 roomBookingTwoContentPaneLayout.createParallelGroup()
                     .addGroup(roomBookingTwoContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1343, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hotelTitle, GroupLayout.PREFERRED_SIZE, 1343, GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
+                        .addGroup(roomBookingTwoContentPaneLayout.createParallelGroup()
+                            .addComponent(hotelTitle, GroupLayout.PREFERRED_SIZE, 1343, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1343, GroupLayout.PREFERRED_SIZE))
+                        .addGap(361, 361, 361))
             );
             roomBookingTwoContentPaneLayout.setVerticalGroup(
                 roomBookingTwoContentPaneLayout.createParallelGroup()
-                    .addGroup(roomBookingTwoContentPaneLayout.createSequentialGroup()
-                        .addComponent(hotelTitle, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(900, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, roomBookingTwoContentPaneLayout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 942, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(hotelTitle, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 979, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             roomBookingTwo.pack();
             roomBookingTwo.setLocationRelativeTo(roomBookingTwo.getOwner());
@@ -306,7 +333,7 @@ public class RoomBookingTwo {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Ajith
+    // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JDialog roomBookingTwo;
     private JLabel hotelTitle;
     private JScrollPane scrollPane1;
@@ -318,5 +345,7 @@ public class RoomBookingTwo {
     private JLabel picture1;
     private JLabel picture2;
     private JButton bookNow;
+    private JLabel roomType2Label2;
+    private JSpinner enterField3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

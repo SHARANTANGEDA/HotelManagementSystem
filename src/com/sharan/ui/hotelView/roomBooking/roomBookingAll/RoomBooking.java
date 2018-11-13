@@ -65,17 +65,19 @@ public class RoomBooking {
         suite = new SpinnerNumberModel(0,0,Integer.parseInt(maxnoOfSuitRooms),1);
 
 
+
         initComponents();
 
+
         try {
-            suiteField.commitEdit();
+            suiteFieid.commitEdit();
             standardField.commitEdit();
             deluxeField.commitEdit();
-
+            spinner1.commitEdit();
         }catch (ParseException e) {
             e.printStackTrace();
         }
-        suiteField.setModel(suite);
+        suiteFieid.setModel(suite);
         standardField.setModel(standard);
         deluxeField.setModel(deluxe);
         hotelTitle.setText(hotelName);
@@ -92,14 +94,21 @@ public class RoomBooking {
     private void bookNowActionPerformed(ActionEvent e) {
         int noofStandardRooms = (Integer)standardField.getValue();
         int noofDeluxeRooms = (Integer)deluxeField.getValue();
-        int noOfSuiteRooms = (Integer) suiteField.getValue();
+        int noOfSuiteRooms = (Integer)suiteFieid.getValue();
+        int noOfPeople = (Integer)spinner1.getValue();
+        int maxAvailable = (noofStandardRooms*2)+(noofDeluxeRooms)*3+(noOfSuiteRooms)*4;
+        if(noOfPeople>maxAvailable)
+        {
+            JOptionPane.showMessageDialog(null,"Sorry,Cannot Accomidate Selected Number in the Selcted Rooms,Please Select More!!");
+        }
+        else {
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.initialiseDatabase();
         System.out.println(uniqueId);
         dataBaseController.checkAvailable(userName,uniqueId,checkIn,checkOut,noofStandardRooms,noofDeluxeRooms,noOfSuiteRooms,Integer.parseInt(maxnoofStandardRooms),
                 Integer.parseInt(maxnoofDeluxeRooms),Integer.parseInt(maxnoOfSuitRooms));
         roomBooking.dispose();
-        dataBaseController.closeDatabaseConnection();
+        dataBaseController.closeDatabaseConnection();}
     }
 
 
@@ -107,12 +116,12 @@ public class RoomBooking {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Ajith
+        // Generated using JFormDesigner Evaluation license - SAI SHARAN
         roomBooking = new JFrame();
         hotelTitle = new JLabel();
         scrollPane1 = new JScrollPane();
         panel1 = new JPanel();
-        suiteField = new JSpinner();
+        suiteFieid = new JSpinner();
         standardField = new JSpinner();
         deluxeField = new JSpinner();
         label3 = new JLabel();
@@ -122,6 +131,8 @@ public class RoomBooking {
         deluxePicture = new JLabel();
         suitePicture = new JLabel();
         bookNow = new JButton();
+        label1 = new JLabel();
+        spinner1 = new JSpinner();
 
         //======== roomBooking ========
         {
@@ -149,8 +160,8 @@ public class RoomBooking {
                             java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 
-                    //---- suiteField ----
-                    suiteField.setFont(new Font("Arial", Font.BOLD, 24));
+                    //---- suiteFieid ----
+                    suiteFieid.setFont(new Font("Arial", Font.BOLD, 24));
 
                     //---- standardField ----
                     standardField.setFont(new Font("Arial", Font.BOLD, 24));
@@ -193,6 +204,13 @@ public class RoomBooking {
                     bookNow.setActionCommand("Book Now");
                     bookNow.addActionListener(e -> bookNowActionPerformed(e));
 
+                    //---- label1 ----
+                    label1.setText("Select Number of People");
+                    label1.setFont(new Font("Dialog", Font.BOLD, 20));
+
+                    //---- spinner1 ----
+                    spinner1.setFont(new Font("Dialog", Font.BOLD, 19));
+
                     GroupLayout panel1Layout = new GroupLayout(panel1);
                     panel1.setLayout(panel1Layout);
                     panel1Layout.setHorizontalGroup(
@@ -200,33 +218,37 @@ public class RoomBooking {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addComponent(suitePicture, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 758, Short.MAX_VALUE))
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(standardPicture, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(deluxePicture, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 758, Short.MAX_VALUE))
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                         .addGroup(panel1Layout.createParallelGroup()
                                             .addGroup(panel1Layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(suiteField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(standardPicture, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 190, Short.MAX_VALUE)
+                                                .addGroup(panel1Layout.createParallelGroup()
+                                                    .addComponent(label4, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(panel1Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(123, 123, 123)
-                                                .addComponent(deluxeField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(85, 85, 85)
-                                                .addComponent(standardField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                        .addGap(0, 389, Short.MAX_VALUE))
-                                    .addComponent(deluxePicture, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(suitePicture, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE))
-                                .addGap(150, 150, 150))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(465, 465, 465)
-                                .addComponent(bookNow, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(730, Short.MAX_VALUE))
+                                                .addGroup(panel1Layout.createParallelGroup()
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 611, Short.MAX_VALUE)
+                                                        .addComponent(bookNow, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addGap(0, 403, Short.MAX_VALUE)
+                                                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 383, GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(42, 42, 42)
+                                                .addComponent(spinner1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)))
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(standardField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(deluxeField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(suiteFieid, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 361, Short.MAX_VALUE))
                     );
                     panel1Layout.setVerticalGroup(
                         panel1Layout.createParallelGroup()
@@ -237,30 +259,32 @@ public class RoomBooking {
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addGap(129, 129, 129)
                                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(standardField, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(standardField, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panel1Layout.createParallelGroup()
-                                    .addGroup(panel1Layout.createParallelGroup()
-                                        .addGroup(panel1Layout.createSequentialGroup()
-                                            .addComponent(deluxePicture, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                            .addComponent(label3, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(131, 131, 131)))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(deluxePicture, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
                                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                        .addComponent(deluxeField, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(139, 139, 139)))
+                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                            .addComponent(deluxeField, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label3, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(131, 131, 131)))
                                 .addGroup(panel1Layout.createParallelGroup()
                                     .addComponent(suitePicture, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(159, 159, 159)
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(suiteField, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                        .addGap(147, 147, 147)
+                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(suiteFieid, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(spinner1, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                                .addGap(28, 28, 28)
                                 .addComponent(bookNow, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37))
+                                .addGap(60, 60, 60))
                     );
                 }
                 scrollPane1.setViewportView(panel1);
@@ -270,9 +294,9 @@ public class RoomBooking {
             roomBookingContentPane.setLayout(roomBookingContentPaneLayout);
             roomBookingContentPaneLayout.setHorizontalGroup(
                 roomBookingContentPaneLayout.createParallelGroup()
-                    .addComponent(hotelTitle, GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE)
+                    .addComponent(hotelTitle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(roomBookingContentPaneLayout.createSequentialGroup()
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
+                        .addComponent(scrollPane1)
                         .addContainerGap())
             );
             roomBookingContentPaneLayout.setVerticalGroup(
@@ -281,7 +305,7 @@ public class RoomBooking {
                         .addContainerGap()
                         .addComponent(hotelTitle, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1087, Short.MAX_VALUE)
+                        .addComponent(scrollPane1)
                         .addContainerGap())
             );
             roomBooking.pack();
@@ -291,12 +315,12 @@ public class RoomBooking {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Ajith
+    // Generated using JFormDesigner Evaluation license - SAI SHARAN
     private JFrame roomBooking;
     private JLabel hotelTitle;
     private JScrollPane scrollPane1;
     private JPanel panel1;
-    private JSpinner suiteField;
+    private JSpinner suiteFieid;
     private JSpinner standardField;
     private JSpinner deluxeField;
     private JLabel label3;
@@ -306,5 +330,7 @@ public class RoomBooking {
     private JLabel deluxePicture;
     private JLabel suitePicture;
     private JButton bookNow;
+    private JLabel label1;
+    private JSpinner spinner1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
