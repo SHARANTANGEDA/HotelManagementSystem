@@ -670,8 +670,9 @@ public class DataBaseController {
         String encryptedAadharFromDataBase;
         String encryptedPanFromDatabase;
         try {
+            initialiseDatabase();
             ResultSet resultSet=statement.executeQuery("SELECT * FROM "+idTableName+" WHERE UserName = '"+userName+"'");
-
+            closeDatabaseConnection();
             do{
                 encryptedAadharFromDataBase= AES128Encyrption.encrypt(resultSet.getString("Aadhar"));
                 encryptedPanFromDatabase=AES128Encyrption.encrypt(resultSet.getString("PanCard"));
@@ -1043,6 +1044,7 @@ public class DataBaseController {
     {
         ArrayList<String> list = new ArrayList<>();
         try {
+            initialiseDatabase();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId='"+uniqueId+"'");
             do {
                 list.add(resultSet.getString("HotelName"));
@@ -1057,6 +1059,7 @@ public class DataBaseController {
                 list.add(resultSet.getString("SuitePrice"));
                 list.add(String.valueOf(resultSet.getInt("SuiteCapacity")));
             }while (resultSet.next());
+            closeDatabaseConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }

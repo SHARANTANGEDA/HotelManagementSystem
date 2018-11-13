@@ -39,7 +39,7 @@ public class SignUp {
 
 
     public SignUp(DataBaseController dataBaseController, JButton toBeClicked) {
-
+        signUpSuccess=0;
         initComponents();
 
         SignUp.setVisible(true);
@@ -135,7 +135,7 @@ public class SignUp {
             try {
                 dataBaseController.initialiseDatabase();
 
-                dataBaseController.addUser(name,fullName,hashedPassword,dob,address,email,phn);
+                dataBaseController.addUser(fullName,name,hashedPassword,dob,address,email,phn);
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }

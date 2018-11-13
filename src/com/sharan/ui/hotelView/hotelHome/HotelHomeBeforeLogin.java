@@ -4,6 +4,7 @@
 
 package com.sharan.ui.hotelView.hotelHome;
 
+import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
 import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePage.HomePage;
@@ -42,9 +43,8 @@ public class HotelHomeBeforeLogin extends JFrame {
         AutoCompleteDecorator.decorate(Hotels);
         TextFileController textFileController=new TextFileController();
         userName=textFileController.readFile();
-
+        dataBaseController.initialiseDatabase();
         list=dataBaseController.parseHotel(uniqueId);
-
         rate = dataBaseController.calculateRating(uniqueId);
         String rateString = String.valueOf(rate);
         starRatingPath = "/com/sharan/ui/pictures/stars/" + rateString + ".jpg";
@@ -128,7 +128,7 @@ public class HotelHomeBeforeLogin extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - SAI SHARAN
+        // Generated using JFormDesigner Evaluation license - Ajith
         hotelHomeBeforeLogin = new JFrame();
         menuBar = new JMenuBar();
         backButton = new JMenuItem();
@@ -153,7 +153,7 @@ public class HotelHomeBeforeLogin extends JFrame {
         {
             hotelHomeBeforeLogin.setResizable(false);
             hotelHomeBeforeLogin.setMaximizedBounds(new Rectangle(0, 0, 1500, 1080));
-            hotelHomeBeforeLogin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            hotelHomeBeforeLogin.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             Container hotelHomeBeforeLoginContentPane = hotelHomeBeforeLogin.getContentPane();
 
             //======== menuBar ========
@@ -267,7 +267,7 @@ public class HotelHomeBeforeLogin extends JFrame {
                             .addComponent(Title, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(GroupLayout.Alignment.TRAILING, hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
                                 .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(scrollPane2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1276, Short.MAX_VALUE)
+                                    .addComponent(scrollPane2, GroupLayout.Alignment.LEADING)
                                     .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
                                         .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
                                             .addComponent(hotelPhoto, GroupLayout.PREFERRED_SIZE, 542, GroupLayout.PREFERRED_SIZE)
@@ -277,12 +277,12 @@ public class HotelHomeBeforeLogin extends JFrame {
                                             .addComponent(HotelDetails)
                                             .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
                                                 .addComponent(rateYourExperience, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 494, Short.MAX_VALUE))
+                                                .addGap(0, 0, Short.MAX_VALUE))
                                             .addGroup(hotelHomeBeforeLoginContentPaneLayout.createSequentialGroup()
                                                 .addGroup(hotelHomeBeforeLoginContentPaneLayout.createParallelGroup()
                                                     .addComponent(numberOfRatings, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(ratingLabel, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(checkAvailability, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(42, 42, 42)))))
                                 .addGap(10, 10, 10))))
@@ -320,7 +320,7 @@ public class HotelHomeBeforeLogin extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - SAI SHARAN
+    // Generated using JFormDesigner Evaluation license - Ajith
     private JFrame hotelHomeBeforeLogin;
     private JMenuBar menuBar;
     private JMenuItem backButton;

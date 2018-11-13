@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq l {space :p:118:p, comp label1:::p::p}, seq l {space :p:242:p, comp button1:::p::p}}, space ::157:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space ::71:x, comp button1:::p::p, space :p:63:p}}"
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:118:p, comp label1:::p::p}, seq l {space :p:180:p, comp button1:::p::p}}, space ::92:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:42:p, space s:::p, comp button1:::p::p, space ::70:x}}"
 		} ) {
 			name: "waitingListDialog"
 			"defaultCloseOperation": 2

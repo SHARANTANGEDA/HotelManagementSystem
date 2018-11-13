@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import static com.sharan.Main.checkInCheckOutCheck;
+import static com.sharan.Main.loginSuccess;
 
 /**
  * @author SAI SHARAN
@@ -166,6 +167,7 @@ public class HomePageAfterLogin {
 
 
     private void LogoutActionPerformed(ActionEvent e) {
+        loginSuccess =0;
         homePageAfterLogin.dispose();
         homePageAfterLogin.setVisible(false);
         HomePage homePage=new HomePage(dataBaseController);

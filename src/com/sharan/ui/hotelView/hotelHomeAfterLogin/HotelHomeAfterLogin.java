@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
+import static com.sharan.Main.loginSuccess;
 import static com.sharan.Main.starUpdate;
 import static com.sharan.Main.viewToindividual;
 
@@ -124,6 +125,7 @@ public class HotelHomeAfterLogin {
 
     //********ButtonFields****************************************
     private void LogoutFieldActionPerformed(ActionEvent e) {
+        loginSuccess =0;
         dataBaseController.initialiseDatabase();
         individualHotelHome.dispose();
         HotelHomeBeforeLogin hotelHomeBeforeLogin=new HotelHomeBeforeLogin(uniqueId,dataBaseController);

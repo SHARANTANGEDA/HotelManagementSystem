@@ -4,13 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {comp Title::l:::x, seq t {par t {comp scrollPane2::l::1276:x, seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, space s:::p, par l {comp HotelDetails:::::x, seq {comp rateYourExperience:::p:222:p, space :0:494:x}, seq l {par l {comp numberOfRatings::l:p:222:p, comp ratingLabel::l:p:222:p}, space ::106:x, comp checkAvailability:::p:346:p, space :p:42:p}}}}, space :p:10:p}}}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp Title::l:::x, seq t {par t {comp scrollPane2::l:::x, seq t {par l {comp hotelPhoto:::p:542:p, comp titleContactDetails::l:p:210:p}, space s:::p, par l {comp HotelDetails:::::x, seq {comp rateYourExperience:::p:222:p, space :0:0:x}, seq l {par l {comp numberOfRatings::l:p:222:p, comp ratingLabel::l:p:222:p}, space :::x, comp checkAvailability:::p:346:p, space :p:42:p}}}}, space :p:10:p}}}}"
 			"$verticalGroup": "par l {seq l {space :::p, comp Title:::p:72:p, space s:::p, par l {seq l {comp HotelDetails:::p:346:p, space u:::p, comp rateYourExperience:::p::p, space :::p, par l {seq {comp numberOfRatings:::p:42:p, space :::p, comp ratingLabel:::p::p}, comp checkAvailability:::p:109:p}}, seq {comp hotelPhoto:::::x, space :::p, comp titleContactDetails:::p:45:p}}, space :::p, comp scrollPane2:::p:92:p, space :p:22:p}}"
 		} ) {
 			name: "hotelHomeBeforeLogin"
 			"resizable": false
 			"maximizedBounds": new java.awt.Rectangle( 0, 0, 1500, 1080 )
-			"defaultCloseOperation": 3
+			"defaultCloseOperation": 2
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "Title"
 				"text": "Hotel"

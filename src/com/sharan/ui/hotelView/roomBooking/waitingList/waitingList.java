@@ -64,7 +64,7 @@ public class waitingList extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - SAI SHARAN
+        // Generated using JFormDesigner Evaluation license - Ajith
         waitingListDialog = new JDialog();
         label1 = new JLabel();
         button1 = new JButton();
@@ -94,18 +94,18 @@ public class waitingList extends JFrame {
                                 .addGap(118, 118, 118)
                                 .addComponent(label1))
                             .addGroup(waitingListDialogContentPaneLayout.createSequentialGroup()
-                                .addGap(242, 242, 242)
+                                .addGap(180, 180, 180)
                                 .addComponent(button1)))
-                        .addContainerGap(157, Short.MAX_VALUE))
+                        .addContainerGap(92, Short.MAX_VALUE))
             );
             waitingListDialogContentPaneLayout.setVerticalGroup(
                 waitingListDialogContentPaneLayout.createParallelGroup()
                     .addGroup(waitingListDialogContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(button1)
-                        .addGap(63, 63, 63))
+                        .addContainerGap(70, Short.MAX_VALUE))
             );
             waitingListDialog.pack();
             waitingListDialog.setLocationRelativeTo(waitingListDialog.getOwner());
@@ -114,7 +114,7 @@ public class waitingList extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - SAI SHARAN
+    // Generated using JFormDesigner Evaluation license - Ajith
     private JDialog waitingListDialog;
     private JLabel label1;
     private JButton button1;
