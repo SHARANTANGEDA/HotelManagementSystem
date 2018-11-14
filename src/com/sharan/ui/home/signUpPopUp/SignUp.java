@@ -100,6 +100,11 @@ public class SignUp {
             JOptionPane.showMessageDialog(null,"Enter Name");
             flag =1;
         }
+        else if (name.length()<=3)
+        {
+            JOptionPane.showMessageDialog(null,"User Name must Contain 4 characters");
+            flag=1;
+        }
         else if(hashedPassword.equals(""))
         {
             JOptionPane.showMessageDialog(null,"Enter Password");

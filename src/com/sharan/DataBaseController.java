@@ -302,6 +302,7 @@ public class DataBaseController {
                         availableList.add(updatedDeluxeAvailableString);
                         availableList.add(updatedSuiteAvailableString);
                         availableList.add(formattedDate);
+                        System.out.println(noOfStandardRooms+"In Check Available!!");
                         System.out.println("Trying to open Payment Page");
                         PaymentPage paymentPage = new PaymentPage(statement,1,availableList,userName,this,noOfStandardRooms,noOfDeluxeRooms,noOfSuitRooms,uniqueId,checkIn,checkOut);
 //                        statement.execute("UPDATE " + availableTableName + " SET StandardAvailableArray '" + updatedStandardAvailableString + "' WHERE UniqueId='" + uniqueId + "'");
@@ -702,6 +703,7 @@ public class DataBaseController {
     }
     public ArrayList<String> getRoomPriceFromHotel(String uniqueId) {
         ArrayList<String> list=new ArrayList<>();
+        initialiseDatabase();
         try {
             if (!conn.isClosed()) {
                 ResultSet rs=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+uniqueId+"'");
@@ -716,9 +718,14 @@ public class DataBaseController {
                     list.add(suitePrice);
                 }
             }
-            return list;
+            //return list;
         }catch (SQLException e) {
             e.printStackTrace();
+        }
+        closeDatabaseConnection();
+        for (int i=0;i<list.size();i++)
+        {
+            System.out.println(list.get(i));
         }
         return list;
     }

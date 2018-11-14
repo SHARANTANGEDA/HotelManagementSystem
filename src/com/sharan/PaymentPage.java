@@ -56,7 +56,8 @@ public class PaymentPage {
 
     public PaymentPage(Statement statement,int flag,ArrayList<String> availableList, String userName, DataBaseController dataBaseController, int noOfStandardRooms, int noOfDeluxeRooms, int noOfSuiteRooms, String uniqueId,String checkIn,String checkOut) {
 
-        dataBaseController.initialiseDatabase();
+        //dataBaseController.initialiseDatabase();
+        list= new ArrayList<>();
         hotelName=dataBaseController.parseHotel(uniqueId).get(1);
         address = dataBaseController.parseHotel(uniqueId).get(3);
         this.userName=userName;
@@ -71,7 +72,7 @@ public class PaymentPage {
         int totalPrice=0;
         this.uniqueId = uniqueId;
         list=dataBaseController.getRoomPriceFromHotel(uniqueId);
-
+        System.out.println(noOfStandardRooms+"In Payment Page");
 
         if(noOfStandardRooms!=0) {
             totalPrice+=noOfStandardRooms*(Integer.parseInt(list.get(0)));
@@ -86,7 +87,7 @@ public class PaymentPage {
             totalPrice+=noOfSuiteRooms*(Integer.parseInt(list.get(2)));
         }
         totalPricePaid=String.valueOf(totalPrice);
-        dataBaseController.closeDatabaseConnection();
+        //dataBaseController.closeDatabaseConnection();
 
 
         System.out.println("call:"+callFromWaitingList);
