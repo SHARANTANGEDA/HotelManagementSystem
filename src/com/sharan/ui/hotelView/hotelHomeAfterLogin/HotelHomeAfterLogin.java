@@ -4,9 +4,7 @@
 
 package com.sharan.ui.hotelView.hotelHomeAfterLogin;
 
-import javax.swing.plaf.*;
 import com.sharan.DataBaseController;
-import com.sharan.fileHandler.TextFileController;
 import com.sharan.ui.home.homePageAfterLogin.HomePageAfterLogin;
 import com.sharan.ui.hotelView.displaySelectedHotelsMultipleView.DisplaySelectedHotelsMultipleView;
 import com.sharan.ui.hotelView.fillOutFields.FillOutFieldsToViewHotelIndividual;
@@ -14,6 +12,7 @@ import com.sharan.ui.hotelView.hotelHome.HotelHomeBeforeLogin;
 import com.sharan.ui.hotelView.rating.Rating;
 import com.sharan.ui.hotelView.roomBooking.roomBookingAll.RoomBooking;
 import com.sharan.ui.hotelView.roomBooking.roomBookingTwo.RoomBookingTwo;
+import com.sharan.ui.myAccount.MyAccount;
 
 import javax.swing.*;
 import java.awt.*;
@@ -198,8 +197,11 @@ public class HotelHomeAfterLogin {
     }
 
 
-//********ButtonFields****************************************
+    private void myAccountFieldActionPerformed(ActionEvent e) {
+        individualHotelHome.dispose();
+        MyAccount account=new MyAccount(userName,dataBaseController);    }
 
+        
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
@@ -274,6 +276,7 @@ public class HotelHomeAfterLogin {
                     //---- myAccountField ----
                     myAccountField.setText("My Account");
                     myAccountField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+                    myAccountField.addActionListener(e -> myAccountFieldActionPerformed(e));
                     menu2.add(myAccountField);
 
                     //---- LogoutField ----
