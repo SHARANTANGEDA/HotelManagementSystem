@@ -63,6 +63,10 @@ public class SignUp {
         hashedPassword = passwordHashing.hashPassword(passwordField.getText());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if(xDatePicker1.getDate()==null) {
+            JOptionPane.showMessageDialog(null,"Please Enter DateOfBirth");
+            flag = 1;
+        }
         xDatePicker1.setFormats(dateFormat);
         String unparsedDate=xDatePicker1.getDate().toString();
 
@@ -105,6 +109,17 @@ public class SignUp {
             JOptionPane.showMessageDialog(null,"User Name must Contain 4 characters");
             flag=1;
         }
+        else if (dob.isEmpty()||dob.equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter DateOfBirth");
+            flag = 1;
+        }
+        else if (dobField.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter DateOfBirth");
+            flag = 1;
+        }
+
         else if(hashedPassword.equals(""))
         {
             JOptionPane.showMessageDialog(null,"Enter Password");
