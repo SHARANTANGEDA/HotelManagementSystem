@@ -41,8 +41,8 @@ public class HotelHomeBeforeLogin extends JFrame {
         initComponents();
         addToUniversalHotelSearch();
         AutoCompleteDecorator.decorate(Hotels);
-        TextFileController textFileController=new TextFileController();
-        userName=textFileController.readFile();
+//        TextFileController textFileController=new TextFileController();
+//        userName=textFileController.readFile();
         dataBaseController.initialiseDatabase();
         list=dataBaseController.parseHotel(uniqueId);
         rate = dataBaseController.calculateRating(uniqueId);
@@ -110,6 +110,8 @@ public class HotelHomeBeforeLogin extends JFrame {
         if(login.returnLoginStatus()==1) {
             loginSuccess=0;
             hotelHomeBeforeLogin.dispose();
+            TextFileController textFileController=new TextFileController();
+            userName=textFileController.readFile();
             FillOutFieldsToViewHotelIndividual fillOutFieldsToViewHotel=new FillOutFieldsToViewHotelIndividual(userName,uniqueId,setHotel,LoginField,dataBaseController);
             login.getLogin().dispose();
 
