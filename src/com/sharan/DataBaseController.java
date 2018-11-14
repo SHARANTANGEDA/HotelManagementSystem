@@ -59,8 +59,8 @@ public class DataBaseController {
     private String myBookingParameters = " (UserName,HotelName,BookingId,BookingStatus,CheckIn,CheckOut,StandardRooms,DeluxeRooms,SuiteRooms,BookingDate,TotalPricePaid,Address,UniqueId)";
 
     private String ratingTableName ="RatingTable";
-    private String ratingTableColumn="(UserName TEXT,UniqueId TEXT,ratingGiven INTEGER DEFAULT 0)";
-    private String ratingTableParameters="(USerName,HotelName,ratingGiven)";
+    private String ratingTableColumn="(UserName TEXT,UniqueId TEXT,ratingGiven)";
+    private String ratingTableParameters="(UserName,UniqueId,ratingGiven)";
 
 
     private Connection conn=null;
@@ -583,20 +583,26 @@ public class DataBaseController {
     }
     public void addRating(String id,int rate,String userName,boolean status) throws SQLException{
 
+        initialiseDatabase();
         if(!conn.isClosed()) {
             ResultSet rs = statement.executeQuery("SELECT * FROM " + hotelsTableNAME + " WHERE UniqueId='" + id + "'");
             if(status) {
-                ResultSet res2=statement.executeQuery("SELECT * FROM "+ratingTableName+
-                        " WHERE ( UserName = '"+userName+"' "+"AND UniqueId = '"+id+"')");
-                int rateToBeUpdated=res2.getInt("rateGiven");
                 String srate = rs.getString("StarRating");
                 String nRate=rs.getString("NumberOfVotes");
+
+                ResultSet res2=statement.executeQuery("SELECT * FROM "+ratingTableName+
+                        " WHERE ( UserName = '"+userName+"' "+"AND UniqueId = '"+id+"')");
+                int rateToBeUpdated=res2.getInt("ratingGiven");
+
                 int num=Integer.parseInt(nRate);
                 double initialRating = Double.parseDouble(srate);
                 double newRating=((initialRating*num)-rateToBeUpdated+(double)rate)/num;
                 String rating=String.valueOf(newRating);
+                String newNumberOfVotes=String.valueOf(num);
                 statement.execute("UPDATE "+ratingTableName + " SET ratingGiven="+rate+" WHERE ( UserName = '"+userName+"' "+"AND UniqueId = '"+id+"')");
                 statement.execute("UPDATE  "+hotelsTableNAME + " SET StarRating= '"+rating+"' WHERE  UniqueId='"+id+"'");
+                statement.execute("UPDATE  "+hotelsTableNAME + " SET NumberOfVotes= "+newNumberOfVotes+" WHERE  UniqueId='"+id+"'");
+
 
             }else {
                 String srate = rs.getString("StarRating");
@@ -616,20 +622,25 @@ public class DataBaseController {
 
 
         }
+        closeDatabaseConnection();
     }
 
     public boolean getRatingStatus(String userName,String id) {
         boolean status=false;
         try {
+            initialiseDatabase();
+
             if(!conn.isClosed()) {
                 ResultSet resultSet=statement.executeQuery("SELECT * FROM "+ratingTableName+
                         " WHERE ( UserName = '"+userName+"' "+"AND UniqueId = '"+id+"')");
+                int rateGiven;
+                while (resultSet.next()) {
+                    status=true;
+                    rateGiven=resultSet.getInt("ratingGiven");
+                }
 
-                do {
-                    if(resultSet.getInt("ratingGiven")!=0) {
-                        status=true;
-                    }
-                }while (resultSet.next());
+                closeDatabaseConnection();
+
                 return status;
             }
         }catch (SQLException e) {
@@ -746,6 +757,7 @@ public class DataBaseController {
         ArrayList<String> list=new ArrayList<>();
 
         try {
+            initialiseDatabase();
             if(!conn.isClosed()) {
                 ResultSet rs=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+id+"'");
 
@@ -767,7 +779,7 @@ public class DataBaseController {
                     list.add(imagePath);
                     list.add(numOfVotes);
                 }
-
+                closeDatabaseConnection();
                 return list;
             }
         }catch (SQLException e){
@@ -784,6 +796,7 @@ public class DataBaseController {
         double finalrate=0;
         String srate="5.0";
         try {
+            initialiseDatabase();
             if (!conn.isClosed()) {
 
                 ResultSet rs = statement.executeQuery("SELECT * FROM " + hotelsTableNAME + " WHERE UniqueId='" + id + "'");
@@ -824,15 +837,12 @@ public class DataBaseController {
                     System.out.println(finalrate);
                 }
 
-            } else {
-                System.out.println("conn is closed");
             }
-
 
         }catch (SQLException e) {
             e.printStackTrace();
         }
-
+        closeDatabaseConnection();
         return finalrate;
     }
 
@@ -1058,6 +1068,7 @@ public class DataBaseController {
     public ArrayList<String> getIndividualHotelImages(String uniqueId) {
         ArrayList<String> list=new ArrayList<>();
         try {
+            initialiseDatabase();
             ResultSet resultSet=statement.executeQuery("SELECT * FROM "+hotelsTableNAME+" WHERE UniqueId = '"+uniqueId+"'");
 
             do{
@@ -1070,6 +1081,7 @@ public class DataBaseController {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+        closeDatabaseConnection();
         return list;
     }
 

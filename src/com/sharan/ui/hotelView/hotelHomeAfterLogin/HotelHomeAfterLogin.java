@@ -72,6 +72,7 @@ public class HotelHomeAfterLogin {
         rate = dataBaseController.calculateRating(uniqueId);
         String rateString = String.valueOf(rate);
         starRatingPath = "/com/sharan/ui/pictures/stars/" + rateString + ".jpg";
+        ArrayList<String> getNumberOfRatings=dataBaseController.parseHotel(uniqueId);
         dataBaseController.closeDatabaseConnection();
 
         initComponents();
@@ -84,6 +85,7 @@ public class HotelHomeAfterLogin {
         contactDetails.setText(address);
         hotelDetails.setText(description);
         Title.setText(hotelName);
+        numberOfVotes=getNumberOfRatings.get(5);
         numberOfRatings.setText(numberOfVotes + " people rated this");
         starUpdate=1;
         setHotel=dataBaseController.getSelectedQuickSearch(uniqueId);
@@ -143,14 +145,16 @@ public class HotelHomeAfterLogin {
         dataBaseController.initialiseDatabase();
         if(starUpdate==1) {
             Rating rating = new Rating(uniqueId,userName, dataBaseController, rateYourExperience);
+
             starUpdate=0;
         }
         rate = dataBaseController.calculateRating(uniqueId);
-        ArrayList<String> latest=dataBaseController.parseHotel(uniqueId);
-        numberOfVotes=latest.get(5);
+
         String rateString = String.valueOf(rate);
         starRatingPath = "/com/sharan/ui/pictures/stars/" + rateString + ".jpg";
         ratingLabel.setIcon(new ImageIcon(getClass().getResource(starRatingPath)));
+        ArrayList<String> getNumberOfRatings=dataBaseController.parseHotel(uniqueId);
+        numberOfVotes=getNumberOfRatings.get(5);
         numberOfRatings.setText(numberOfVotes + " people rated this");
         System.out.println(rate);
         System.out.println(starRatingPath);
@@ -201,7 +205,7 @@ public class HotelHomeAfterLogin {
         individualHotelHome.dispose();
         MyAccount account=new MyAccount(userName,dataBaseController);    }
 
-        
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - SAI SHARAN
